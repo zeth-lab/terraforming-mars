@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016033136">
+<meta name="build" content="20261016034615">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -954,6 +954,15 @@ section.story{height:calc(var(--app-h,100dvh) - var(--toc-h,0px))}
 .st-ctl .st-next{min-width:6.2em}
 .content{padding-top:0}
 .st-dots{flex-wrap:nowrap;gap:3px}.st-dots i{flex:1 1 0;max-width:16px;min-width:5px}.st-dots i.on{max-width:22px;flex-grow:1.6}
+/* 글 위, 그림 아래 */
+section.story{grid-template-rows:auto auto minmax(0,1fr) auto}
+section.story .st-h{order:0}section.story .st-cap{order:1;min-height:0}section.story .st-stage{order:2}section.story .st-ctl{order:3}
+.st-cap{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:start}
+.st-cap .st-n{grid-column:1/-1}.st-cap h3,.st-cap p{grid-column:1}
+.st-cap .scn{grid-column:2;grid-row:2/span 2;margin:4px 0 0;align-self:start}
+.st-cap p{min-height:3.1em}
+section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
+@media (max-width:860px){section.story{gap:8px}.st-cap .scn{font-size:.72rem;padding:4px 7px}}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1729,7 +1738,7 @@ win:[
  {h:'TR 1칸 = 1점',p:'화성을 바꿀 때마다 오르는 TR이 그대로 점수가 돼요. 가장 큰 점수원이에요',
   s:o(4,36,92,`<div class="trrow">${[18,19,20,21,22,23,24].map(v=>`<span>${v}</span>`).join('')}</div>`,'in')+o(58.6,24,9,sp('red'),'slide glow',.6,'--fx:-291%')+pill(24,62,'20 → 22 = +2점','ok big',1.4)},
  {h:'녹지 1개 = 1점, 도시 옆 녹지 = 1점씩',p:'내 큐브가 얹힌 녹지는 1점. 내 도시에 붙은 녹지는 누구 것이든 1점씩 더',
-  s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','drop',.2)+onHex(1,0,'gr','drop',.5)+onHex(0,-1,'gr','drop',.7)+onHex(-1,1,'gr','drop',.9)+onHex(0,0,'red','drop glow',1.1,7)+onHex(1,0,'red','drop',1.2,7)+onHex(-1,1,'red','drop',1.25,7)+pill(4,86,'도시 옆 녹지 3 = +3점','ok',1.6)+pill(56,86,'내 녹지 2 = +2점','ok',1.9)},
+  s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','drop',.2)+onHex(1,0,'gr','drop',.5)+onHex(0,-1,'gr','drop',.7)+onHex(-1,1,'gr','drop',.9)+onHex(0,0,'red','drop glow',1.1,7)+onHex(1,0,'red','drop',1.2,7)+onHex(-1,1,'red','drop',1.25,7)+onHex(0,-1,'blue','drop',1.3,7)+pill(4,86,'도시 옆 녹지 3 = +3점','ok',1.6)+pill(56,86,'내 녹지 2 = +2점','ok',1.9)},
  {h:'카드의 갈색 원 = 카드 점수',p:'카드 오른쪽 아래 갈색 원의 숫자가 게임 끝에 점수로 더해져요',
   s:o(20,4,60,card2d('farm',rc('vp','1점',.6,'b')),'in')},
  {h:'마일스톤 · 어워드 = 5점씩',p:'보드 아래의 업적(먼저 채우면)과 상(게임 끝 1등)도 5점이에요 → 08장',
@@ -1750,11 +1759,11 @@ gen:[
  {h:'③ 행동: 돌아가며 1~2개씩',p:'모두 패스할 때까지 차례가 돌아요. 할 수 있는 행동 8가지는 04장에서',
   s:o(6,8,88,`<div class="act8">${ACT8.map((t,i)=>`<span style="--d:${.1+i*.08}s">${t}</span>`).join('')}</div>`,'in')},
  {h:'④-1 남은 에너지는 열이 돼요',p:'전기는 저장이 안 돼요. 쓰지 않은 에너지는 생산 단계에 전부 열 칸으로',scene:'p1',
-  s:o(14,2,72,slot('en',`<span class="cubes out">${sp('cu').repeat(3)}</span>`,1),'in')+o(44,38,12,'<span class="arrow">↓</span>','in',.6)+o(14,52,72,slot('ht',cubes('cu',1)+`<span class="cubes flyin" style="--fy:-180%">${sp('cu').repeat(3)}</span>`,1),'in',.2)},
+  s:o(14,2,72,slot('en',`<span class="cubes out">${sp('cu').repeat(3)}</span>`,1),'in')+o(44,38,12,'<span class="arrow">↓</span>','in',.6)+o(14,52,72,slot('ht',cubes('cu',1)+`<span class="cubes flyin" style="--fy:-180%">${sp('cu').repeat(3)}</span>`,1),'in',.2)+pill(56,40,'에너지 3 → 열 +3','ok',1)},
  {h:'④-2 돈 = TR + M€ 생산',p:'화성을 바꾼 만큼(TR) 지구 정부의 지원금, 여기에 회사 사업 수익(M€ 생산)을 더해 받아요',scene:'p2',
   s:o(6,4,38,`<div class="numcard"><small>TR</small><b>21</b><span>지원금</span></div>`,'pop',.2)+pill(46,14,'+','big',.4)+o(56,4,38,`<div class="numcard"><small>M€ 생산</small><b>1</b><span>사업 수익</span></div>`,'pop',.5)+o(44,40,12,'<span class="arrow">↓</span>','in',.7)+o(22,54,56,`<div class="numcard ok"><small>받는 돈</small><b>22</b>${cubes('au',2)}${cubes('cu',2)}</div>`,'pop glow',.9)},
- {h:'④-3 공장이 일한 만큼',p:'철·티타늄·식물·에너지·열도 숫자 칸(내 큐브)만큼 은행에서 받아요. 숫자 칸 큐브는 그대로 둬요',scene:'p3',
-  s:o(3,4,46,slot('st',cubes('cu',1)+`<span class="cubes flyin" style="--fy:-140%">${sp('cu')}</span>`,1),'in')+o(51,4,46,slot('pl',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',.15)+o(27,48,46,slot('en',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',.3)},
+ {h:'④-3 공장이 일한 만큼',p:'철·티타늄·식물·에너지·열도 숫자 칸(빨간 큐브)이 가리키는 만큼 은행에서 받아요. 빨간 큐브는 그대로 둬요',scene:'p3',
+  s:o(3,0,45,slot('st',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0)+o(52,0,45,slot('ti',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0.15)+o(3,33,45,slot('pl',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',0.3)+o(52,33,45,slot('en',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',0.45)+o(27.5,66,45,slot('ht',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0.6)},
  {h:'④-4 파란 카드 위 큐브 회수',p:'이번 세대에 쓴 파란 카드의 내 큐브를 거둬요. 다음 세대에 또 쓸 수 있어요',
   s:o(20,4,60,card2d('microbe'),'in')+o(45,40,10,sp('red'),'lift glow',.6)+pill(66,22,'회수!','ok big',1)},
  {h:'세대 끝 정리 체크리스트',p:'게임 중에 이 화면을 켜 두고 하나씩 체크하세요',tool:'#clTool'}
@@ -1769,9 +1778,9 @@ turn:[
  {h:'3 · 파란 카드 행동',p:'"행동:"이 적힌 파란 카드는 세대마다 1번. 쓰면 카드 위에 내 큐브를 올려요',
   s:o(20,4,60,card2d('microbe',rc('eff','행동',.4)),'in')+o(45,26,10,sp('red'),'drop glow',.9)+pill(48,90,'이번 세대에 사용함','ok',1.3)},
  {h:'4 · 식물 8개 → 녹지',p:'식물 8개를 은행에 내고 녹지를 놓아요. 산소 +1 → TR +1, 녹지는 1점',scene:'g2a',
-  s:o(14,2,72,slot('pl',`<span class="cubes out">${sp('ag')+sp('cu').repeat(3)}</span>`,0),'in')+o(44,36,12,'<span class="arrow">↓</span>','in',.6)+o(30,48,40,sp('gr'),'drop glow',.9)+o(45,52,10,sp('red'),'drop',1.3)+pill(26,90,'산소 +1 · TR +1','ok',1.5)},
+  s:o(14,2,72,slot('pl',`<span class="cubes out">${sp('cu').repeat(8)}</span>`,1),'in')+o(44,47,12,'<span class="arrow">↓</span>','in',.6)+o(35,57,30,sp('gr'),'drop glow',.9)+o(45.5,66,9,sp('red'),'drop',1.3)+pill(28,92,'산소 +1 · TR +1','ok',1.5)},
  {h:'5 · 열 8개 → 온도 +1',p:'열 8개를 내고 온도를 한 칸(2°C) 올려요. TR +1. 열은 이것 말고 쓸 데가 거의 없어요',
-  s:o(4,8,56,slot('ht',`<span class="cubes out">${sp('ag')+sp('cu').repeat(3)}</span>`,1),'in')+o(68,4,28,track('t',[-24,-26,-28,-30],-28,[],'온도'),'in',.6)+pill(8,62,'열 8 → 온도 +1칸','ok',1.2)+pill(8,74,'TR +1','ok big',1.4)},
+  s:o(4,8,56,slot('ht',`<span class="cubes out">${sp('cu').repeat(8)}</span>`,1),'in')+o(68,4,28,track('t',[-24,-26,-28,-30],-28,[],'온도'),'in',.6)+pill(8,62,'열 8 → 온도 +1칸','ok',1.2)+pill(8,74,'TR +1','ok big',1.4)},
  {h:'6 · 마일스톤  7 · 어워드',p:'업적을 8 M€로 확정하거나, 상에 돈을 걸어요 → 08장에서 자세히',
   s:o(4,26,92,msPanel(['테라포머','시장','정원사','건축가','기획자'],{2:'red'}),'in')},
  {h:'8 · 패스',p:'이번 세대엔 더 안 해요. 1개만 하고 넘기는 것과 달라요. 모두 패스하면 생산 단계',scene:'g1d',
@@ -1781,15 +1790,15 @@ tiles:[
  {h:'바다는 파란 칸에만',p:'점선 파란 칸 = 물이 고이는 낮은 땅. 바다는 여기만, 다른 타일은 여기 못 놓아요',
   s:hexSvg([{k:'res',g:1},{k:'res'},{},{},{},{},{}])+onHex(0,0,'oc','drop glow',.5)+pill(6,88,'바다 = 주인 없음','muted',1.1)+pill(62,88,'TR +1','ok',1.3)},
  {h:'바다 옆 = 1개당 +2 M€',p:'어떤 타일이든, 놓은 자리 옆 바다 1개마다 2 M€. 바닷가 땅은 값이 비싸요',
-  s:hexSvg([{},{k:'res'},{k:'res'},{},{},{},{}])+onHex(1,0,'oc','in',0)+onHex(1,-1,'oc','in',0)+onHex(0,0,'ci','drop glow',.5)+o(8,6,28,cubes('cu',4),'flyin',1.1,'--fy:120%')+pill(40,88,'+4 M€','ok big',1.3)},
+  s:hexSvg([{},{k:'res'},{k:'res'},{},{},{},{}])+onHex(1,0,'oc','in',0)+onHex(1,-1,'oc','in',0)+onHex(0,0,'ci','drop glow',.5)+onHex(0,0,'red','drop',.8,7)+o(8,6,28,cubes('cu',4),'flyin',1.1,'--fy:120%')+pill(40,88,'+4 M€','ok big',1.3)},
  {h:'칸에 그려진 그림 = 보너스',p:'그 땅에 묻힌 자원을 찾은 거예요. 그림만큼 바로 받아요',
-  s:hexSvg([{t:'철철',tc:'st',g:1},{t:'식',tc:'pl'},{},{},{t:'카',tc:'w'},{},{}])+onHex(0,0,'gr','drop',.5)+o(8,6,24,cubes('cu',2),'flyin',1,'--fy:120%')+pill(40,88,'+철 2','ok big',1.2)},
+  s:hexSvg([{t:'철철',tc:'st',g:1},{t:'식',tc:'pl'},{},{},{t:'카',tc:'w'},{},{}])+onHex(0,0,'gr','drop',.5)+onHex(0,0,'red','drop',.8,7)+o(8,6,24,cubes('cu',2),'flyin',1,'--fy:120%')+pill(40,88,'+철 2','ok big',1.2)},
  {h:'녹지는 내 땅 옆에',p:'내 타일 옆에 빈자리가 있으면 녹지는 그 옆에. 숲은 내 개척지에서 번져 나가요',
   s:hexSvg([{},{g:1},{},{},{},{},{}])+onHex(0,0,'ci','in',0)+onHex(0,0,'red','in',0,7)+onHex(1,0,'gr','drop glow',.5)+onHex(1,0,'red','drop',.9,7)+pill(30,88,'산소 +1 · TR +1','ok',1.2)},
  {h:'도시끼리는 붙일 수 없어요',p:'누구의 도시든, 바로 옆 칸엔 도시를 못 지어요',
   s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','in',0)+onHex(0,0,'blue','in',0,7)+onHex(1,0,'ci','drop shake',.5)+o(64,30,18,'<span class="xmark">✕</span>','pop',1.1)},
  {h:'도시 옆 녹지 = 도시 주인 점수',p:'게임 끝에 내 도시에 붙은 녹지마다 1점. 파란(남의) 녹지도 세요. 도시 둘레를 숲으로!',
-  s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','in glow',0)+onHex(0,0,'red','in',0,7)+onHex(1,0,'gr','drop',.3)+onHex(0,-1,'gr','drop',.5)+onHex(-1,1,'gr','drop',.7)+onHex(0,-1,'blue','drop',.9,7)+pill(40,88,'+3점','ok big',1.3)},
+  s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','in glow',0)+onHex(0,0,'red','in',0,7)+onHex(1,0,'gr','drop',.3)+onHex(0,-1,'gr','drop',.5)+onHex(-1,1,'gr','drop',.7)+onHex(1,0,'red','drop',.9,7)+onHex(0,-1,'blue','drop',.95,7)+onHex(-1,1,'red','drop',1,7)+pill(30,88,'내 도시 +3점','ok big',1.3)},
  {h:'직접 놓아 보기',p:'타일을 고르고 칸을 눌러 보세요. 안 되는 칸이면 이유를 알려 드려요',tool:'#hexTool'}
 ],
 params:[
@@ -1861,7 +1870,7 @@ document.querySelectorAll('section.story').forEach(sec=>{const id=sec.id,fr=F[id
   else{stage.classList.remove('has-tool');stage.innerHTML=`<div class="sb">${f.s}</div>`}
   stage.dataset.dir=dir;stage.classList.remove('enter');void stage.offsetWidth;stage.classList.add('enter');
   if(!f.tool&&!window.__hinted){window.__hinted=1;stage.insertAdjacentHTML('beforeend','<span class="swipe-hint">← 옆으로 넘겨 보세요 →</span>')}
-  cap.innerHTML=`<p class="st-n">${k+1} / ${fr.length}</p><h3>${f.h}</h3><p>${f.p}</p>${f.scene?`<button class="scn" type="button" data-scene="${f.scene}">▶ 플레이 모션에서 보기</button>`:''}`;
+  cap.innerHTML=`<p class="st-n">${k+1} / ${fr.length}</p><h3>${f.h}</h3><p>${f.p}</p>${f.scene?`<button class="scn" type="button" data-scene="${f.scene}">▶ 모션</button>`:''}`;
   cap.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>playScene(b.dataset.scene));
   [...dots.children].forEach((d,j)=>{d.classList.toggle('on',j===k);d.classList.toggle('done',j<k)});
   const last=k===fr.length-1,nx=sec.dataset.next;
