@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016012053">
+<meta name="build" content="20261016033136">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -781,7 +781,7 @@ section.story{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:1
 .slot .shold .cubes{display:contents}.slot .shold .sp{width:20%}
 .slot .shold .cubes.flyin,.slot .shold .cubes.out,.slot .shold .cubes.slide{display:flex;width:100%;justify-content:flex-start;gap:3%}.slot .shold .cubes.flyin .sp,.slot .shold .cubes.out .sp,.slot .shold .cubes.slide .sp{width:20%}
 .slot .sprod{display:flex;gap:2%;padding:0 4% 5%}
-.slot .sprod span{flex:1;aspect-ratio:1;background:#fff;border:1px solid #b79a80;border-radius:3px;display:grid;place-items:center;font-size:clamp(.5rem,1.5cqw,.8rem);font-weight:700;position:relative}
+.slot .sprod>span{flex:1;aspect-ratio:1;background:#fff;border:1px solid #b79a80;border-radius:3px;display:grid;place-items:center;font-size:clamp(.5rem,1.5cqw,.8rem);font-weight:700;position:relative}
 .slot .sprod span .sp{position:absolute;width:90%;filter:none;opacity:.9}
 .slot.glow{animation:none}.o.glow .slot{animation:slotG 1.4s calc(var(--d) + .6s) infinite}
 @keyframes slotG{50%{box-shadow:0 0 0 3px #ffb347,0 0 24px rgba(255,150,40,.9)}}
@@ -864,7 +864,7 @@ section.story{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:1
 .trk span{height:9cqw;font-size:clamp(.66rem,3cqw,1rem)}
 .trk p{font-size:clamp(.7rem,3cqw,1rem)}
 .msp{gap:1.4cqw}.msp-i{font-size:clamp(.56rem,2.4cqw,.9rem);padding:2.4cqw .4cqw 8cqw}
-.slot .sh{font-size:clamp(.72rem,3.2cqw,1.05rem)}.slot .sprod span{font-size:clamp(.56rem,2.4cqw,.85rem)}
+.slot .sh{font-size:clamp(.72rem,3.2cqw,1.05rem)}.slot .sprod>span{font-size:clamp(.56rem,2.4cqw,.85rem)}
 .spl div{font-size:clamp(.62rem,2.9cqw,.95rem);padding:1.4cqw 2cqw;grid-template-columns:3em 5.4em 1fr}
 .spl div.hl{outline:3px solid #ff7a1a;box-shadow:0 0 14px rgba(255,122,26,.6)}
 .numcard small,.numcard span{font-size:clamp(.66rem,2.8cqw,.95rem)}.numcard b{font-size:clamp(1.6rem,10cqw,3.2rem)}
@@ -877,6 +877,83 @@ section.story{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:1
 .trrow span{font-size:clamp(.7rem,3.2cqw,1.1rem)}
 .cubes .sp{width:30%}
 .content footer{display:none}body[data-sec="ref"] .content footer,body[data-sec="table"] .content footer{display:block}
+/* ================= v7: 2D 평면 부품 · 2D 카드 · 큰 설명 ================= */
+/* 큐브 (위에서 본 모습) */
+.pc{display:block;aspect-ratio:1;border-radius:16%;position:relative}
+.sb .sp.pc{filter:drop-shadow(0 2px 2px rgba(60,35,20,.3))}
+.pc-cu{background:linear-gradient(135deg,#f6c3a0 0%,#d27a48 38%,#a24f25 100%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.pc-ag{background:linear-gradient(135deg,#ffffff 0%,#d9dce2 40%,#8f959e 100%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)}
+.pc-au{background:linear-gradient(135deg,#fff3b8 0%,#f4bc33 40%,#a8740a 100%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45)}
+.pc-red{background:linear-gradient(135deg,rgba(255,140,130,.95) 0%,rgba(222,24,24,.9) 45%,rgba(150,0,0,.92) 100%)}
+.pc-blue{background:linear-gradient(135deg,rgba(140,200,255,.95) 0%,rgba(30,120,235,.9) 45%,rgba(10,70,170,.92) 100%)}
+.pc-white{background:linear-gradient(135deg,#fff 0%,#f1ede7 50%,#c9c2b8 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.pc-red::after,.pc-blue::after{content:"";position:absolute;left:14%;top:12%;width:40%;height:18%;border-radius:40%;background:rgba(255,255,255,.6);transform:rotate(-12deg)}
+.pc-cu::after,.pc-ag::after,.pc-au::after{content:"";position:absolute;inset:18%;border-radius:12%;background:linear-gradient(135deg,rgba(255,255,255,.45),transparent 55%)}
+.pt{aspect-ratio:.866;border-radius:0}
+.sb .sp.pt{filter:drop-shadow(0 3px 3px rgba(60,35,20,.3))}
+.slot .sprod span .pc{position:absolute;width:72%;filter:none;opacity:.95}
+.trk span .wc{position:absolute;right:5%;height:72%;width:auto;aspect-ratio:1;border-radius:16%}
+.trk span .wc.mv{animation:wcUp .9s .5s cubic-bezier(.5,0,.3,1) both,glowB 1.4s 1.4s infinite}
+@keyframes glowB{50%{box-shadow:0 0 0 3px #ffb347,0 0 16px rgba(255,150,40,1)}}
+.glow>.pc,.glow .cubes .pc,.glow>.pt{animation:glowP 1.4s calc(var(--d) + .7s) infinite}
+.msp-i .pc{position:absolute;left:50%;bottom:8%;width:26%;transform:translateX(-50%);animation:drop .6s .6s both}
+.msp-i.one .pc{width:26%}
+/* 2D 설명용 카드 */
+.c2w{position:relative}
+.c2d{position:relative;aspect-ratio:63/88;background:#fbfaf6;border:3px solid var(--cf);border-radius:7%/5%;box-shadow:0 8px 18px rgba(60,35,20,.22);container-type:inline-size}
+.c2-g{--cf:#58a83e;--cb:#76c25b}.c2-b{--cf:#2f6fc8;--cb:#3f7fdc}.c2-r{--cf:#c9481a;--cb:#d9612f}
+.c2d::before{content:"";position:absolute;left:0;right:0;top:0;height:12%;background:linear-gradient(#efe9df,#e2d9cc);border-radius:7% 7% 0 0/50% 50% 0 0}
+.c2-cost{position:absolute;left:-4%;top:-3%;width:22%;aspect-ratio:1;display:grid;place-items:center;background:#f6c945;border:2px solid #8a6a2a;border-radius:18%;font-family:var(--f-display);font-weight:700;font-size:13cqw;color:#2b1d16;z-index:1}
+.c2-req{position:absolute;left:20%;top:2.6%;max-width:44%;background:#bfe3f5;color:#14445e;border-radius:4px;padding:1% 4%;font-size:6.4cqw;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c2-tags{position:absolute;right:3%;top:2%;display:flex;gap:3%;justify-content:flex-end}
+.c2-tags .tg{font-style:normal;font-size:6.2cqw;padding:2% 6%;border-radius:999px;white-space:nowrap}
+.tg-q{background:#9a8a7e}
+.c2-name{position:absolute;left:4%;right:4%;top:13%;height:8%;background:var(--cb);color:#fff;border-radius:3px;display:grid;place-items:center;font-weight:700;font-size:7.4cqw;white-space:nowrap;overflow:hidden}
+.c2-eff{position:absolute;left:7%;right:7%;top:24%;height:31%;border:1.5px solid #cfc4b6;border-radius:6px;background:#fff;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center;gap:3% 4%;padding:3%;font-size:7.6cqw;text-align:center;line-height:1.3}
+.c2-eff em{display:block;width:100%;font-style:normal;font-weight:700;font-size:6.2cqw;color:#fff;background:#2f6fc8;border-radius:3px;padding:1% 0;margin-bottom:2%}
+.c2-r .c2-eff em,.c2-g .c2-eff em{background:#8a7a6e}
+.c2-eff small{display:block;width:100%;font-size:6cqw;color:#8a7a6e}
+.c2-art{position:absolute;left:7%;right:7%;top:58%;height:22%;border-radius:5px;background:linear-gradient(160deg,#e9e1d4,#d8ccbb);opacity:.8}
+.c2-vp{position:absolute;right:4%;bottom:3%;width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#b0784a,#7a4a2b);border:2px solid #e0b46a;color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:12cqw}
+.ic2{display:inline-flex;align-items:center;gap:3px;font-family:var(--f-display);font-weight:700;color:#2b1d16;padding:1px 4px;border-radius:4px;white-space:nowrap}
+.ic2 .rs{width:1.15em;height:1.15em}
+.ic2.bx{background:#f6ecd8;outline:2px solid #8a5a32;outline-offset:1px}
+.ic2.rd{outline:2px solid #d9312f;outline-offset:1px}
+.k2d{position:relative;aspect-ratio:88/63;background:linear-gradient(160deg,#f3f6fa,#dfe7ef);border:3px solid #b9c4cf;border-radius:5%/7%;box-shadow:0 8px 18px rgba(60,35,20,.22);container-type:inline-size}
+.k2-kind{position:absolute;left:50%;top:2%;transform:translateX(-50%);background:#e0a21c;color:#2b1d16;font-size:3.4cqw;font-weight:700;padding:.4% 3%;border-radius:999px}
+.k2-name{position:absolute;left:5%;top:12%;width:55%;font-weight:800;font-size:5.4cqw;color:#24476e;line-height:1.2}
+.k2-start{position:absolute;left:5%;top:44%;width:38%;display:grid;gap:4%;font-size:4cqw;color:#2b1d16}
+.k2-start b{display:inline-block;background:#f6c945;border:2px solid #8a6a2a;border-radius:5px;padding:0 6%;font-family:var(--f-display);font-size:6cqw;margin-right:4%}
+.k2-start small{font-size:3.6cqw;color:#5f4f44}
+.k2-eff{position:absolute;right:4%;top:30%;width:48%;min-height:50%;background:#fff;border:1.5px solid #b9c4cf;border-radius:6px;padding:3%;font-size:4cqw;text-align:center;display:grid;align-content:center;gap:6%}
+.k2-eff em{font-style:normal;background:#2f6fc8;color:#fff;font-weight:700;border-radius:3px;font-size:3.6cqw;padding:1% 0}
+.k2-tag{position:absolute;right:4%;top:6%}.k2-tag .tg{font-size:3.8cqw;font-style:normal}
+.stack{position:relative;aspect-ratio:63/120}
+.stk{position:absolute;left:0;width:100%;top:calc(var(--i) * 12%);animation:drop .5s calc(.2s + var(--i) * .35s) both}
+.stk .c2d{box-shadow:0 -2px 8px rgba(60,35,20,.2)}
+.flipc>.c2w{backface-visibility:hidden;animation:flipA 1.2s .7s both}
+.flipc .back{border-radius:7%/5%}
+/* 설명 글을 크게 (모바일) */
+.st-cap h3{font-size:1.3rem}
+.st-cap p{font-size:1.02rem;line-height:1.55;color:var(--dust)}
+@media (max-width:860px){
+  .st-cap{min-height:0}
+  .st-cap h3{font-size:1.22rem;margin:2px 0 6px}
+  .st-cap p{font-size:1rem}
+  .st-cap .st-n{font-size:.78rem}
+  section.story{grid-template-rows:auto minmax(0,1fr) auto auto;gap:12px}
+}
+/* 높이 = 실제 보이는 화면 (앱 안 브라우저 대응) */
+section.story{height:calc(var(--app-h,100dvh) - var(--toc-h,0px))}
+.home{height:var(--app-h,100dvh)}
+.rulesview{min-height:var(--app-h,100svh)}
+/* 넘기기 안내 */
+.swipe-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:5;background:rgba(43,29,22,.82);color:#fff;font-size:.82rem;font-weight:700;padding:6px 14px;border-radius:999px;white-space:nowrap;pointer-events:none;animation:hint 3.2s .6s both}
+@keyframes hint{0%{opacity:0;transform:translate(-50%,6px)}12%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0}}
+.st-dots{position:relative}
+.st-ctl .st-next{min-width:6.2em}
+.content{padding-top:0}
+.st-dots{flex-wrap:nowrap;gap:3px}.st-dots i{flex:1 1 0;max-width:16px;min-width:5px}.st-dots i.on{max-width:22px;flex-grow:1.6}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1512,8 +1589,10 @@ if(COARSE)addEventListener('pointerdown',()=>goFull(false),{once:true,capture:tr
 const SECS=[...document.querySelectorAll('.content section')].map(s=>s.id);
 const TITLES={};document.querySelectorAll('.toc a').forEach(a=>TITLES[a.dataset.sec]=a.textContent.replace(/^\d+/,''));
 const stageEl=$('.stage');
+function setAppH(){const r=document.documentElement;r.style.setProperty('--app-h',innerHeight+'px');const t=document.querySelector('.toc');r.style.setProperty('--toc-h',(innerWidth<=860&&t&&t.offsetHeight?t.offsetHeight:0)+'px')}
+addEventListener('resize',setAppH);if(window.visualViewport)visualViewport.addEventListener('resize',setAppH);setAppH();
 function showView(v){$('#home').hidden=v!=='home';$('#rules').hidden=v!=='rules';document.body.dataset.view=v;scrollTo(0,0)}
-function openSec(id,opt={}){if(!SECS.includes(id))id='win';document.body.dataset.sec=id;
+function openSec(id,opt={}){if(!SECS.includes(id))id='win';requestAnimationFrame(setAppH);document.body.dataset.sec=id;
   document.querySelectorAll('.content section').forEach(s=>s.hidden=s.id!==id);
   document.querySelectorAll('.toc a').forEach(a=>a.classList.toggle('on',a.dataset.sec===id));
   {const a=document.querySelector(`.toc a[data-sec="${id}"]`);if(a)$('#curSec').innerHTML=a.innerHTML}
@@ -1598,20 +1677,46 @@ $('#hexReset').onclick=resetHex;resetHex();
 (function(){
 /* --- 그림 재료 --- */
 const o=(x,y,w,inner,cls='in',d=0,st='')=>`<div class="o ${cls}" style="left:${x}%;top:${y}%;width:${w}%;--d:${d}s;${st}">${inner}</div>`;
-const sp=t=>`<img class="sp" src="img/p_${t}.png" alt="">`;
+/* --- 2D 부품 (위에서 본 평면) --- */
+const TILE={oc:['#2a5e9e','#3f86d6'],gr:['#3c7a2c','#5aa83f'],ci:['#8e8a84','#c9c3ba']};
+const tileSvg=k=>{const [rim,fill]=TILE[k];const hx=(r)=>{let p='';for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-90);p+=(43.3+r*Math.cos(a)).toFixed(1)+','+(50+r*Math.sin(a)).toFixed(1)+' '}return p};
+ let deco='';
+ if(k==='oc')deco='<path d="M43.3 30 C56 46 55 60 43.3 62 C31.6 60 30.6 46 43.3 30Z" fill="#e6f2ff" opacity=".92"/>';
+ if(k==='gr'){for(let i=0;i<14;i++){const a=i*2.4,r=8+(i%5)*5;deco+=`<circle cx="${(43.3+Math.cos(a)*r).toFixed(1)}" cy="${(50+Math.sin(a)*r).toFixed(1)}" r="${4+(i%3)}" fill="${i%2?'#2f6e22':'#7cc45a'}"/>`}}
+ if(k==='ci'){[[30,36,10,10],[44,34,9,14],[33,50,12,9],[48,52,10,11],[40,62,8,7]].forEach(([x,y,w,h])=>deco+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1.5" fill="#f4efe6" stroke="#9a948c" stroke-width="1"/>`)}
+ return `<svg class="sp pc pt" viewBox="0 0 86.6 100" aria-hidden="true"><polygon points="${hx(49)}" fill="${rim}"/><polygon points="${hx(40)}" fill="${fill}"/>${deco}</svg>`};
+const sp=t=>TILE[t]?tileSvg(t):`<span class="sp pc pc-${t}"></span>`;
 const cubes=(t,n)=>`<span class="cubes">${sp(t).repeat(n)}</span>`;
 const ring=(x,y,w,h,label,d=.5,pos='')=>`<span class="ring ${pos}" style="left:${x}%;top:${y}%;width:${w}%;height:${h}%;--d:${d}s">${label?`<b>${label}</b>`:''}</span>`;
 const photo=(f,rings='')=>`<div class="ph"><img src="img/${f}.jpg" alt="">${rings}</div>`;
 const tx=(x,y,t,cls='',d=1)=>`<span class="ftx ${cls}" style="left:${x}%;top:${y}%;--d:${d}s">${t}</span>`;
 const RS={mc:'M€',st:'철',ti:'티타늄',pl:'식물',en:'에너지',ht:'열'};
 const slot=(k,hold,prod,cls='')=>`<div class="slot s-${k} ${cls}"><div class="sh"><i class="rs rs-${k}"></i>${RS[k]}</div><div class="shold">${hold}</div><div class="sprod">${[0,1,2,3,4,5].map(v=>`<span>${v}${v===prod?sp('red'):''}</span>`).join('')}</div></div>`;
+/* --- 2D 설명용 카드 --- */
+const ic=(r,n,box=0,red=0)=>`<span class="ic2${box?' bx':''}${red?' rd':''}">${n}<i class="rs rs-${r}"></i></span>`;
+const CARD={
+ season:{c:'b',cost:8,req:'온도 −12°C 이상',tags:[['tg-q','태그']],name:'계절변화 적응생물',eff:`<em>행동</em>${ic('ht',5)}→${ic('pl',2)}<small>또는</small>${ic('pl',2)}→${ic('ht',4)}`,vp:'1'},
+ farm:{c:'g',cost:13,req:'산소 4% 이상',tags:[['tg-bd','건물'],['tg-pl','식물']],name:'(예시) 온실 농장',eff:`${ic('pl','+2',1)}${ic('pl','+1')}`,vp:'1'},
+ microbe:{c:'b',cost:9,tags:[['tg-mi','미생물']],name:'(예시) 미생물 배양',eff:`<em>행동</em>${ic('en',1)}→<span class="ic2">+1 미생물</span>`,vp:'½'},
+ asteroid:{c:'r',cost:14,tags:[['tg-sp','우주'],['tg-ev','이벤트']],name:'(예시) 소행성 충돌',eff:`<span class="ic2">온도 +1</span>${ic('pl','−3',0,1)}`},
+ station:{c:'g',cost:10,tags:[['tg-sp','우주'],['tg-ea','지구']],name:'(예시) 궤도 정거장',eff:`${ic('ti','+1',1)}`,vp:'1'},
+ factory:{c:'g',cost:12,tags:[['tg-bd','건물']],name:'(예시) 공장',eff:`${ic('st','+1',1)}`},
+ solar:{c:'g',cost:7,tags:[['tg-en','에너지']],name:'(예시) 태양 발전',eff:`${ic('en','+1',1)}`,vp:'−1'},
+ lab:{c:'g',cost:6,tags:[['tg-sc','과학']],name:'(예시) 연구소',eff:`<span class="ic2">카드 +1</span>`},
+ port:{c:'b',cost:11,tags:[['tg-sp','우주']],name:'(예시) 우주 항만',eff:`<em>효과</em><span class="tg tg-sp">우주</span> 카드를 낼 때마다 ${ic('mc','+2')}`}};
+const card2d=(k,rings='',cls='')=>{const c=CARD[k];return `<div class="c2w ${cls}"><div class="c2d c2-${c.c}"><span class="c2-cost">${c.cost}</span>${c.req?`<span class="c2-req">${c.req}</span>`:''}<span class="c2-tags">${c.tags.map(t=>`<i class="tg ${t[0]}">${t[1]}</i>`).join('')}</span><span class="c2-name">${c.name}</span><div class="c2-eff">${c.eff}</div><div class="c2-art"></div>${c.vp?`<span class="c2-vp">${c.vp}</span>`:''}</div>${rings}</div>`};
+const corp2d=(rings='')=>`<div class="c2w"><div class="k2d"><span class="k2-kind">기업</span><span class="k2-name">(예시) 화성 조류 연구소</span><span class="k2-start"><b>40</b> M€로 시작<small>${ic('pl','+1',1)} 식물 생산 1</small></span><div class="k2-eff"><em>지속 효과</em>바다 옆에 타일을 놓을 때마다 ${ic('pl','+1')}</div><span class="k2-tag"><i class="tg tg-pl">식물</i></span></div>${rings}</div>`;
+/* 2D 카드 각 부분 위치 (카드 안 %) */
+const RC={cost:[-5,-4,26,15],req:[18,0,50,11],tags:[56,0,44,12],name:[2,11.5,96,10],eff:[3,22,94,35],vp:[72,76,27,21]};
+const rc=(part,label,d,pos)=>ring(...RC[part],label,d,pos);
 const minicard=(color,cost,tag,name)=>`<div class="mcd" style="--c:${color}"><span class="mcd-c">${cost}</span><span class="tg ${tag[0]}">${tag[1]}</span><span class="mcd-n">${name}</span></div>`;
 const hexSvg=(cells)=>{const R=16,pos=[[0,0],[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1],[2,-1],[2,0],[-1,2],[0,-2],[-2,1]];
   let s='<svg viewBox="-50 -46 100 92" class="hx2">';cells.forEach((c,i)=>{const [q,r]=pos[i];const x=R*Math.sqrt(3)*(q+r/2),y=R*1.5*r;let p='';for(let k=0;k<6;k++){const a=Math.PI/180*(60*k-30);p+=(x+(R-1)*Math.cos(a)).toFixed(1)+','+(y+(R-1)*Math.sin(a)).toFixed(1)+' '}
    s+=`<polygon points="${p}" class="h-${c.k||'land'}${c.g?' hg':''}" />`;if(c.t)s+=`<text x="${x}" y="${y+3.6}" text-anchor="middle" class="ht-${c.tc||'w'}">${c.t}</text>`});return s+'</svg>'};
 const HX=(q,r)=>{const R=16;return [50+(R*Math.sqrt(3)*(q+r/2)),50+(R*1.5*r)/92*73.6]};
-const onHex=(q,r,t,cls='drop',d=.4,w=25)=>{const [x,y]=HX(q,r);const ww=w===7?10:w;return o(x-ww/2,y-ww*.38-(ww<15?3:0),ww,sp(t),cls,d)};
-const track=(kind,vals,at,bonus=[],label='',mv=1)=>`<div class="trk trk-${kind}"><p>${label}</p>${vals.map(v=>`<span class="${bonus.includes(v)?'bn':''}${v===at?' at':''}">${v}${v===at?`<img class="wc${mv?' mv':''}" src="img/p_white.png" alt="">`:''}</span>`).join('')}</div>`;
+/* 타일은 칸 크기 그대로(평면), 큐브는 칸 가운데 */
+const onHex=(q,r,t,cls='drop',d=.4,w)=>{const [x,y]=HX(q,r);if(TILE[t]){const ww=26.5;return o(x-ww/2,y-12.2,ww,sp(t),cls,d)}const ww=9;return o(x-ww/2,y-3.6,ww,sp(t),cls,d)};
+const track=(kind,vals,at,bonus=[],label='',mv=1)=>`<div class="trk trk-${kind}"><p>${label}</p>${vals.map(v=>`<span class="${bonus.includes(v)?'bn':''}${v===at?' at':''}">${v}${v===at?`<i class="wc pc pc-white${mv?' mv':''}"></i>`:''}</span>`).join('')}</div>`;
 const msPanel=(names,filled={},cls='')=>`<div class="msp ${cls}">${names.map((n,i)=>`<div class="msp-i${filled[i]?' f':''}"><b>${n}</b>${filled[i]?sp(filled[i]):''}</div>`).join('')}</div>`;
 
 /* --- 장별 화면 (세로 액자 10:12.5 기준 좌표) --- */
@@ -1626,7 +1731,7 @@ win:[
  {h:'녹지 1개 = 1점, 도시 옆 녹지 = 1점씩',p:'내 큐브가 얹힌 녹지는 1점. 내 도시에 붙은 녹지는 누구 것이든 1점씩 더',
   s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','drop',.2)+onHex(1,0,'gr','drop',.5)+onHex(0,-1,'gr','drop',.7)+onHex(-1,1,'gr','drop',.9)+onHex(0,0,'red','drop glow',1.1,7)+onHex(1,0,'red','drop',1.2,7)+onHex(-1,1,'red','drop',1.25,7)+pill(4,86,'도시 옆 녹지 3 = +3점','ok',1.6)+pill(56,86,'내 녹지 2 = +2점','ok',1.9)},
  {h:'카드의 갈색 원 = 카드 점수',p:'카드 오른쪽 아래 갈색 원의 숫자가 게임 끝에 점수로 더해져요',
-  s:o(18,4,64,photo('c_season',ring(72,78,26,19,'1점',.6,'b')),'in')},
+  s:o(20,4,60,card2d('farm',rc('vp','1점',.6,'b')),'in')},
  {h:'마일스톤 · 어워드 = 5점씩',p:'보드 아래의 업적(먼저 채우면)과 상(게임 끝 1등)도 5점이에요 → 08장',
   s:o(4,26,92,msPanel(['테라포머','시장','정원사','건축가','기획자'],{2:'red'}),'in')+pill(38,62,'+5점','ok big',.9)},
  {h:'돈과 자원은 승점을 사는 도구',p:'남은 M€는 동점일 때만 쓰여요. 모은 돈은 결국 TR·땅·점수 카드로 바꿔야 해요',
@@ -1641,7 +1746,7 @@ gen:[
  {h:'① 선 넘기기',p:'선 플레이어 마커를 왼쪽 사람에게, 흰 세대 큐브는 한 칸 앞으로',scene:'g2',
   s:o(14,14,22,'<span class="fpm"></span>','slide glow',.4,'--tx:218%')+pill(16,40,'나','muted',.2)+pill(64,40,'상대','muted',.2)+o(20,66,60,`<div class="trrow">${[1,2,3].map(v=>`<span>${v}</span>`).join('')}</div>`,'in')+o(44,55,12,sp('white'),'slide glow',.9,'--fx:-167%')+pill(28,90,'세대 1 → 2','ok',1.4)},
  {h:'② 연구: 4장 보고 고르기',p:'각자 4장을 뽑아, 가질 카드만 1장에 3 M€. 나머지는 버려요',scene:'g2r',
-  s:o(8,1,40,photo('c_noah'),'flipin',.2)+o(52,1,40,photo('c_spore'),'flipin',.35)+o(8,50,40,photo('c_coolev'),'flipin out',.5)+o(52,50,40,photo('c_patent'),'flipin out',.65)+pill(12,40,'가짐 −3 M€','ok',1.2)+pill(56,40,'가짐 −3 M€','ok',1.3)+pill(20,90,'버림','muted',1.5)+pill(64,90,'버림','muted',1.6)},
+  s:o(8,1,40,card2d('microbe'),'flipin',.2)+o(52,1,40,card2d('station'),'flipin',.35)+o(8,50,40,card2d('asteroid'),'flipin out',.5)+o(52,50,40,card2d('lab'),'flipin out',.65)+pill(12,38,'가짐 −3 M€','ok',1.2)+pill(56,38,'가짐 −3 M€','ok',1.3)+pill(20,90,'버림','muted',1.5)+pill(64,90,'버림','muted',1.6)},
  {h:'③ 행동: 돌아가며 1~2개씩',p:'모두 패스할 때까지 차례가 돌아요. 할 수 있는 행동 8가지는 04장에서',
   s:o(6,8,88,`<div class="act8">${ACT8.map((t,i)=>`<span style="--d:${.1+i*.08}s">${t}</span>`).join('')}</div>`,'in')},
  {h:'④-1 남은 에너지는 열이 돼요',p:'전기는 저장이 안 돼요. 쓰지 않은 에너지는 생산 단계에 전부 열 칸으로',scene:'p1',
@@ -1651,18 +1756,18 @@ gen:[
  {h:'④-3 공장이 일한 만큼',p:'철·티타늄·식물·에너지·열도 숫자 칸(내 큐브)만큼 은행에서 받아요. 숫자 칸 큐브는 그대로 둬요',scene:'p3',
   s:o(3,4,46,slot('st',cubes('cu',1)+`<span class="cubes flyin" style="--fy:-140%">${sp('cu')}</span>`,1),'in')+o(51,4,46,slot('pl',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',.15)+o(27,48,46,slot('en',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',.3)},
  {h:'④-4 파란 카드 위 큐브 회수',p:'이번 세대에 쓴 파란 카드의 내 큐브를 거둬요. 다음 세대에 또 쓸 수 있어요',
-  s:o(18,4,64,photo('c_spore'),'in')+o(44,30,12,sp('red'),'lift glow',.6)+pill(64,22,'회수!','ok big',1)},
+  s:o(20,4,60,card2d('microbe'),'in')+o(45,40,10,sp('red'),'lift glow',.6)+pill(66,22,'회수!','ok big',1)},
  {h:'세대 끝 정리 체크리스트',p:'게임 중에 이 화면을 켜 두고 하나씩 체크하세요',tool:'#clTool'}
 ],
 turn:[
  {h:'내 차례 = 행동 1개 또는 2개',p:'아래 8가지 중 골라요. 같은 걸 두 번 해도 돼요. 할 게 없으면 패스',
   s:o(6,8,88,`<div class="act8">${ACT8.map((t,i)=>`<span style="--d:${.1+i*.08}s">${i+1} · ${t}</span>`).join('')}</div>`,'in')},
  {h:'1 · 카드 내기',p:'요구조건 확인 → 비용 지불 → 효과 → 내 앞에 놓기. 자세한 건 07장',scene:'g1a',
-  s:o(6,4,54,photo('c_season',ring(0,0,15,10,'8 M€',.4)),'in')+o(68,10,22,cubes('au',1),'slide',.9,'--ty:-160%')+pill(64,30,'10 내고','muted',1.1)+o(68,46,22,cubes('cu',2),'flyin',1.5,'--fy:-200%')+pill(64,62,'2 거슬러 받기','ok',1.8)},
+  s:o(6,4,54,card2d('farm',rc('cost','13 M€',.4)),'in')+o(68,6,22,cubes('au',1),'slide',.9,'--ty:-150%')+o(68,20,22,cubes('ag',1),'slide',1,'--ty:-250%')+pill(62,36,'10 + 5 내고','muted',1.2)+o(68,50,22,cubes('cu',2),'flyin',1.6,'--fy:-200%')+pill(60,66,'2 거슬러 받기','ok',1.9)},
  {h:'2 · 표준 프로젝트',p:'카드 없이도 보드 왼쪽 메뉴를 돈으로 살 수 있어요',scene:'g1b',
   s:o(6,2,88,`<div class="spl">${[['특허 판매','—','카드 1장 = 1 M€'],['발전소','11','에너지 생산 +1'],['소행성','14','온도 +1'],['대수층','18','바다 1개'],['녹지','23','녹지 1개'],['도시','25','도시 + M€ 생산']].map((r,i)=>`<div class="${i===3?'hl':''}" style="--d:${.1+i*.1}s"><b>${r[1]}</b><span>${r[0]}</span><small>${r[2]}</small></div>`).join('')}</div>`,'in')+o(34,60,32,sp('oc'),'drop glow',1)+pill(16,90,'대수층 18 → 바다 + TR 1','ok',1.4)},
  {h:'3 · 파란 카드 행동',p:'"행동:"이 적힌 파란 카드는 세대마다 1번. 쓰면 카드 위에 내 큐브를 올려요',
-  s:o(18,4,64,photo('c_spore',ring(5,13,90,14,'행동',.4)),'in')+o(44,36,12,sp('red'),'drop glow',.9)+pill(52,86,'이번 세대에 사용함','ok',1.3)},
+  s:o(20,4,60,card2d('microbe',rc('eff','행동',.4)),'in')+o(45,26,10,sp('red'),'drop glow',.9)+pill(48,90,'이번 세대에 사용함','ok',1.3)},
  {h:'4 · 식물 8개 → 녹지',p:'식물 8개를 은행에 내고 녹지를 놓아요. 산소 +1 → TR +1, 녹지는 1점',scene:'g2a',
   s:o(14,2,72,slot('pl',`<span class="cubes out">${sp('ag')+sp('cu').repeat(3)}</span>`,0),'in')+o(44,36,12,'<span class="arrow">↓</span>','in',.6)+o(30,48,40,sp('gr'),'drop glow',.9)+o(45,52,10,sp('red'),'drop',1.3)+pill(26,90,'산소 +1 · TR +1','ok',1.5)},
  {h:'5 · 열 8개 → 온도 +1',p:'열 8개를 내고 온도를 한 칸(2°C) 올려요. TR +1. 열은 이것 말고 쓸 데가 거의 없어요',
@@ -1702,32 +1807,34 @@ params:[
   s:o(10,2,34,track('o',[14,13,12],14,[],'산소',0),'in')+pill(12,46,'MAX','big',.5)+o(54,10,38,sp('gr'),'drop glow',.9)+pill(52,52,'녹지 1점은 그대로','ok',1.2)}
 ],
 cards:[
+ {h:'실물 카드와 설명용 카드',p:'왼쪽은 실제 카드, 오른쪽은 이 가이드에서 쓰는 설명용 그림이에요. 같은 자리에 같은 정보가 있어요',
+  s:o(3,8,43,photo('c_season',ring(-2,-2,18,12,'',.5)+ring(14,1,24,8,'',1)+ring(80,0,20,11,'',1.5)+ring(3,12,94,30,'',2)+ring(72,78,27,20,'',2.5)),'in')+o(54,8,43,card2d('season',rc('cost','',.5)+rc('req','',1)+rc('tags','',1.5)+rc('eff','',2)+rc('vp','',2.5)),'in',.2)+pill(16,2,'실물','muted',.6)+pill(62,2,'설명용 그림','ok',.8)+pill(8,72,'① 비용  ② 요구조건  ③ 태그','',2.6)+pill(8,82,'④ 효과  ⑤ 점수 — 같은 자리!','',2.9)},
  {h:'카드는 4가지',p:'초록·파랑·빨강 = 프로젝트 카드, 가로로 긴 카드 = 기업(내 회사)',
-  s:o(6,1,28,photo('c_solar'),'in',.1)+o(36,1,28,photo('c_noah'),'in',.25)+o(66,1,28,photo('c_entropy'),'in',.4)+pill(9,32,'초록 · 한 번','',.8)+pill(39,32,'파랑 · 계속','',.9)+pill(69,32,'빨강 · 사건','',1)+o(14,46,72,photo('k_algal'),'in',.55)+pill(34,90,'기업 · 내 회사','',1.1)},
+  s:o(4,1,29,card2d('farm'),'in',.1)+o(35.5,1,29,card2d('microbe'),'in',.25)+o(67,1,29,card2d('asteroid'),'in',.4)+pill(7,36,'초록 · 한 번','',.8)+pill(38,36,'파랑 · 계속','',.9)+pill(70,36,'빨강 · 사건','',1)+o(12,48,76,corp2d(),'in',.55)+pill(34,92,'기업 · 내 회사','',1.1)},
  {h:'기업 카드 = 내 회사',p:'게임 내내 앞에 펼쳐 둬요. 시작 자금·시작 생산·회사만의 지속 효과가 적혀 있어요',
-  s:o(2,18,96,photo('k_algal',ring(27,48,20,16,'시작 자금',.5)+ring(52,38,44,36,'지속 효과',1)+ring(87,6,12,15,'태그',1.4,'r')),'in')},
+  s:o(2,18,96,corp2d(ring(3,40,42,40,'시작 자금 · 생산',.5)+ring(47,26,51,62,'지속 효과',1)+ring(84,3,15,20,'태그',1.4,'r')),'in')},
  {h:'왼쪽 위 노란 칸 = 비용',p:'이 숫자만큼 M€를 내야 낼 수 있어요',
-  s:o(4,4,56,photo('c_season',ring(0,0,15,10,'비용 8',.5)),'in')+o(68,12,26,cubes('cu',3),'slide',1,'--ty:-140%')+o(70,30,22,cubes('ag',1),'slide',1.1,'--ty:-240%')+pill(64,52,'5 + 3 = 8 M€','ok',1.4)},
- {h:'비용 옆 = 요구조건',p:'"−12°C 이상"처럼 화성 상태가 맞아야 낼 수 있어요. 확인은 낼 때 한 번만',
-  s:o(4,4,56,photo('c_season',ring(14,1,23,8,'요구조건',.5)),'in')+o(66,4,30,track('t',[-6,-8,-10,-12,-14],-10,[],'지금 온도',0),'in',.8)+pill(8,88,'지금 −10°C ≥ −12°C → 낼 수 있어요 ✓','ok',1.3)},
+  s:o(4,4,56,card2d('farm',rc('cost','비용 13',.5)),'in')+o(68,10,22,cubes('au',1),'slide',1,'--ty:-160%')+o(68,24,26,cubes('cu',3),'slide',1.1,'--ty:-220%')+pill(64,46,'10 + 3 = 13 M€','ok',1.4)},
+ {h:'비용 옆 = 요구조건',p:'"산소 4% 이상"처럼 화성 상태가 맞아야 낼 수 있어요. 확인은 낼 때 한 번만',
+  s:o(4,4,56,card2d('farm',rc('req','요구조건',.5)),'in')+o(66,4,30,track('o',[7,6,5,4,3],5,[],'지금 산소',0),'in',.8)+pill(6,88,'지금 산소 5% ≥ 4% → 낼 수 있어요 ✓','ok',1.3)},
  {h:'오른쪽 위 = 태그',p:'카드의 분야예요. 할인, 다른 카드의 조건, 업적·상 계산에 쓰여요',
-  s:o(4,4,58,photo('c_defense',ring(64,0,36,12,'지구 · 우주',.5,'r')),'in')+o(70,10,26,`<div class="tags-col"><span class="tg tg-bd">건물</span><span class="tg tg-sp">우주</span><span class="tg tg-sc">과학</span><span class="tg tg-pl">식물</span><span class="tg tg-ea">지구</span></div>`,'in',.9)+pill(8,88,'우주 태그가 있으면 → 티타늄 할인','ok',1.2)},
+  s:o(4,4,58,card2d('station',rc('tags','우주 · 지구',.5,'r')),'in')+o(70,10,26,`<div class="tags-col"><span class="tg tg-bd">건물</span><span class="tg tg-sp">우주</span><span class="tg tg-sc">과학</span><span class="tg tg-pl">식물</span><span class="tg tg-ea">지구</span></div>`,'in',.9)+pill(6,88,'우주 태그가 있으면 → 티타늄 할인','ok',1.2)},
  {h:'우주 태그 카드 = 티타늄 1개가 3 M€',p:'개인 보드의 티타늄을 돈처럼 낼 수 있어요. 우주 태그가 있을 때만!',
-  s:o(4,2,44,photo('c_defense',ring(64,0,36,12,'',.3,'r')),'in')+o(52,4,44,slot('ti',`<span class="cubes slide" style="--d:1.2s;--fx:0;--tx:-62%">${sp('cu').repeat(2)}</span>`,1),'in glow',.6)+pill(6,70,'2개 × 3 = 6 M€','ok big',1.6)+pill(6,84,'10 − 6 = 4 M€만 내요','ok',1.8)},
+  s:o(4,2,44,card2d('station',rc('tags','',.3,'r')),'in')+o(52,4,44,slot('ti',cubes('cu',2),1),'in glow',.6)+pill(6,70,'2개 × 3 = 6 M€','ok big',1.6)+pill(6,84,'10 − 6 = 4 M€만 내요','ok',1.8)},
  {h:'건물 태그 카드 = 철 1개가 2 M€',p:'철은 건물 태그 카드를 낼 때만 돈 대신 쓸 수 있어요',
-  s:o(6,4,40,minicard('#76c25b',12,['tg-bd','건물'],'(예시) 공장'),'in')+o(52,4,44,slot('st',`<span class="cubes slide" style="--d:1.2s;--fx:0;--tx:-62%">${sp('cu').repeat(3)}</span>`,1),'in glow',.6)+pill(6,70,'3개 × 2 = 6 M€','ok big',1.6)+pill(6,84,'12 − 6 = 6 M€만 내요','ok',1.8)},
+  s:o(4,2,44,card2d('factory',rc('tags','',.3,'r')),'in')+o(52,4,44,slot('st',cubes('cu',3),1),'in glow',.6)+pill(6,70,'3개 × 2 = 6 M€','ok big',1.6)+pill(6,84,'12 − 6 = 6 M€만 내요','ok',1.8)},
  {h:'효과 읽기: 상자 안 vs 밖',p:'상자 안 = 생산량이 바뀜(매 세대). 상자 밖 = 지금 바로 받음. 빨간 테두리 = 아무 플레이어나 대상',
-  s:o(8,2,84,`<div class="iconlaw2"><div><span class="ic ic-box">+1 <i class="rs rs-pl"></i></span><b>생산 +1</b><small>개인 보드 숫자 칸 큐브를 올려요</small></div><div><span class="ic">+3 <i class="rs rs-pl"></i></span><b>지금 3개</b><small>은행에서 바로 받아요</small></div><div><span class="ic ic-red">−2 <i class="rs rs-pl"></i></span><b>누군가 −2</b><small>상대를 골라도 돼요</small></div></div>`,'in')},
+  s:o(8,2,84,`<div class="iconlaw2"><div><span class="ic2 bx">+1<i class="rs rs-pl"></i></span><b>생산 +1</b><small>개인 보드 숫자 칸 큐브를 올려요</small></div><div><span class="ic2">+3<i class="rs rs-pl"></i></span><b>지금 3개</b><small>은행에서 바로 받아요</small></div><div><span class="ic2 rd">−2<i class="rs rs-pl"></i></span><b>누군가 −2</b><small>상대를 골라도 돼요</small></div></div>`,'in')},
  {h:'오른쪽 아래 갈색 원 = 점수',p:'게임 끝에 더해져요. "−1"처럼 감점 카드도 있어요',
-  s:o(3,10,46,photo('c_season',ring(72,78,26,19,'+1',.5,'b')),'in')+o(51,10,46,photo('c_solar',ring(72,78,26,19,'−1',.8,'b')),'in',.2)},
+  s:o(3,10,46,card2d('farm',rc('vp','+1',.5,'b')),'in')+o(51,10,46,card2d('solar',rc('vp','−1',.8,'b')),'in',.2)},
  {h:'초록은 겹쳐 쌓기',p:'효과는 낼 때 끝. 나중엔 태그만 필요해서 위쪽 줄만 보이게 겹쳐 둬요',
-  s:o(22,2,56,`<div class="stack">${['c_solar','c_patent','c_thermo'].map((f,i)=>`<img src="img/${f}.jpg" style="--i:${i}" alt="">`).join('')}</div>`,'in')+ring(22,2,56,8,'비용 · 태그 줄만 보이게',1.4)},
+  s:o(22,2,56,`<div class="stack">${['farm','station','factory'].map((k,i)=>`<div class="stk" style="--i:${i}">${card2d(k)}</div>`).join('')}</div>`,'in')+ring(20,1,60,8,'비용 · 태그 줄만 보이게',1.4)},
  {h:'파랑은 펼쳐 두기',p:'능력이 계속 남아서 글이 보이게 나란히. "행동:"을 쓰면 그 위에 내 큐브를 올려 표시',
-  s:o(4,10,44,photo('c_noah'),'in')+o(52,10,44,photo('c_spore'),'in',.2)+o(69,30,10,sp('red'),'drop glow',.8)},
+  s:o(4,10,44,card2d('microbe'),'in')+o(52,10,44,card2d('port'),'in',.2)+o(21,26,10,sp('red'),'drop glow',.8)},
  {h:'빨강은 뒤집어 두기',p:'한 번의 사건(이벤트). 효과를 처리하면 뒤집어서 한쪽에. 뒤집은 카드의 태그는 안 세요',
-  s:o(22,6,56,`<div class="flipc"><img src="img/c_entropy.jpg" alt=""><span class="back"></span></div>`,'in')},
+  s:o(22,6,56,`<div class="flipc">${card2d('asteroid')}<span class="back"></span></div>`,'in')},
  {h:'태그가 모이면 엔진이 돼요',p:'"○○ 태그 카드를 낼 때마다 보너스" 같은 파란 카드·기업이 있어요. 같은 태그를 모을수록 이득',
-  s:o(28,0,44,photo('c_defense',ring(64,0,36,12,'',.3,'r')),'in')+o(44,50,12,'<span class="arrow">↓</span>','in',.6)+o(8,62,84,`<div class="mcd wide" style="--c:#3f7fdc"><span class="mcd-n">(예시) 파란 카드 · 효과</span><span class="mcd-e"><span class="tg tg-sp">우주</span> 카드를 낼 때마다 <b>+2 M€</b></span></div>`,'in glow',.9)}
+  s:o(4,6,40,card2d('station',rc('tags','',.3,'r')),'in')+o(45,26,10,'<span class="arrow">→</span>','in',.6)+o(56,6,40,card2d('port',rc('eff','',.9)),'in glow',.9)+o(64,64,24,cubes('cu',2),'flyin',1.4,'--fy:-160%')+pill(8,88,'우주 카드 1장 낼 때마다 +2 M€','ok',1.6)}
 ],
 ma:[
  {h:'보드 아래 = 업적과 상',p:'왼쪽 마일스톤(업적) 5개, 오른쪽 어워드(상) 5개. 둘 다 게임 전체에서 3개까지만 생겨요',
@@ -1753,6 +1860,7 @@ document.querySelectorAll('section.story').forEach(sec=>{const id=sec.id,fr=F[id
   if(f.tool){stage.innerHTML='';stage.classList.add('has-tool');stage.appendChild(document.querySelector(f.tool))}
   else{stage.classList.remove('has-tool');stage.innerHTML=`<div class="sb">${f.s}</div>`}
   stage.dataset.dir=dir;stage.classList.remove('enter');void stage.offsetWidth;stage.classList.add('enter');
+  if(!f.tool&&!window.__hinted){window.__hinted=1;stage.insertAdjacentHTML('beforeend','<span class="swipe-hint">← 옆으로 넘겨 보세요 →</span>')}
   cap.innerHTML=`<p class="st-n">${k+1} / ${fr.length}</p><h3>${f.h}</h3><p>${f.p}</p>${f.scene?`<button class="scn" type="button" data-scene="${f.scene}">▶ 플레이 모션에서 보기</button>`:''}`;
   cap.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>playScene(b.dataset.scene));
   [...dots.children].forEach((d,j)=>{d.classList.toggle('on',j===k);d.classList.toggle('done',j<k)});
