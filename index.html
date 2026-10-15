@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016034615">
+<meta name="build" content="20261016040558">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -963,6 +963,25 @@ section.story .st-h{order:0}section.story .st-cap{order:1;min-height:0}section.s
 .st-cap p{min-height:3.1em}
 section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 @media (max-width:860px){section.story{gap:8px}.st-cap .scn{font-size:.72rem;padding:4px 7px}}
+
+/* 그림 칸: 내용 높이만큼, 글 바로 아래 */
+.st-stage{background:none;border:0;box-shadow:none;display:grid;place-items:start center;overflow:visible;cursor:pointer}
+.st-stage.has-tool{background:#fbf8f3;border:1px solid var(--line);border-radius:14px}
+.sbwrap{position:relative;width:min(100cqw,80cqh);border-radius:14px;background:radial-gradient(ellipse at 50% 30%,#fffdf9 0%,#f1e9de 80%);border:1px solid var(--line);box-shadow:inset 0 -20px 40px rgba(160,120,80,.06)}
+.sbwrap .sb{width:100%;container-type:inline-size}
+.st-stage.enter .sbwrap{animation:sbIn .35s both}.st-stage.enter .sb{animation:none}
+.st-stage.enter[data-dir="-1"] .sbwrap{animation-name:sbInL}
+/* 큐브 크기 = 실물 비율 (동·플레이어 < 은 < 금), 모든 화면 공통 */
+.sb .pc-cu,.sb .pc-red,.sb .pc-blue,.sb .pc-white{width:9cqw}
+.sb .pc-ag{width:11cqw}
+.sb .pc-au{width:13.5cqw}
+.sb .cubes{gap:2cqw;align-items:flex-end}
+.sb .slot .shold .pc-cu{width:9cqw}.sb .slot .shold .pc-ag{width:11cqw}.sb .slot .shold .pc-au{width:13.5cqw}
+.sb .slot .shold{gap:1.6cqw;align-items:flex-end}
+.sb .numcard .cubes .pc-au{width:13.5cqw}.sb .numcard .cubes .pc-cu{width:9cqw}
+.sb .slot .sprod>span .pc{width:72%}
+.sb .msp-i .pc{width:26%}
+.swipe-hint{bottom:auto;top:10px}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1734,7 +1753,7 @@ const ACT8=['카드 내기','표준 프로젝트','파란 카드 행동','식물
 const F={
 win:[
  {h:'우승 = 게임 끝 승점 1등',p:'화성은 모두 함께 바꾸지만, 승점(VP)이 가장 높은 기업이 이겨요',
-  s:o(26,4,48,`<div class="bigvp"><b>VP</b><span>승점</span></div>`,'pop')+o(8,54,36,cubes('au',2),'in out',.6)+pill(8,76,'돈 = 점수 X','muted',1)+o(64,52,22,sp('red'),'in glow',.8)+pill(52,76,'TR · 땅 · 카드 = 점수','ok',1.2)},
+  s:o(26,4,48,`<div class="bigvp"><b>VP</b><span>승점</span></div>`,'pop')+o(8,54,36,cubes('au',2),'in out',.6)+pill(8,76,'돈 = 점수 X','muted',1)+o(70,58,10,sp('red'),'in glow',.8)+pill(52,76,'TR · 땅 · 카드 = 점수','ok',1.2)},
  {h:'TR 1칸 = 1점',p:'화성을 바꿀 때마다 오르는 TR이 그대로 점수가 돼요. 가장 큰 점수원이에요',
   s:o(4,36,92,`<div class="trrow">${[18,19,20,21,22,23,24].map(v=>`<span>${v}</span>`).join('')}</div>`,'in')+o(58.6,24,9,sp('red'),'slide glow',.6,'--fx:-291%')+pill(24,62,'20 → 22 = +2점','ok big',1.4)},
  {h:'녹지 1개 = 1점, 도시 옆 녹지 = 1점씩',p:'내 큐브가 얹힌 녹지는 1점. 내 도시에 붙은 녹지는 누구 것이든 1점씩 더',
@@ -1744,7 +1763,7 @@ win:[
  {h:'마일스톤 · 어워드 = 5점씩',p:'보드 아래의 업적(먼저 채우면)과 상(게임 끝 1등)도 5점이에요 → 08장',
   s:o(4,26,92,msPanel(['테라포머','시장','정원사','건축가','기획자'],{2:'red'}),'in')+pill(38,62,'+5점','ok big',.9)},
  {h:'돈과 자원은 승점을 사는 도구',p:'남은 M€는 동점일 때만 쓰여요. 모은 돈은 결국 TR·땅·점수 카드로 바꿔야 해요',
-  s:o(10,16,34,cubes('au',2),'in out')+o(14,10,26,'<span class="xmark">✕</span>','pop',.7)+pill(8,46,'남은 돈 = 0점','muted',.9)+o(44,20,12,'<span class="arrow">→</span>','in',1.1)+o(58,10,34,sp('gr'),'pop glow',1.3)+pill(52,46,'녹지 = 1점 + TR 1점','ok',1.5)},
+  s:o(10,16,34,cubes('au',2),'in out')+o(14,8,26,'<span class="xmark">✕</span>','pop',.7)+pill(8,46,'남은 돈 = 0점','muted',.9)+o(44,20,12,'<span class="arrow">→</span>','in',1.1)+o(58,10,34,sp('gr'),'pop glow',1.3)+pill(52,46,'녹지 = 1점 + TR 1점','ok',1.5)},
  {h:'시기마다 중요한 게 달라요',p:'초반엔 생산(엔진), 중반엔 TR과 땅, 후반엔 남는 걸 전부 점수로',
   s:o(8,6,84,`<div class="phase3b"><div><b>초반</b><span>생산 카드</span><small>지금 +1 생산 = 남은 세대마다 +1</small></div><div><b>중반</b><span>TR · 땅</span><small>수치 올리기 · 마일스톤</small></div><div class="on"><b>후반</b><span>전부 점수로</span><small>녹지 · 점수 카드 · 어워드</small></div></div>`,'in')},
  {h:'게임 끝: 점수 계산',p:'수치 3개가 다 차면 그 세대 생산까지 하고, 남은 식물을 녹지로 바꾼 뒤 계산해요',tool:'#calcTool'}
@@ -1862,12 +1881,18 @@ ma:[
 
 /* --- 엔진 --- */
 const pages={};
+/* 그림 칸 높이 = 실제 그림이 있는 곳까지 (아래 빈 여백 제거) */
+function fitBox(stage){const w=stage.querySelector('.sbwrap'),sb=stage.querySelector('.sb');if(!w||!sb)return;w.style.height='';
+ const H=sb.offsetHeight;if(!H)return;const top=sb.getBoundingClientRect().top;let mb=0;
+ [...sb.children].forEach(el=>{if(el.tagName==='svg'||el.classList.contains('hx2')){el.querySelectorAll('polygon').forEach(p=>{mb=Math.max(mb,p.getBoundingClientRect().bottom-top)})}else mb=Math.max(mb,el.offsetTop+el.offsetHeight)});
+ w.style.height=Math.min(H,Math.ceil(mb+H*.045))+'px'}
+addEventListener('resize',()=>document.querySelectorAll('section.story .st-stage').forEach(fitBox));
 document.querySelectorAll('section.story').forEach(sec=>{const id=sec.id,fr=F[id];if(!fr)return;const stage=sec.querySelector('.st-stage'),cap=sec.querySelector('.st-cap'),dots=sec.querySelector('.st-dots');
  dots.innerHTML=fr.map(()=>'<i></i>').join('');let k=0;const park=document.getElementById('toolPark');
  function show(i,dir=1){k=Math.max(0,Math.min(fr.length-1,i));const f=fr[k];
   stage.querySelectorAll('.tool').forEach(t=>park.appendChild(t));
   if(f.tool){stage.innerHTML='';stage.classList.add('has-tool');stage.appendChild(document.querySelector(f.tool))}
-  else{stage.classList.remove('has-tool');stage.innerHTML=`<div class="sb">${f.s}</div>`}
+  else{stage.classList.remove('has-tool');stage.innerHTML=`<div class="sbwrap"><div class="sb">${f.s}</div></div>`;fitBox(stage);stage.querySelectorAll('img').forEach(im=>im.addEventListener('load',()=>fitBox(stage)))}
   stage.dataset.dir=dir;stage.classList.remove('enter');void stage.offsetWidth;stage.classList.add('enter');
   if(!f.tool&&!window.__hinted){window.__hinted=1;stage.insertAdjacentHTML('beforeend','<span class="swipe-hint">← 옆으로 넘겨 보세요 →</span>')}
   cap.innerHTML=`<p class="st-n">${k+1} / ${fr.length}</p><h3>${f.h}</h3><p>${f.p}</p>${f.scene?`<button class="scn" type="button" data-scene="${f.scene}">▶ 모션</button>`:''}`;
