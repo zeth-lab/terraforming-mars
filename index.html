@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016042612">
+<meta name="build" content="20261016043939">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1003,13 +1003,30 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .toc .sub button span{font-family:var(--f-display);color:var(--dust-3);font-size:.72rem}
 .toc .sub button:hover{background:#fff;color:var(--dust)}
 .toc .sub button.on{background:#fff;color:var(--dust);font-weight:700;box-shadow:inset 2px 0 0 var(--rust)}
+/* 펼침 화살표 (왼쪽 끝) */
+.toc li.tli{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center}
+.toc li.tli>a{min-width:0}
+.toc .sub{grid-column:1/-1}
+.sub-tg{width:30px;height:34px;display:grid;place-items:center;background:none;border:0;border-radius:6px;color:var(--dust-3);padding:0;cursor:pointer}
+.sub-tg:disabled{visibility:hidden}
+.sub-tg svg{width:14px;height:14px;transition:transform .25s}
+@media (hover:hover){.sub-tg:hover{background:#fff;color:var(--dust)}}
+.toc li.open>.sub-tg{color:var(--rust)}
+.toc li.open>.sub-tg svg{transform:rotate(180deg)}
+.toc li.open .sub{animation:subIn .22s ease both}
+@keyframes subIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 @media (max-width:860px){
   .toc #tocList{display:none}
-  .toc.open #tocList{display:block;overflow:auto;grid-auto-rows:auto}
+  .toc.open #tocList{display:block;overflow:auto;grid-auto-rows:auto;top:calc(60px + env(safe-area-inset-top,0px));height:auto;bottom:0;padding-top:6px;border-top:1px solid var(--line)}
+  .toc.open::after{content:"";position:fixed;left:0;right:0;top:0;height:calc(60px + env(safe-area-inset-top,0px));background:inherit;z-index:69}
   .toc #tocList>li{display:block}
-  .toc #tocList>li>a{display:grid;padding:9px 12px;font-size:1rem}
-  .toc .sub{margin:0 0 6px 14px;grid-template-columns:1fr 1fr;column-gap:4px}
-  .toc .sub button{font-size:.8rem;padding:6px}
+  .toc #tocList>li.tli{display:grid;grid-template-columns:40px minmax(0,1fr)}
+  .toc #tocList>li>a{display:grid;padding:11px 12px 11px 4px;font-size:1rem}
+  .toc #tocList .sub-tg{width:40px;height:44px}
+  .toc #tocList .sub-tg svg{width:16px;height:16px}
+  .toc #tocList{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .toc .sub{margin:0 0 8px 40px;grid-template-columns:1fr;row-gap:2px}
+  .toc .sub button{font-size:.9rem;padding:9px 8px;white-space:normal}
   .toc .grp{display:block;padding:10px 12px 2px}
 }
 
@@ -1702,7 +1719,7 @@ $('#btnClose').onclick=collapse;$('#btnFull').onclick=expand;
 $('#btnHome').onclick=()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');showView('home');try{history.replaceState(null,'','#')}catch(e){}};
 const tocEl=document.querySelector('.toc');function menu(open){tocEl.classList.toggle('open',open);$('#btnMenu').setAttribute('aria-expanded',open);$('#menuLbl').textContent=open?'닫기':'목차'}
 $('#btnMenu').onclick=()=>menu(!tocEl.classList.contains('open'));
-document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();menu(false);openSec(a.dataset.sec)});
+document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();menu(false);openSec(a.dataset.sec);const pg=window.__story&&window.__story[a.dataset.sec];if(pg&&pg.k!==0)pg.show(0)});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&tocEl.classList.contains('open'))menu(false)});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&stageEl.classList.contains('full')){e.preventDefault();collapse()}});
 {const h=(location.hash||'').slice(1);if(h==='play')startMotion();else if(SECS.includes(h)){showView('rules');openSec(h)}else showView('home')}
@@ -1961,12 +1978,17 @@ addEventListener('keydown',e=>{const id=document.body.dataset.sec;const p=pages[
  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){if(e.target.closest&&e.target.closest('button,a')&&e.key!=='ArrowRight')return;e.preventDefault();p.next()}else if(e.key==='ArrowLeft'){e.preventDefault();p.prev()}});
 window.__story=pages;
 /* 목차 → 세부 목차 (장을 고르면 그 장의 화면 제목이 펼쳐짐) */
-document.querySelectorAll('.toc a[data-sec]').forEach(a=>{const id=a.dataset.sec,fr=F[id];if(!fr)return;
+document.querySelectorAll('.toc a[data-sec]').forEach(a=>{const id=a.dataset.sec,fr=F[id];const li=a.parentElement;li.classList.add('tli');
+ const tg=document.createElement('button');tg.type='button';tg.className='sub-tg';a.before(tg);
+ if(!fr){tg.disabled=true;tg.setAttribute('aria-hidden','true');return}
+ li.classList.add('has-sub');tg.setAttribute('aria-label',a.textContent.trim()+' 세부 목차 열기');tg.setAttribute('aria-expanded','false');
+ tg.innerHTML='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ tg.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const on=!li.classList.contains('open');li.classList.toggle('open',on);tg.setAttribute('aria-expanded',on)});
  const box=document.createElement('div');box.className='sub';box.dataset.sec=id;
  box.innerHTML=fr.map((f,i)=>`<button type="button" data-i="${i}"><span>${i+1}</span>${f.h}</button>`).join('');
  a.after(box);
  box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;e.preventDefault();typeof menu==='function'&&menu(false);openSec(id);pages[id].show(+b.dataset.i)})});
-function syncSub(){const cur=document.body.dataset.sec;document.querySelectorAll('.toc li').forEach(li=>{const a=li.querySelector('a[data-sec]');li.classList.toggle('open',!!a&&a.dataset.sec===cur)})}
+function syncSub(){const cur=document.body.dataset.sec;document.querySelectorAll('.toc li.has-sub').forEach(li=>{const a=li.querySelector('a[data-sec]');const on=a.dataset.sec===cur;li.classList.toggle('open',on);li.querySelector('.sub-tg').setAttribute('aria-expanded',on)})}
 new MutationObserver(syncSub).observe(document.body,{attributes:true,attributeFilter:['data-sec']});syncSub();
 })();
 
