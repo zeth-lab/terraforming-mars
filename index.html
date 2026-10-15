@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261015233955">
+<meta name="build" content="20261015234057">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -560,6 +560,11 @@ body.playing .pager,body.playing footer{visibility:hidden}
 .il-phases span b{color:var(--rust);margin-right:5px}.il-phases span.on{border-color:var(--rust);background:rgba(217,97,47,.18)}
 .il-gens i,.il-phases i{font-style:normal;color:#8a7365}.il-phases i.back{font-size:1.3em;color:var(--rust)}
 .stage.land .interlude{padding:18px 6% 56px;gap:6px}.stage.land .il-t{font-size:1.25rem}.stage.land .il-b{font-size:.8rem;gap:3px}.stage.land .il-gens span,.stage.land .il-phases span{padding:3px 7px;font-size:.72rem}
+.tagline{display:grid;gap:6px;align-self:end}
+.tg-h{margin:0;font-weight:700;font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:1.1;letter-spacing:-.02em;color:var(--dust)}
+.tg-s{margin:0;font-size:.92rem;line-height:1.5;color:var(--dust-2)}
+@media (max-width:860px){.globe-tip{display:none}.tagline{order:0;gap:3px;text-align:center}.tg-h{font-size:min(1.55rem,3.6dvh)}.tg-s{font-size:min(.84rem,1.95dvh)}}
+@media (max-width:860px) and (max-height:620px){.tg-s br{display:none}}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -581,11 +586,10 @@ body.playing .pager,body.playing footer{visibility:hidden}
     <p class="t-ko">테라포밍 마스</p>
   </div>
   <div class="home-bottom">
-    <dl class="facts">
-      <dt>역할</dt><dd>화성을 바꾸는 기업이 돼요</dd>
-      <dt>목표</dt><dd><b class="ht">온도</b> · <b class="ox">산소</b> · <b class="oc">바다</b>를 끝까지 올리면 끝나요</dd>
-      <dt>승리</dt><dd><b class="mc">승점(VP)</b>이 가장 많으면 이겨요</dd>
-    </dl>
+    <div class="tagline">
+      <p class="tg-h">화성을 개조하라!</p>
+      <p class="tg-s"><b class="ht">온도</b> · <b class="ox">산소</b> · <b class="oc">바다</b>를 완성하고<br>가장 많은 승점을 모은 <b class="mc">최고의 테라포밍 기업</b>이 승리해요</p>
+    </div>
     <div class="cta">
       <button type="button" class="go" id="btnStart">START<small>플레이 모션으로 배우기</small></button>
       <button type="button" data-open="goal">RULES<small>규칙 보기</small></button>
