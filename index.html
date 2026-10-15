@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#130c0b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="테라포밍 마스">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>html{color-scheme:dark}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>TERRAFORMING MARS — 룰북 없이 시작하는 플레이 가이드</title>
 <meta name="description" content="테라포밍 마스를 룰북 없이 배우는 플레이 가이드. 3D 플레이 모션으로 셋팅부터 한 세대까지.">
@@ -397,35 +405,88 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes stageIn{from{clip-path:circle(18% at 50% 46%);opacity:.3}to{clip-path:circle(120% at 50% 50%);opacity:1}}
 @media (max-width:760px){.stage.full .hud{right:auto;top:52px}.s-close{top:8px}}
 
+/* ================= 모바일 우선 보정 ================= */
+.home{min-height:100svh;min-height:100dvh}
+.cta button.score{border-color:var(--mc);color:var(--mc)}
+.ios-tip{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;width:min(360px,calc(100% - 32px));background:var(--panel);border:1px solid var(--line-2);border-radius:10px;padding:10px 40px 10px 14px;font-size:.84rem;line-height:1.45;color:var(--dust);box-shadow:0 10px 30px #0008}
+.ios-tip button{position:absolute;right:6px;top:6px;background:none;border:0;color:var(--dust-2);font-size:1rem;padding:4px 8px}
+@media (max-width:600px){
+  .home{grid-template-rows:auto minmax(300px,1fr) auto;padding-top:calc(14px + env(safe-area-inset-top,0px));gap:6px}
+  .home-top{font-size:.62rem;letter-spacing:.16em}
+  .t-terra{font-size:1.02rem;letter-spacing:.34em;padding-left:.34em;top:2%}
+  .t-mars{font-size:36vw}
+  .home .globe-box{width:min(62vw,36svh)}
+  .t-ko{font-size:.8rem;bottom:1%}
+  .globe-tip{font-size:.6rem;letter-spacing:.1em;bottom:-2px}
+  .home-bottom{gap:12px}
+  .readout{gap:4px}.readout .row{grid-template-columns:34px minmax(0,1fr) 54px;font-size:.76rem}.readout .row b{font-size:.9rem}
+  .home .facts{font-size:.86rem;gap:2px 10px}
+  .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .cta button{padding:13px 10px 13px calc(10px + .2em);font-size:.9rem;letter-spacing:.2em}
+  .cta button.go{grid-column:1/-1;padding-block:16px;font-size:1.05rem}
+  /* 목차 페이지 */
+  .toc{padding-top:calc(8px + env(safe-area-inset-top,0px))}
+  .toc a{font-size:.88rem;padding:9px 11px}
+  .content section.ch{padding-block:24px 8px}
+  h2{font-size:1.5rem}
+  .ch-head{margin-bottom:18px}
+  .pager{position:sticky;bottom:0;margin:28px calc(-1 * var(--gut-l)) 0;padding:10px var(--gut-r) calc(10px + env(safe-area-inset-bottom,0px)) var(--gut-l);background:linear-gradient(transparent,var(--space) 30%);z-index:5}
+  .pager button{padding:11px 14px;font-size:.92rem}
+  footer{padding-block:24px 90px}
+  .box{padding:14px}
+  .scene .scene-head{flex-wrap:wrap}
+  .scene .stage{height:62svh}
+}
+/* 플레이 모션: 가로 화면 */
+.stage.land .spanel{top:10px;bottom:auto;left:max(12px,env(safe-area-inset-left,0px));width:min(310px,40%);padding:10px 12px;max-height:calc(100% - 74px);overflow:auto}
+.stage.land .spanel h3{font-size:1rem;margin:3px 0 6px}
+.stage.land .spanel .rules{gap:3px}
+.stage.land .spanel .rules li{font-size:.8rem;line-height:1.45}
+.stage.land .spanel .why{display:none}
+.stage.land .hud{top:8px;left:auto;right:calc(max(12px,env(safe-area-inset-right,0px)) + 104px);max-width:none;gap:4px;justify-content:flex-end}
+.stage.land .hud span{padding:2px 6px;font-size:.66rem}.stage.land .hud b{font-size:.82rem}
+.stage.land .sctrl{padding:6px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));grid-template-columns:auto minmax(0,1fr) auto}
+.stage.land .sbtn{padding:7px 12px}.stage.land .sbtn kbd{display:none}
+.stage.land .chaps button span.nm{font-size:.68rem}
+.stage.land .s-close{top:8px;right:max(12px,env(safe-area-inset-right,0px));padding:6px 10px;font-size:.78rem}.stage.land .s-close kbd{display:none}
+/* 세로로 든 휴대폰: 플레이 모션을 90° 돌려 가로로 보여 줌 */
+@media (orientation:portrait) and (max-width:760px){
+  .stage.full{inset:auto;top:0;left:100vw;width:100svh;width:100dvh;height:100vw;transform:rotate(90deg);transform-origin:0 0}
+}
+.rotate-tip{display:none}
+
+body.playing .pager,body.playing footer{visibility:hidden}
+.content section.scene{animation:none}
 </style>
 </head>
 <body>
 
 
 <div class="view home" id="home">
-  <div class="home-top"><span>Board game guide · 2–5인</span><button type="button" data-open="goal">규칙 목차 →</button></div>
+  <div class="home-top"><span>Board game guide · 2–5인</span><button type="button" data-open="goal">규칙 보기 →</button></div>
   <div class="stage-title">
     <p class="t-terra">TERRAFORMING</p>
     <h1 class="t-mars" aria-label="Terraforming Mars">MARS</h1>
-    <div class="globe-box" id="globeBox" role="button" tabindex="0" aria-label="화성을 눌러 플레이 모션 시작. 휠로 테라포밍 진행"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-tip">휠 · 드래그 = 테라포밍 / 클릭 = 시작</span></div>
+    <div class="globe-box" id="globeBox" role="button" tabindex="0" aria-label="화성을 눌러 플레이 모션 시작. 휠로 테라포밍 진행"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-tip">휠·드래그로 화성을 바꿔 보세요 · 누르면 시작</span></div>
     <p class="t-ko">테라포밍 마스</p>
   </div>
   <div class="home-bottom">
     <dl class="facts">
-      <dt>역할</dt><dd>화성을 개조하는 기업</dd>
-      <dt>목표</dt><dd><b class="ht">온도</b> · <b class="ox">산소</b> · <b class="oc">바다</b> 끝까지 <span class="arr">→</span> 게임 종료</dd>
-      <dt>승리</dt><dd><b class="mc">승점(VP)</b> 최다</dd>
+      <dt>역할</dt><dd>화성을 바꾸는 기업이 돼요</dd>
+      <dt>목표</dt><dd><b class="ht">온도</b> · <b class="ox">산소</b> · <b class="oc">바다</b>를 끝까지 올리면 끝나요</dd>
+      <dt>승리</dt><dd><b class="mc">승점(VP)</b>이 가장 많으면 이겨요</dd>
     </dl>
     <div class="cta">
       <button type="button" class="go" id="btnStart">START<small>플레이 모션으로 배우기</small></button>
-      <button type="button" data-open="goal">RULES<small>규칙 목차</small></button>
+      <button type="button" data-open="goal">RULES<small>규칙 보기</small></button>
+      <button type="button" data-open="end" class="score">SCORE<small>점수 계산</small></button>
     </div>
     <div class="readout" aria-live="polite">
       <div class="hint"><span>Terraform</span><span class="num" id="tfPct">0%</span></div>
       <div class="row t"><span>온도</span><div class="bar"><i id="bT"></i></div><b id="gT">−30°C</b></div>
       <div class="row o"><span>산소</span><div class="bar"><i id="bO"></i></div><b id="gO">0%</b></div>
       <div class="row w"><span>바다</span><div class="bar"><i id="bW"></i></div><b id="gW">0/9</b></div>
-      <p class="end-flag muted" id="endFlag">휠을 내려 화성을 개조해 보세요</p>
+      <p class="end-flag muted" id="endFlag">휠을 내리거나 화성을 끌어 바꿔 보세요</p>
     </div>
   </div>
 </div>
@@ -437,7 +498,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   <div class="scene-head"><div><p class="eyebrow">01 · 플레이 모션</p><h2>셋팅부터 한 세대까지</h2></div><button class="btn" id="btnFull" type="button">⤢ 전체화면</button></div>
   <div class="stage" tabindex="0" aria-roledescription="장면 플레이어" aria-label="테이블 위에서. Space 또는 Enter로 다음 장면">
     <canvas id="table3d" aria-hidden="true"></canvas>
-    <button class="s-close" id="btnClose" type="button">✕ 목차 보기<kbd>Esc</kbd></button>
+    <button class="s-close" id="btnClose" type="button">✕ 목차로<kbd>Esc</kbd></button>
     <div id="lbls" aria-hidden="true"></div>
     <div class="hud" aria-live="polite">
       <span>세대<b id="hudG">—</b></span><span>TR<b id="hudTR">—</b></span><span>온도<b id="hudT">—</b></span><span>산소<b id="hudO">—</b></span><span>M€<b id="hudM">—</b></span>
@@ -451,12 +512,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   </div>
 </section>
 <section class="ch" id="goal">
-  <div class="ch-head"><div class="ch-no">02</div><div><h2>두 개의 경주</h2>
-    <ul class="rules">
-      <li>화성 개조 = 모두 함께 <span class="muted">(협력)</span></li>
-      <li>점수 = 각자 <span class="muted">(경쟁)</span></li>
-      <li>수치를 올린 사람 <span class="arr">→</span> 그 사람이 보상</li>
-    </ul></div></div>
+  <div class="ch-head"><div class="ch-no">02</div><div><h2>이 게임은 두 가지 경주예요</h2>
+    <ul class="rules"><li>화성은 <b>모두 함께</b> 바꿔요</li><li>점수는 <b>각자</b> 가져가요</li><li>수치를 올린 사람이 보상을 받아요</li></ul></div></div>
   <div class="goal-row">
     <div class="param t"><small>온도</small><div class="big num">−30 → +8°C</div><small>1칸 = 2°C · 19칸</small></div>
     <div class="param o"><small>산소</small><div class="big num">0 → 14%</div><small>1칸 = 1% · 14칸</small></div>
@@ -470,8 +527,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   </div>
 </section>
 <section class="ch" id="parts">
-  <div class="ch-head"><div class="ch-no">03</div><div><h2>구성요소</h2>
-    <ul class="rules"><li>이름만 알면 충분</li></ul></div></div>
+  <div class="ch-head"><div class="ch-no">03</div><div><h2>테이블 위의 부품들</h2>
+    <ul class="rules"><li>이름만 알아도 충분해요</li><li>01 플레이 모션에서 움직이는 모습도 볼 수 있어요</li></ul></div></div>
   <div class="grid g3">
     <div class="box comp"><div class="ico"><div class="hex" style="background:#b4552c"></div></div><div><h3>메인 보드</h3><ul class="rules"><li>육각 칸 = 화성 지도</li><li>둘레 <b>TR 트랙</b> · 좌 <b class="ox">산소</b> · 우 <b class="ht">온도</b></li><li>아래 <b>표준 프로젝트 · 마일스톤 · 어워드</b></li></ul></div></div>
     <div class="box comp"><div class="ico"><div style="display:grid;grid-template-columns:repeat(3,14px);gap:3px"><i class="cube" style="background:var(--mc)"></i><i class="cube" style="background:var(--steel)"></i><i class="cube" style="background:var(--ti)"></i><i class="cube" style="background:var(--plant)"></i><i class="cube" style="background:var(--energy)"></i><i class="cube" style="background:var(--heat)"></i></div></div><div><h3>개인 보드</h3><ul class="rules"><li>자원 6칸</li><li>칸 위 = <b>생산량</b> <span class="muted">(매 세대 수입)</span></li><li>칸 아래 = <b>보유량</b> <span class="muted">(지금 가진 것)</span></li></ul></div></div>
@@ -486,7 +543,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="setup">
   <div class="ch-head"><div class="ch-no">04</div><div><h2>게임 준비 (2인)</h2>
-    <ul class="rules"><li>처음 = <b>입문</b> · 해봤음 = <b>표준</b></li><li>체크하며 진행</li></ul></div></div>
+    <ul class="rules"><li>처음이라면 <b>입문</b>, 해봤다면 <b>표준</b>을 골라 주세요</li><li>하나씩 체크하면서 따라 하면 돼요</li></ul></div></div>
   <div class="mode-tabs" role="group" aria-label="준비 방식">
     <button class="btn" id="modeA" aria-pressed="true">입문 게임</button>
     <button class="btn" id="modeB" aria-pressed="false">표준 게임</button>
@@ -496,8 +553,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   <div class="note" style="margin-top:14px"><ul class="rules"><li><b>기업 시대 규칙</b> 사용 시: 생산량 <span class="k">0</span>에서 시작 + 기업시대 표시 카드 포함</li><li>처음 두세 판은 미사용 권장</li></ul></div>
 </section>
 <section class="ch" id="gen">
-  <div class="ch-head"><div class="ch-no">05</div><div><h2>한 세대 = 4단계</h2>
-    <ul class="rules"><li>세대 = 라운드</li><li>단계 클릭 또는 자동 재생</li></ul></div></div>
+  <div class="ch-head"><div class="ch-no">05</div><div><h2>한 세대는 4단계예요</h2>
+    <ul class="rules"><li>세대 = 한 라운드예요</li><li>단계를 눌러 보거나 자동 재생해 보세요</li></ul></div></div>
   <div class="gen">
     <div class="ring">
       <svg viewBox="0 0 320 320" role="img" aria-label="세대 4단계 순환도">
@@ -511,8 +568,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   </div>
 </section>
 <section class="ch" id="turn">
-  <div class="ch-head"><div class="ch-no">06</div><div><h2>내 차례: 행동 1~2개</h2>
-    <ul class="rules"><li>차례마다 행동 <span class="k">1</span> 또는 <span class="k">2</span>개</li><li>할 게 없음 <span class="arr">→</span> <b>패스</b> = 이번 세대 끝</li><li>남은 사람은 혼자 계속 · 모두 패스 <span class="arr">→</span> 생산 단계</li></ul></div></div>
+  <div class="ch-head"><div class="ch-no">06</div><div><h2>내 차례엔 행동 1~2개</h2>
+    <ul class="rules"><li>차례마다 행동을 <span class="k">1</span>개나 <span class="k">2</span>개 해요</li><li>할 게 없으면 <b>패스</b>해요. 패스하면 이번 세대는 끝이에요</li><li>모두 패스하면 생산 단계로 넘어가요</li></ul></div></div>
   <div class="grid g3">
     <div class="box act"><span class="cost">카드값</span><h3>① 카드 내기</h3><ul class="rules"><li>요구조건 확인 <span class="arr">→</span> 비용 <span class="arr">→</span> 효과</li><li><b class="st">철 1</b> = <span class="k">2</span> M€ <span class="muted">(건물 태그)</span></li><li><b class="ti">티타늄 1</b> = <span class="k">3</span> M€ <span class="muted">(우주 태그)</span></li></ul></div>
     <div class="box act"><span class="cost">11–25</span><h3>② 표준 프로젝트</h3><ul class="rules"><li>카드 없이 언제든</li><li>같은 것 반복 가능 <span class="muted">(아래 표)</span></li></ul></div>
@@ -539,7 +596,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="prod">
   <div class="ch-head"><div class="ch-no">07</div><div><h2>자원과 생산</h2>
-    <ul class="rules"><li>생산량 키우기 = 매 세대 더 많이 받기 <span class="muted">(엔진 빌딩)</span></li><li>버튼 <span class="arr">→</span> 생산 단계 한 단계씩</li></ul></div></div>
+    <ul class="rules"><li>생산량을 키우면 매 세대 더 많이 받아요</li><li>버튼을 눌러 생산 단계를 한 단계씩 확인해 보세요</li></ul></div></div>
   <div class="prod-ctrl"><span class="tr-pill">TR <b class="num" id="pTR">22</b></span>
     <button class="btn primary" id="prodNext">생산 단계 시작 ▶</button>
     <button class="btn" id="prodReset">처음으로</button></div>
@@ -553,7 +610,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="tiles">
   <div class="ch-head"><div class="ch-no">08</div><div><h2>타일 놓기</h2>
-    <ul class="rules"><li>타일 선택 <span class="arr">→</span> 칸 클릭</li><li>규칙 위반 <span class="arr">→</span> 이유 표시</li><li>빨간 테두리 = 이미 놓인 <b>내 도시</b></li></ul></div></div>
+    <ul class="rules"><li>타일을 고르고 칸을 눌러 보세요</li><li>안 되는 칸이면 이유를 알려 드려요</li><li>빨간 테두리 칸은 이미 놓인 <b>내 도시</b>예요</li></ul></div></div>
   <div class="hexlab">
     <div>
       <div class="hexsvg-box"><svg id="hexmap" viewBox="0 0 400 360" role="img" aria-label="타일 배치 연습 지도"></svg></div>
@@ -586,7 +643,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="params">
   <div class="ch-head"><div class="ch-no">09</div><div><h2>글로벌 수치와 TR</h2>
-    <ul class="rules"><li>★ 칸 도달시킨 사람 <span class="arr">→</span> 추가 보너스</li></ul></div></div>
+    <ul class="rules"><li>★ 칸에 도달시킨 사람은 보너스를 더 받아요</li></ul></div></div>
   <h3><b class="ht">온도</b> (°C)</h3>
   <div class="track-wrap"><div class="ptrack" id="tTrack"></div></div>
   <ul class="rules" style="margin-top:10px"><li>★ −24 · −20°C <span class="arr">→</span> <b class="ht">열 생산 +1</b></li><li>★ 0°C <span class="arr">→</span> <b class="oc">바다 1개</b> 배치 <span class="muted">(그 바다로 TR +1 추가)</span></li></ul>
@@ -600,7 +657,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="cards">
   <div class="ch-head"><div class="ch-no">10</div><div><h2>카드 읽는 법</h2>
-    <ul class="rules"><li>설명용 도식 <span class="arr">→</span> 실제 카드에서 같은 위치 찾기</li></ul></div></div>
+    <ul class="rules"><li>그림은 설명용이에요. 실제 카드에서 같은 자리를 찾아보세요</li></ul></div></div>
   <div class="anat">
     <div class="pcard" aria-label="카드 구조 도식">
       <div class="cst">13</div><span class="pin" style="left:30px;top:30px">1</span>
@@ -628,7 +685,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="ma">
   <div class="ch-head"><div class="ch-no">11</div><div><h2>마일스톤과 어워드</h2>
-    <ul class="rules"><li>둘 다 게임 전체 <span class="k">3</span>개까지</li><li>먼저 하는 사람이 가져감</li></ul></div></div>
+    <ul class="rules"><li>둘 다 게임 전체에서 <span class="k">3</span>개까지만 돼요</li><li>먼저 하는 사람이 가져가요</li></ul></div></div>
   <div class="grid g2">
     <div class="box"><h3>마일스톤 · 8 M€ · 즉시 5 VP</h3>
       <div class="tbl"><table><thead><tr><th>이름</th><th>조건</th></tr></thead><tbody>
@@ -642,8 +699,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   <div class="note" style="margin-top:12px"><ul class="rules"><li>1등 <span class="k">5</span> VP · 2등 <span class="k">2</span> VP <span class="muted">(2인 = 2등 없음)</span></li><li>점수 = 후원자 X · <b>게임 끝 1등</b> O</li><li>동점 = 모두 그 순위 점수</li></ul></div>
 </section>
 <section class="ch" id="end">
-  <div class="ch-head"><div class="ch-no">12</div><div><h2>종료와 점수</h2>
-    <ul class="rules"><li>세 수치 완료 <span class="arr">→</span> 그 세대 <b>생산 단계까지</b> 진행</li><li>차례대로 남은 <b class="pl">식물 8</b> <span class="arr">→</span> 녹지 <span class="muted">(TR 변화 없음)</span></li><li>점수 계산 <span class="arr">→</span> 아래 표</li></ul></div></div>
+  <div class="ch-head"><div class="ch-no">12</div><div><h2>게임 종료와 점수 계산</h2>
+    <ul class="rules"><li>세 수치가 다 차면, 그 세대 <b>생산 단계까지</b> 마쳐요</li><li>남은 <b class="pl">식물 8개</b>는 녹지로 바꿀 수 있어요 (TR은 그대로)</li><li>아래 표에 숫자를 넣으면 바로 계산돼요</li></ul></div></div>
   <div class="box calc">
     <div class="tbl"><table>
       <thead><tr><th>항목</th><th>계산</th><th>A</th><th>B</th></tr></thead>
@@ -654,8 +711,8 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
   </div>
 </section>
 <section class="ch" id="mistakes">
-  <div class="ch-head"><div class="ch-no">13</div><div><h2>자주 틀리는 것</h2>
-    <ul class="rules"><li>테이블 논쟁 시 여기부터</li></ul></div></div>
+  <div class="ch-head"><div class="ch-no">13</div><div><h2>처음에 자주 틀리는 것</h2>
+    <ul class="rules"><li>헷갈리면 여기부터 확인해 보세요</li></ul></div></div>
   <ol class="mist">
     <li><div><strong>1세대 = 연구 단계 없음</strong><span>준비 때 카드 구매 완료 · 2세대부터 4장</span></div></li>
     <li><div><strong>에너지 = 다음 세대로 안 남음</strong><span>생산 단계에 전부 열</span></div></li>
@@ -673,7 +730,7 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 </section>
 <section class="ch" id="ref">
   <div class="ch-head"><div class="ch-no">14</div><div><h2>빠른 참조</h2>
-    <ul class="rules"><li>게임 중엔 이 장만</li></ul></div></div>
+    <ul class="rules"><li>게임 중에는 이 페이지만 열어 두면 돼요</li></ul></div></div>
   <div class="ref">
     <div class="box"><h3>세대 순서</h3><dl><dt>1</dt><dd>선 플레이어 넘기기 (1세대 X)</dd><dt>2</dt><dd>연구: 4장 · 장당 3 M€ (1세대 X)</dd><dt>3</dt><dd>행동: 1–2개씩 · 모두 패스까지</dd><dt>4</dt><dd>생산: 에너지→열 · TR+M€생산 · 나머지</dd></dl></div>
     <div class="box"><h3>행동 7가지</h3><dl><dt>카드</dt><dd>비용 → 효과</dd><dt>표준</dt><dd>11–25 M€</dd><dt>8</dt><dd>마일스톤 (최대 3)</dd><dt>8/14/20</dt><dd>어워드 (최대 3)</dd><dt>파랑</dt><dd>세대당 1번</dd><dt>식물 8</dt><dd>녹지</dd><dt>열 8</dt><dd>온도 +1</dd></dl></div>
@@ -733,7 +790,7 @@ let tfv=0,tfTarget=0,pending=false;
 function setTF(v){const p=v/100,tStep=Math.round(p*19),temp=-30+tStep*2,ox=Math.round(p*14),oc=Math.round(p*9);
   $('#gT').textContent=(temp>0?'+':temp<0?'−':'')+Math.abs(temp)+'°C';$('#gO').textContent=ox+'%';$('#gW').textContent=oc+'/9';
   $('#bT').style.width=(tStep/19*100)+'%';$('#bO').style.width=(ox/14*100)+'%';$('#bW').style.width=(oc/9*100)+'%';$('#tfPct').textContent=Math.round(v)+'%';
-  const ef=$('#endFlag');ef.classList.toggle('on',v>=99.5);ef.innerHTML=v>=99.5?'세 수치 완료 <span class="arr">→</span> 그 세대 끝에 게임 종료':v>0?'세 수치 모두 끝 <span class="arr">→</span> 게임 종료':'휠을 내려 화성을 개조해 보세요';
+  const ef=$('#endFlag');ef.classList.toggle('on',v>=99.5);ef.innerHTML=v>=99.5?'세 수치가 다 찼어요! 이 세대가 끝나면 게임 종료예요':v>0?'세 수치가 모두 차면 게임이 끝나요':'휠을 내리거나 화성을 끌어 바꿔 보세요';
   if(!pending){pending=true;requestAnimationFrame(()=>{paint(tfv/100);if(globe.t)globe.t.needsUpdate=true;else globe.flat();pending=false})}}
 (function ease(){if(Math.abs(tfTarget-tfv)>.05){tfv+=(tfTarget-tfv)*.18;setTF(tfv)}requestAnimationFrame(ease)})();
 $('#home').addEventListener('wheel',e=>{e.preventDefault();tfTarget=Math.max(0,Math.min(100,tfTarget+e.deltaY*.06));spinV+=e.deltaY*.00004},{passive:false});
@@ -751,31 +808,31 @@ if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRec
 const stage=$('.stage'),cv=$('#table3d'),lblBox=$('#lbls');
 const CH=['셋팅','요소 소개','1세대','2세대'];
 const STEPS=[
- {id:'table',ch:0,t:'빈 테이블에서 시작',l:['<b>Space</b> · <b>Enter</b> · ▶ = 다음 장면','<b>←</b> = 이전 · 아래 막대 = 구간 이동','셋팅 <span class="arr">→</span> 요소 소개 <span class="arr">→</span> 한 세대'],cam:'over'},
- {id:'board',ch:0,t:'메인 보드 펼치기',l:['테이블 가운데','둘레 숫자 띠 = <b class="mc">TR 트랙</b> 0–100'],cam:'over'},
- {id:'white',ch:0,t:'흰 큐브 3개 = 공용 표시',l:['<b class="ox">산소</b> <span class="k">0%</span> · 화성 위 호','<b class="ht">온도</b> <span class="k">−30°C</span> · 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 트랙 1칸'],why:'세 개 모두 따로 움직임. 이 장면부터 이름표로 구분',cam:'board',lb:[['wOxy','산소 0%'],['wTmp','온도 −30°C'],['wGen','세대 1']]},
- {id:'tiles',ch:0,t:'타일 놓기',l:['<b class="oc">바다 9개</b> <span class="arr">→</span> 보드 오른쪽 위 바다 자리','<b class="pl">녹지</b> · <b>도시</b> <span class="arr">→</span> 보드 옆 더미'],cam:'tilesCam',lb:[['oc8','바다 9'],['gr4','녹지'],['ci4','도시']]},
- {id:'bank',ch:0,t:'은행 · 내 색 큐브',l:['금속 큐브 <span class="arr">→</span> 보드 위쪽 공용 은행','각자 색 반투명 큐브 한 줌','상대 = 파랑 (예시)'],cam:'overFar',lb:[['bank_cu','동'],['bank_ag','은'],['bank_au','금'],['pile_red','내 큐브']]},
- {id:'pboard',ch:0,t:'개인 보드 · TR 20',l:['개인 보드 <span class="arr">→</span> 내 앞','생산 6칸 모두 <span class="k">1</span>에 내 큐브','TR 트랙 <span class="k">20</span>에 내 큐브 <span class="muted">(상대도)</span>'],cam:'over',lb:[['trMe','TR 20']]},
- {id:'corp',ch:0,t:'기업 · 자금 · 카드',l:['초보 기업 카드 <span class="arr">→</span> 보드 왼쪽','시작 <b class="mc">42 M€</b> = 금 4 + 동 2','프로젝트 카드 <span class="k">10</span>장 <span class="arr">→</span> 손 <span class="muted">(입문 = 무료)</span>'],cam:'pb',lb:[['corp','초보 기업'],['slot_mc','42 M€']]},
- {id:'first',ch:0,t:'선 플레이어 → 준비 끝',l:['선 플레이어 마커 <span class="arr">→</span> 나','준비 완료'],cam:'over',lb:[['firstMk','선 플레이어']]},
- {id:'iBoard',ch:1,t:'메인 보드 읽기',l:['둘레 = <b class="mc">TR</b> 트랙','화성 위 호 = <b class="ox">산소</b> 0–14%','오른쪽 = <b class="ht">온도계</b> −30 → +8°C','왼쪽 = <b>표준 프로젝트</b>','아래 = <b>마일스톤</b> · <b>어워드</b>'],cam:'board',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','온도'],['rSP','표준 프로젝트'],['rMA','마일스톤 · 어워드']]},
- {id:'iPB',ch:1,t:'개인 보드 읽기',l:['위 <b>M€ · 철 · 티타늄</b> / 아래 <b>식물 · 에너지 · 열</b>','칸 위 그림칸 = <b>보유</b> <span class="muted">(금속 큐브)</span>','칸 아래 숫자 = <b>생산량</b> <span class="muted">(내 큐브)</span>'],cam:'pbClose',rg:['rHold','rProd'],lb:[['slot_mc','보유'],['pm_mc','생산']]},
- {id:'iCubes',ch:1,t:'큐브 크기 = 값',l:['<b style="color:#d98a5a">동</b> <span class="k">1</span> &lt; <b style="color:#dcdde2">은</b> <span class="k">5</span> &lt; <b class="mc">금</b> <span class="k">10</span>','내 색 큐브 = 동과 같은 크기 · 반투명','지금 42 M€ = 금 4 + 동 2'],why:'놓인 칸이 자원 종류. 금 큐브가 식물 칸에 있으면 식물 10개',cam:'show',lb:[['dCu','동 1'],['dAg','은 5'],['dAu','금 10'],['dRed','내 큐브']]},
- {id:'iTiles',ch:1,t:'타일 3종',l:['<b class="oc">바다</b> = 주인 없음 · 파란 예약 칸만','<b class="pl">녹지</b> = 산소 +1 · 위에 내 큐브','<b>도시</b> = 도시끼리 인접 금지 · 위에 내 큐브'],cam:'show',lb:[['oc8','바다'],['gr4','녹지'],['ci4','도시']]},
- {id:'iCards',ch:1,t:'카드 3종',l:['왼쪽 위 노란 칸 = <b class="mc">가격</b>','<b class="pl">초록</b> = 1회 효과','<b class="oc">파랑</b> = 계속 효과 / 세대당 1번 행동','<b style="color:var(--rust)">빨강</b> = 이벤트 · 쓰고 뒤집음'],cam:'show',lb:[['h0','초록'],['h1','파랑'],['h7','빨강']]},
- {id:'g1',ch:2,t:'1세대 · 바로 행동 단계',l:['1세대 = 선 넘기기 · 연구 <b>생략</b>','선 플레이어(나)부터','차례마다 행동 <span class="k">1~2</span>개'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
- {id:'g1a',ch:2,t:'나 · 행동 1: 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 금 1 내고 거스름 동 2','효과: <b class="en">에너지 생산 +1</b> · 에너지 <span class="k">2</span>개','카드 <span class="arr">→</span> 내 앞에 펼침'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
- {id:'g1b',ch:2,t:'나 · 행동 2: 바다 (대수층)',l:['표준 프로젝트 <span class="k">18</span> M€','바다 자리 <span class="arr">→</span> 파란 예약 칸','바다 +1 <span class="arr">→</span> TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','바다 +1'],['trMe','TR 21']]},
- {id:'g1c',ch:2,t:'상대 차례: 소행성',l:['상대 <span class="k">14</span> M€ <span class="arr">→</span> 온도 +1칸','온도 <span class="k">−30 → −28°C</span>','상대 TR <span class="k">20 → 21</span>'],why:'다른 사람이 수치를 올리면 TR은 그 사람 것',cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
- {id:'g1d',ch:2,t:'모두 패스 → 행동 단계 끝',l:['할 게 없음 <span class="arr">→</span> 패스','패스 = 이번 세대 더 못 함','모두 패스 <span class="arr">→</span> 생산 단계'],cam:'over',lb:[['trMe','나 패스'],['trOpp','상대 패스']]},
- {id:'p1',ch:2,t:'생산 ① 에너지 → 열',l:['남은 <b class="en">에너지 2</b> <span class="arr">→</span> 전부 <b class="ht">열</b> 칸','에너지 = 다음 세대로 안 남음'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
- {id:'p2',ch:2,t:'생산 ② M€ 받기',l:['TR <span class="k">21</span> + M€ 생산 <span class="k">1</span> = <span class="k">22</span>','16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22']]},
- {id:'p3',ch:2,t:'생산 ③ 나머지 자원',l:['각 칸 생산량만큼 은행에서','철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
- {id:'g2',ch:3,t:'2세대 시작',l:['세대 마커 1 <span class="arr">→</span> <span class="k">2</span>','선 플레이어 <span class="arr">→</span> 상대','생산 큐브는 그대로 · 파란 카드 큐브 회수'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
- {id:'g2r',ch:3,t:'연구: 카드 4장',l:['각자 덱에서 <span class="k">4</span>장','가질 카드 장당 <span class="k">3</span> M€ <span class="arr">→</span> 2장 = 6','나머지 <span class="arr">→</span> 버림'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
- {id:'g2a',ch:3,t:'행동: 녹지 (표준 프로젝트)',l:['<span class="k">23</span> M€ <span class="arr">→</span> 녹지 타일','바다 옆 <span class="arr">→</span> <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위 내 큐브 = 소유'],why:'상대 행동은 생략. 실제로는 선(상대)부터 번갈아 진행',cam:'board',lb:[['gr4','녹지 · 내 것'],['wOxy','산소 1%'],['trMe','TR 22']]},
- {id:'end',ch:3,t:'반복 → 게임 종료',l:['<b class="ox">산소 14%</b> · <b class="ht">온도 +8°C</b> · <b class="oc">바다 9개</b>','셋 다 완료 <span class="arr">→</span> 그 세대 생산까지','점수 계산 <span class="arr">→</span> 12장'],cam:'over',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
+ {id:'table',ch:0,t:'함께 테이블을 차려 볼까요?',l:['<b>Space</b> · <b>Enter</b>를 누르거나 화면을 탭하면 다음 장면으로 넘어가요','<b>◀</b> 버튼으로 언제든 되돌아갈 수 있어요','셋팅 <span class="arr">→</span> 요소 소개 <span class="arr">→</span> 한 세대 순서로 보여 드릴게요'],cam:'over'},
+ {id:'board',ch:0,t:'먼저 메인 보드를 펼쳐요',l:['테이블 가운데에 놓아 주세요','둘레의 숫자 띠는 <b class="mc">TR 트랙</b>이에요 (0–100)'],cam:'over'},
+ {id:'white',ch:0,t:'흰 큐브 3개를 놓아요',l:['<b class="ox">산소</b> <span class="k">0%</span> · 화성 위 둥근 띠','<b class="ht">온도</b> <span class="k">−30°C</span> · 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 트랙의 1칸'],why:'셋 다 흰색이라 헷갈리기 쉬워요. 이제부터 이름표를 붙여 둘게요',cam:'board',lb:[['wOxy','산소 0%'],['wTmp','온도 −30°C'],['wGen','세대 1']]},
+ {id:'tiles',ch:0,t:'타일을 준비해요',l:['<b class="oc">바다 9개</b>는 보드 오른쪽 위 바다 자리에 쌓아요','<b class="pl">녹지</b>와 <b>도시</b>는 보드 옆에 두면 돼요'],cam:'tilesCam',lb:[['oc8','바다 9'],['gr4','녹지'],['ci4','도시']]},
+ {id:'bank',ch:0,t:'은행과 내 색 큐브',l:['금속 큐브는 보드 위쪽에 모아 두는 <b>공용 은행</b>이에요','각자 자기 색 반투명 큐브를 한 줌씩 가져가요','상대는 파랑으로 보여 드릴게요'],cam:'overFar',lb:[['bank_cu','동'],['bank_ag','은'],['bank_au','금'],['pile_red','내 큐브']]},
+ {id:'pboard',ch:0,t:'개인 보드와 TR 20',l:['개인 보드를 내 앞에 놓아요','생산 6칸 모두 <span class="k">1</span>에 내 큐브를 올려요','TR 트랙 <span class="k">20</span>에도 내 큐브를 놓아요 <span class="muted">(상대도)</span>'],cam:'over',lb:[['trMe','TR 20']]},
+ {id:'corp',ch:0,t:'기업 · 자금 · 카드를 받아요',l:['초보 기업 카드는 개인 보드 왼쪽에 놓아요','시작 자금 <b class="mc">42 M€</b> = 금 4 + 동 2','프로젝트 카드 <span class="k">10</span>장은 손에 들어요 <span class="muted">(입문은 무료)</span>'],cam:'pb',lb:[['corp','초보 기업'],['slot_mc','42 M€']]},
+ {id:'first',ch:0,t:'선 플레이어를 정하면 준비 끝!',l:['선 플레이어 마커를 나에게 줄게요','이제 부품들을 하나씩 살펴봐요'],cam:'over',lb:[['firstMk','선 플레이어']]},
+ {id:'iBoard',ch:1,t:'메인 보드는 이렇게 읽어요',l:['둘레 = <b class="mc">TR</b> 트랙','화성 위 둥근 띠 = <b class="ox">산소</b> 0–14%','오른쪽 = <b class="ht">온도계</b> −30 → +8°C','왼쪽 = <b>표준 프로젝트</b>','아래 = <b>마일스톤</b> · <b>어워드</b>'],cam:'board',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','온도'],['rSP','표준 프로젝트'],['rMA','마일스톤 · 어워드']]},
+ {id:'iPB',ch:1,t:'개인 보드는 이렇게 읽어요',l:['윗줄 <b>M€ · 철 · 티타늄</b>, 아랫줄 <b>식물 · 에너지 · 열</b>','위쪽 그림 칸 = 지금 <b>가진 양</b> (금속 큐브)','아래 숫자 칸 = 매 세대 <b>받는 양</b> (내 큐브)'],cam:'pbClose',rg:['rHold','rProd'],lb:[['slot_mc','가진 양'],['pm_mc','받는 양']]},
+ {id:'iCubes',ch:1,t:'큐브는 크기가 곧 값이에요',l:['<b style="color:#d98a5a">동</b> <span class="k">1</span> &lt; <b style="color:#dcdde2">은</b> <span class="k">5</span> &lt; <b class="mc">금</b> <span class="k">10</span>','내 색 큐브는 동과 같은 크기예요 (반투명)','지금 42 M€ = 금 4 + 동 2'],why:'어느 칸에 놓였는지가 자원 종류예요. 금 큐브가 식물 칸에 있으면 식물 10개!',cam:'show',lb:[['dCu','동 1'],['dAg','은 5'],['dAu','금 10'],['dRed','내 큐브']]},
+ {id:'iTiles',ch:1,t:'타일은 3종류예요',l:['<b class="oc">바다</b> = 주인이 없어요 · 파란 칸에만','<b class="pl">녹지</b> = 산소가 1 올라가요 · 위에 내 큐브','<b>도시</b> = 도시끼리는 붙일 수 없어요 · 위에 내 큐브'],cam:'show',lb:[['oc8','바다'],['gr4','녹지'],['ci4','도시']]},
+ {id:'iCards',ch:1,t:'카드는 테두리 색을 보세요',l:['왼쪽 위 노란 칸 = <b class="mc">가격</b>','<b class="pl">초록</b> = 한 번 쓰고 끝','<b class="oc">파랑</b> = 계속 효과, 또는 세대마다 1번 행동','<b style="color:var(--rust)">빨강</b> = 이벤트, 쓰고 뒤집어 둬요'],cam:'show',lb:[['h0','초록'],['h1','파랑'],['h7','빨강']]},
+ {id:'g1',ch:2,t:'1세대는 바로 행동부터!',l:['1세대에는 선 넘기기와 연구를 <b>건너뛰어요</b>','선 플레이어(나)부터 시작해요','차례마다 행동을 <span class="k">1~2</span>개 해요'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
+ {id:'g1a',ch:2,t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 금 1개 내고 동 2개 거슬러 받아요','효과: <b class="en">에너지 생산 +1</b>, 에너지 <span class="k">2</span>개','낸 카드는 내 앞에 펼쳐 둬요'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
+ {id:'g1b',ch:2,t:'내 행동 ② 바다 놓기',l:['표준 프로젝트 <b>대수층</b> <span class="k">18</span> M€','바다 자리에서 꺼내 파란 칸에 놓아요','바다 +1 <span class="arr">→</span> 내 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','바다 +1'],['trMe','TR 21']]},
+ {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대가 소행성(<span class="k">14</span> M€)으로 온도를 올렸어요','온도 <span class="k">−30 → −28°C</span>','상대 TR <span class="k">20 → 21</span>'],why:'수치를 올린 사람이 TR을 가져가요',cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
+ {id:'g1d',ch:2,t:'둘 다 패스했어요',l:['더 할 게 없으면 패스해요','패스하면 이번 세대엔 더 못 해요','모두 패스하면 생산 단계로 가요'],cam:'over',lb:[['trMe','나 패스'],['trOpp','상대 패스']]},
+ {id:'p1',ch:2,t:'생산 ① 에너지는 열로 바뀌어요',l:['남은 <b class="en">에너지 2</b>개가 전부 <b class="ht">열</b> 칸으로 가요','에너지는 다음 세대로 남지 않아요'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
+ {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['TR <span class="k">21</span> + M€ 생산 <span class="k">1</span> = <span class="k">22</span> M€','16 + 22 = <b class="mc">38 M€</b>가 됐어요'],cam:'pbClose',lb:[['slot_mc','+22']]},
+ {id:'p3',ch:2,t:'생산 ③ 나머지 자원도 받아요',l:['칸마다 생산량만큼 은행에서 가져와요','철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
+ {id:'g2',ch:3,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 옮겨요','선 플레이어는 상대에게 넘어가요','생산 큐브는 그대로 둬요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
+ {id:'g2r',ch:3,t:'연구: 카드 4장을 봐요',l:['각자 덱에서 <span class="k">4</span>장을 뽑아요','가질 카드는 한 장에 <span class="k">3</span> M€ (2장 = 6)','나머지는 버려요'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
+ {id:'g2a',ch:3,t:'행동: 녹지를 놓아요',l:['표준 프로젝트 <span class="k">23</span> M€로 녹지 타일','바다 옆이라 <span class="k">+2</span> M€ 보너스','산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위에 내 큐브를 올려요'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 것'],['wOxy','산소 1%'],['trMe','TR 22']]},
+ {id:'end',ch:3,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">온도 +8°C</b> · <b class="oc">바다 9개</b>','셋 다 채워지면 그 세대 생산까지 하고 끝','점수 계산은 메인의 <b>SCORE</b>에서 도와 드려요'],cam:'over',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
 ];
 const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
 const HUD=[];{let g='—',tr='—',t='—',o='—',m='—';
@@ -1130,13 +1187,14 @@ let labels=[];
 function setLabels(i){lblBox.innerHTML='';labels=(STEPS[i].lb||[]).map(([id,txt])=>{const e=document.createElement('div');e.className='lbl3d hide';e.textContent=txt;lblBox.appendChild(e);return {id,e}});
  setTimeout(()=>labels.forEach(l=>l.e.classList.remove('hide')),reduce?0:DUR*700)}
 const v3=new THREE.Vector3();
-function placeLabels(){const r=cv.getBoundingClientRect();
+function placeLabels(){const r={width:cv.clientWidth,height:cv.clientHeight};
  labels.forEach(L=>{let pos;if(OBJ[L.id])pos=OBJ[L.id].mesh.position;else if(REG[L.id])pos=v3.set(...REG[L.id].center);else return;
   v3.copy(pos);v3.y+=.9;v3.project(cam);const x=(v3.x*.5+.5)*r.width,y=(-v3.y*.5+.5)*r.height;
   L.e.style.transform=`translate(${x}px,${y}px) translate(-50%,-100%) translateY(-10px)`})}
 
-function size(){const r=cv.getBoundingClientRect(),w=r.width,h=Math.max(1,r.height);renderer.setSize(w,h,false);cam.aspect=w/h;
- if(w>=760)cam.setViewOffset(w,h,-Math.min(210,w*.14),-h*.03,w,h);else cam.setViewOffset(w,h,0,h*.17,w,h);cam.updateProjectionMatrix()}
+function size(){const w=cv.clientWidth||1,h=Math.max(1,cv.clientHeight);renderer.setSize(w,h,false);cam.aspect=w/h;
+ const land=h<560&&w>h*1.25;stage.classList.toggle('land',land);
+ if(land)cam.setViewOffset(w,h,-w*.17,h*.02,w,h);else if(w>=760)cam.setViewOffset(w,h,-Math.min(210,w*.14),-h*.03,w,h);else cam.setViewOffset(w,h,0,h*.17,w,h);cam.updateProjectionMatrix()}
 size();addEventListener('resize',size);if(window.ResizeObserver)new ResizeObserver(size).observe(stage);
 let vis=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargin:'120px'}).observe(stage);
 (function loop(now){if(vis)tick(now);requestAnimationFrame(loop)})(performance.now());
@@ -1145,6 +1203,14 @@ window.__tmScene={go,N,cur:()=>cur};
 })();
 
 /* ================= 화면 위계: 메인 → 목차(서브) ================= */
+const COARSE=matchMedia('(pointer: coarse)').matches;
+/* 휴대폰: 첫 터치에 전체화면 (브라우저 정책상 사용자 조작이 있어야 함) */
+if(COARSE)addEventListener('pointerdown',()=>goFull(false),{once:true,capture:true});
+/* iPhone Safari는 웹페이지 전체화면을 지원하지 않음 → 홈 화면에 추가 안내 (한 번만) */
+(function(){const ios=/iP(hone|od|ad)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const standalone=navigator.standalone||matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;let seen=false;try{seen=localStorage.getItem('tm-ios-tip')==='1'}catch(e){}
+  if(!ios||standalone||seen)return;const d=document.createElement('div');d.className='ios-tip';d.innerHTML='전체화면으로 보려면 Safari 아래 <b>공유 버튼</b> → <b>홈 화면에 추가</b>를 눌러 주세요. 홈 화면 아이콘으로 열면 앱처럼 꽉 차게 보여요.<button type="button" aria-label="닫기">✕</button>';
+  d.querySelector('button').onclick=()=>{d.remove();try{localStorage.setItem('tm-ios-tip','1')}catch(e){}};document.body.appendChild(d)})();
 const SECS=[...document.querySelectorAll('.content section')].map(s=>s.id);
 const TITLES={};document.querySelectorAll('.toc a').forEach(a=>TITLES[a.dataset.sec]=a.textContent.replace(/^\d+/,''));
 const stageEl=$('.stage');
@@ -1160,19 +1226,22 @@ function openSec(id,opt={}){if(!SECS.includes(id))id='goal';
   try{history.replaceState(null,'','#'+id)}catch(e){}
   if(!opt.keepScroll)scrollTo(0,0);
   dispatchEvent(new Event('resize'))}
-function flip(mutate,dur=700){const a=stageEl.getBoundingClientRect();mutate();const b=stageEl.getBoundingClientRect();
+const ROT=matchMedia('(orientation: portrait) and (max-width: 760px)');
+function flip(mutate,dur=700){if(ROT.matches){mutate();return}const a=stageEl.getBoundingClientRect();mutate();const b=stageEl.getBoundingClientRect();
   if(reduce||!b.width)return;stageEl.style.transition='none';
   stageEl.style.transform=`translate(${a.left-b.left}px,${a.top-b.top}px) scale(${a.width/b.width},${a.height/b.height})`;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{stageEl.style.transition=`transform ${dur}ms cubic-bezier(.2,.8,.2,1)`;stageEl.style.transform='none';
     setTimeout(()=>{stageEl.style.transition='';stageEl.style.transform=''},dur+40)}))}
-function startMotion(){showView('rules');openSec('table');document.body.classList.remove('reveal');document.body.classList.add('playing');stageEl.classList.add('full');
+async function goFull(land){try{const d=document.documentElement;if(!document.fullscreenElement&&d.requestFullscreen)await d.requestFullscreen({navigationUI:'hide'})}catch(e){}
+  if(land){try{await screen.orientation.lock('landscape')}catch(e){}}}
+function startMotion(){if(COARSE)goFull(true);showView('rules');openSec('table');document.body.classList.remove('reveal');document.body.classList.add('playing');stageEl.classList.add('full');
   if(!reduce){stageEl.classList.remove('entering');void stageEl.offsetWidth;stageEl.classList.add('entering');setTimeout(()=>stageEl.classList.remove('entering'),850)}
   dispatchEvent(new Event('resize'));stageEl.focus({preventScroll:true});
   setTimeout(()=>{if(window.__tmScene&&__tmScene.cur()===0)__tmScene.go(1)},reduce?0:700)}
-function collapse(){if(!stageEl.classList.contains('full'))return;
+function collapse(){if(!stageEl.classList.contains('full'))return;try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock()}catch(e){}
   flip(()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');document.body.classList.add('reveal');scrollTo(0,0)});
   setTimeout(()=>document.body.classList.remove('reveal'),900);dispatchEvent(new Event('resize'))}
-function expand(){flip(()=>{stageEl.classList.add('full');document.body.classList.add('playing')});stageEl.focus({preventScroll:true});dispatchEvent(new Event('resize'))}
+function expand(){if(COARSE)goFull(true);flip(()=>{stageEl.classList.add('full');document.body.classList.add('playing')});stageEl.focus({preventScroll:true});dispatchEvent(new Event('resize'))}
 $('#btnStart').onclick=startMotion;
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{showView('rules');document.body.classList.add('reveal');setTimeout(()=>document.body.classList.remove('reveal'),900);openSec(b.dataset.open)});
 $('#btnClose').onclick=collapse;$('#btnFull').onclick=expand;
