@@ -465,6 +465,85 @@ body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
 
 body.playing .pager,body.playing footer{visibility:hidden}
 .content section.scene{animation:none}
+/* ================= v4: 밝은 모션 오버레이 · 가로 레이아웃 · ☰ 목차 · 무스크롤 ================= */
+.stage{--ov-bg:rgba(252,249,244,.93);--ov-bg2:rgba(255,255,255,.75);--ov-fg:#2b1d16;--ov-mute:#7a6a5f;--ov-line:#ddd2c4}
+.stage .sidecol{position:absolute;z-index:3;left:max(14px,env(safe-area-inset-left,0px));top:14px;width:min(340px,calc(100% - 28px));display:flex;flex-direction:column;gap:8px;max-height:calc(100% - 92px)}
+.stage .spanel{position:static;width:auto;background:var(--ov-bg);color:var(--ov-fg);border:1px solid var(--ov-line);box-shadow:0 8px 24px rgba(60,35,20,.18);backdrop-filter:blur(6px);overflow:auto;min-height:0}
+.stage .spanel h3{color:var(--ov-fg)}
+.stage .spanel .cnt{color:var(--ov-mute)}
+.stage .spanel .rules li{color:var(--ov-fg)}
+.stage .spanel .rules li::before{background:var(--ov-mute)}
+.stage .spanel .why{color:var(--ov-mute)}
+.stage .spanel .muted,.stage .spanel .arr{color:var(--ov-mute)}
+.stage .spanel b.mc,.stage .spanel .k{color:#a86a00}
+.stage .spanel b.ox{color:#1b78a8}.stage .spanel b.oc{color:#2458b8}.stage .spanel b.pl{color:#3a8526}.stage .spanel b.ht{color:#cc4a17}.stage .spanel b.en{color:#6a4cc9}.stage .spanel b.st{color:#8a5a33}
+.stage .hud{position:static;max-width:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;justify-content:stretch}
+.stage .hud span{background:var(--ov-bg2);border:1px solid var(--ov-line);color:var(--ov-mute);border-radius:6px;padding:4px 6px;font-size:.66rem;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;white-space:nowrap}
+.stage .hud b{margin:2px 0 0;color:var(--ov-fg);font-size:.92rem}
+.stage .hud b.flash{color:#c25a12;text-shadow:0 0 10px rgba(240,170,60,.8)}
+.stage .sctrl{background:linear-gradient(transparent,rgba(250,246,240,.9) 45%)}
+.stage .sbtn{background:#fff;border-color:var(--ov-line);color:var(--ov-fg)}
+.stage .sbtn.next{background:var(--rust);border-color:var(--rust);color:#fff}
+.stage .chaps button{color:var(--ov-mute)}.stage .chaps button.on{color:var(--ov-fg);font-weight:700}
+.stage .chaps button .seg i{background:#d6cbbd}.stage .chaps button .seg i.done{background:#a8968a}
+.stage .s-close{background:#fff;border-color:var(--ov-line);color:var(--ov-fg)}
+.stage.full .hud{right:auto}
+/* 가로 폰 (높이 짧음) */
+.stage.land .sidecol{top:8px;left:max(10px,env(safe-area-inset-left,0px));width:min(290px,36%);gap:5px;max-height:calc(100% - 62px)}
+.stage.land .spanel{padding:8px 11px 9px}
+.stage.land .spanel h3{font-size:.95rem;margin:2px 0 5px}
+.stage.land .spanel .eyebrow,.stage.land .spanel .cnt{font-size:.62rem}
+.stage.land .spanel .rules{gap:2px}.stage.land .spanel .rules li{font-size:.76rem;line-height:1.4}
+.stage.land .hud{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.stage.land .hud span{padding:2px 4px;font-size:.56rem}.stage.land .hud b{font-size:.76rem}
+.stage.land .sctrl{padding:4px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));gap:8px}
+.stage.land .sbtn{padding:6px 11px;font-size:.82rem}
+.stage.land .chaps button span.nm{font-size:.62rem}
+.stage.land .s-close{top:8px;padding:5px 9px;font-size:.74rem}
+.stage.land .lbl3d{font-size:.68rem;padding:2px 6px}
+@media (max-width:760px){.stage:not(.land) .sidecol{top:auto;bottom:70px;max-height:48%}}
+
+/* ---- 모바일: ☰ 목차 ---- */
+.menu-btn,.cur-sec{display:none}
+@media (max-width:860px){
+  .toc{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+  .cur-sec{display:block;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.9rem;color:var(--dust)}
+  .cur-sec .n{font-family:var(--f-display);color:var(--rust);margin-right:6px}
+  .menu-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);background:var(--ground);color:var(--dust);border-radius:7px;padding:8px 12px;font-size:.88rem}
+  .menu-btn i{display:grid;gap:3px}.menu-btn i b{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}
+  .toc ol{position:fixed;inset:0;z-index:70;display:none;grid-auto-rows:minmax(0,1fr);grid-template-columns:1fr;gap:0;overflow:hidden;
+    background:#170e0c;padding:calc(64px + env(safe-area-inset-top,0px)) var(--gut-r) calc(18px + env(safe-area-inset-bottom,0px)) var(--gut-l);height:100dvh}
+  .toc.open ol{display:grid;animation:menuIn .28s ease both}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .toc.open .menu-btn{position:relative;z-index:71}
+  .toc.open .brand,.toc.open .cur-sec{position:relative;z-index:71}
+  .toc ol li{display:flex;min-height:0}
+  .toc ol a{display:grid;grid-template-columns:2.4em 1fr;align-items:center;width:100%;padding:0 12px;font-size:min(1.06rem,2.7dvh);border-radius:6px;white-space:nowrap}
+  .toc ol a .n{font-size:.82em}
+  .toc .grp{display:flex;align-items:flex-end;padding:0 12px 2px;font-size:min(.64rem,1.6dvh)}
+  /* 메인: 스크롤 없이 한 화면 */
+  .home{height:100dvh;min-height:0;overflow:hidden;grid-template-rows:auto minmax(0,1fr) auto}
+  .t-mars{font-size:min(36vw,17dvh)}
+  .home .globe-box{width:min(60vw,30dvh)}
+  .t-terra{font-size:min(1.02rem,2.4dvh)}
+  .home-bottom{gap:min(12px,1.4dvh)}
+  .readout{gap:min(4px,.6dvh)}
+  .readout .row{font-size:min(.76rem,1.8dvh)}
+  .home .facts{font-size:min(.86rem,2dvh)}
+  .cta button{padding-block:min(13px,1.5dvh)}
+  .cta button.go{padding-block:min(16px,1.9dvh)}
+  .cta button small{font-size:min(.72rem,1.6dvh)}
+  /* 목차 안 플레이 모션: 한 화면 */
+  .scene{padding-top:14px}
+  .scene .scene-head{margin-bottom:10px}
+  .scene .scene-head h2{font-size:1.25rem}
+  .scene .stage{height:calc(100dvh - 190px)}
+}
+@media (max-width:860px) and (max-height:620px){.home .facts{display:none}.globe-tip{display:none}}
+.scene .stage.full{height:100svh;height:100dvh}
+.stage.land .spanel{width:auto}
+@media (orientation:portrait) and (max-width:760px){.scene .stage.full{width:100svh;width:100dvh;height:100vw}}
+@media (max-width:860px){body[data-sec="table"] .pager,body[data-sec="table"] footer{display:none}}
 </style>
 </head>
 <body>
@@ -500,7 +579,7 @@ body.playing .pager,body.playing footer{visibility:hidden}
 </div>
 
 <div class="view rulesview" id="rules" hidden>
-<aside class="toc" aria-label="목차"><button class="brand" type="button" id="btnHome" aria-label="메인으로"><span class="b1">TERRAFORMING</span><span class="b2">MARS</span><span class="b3">플레이 가이드 · 메인으로</span></button><ol><li class="grp">보면서 배우기</li><li><a href="#table" data-sec="table" class="play"><span class="n">01</span>플레이 모션</a></li><li class="grp">규칙</li><li><a href="#goal" data-sec="goal" class=""><span class="n">02</span>목표</a></li><li><a href="#parts" data-sec="parts" class=""><span class="n">03</span>구성요소</a></li><li><a href="#setup" data-sec="setup" class=""><span class="n">04</span>게임 준비</a></li><li><a href="#gen" data-sec="gen" class=""><span class="n">05</span>한 세대</a></li><li><a href="#turn" data-sec="turn" class=""><span class="n">06</span>내 차례</a></li><li><a href="#prod" data-sec="prod" class=""><span class="n">07</span>자원·생산</a></li><li><a href="#tiles" data-sec="tiles" class=""><span class="n">08</span>타일</a></li><li><a href="#params" data-sec="params" class=""><span class="n">09</span>수치·TR</a></li><li><a href="#cards" data-sec="cards" class=""><span class="n">10</span>카드</a></li><li><a href="#ma" data-sec="ma" class=""><span class="n">11</span>마일스톤·어워드</a></li><li><a href="#end" data-sec="end" class=""><span class="n">12</span>종료·점수</a></li><li class="grp">게임 중</li><li><a href="#mistakes" data-sec="mistakes" class=""><span class="n">13</span>자주 틀리는 것</a></li><li><a href="#ref" data-sec="ref" class=""><span class="n">14</span>빠른 참조</a></li></ol></aside>
+<aside class="toc" aria-label="목차"><button class="brand" type="button" id="btnHome" aria-label="메인으로"><span class="b1">TERRAFORMING</span><span class="b2">MARS</span><span class="b3">플레이 가이드 · 메인으로</span></button><span class="cur-sec" id="curSec" aria-live="polite"></span><button class="menu-btn" id="btnMenu" type="button" aria-expanded="false" aria-controls="tocList"><i aria-hidden="true"><b></b><b></b><b></b></i><span id="menuLbl">목차</span></button><ol id="tocList"><li class="grp">보면서 배우기</li><li><a href="#table" data-sec="table" class="play"><span class="n">01</span>플레이 모션</a></li><li class="grp">규칙</li><li><a href="#goal" data-sec="goal" class=""><span class="n">02</span>목표</a></li><li><a href="#parts" data-sec="parts" class=""><span class="n">03</span>구성요소</a></li><li><a href="#setup" data-sec="setup" class=""><span class="n">04</span>게임 준비</a></li><li><a href="#gen" data-sec="gen" class=""><span class="n">05</span>한 세대</a></li><li><a href="#turn" data-sec="turn" class=""><span class="n">06</span>내 차례</a></li><li><a href="#prod" data-sec="prod" class=""><span class="n">07</span>자원·생산</a></li><li><a href="#tiles" data-sec="tiles" class=""><span class="n">08</span>타일</a></li><li><a href="#params" data-sec="params" class=""><span class="n">09</span>수치·TR</a></li><li><a href="#cards" data-sec="cards" class=""><span class="n">10</span>카드</a></li><li><a href="#ma" data-sec="ma" class=""><span class="n">11</span>마일스톤·어워드</a></li><li><a href="#end" data-sec="end" class=""><span class="n">12</span>종료·점수</a></li><li class="grp">게임 중</li><li><a href="#mistakes" data-sec="mistakes" class=""><span class="n">13</span>자주 틀리는 것</a></li><li><a href="#ref" data-sec="ref" class=""><span class="n">14</span>빠른 참조</a></li></ol></aside>
 <main class="content"><div class="inner">
 <section class="scene" id="table" aria-label="테이블 위에서: 셋팅부터 한 세대까지 장면별로 보기">
   <div class="scene-head"><div><p class="eyebrow">01 · 플레이 모션</p><h2>셋팅부터 한 세대까지</h2></div><button class="btn" id="btnFull" type="button">⤢ 전체화면</button></div>
@@ -508,10 +587,12 @@ body.playing .pager,body.playing footer{visibility:hidden}
     <canvas id="table3d" aria-hidden="true"></canvas>
     <button class="s-close" id="btnClose" type="button">✕ 목차로<kbd>Esc</kbd></button>
     <div id="lbls" aria-hidden="true"></div>
-    <div class="hud" aria-live="polite">
-      <span>세대<b id="hudG">—</b></span><span>TR<b id="hudTR">—</b></span><span>온도<b id="hudT">—</b></span><span>산소<b id="hudO">—</b></span><span>M€<b id="hudM">—</b></span>
+    <div class="sidecol">
+      <div class="spanel" id="spanel" aria-live="polite"></div>
+      <div class="hud" aria-live="polite" aria-label="현재 상태">
+        <span>세대<b id="hudG">—</b></span><span>TR<b id="hudTR">—</b></span><span>온도<b id="hudT">—</b></span><span>산소<b id="hudO">—</b></span><span>M€<b id="hudM">—</b></span>
+      </div>
     </div>
-    <div class="spanel" id="spanel" aria-live="polite"></div>
     <div class="sctrl">
       <button class="sbtn" id="sPrev" aria-label="이전 장면">◀</button>
       <div class="chaps" id="chaps"></div>
@@ -887,10 +968,16 @@ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x150d0b);scene.fog=new THREE.Fog(0x150d0b,80,150);
 const cam=new THREE.PerspectiveCamera(36,1,.1,300);
 (function(){const pm=new THREE.PMREMGenerator(renderer);const env=new THREE.Scene();
-  env.add(new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x6e5a4e,side:THREE.BackSide})));
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x2e2622,side:THREE.BackSide})));
   const pan=(c,x,y,z,w,h)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)};
-  pan(0xffffff,0,40,0,50,50);pan(0xffe0c0,-40,12,10,30,36);pan(0xdfe8ff,40,10,-10,24,30);pan(0xffffff,0,14,40,30,16);pan(0x3a2a22,0,-40,0,80,80);
-  window.__envMap=pm.fromScene(env,.04).texture})();
+  const HC=(r,g,b)=>new THREE.Color(r,g,b);const pan2=(c,x,y,z,w,h)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)};
+  pan2(HC(5,4.8,4.5),0,40,0,26,18);pan2(HC(3.5,3,2.6),-38,16,12,10,34);pan2(HC(2.6,3,3.6),38,12,-10,8,30);pan2(HC(4,4,4),0,16,40,30,6);pan2(HC(2,1.8,1.6),18,30,-26,18,4);pan(0xb8a898,0,-40,0,80,80);
+  /* 스튜디오 반사 환경: 어두운 배경 + 밝은 소프트박스 띠 (금속이 반짝이려면 대비가 필요) */
+  const ec=document.createElement('canvas');ec.width=1024;ec.height=512;const eg=ec.getContext('2d');
+  const bg=eg.createLinearGradient(0,0,0,512);bg.addColorStop(0,'#f2ece4');bg.addColorStop(.3,'#b9afa6');bg.addColorStop(.46,'#2a2320');bg.addColorStop(.54,'#3a322c');bg.addColorStop(1,'#8c7f73');eg.fillStyle=bg;eg.fillRect(0,0,1024,512);
+  eg.fillStyle='#ffffff';eg.fillRect(380,40,260,70);eg.fillRect(60,120,40,200);eg.fillRect(900,140,30,180);eg.fillStyle='#fff3e0';eg.fillRect(640,170,120,40);eg.fillStyle='#e8f0ff';eg.fillRect(180,60,90,30);
+  const et=new THREE.CanvasTexture(ec);et.mapping=THREE.EquirectangularReflectionMapping;et.encoding=THREE.sRGBEncoding;
+  window.__envMap=pm.fromEquirectangular(et).texture})();
 const ENV=window.__envMap;
 scene.add(new THREE.HemisphereLight(0xfff1e2,0x3a2a20,.5));
 const key=new THREE.DirectionalLight(0xfff3e6,1.15);key.position.set(-20,45,25);key.castShadow=true;key.shadow.mapSize.set(2048,2048);
@@ -976,13 +1063,16 @@ pboard.castShadow=pboard.receiveShadow=true;
 
 /* ---- 재질 · 형태 ---- */
 const SZ={cu:.6,ag:.74,au:.9,mk:.6};
-const MAT={cu:()=>new THREE.MeshStandardMaterial({color:0xd27a48,metalness:.9,roughness:.28,envMap:ENV}),
- ag:()=>new THREE.MeshStandardMaterial({color:0xf0f2f6,metalness:.85,roughness:.2,envMap:ENV}),
- au:()=>new THREE.MeshStandardMaterial({color:0xffc94a,metalness:.9,roughness:.2,envMap:ENV}),
- red:()=>new THREE.MeshPhysicalMaterial({color:0xe01818,roughness:.08,transparent:true,opacity:.82,clearcoat:1,metalness:0,envMap:ENV,envMapIntensity:.6}),
- blue:()=>new THREE.MeshPhysicalMaterial({color:0x1a7cf0,roughness:.08,transparent:true,opacity:.82,clearcoat:1,envMap:ENV,envMapIntensity:.6}),
- white:()=>new THREE.MeshStandardMaterial({color:0xffffff,roughness:.35})};
-const box=(s,mat)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(s,s,s),mat);m.castShadow=true;return m};
+const MAT={cu:()=>new THREE.MeshStandardMaterial({color:0xd9784a,metalness:1,roughness:.22,envMap:ENV,envMapIntensity:2.2}),
+ ag:()=>new THREE.MeshStandardMaterial({color:0xeef0f4,metalness:1,roughness:.12,envMap:ENV,envMapIntensity:2.2}),
+ au:()=>new THREE.MeshStandardMaterial({color:0xf7b52c,metalness:1,roughness:.16,envMap:ENV,envMapIntensity:2.2}),
+ red:()=>new THREE.MeshPhysicalMaterial({color:0xc40000,roughness:.03,transparent:true,opacity:.78,clearcoat:1,clearcoatRoughness:.02,reflectivity:1,metalness:0,envMap:ENV,envMapIntensity:1.7}),
+ blue:()=>new THREE.MeshPhysicalMaterial({color:0x2a8cff,roughness:.04,transparent:true,opacity:.78,clearcoat:1,clearcoatRoughness:.02,reflectivity:1,envMap:ENV,envMapIntensity:1.7}),
+ white:()=>new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.3,clearcoat:.6,envMap:ENV,envMapIntensity:.8})};
+/* 모서리가 둥근 큐브: 가장자리 하이라이트가 생겨 금속·유리 느낌이 살아남 */
+const RB={};function rbox(s){const k=s.toFixed(3);if(RB[k])return RB[k];const r=s*.13,h=s/2-r;const sh=new THREE.Shape();sh.moveTo(-h,-h);sh.lineTo(h,-h);sh.lineTo(h,h);sh.lineTo(-h,h);sh.lineTo(-h,-h);
+ const g=new THREE.ExtrudeGeometry(sh,{depth:s-2*r,bevelEnabled:true,bevelThickness:r,bevelSize:r,bevelSegments:3,curveSegments:1});g.translate(0,0,-(s-2*r)/2);g.computeVertexNormals();return RB[k]=g}
+const box=(s,mat)=>{const m=new THREE.Mesh(rbox(s),mat);m.castShadow=true;return m};
 // 타일: 테두리 + 안쪽 면 (실물처럼 두께)
 const TH=.2,TRAD=HS/BP*BS*1.0;
 function tileTex(kind){const [c,g]=canvas(256,256);
@@ -1179,13 +1269,13 @@ function tick(now){
   for(let a=0;a<3;a++){camNow.p[a]=lerp(anim.cam0.p[a],anim.cam1.p[a],kc);camNow.l[a]=lerp(anim.cam0.l[a],anim.cam1.l[a],kc)}
   if(done)anim=null}
  // 카메라 (세로 화면이면 뒤로)
- const k=cam.aspect<1?Math.min(2.2,.95/cam.aspect):1,l=camNow.l,p=camNow.p;
+ const k=cam.aspect<1?Math.min(2.2,.95/cam.aspect):(stage.classList.contains('land')?1.32:1),l=camNow.l,p=camNow.p;
  cam.position.set(l[0]+(p[0]-l[0])*k,l[1]+(p[1]-l[1])*k,l[2]+(p[2]-l[2])*k);cam.lookAt(...l);
  // 빛: 도착 순간 번쩍(3번) → 은은하게 유지
  const ht=(now-hlStart)/1000;let hi=0;
  Object.entries(OBJ).forEach(([id,o])=>{const on=hlSet.has(id);const dl=anim&&anim.delay?(anim.delay[id]||0):0;
   let v=0;if(on){const tt=ht-dl-DUR*.6;v=tt<0?0:tt<1.5?(.55+.45*Math.sin(tt*Math.PI*4-Math.PI/2))*1.0:.25+.12*Math.sin(now/300)}
-  o.mats.forEach(m=>{m.emissive.setRGB(1,.75,.3);m.emissiveIntensity=v*.55});
+  o.mats.forEach(m=>{m.emissive.setRGB(1,.75,.3);m.emissiveIntensity=v*(m.metalness>.9?.12:m.transparent?.25:.45)});
   if(on&&hi<halos.length&&v>0){const h=halos[hi++];h.visible=true;h.position.copy(o.mesh.position);h.position.y+=.2;const s=o.hs*(1.6+v*.8)*Math.max(.3,o.mesh.scale.x);h.scale.set(s,s,1);h.material.opacity=Math.min(1,v)}});
  for(;hi<halos.length;hi++)halos[hi].visible=false;
  regOn.forEach(id=>REG[id].mats.forEach(m=>m.opacity=.18+.22*(.5+.5*Math.sin(now/180))));
@@ -1223,9 +1313,10 @@ const SECS=[...document.querySelectorAll('.content section')].map(s=>s.id);
 const TITLES={};document.querySelectorAll('.toc a').forEach(a=>TITLES[a.dataset.sec]=a.textContent.replace(/^\d+/,''));
 const stageEl=$('.stage');
 function showView(v){$('#home').hidden=v!=='home';$('#rules').hidden=v!=='rules';document.body.dataset.view=v;scrollTo(0,0)}
-function openSec(id,opt={}){if(!SECS.includes(id))id='goal';
+function openSec(id,opt={}){if(!SECS.includes(id))id='goal';document.body.dataset.sec=id;
   document.querySelectorAll('.content section').forEach(s=>s.hidden=s.id!==id);
   document.querySelectorAll('.toc a').forEach(a=>a.classList.toggle('on',a.dataset.sec===id));
+  {const a=document.querySelector(`.toc a[data-sec="${id}"]`);if(a)$('#curSec').innerHTML=a.innerHTML}
   const on=document.querySelector('.toc a.on');if(on&&innerWidth<=860)on.scrollIntoView({block:'nearest',inline:'center'});
   const i=SECS.indexOf(id),pv=SECS[i-1],nx=SECS[i+1];
   $('#pgPrev').hidden=!pv;$('#pgNext').hidden=!nx;
@@ -1254,7 +1345,10 @@ $('#btnStart').onclick=startMotion;
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{showView('rules');document.body.classList.add('reveal');setTimeout(()=>document.body.classList.remove('reveal'),900);openSec(b.dataset.open)});
 $('#btnClose').onclick=collapse;$('#btnFull').onclick=expand;
 $('#btnHome').onclick=()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');showView('home');try{history.replaceState(null,'','#')}catch(e){}};
-document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();openSec(a.dataset.sec)});
+const tocEl=document.querySelector('.toc');function menu(open){tocEl.classList.toggle('open',open);$('#btnMenu').setAttribute('aria-expanded',open);$('#menuLbl').textContent=open?'닫기':'목차'}
+$('#btnMenu').onclick=()=>menu(!tocEl.classList.contains('open'));
+document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();menu(false);openSec(a.dataset.sec)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&tocEl.classList.contains('open'))menu(false)});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&stageEl.classList.contains('full')){e.preventDefault();collapse()}});
 {const h=(location.hash||'').slice(1);if(h==='play')startMotion();else if(SECS.includes(h)){showView('rules');openSec(h)}else showView('home')}
 
