@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:dark}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>TERRAFORMING MARS — 룰북 없이 시작하는 플레이 가이드</title>
+<meta name="description" content="테라포밍 마스를 룰북 없이 배우는 플레이 가이드. 3D 플레이 모션으로 셋팅부터 한 세대까지.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,800&family=Big+Shoulders+Stencil+Display:wght@800;900&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 화성 탐사 관제 기록. 히어로 3D 화성 = 목표, 02장 = 실물 테이블 스크롤 장면,
+   이후 장은 개조식(1줄 = 규칙 1개, 동작 → 결과). 부품 색 = 실물 개인보드 색. */
+:root{
+  color-scheme: dark;
+  --space:#130c0b; --ground:#1c1310; --panel:#221613; --line:#3d2a24; --line-2:#5a3f35;
+  --dust:#eedfd0; --dust-2:#bba493; --dust-3:#8a7365;
+  --rust:#d9612f; --rust-soft:#d9612f22;
+  --mc:#f0c24b; --steel:#b07a4f; --ti:#c4c3cf; --plant:#76c25b; --energy:#a98af0; --heat:#ff7b3a;
+  --temp:#ff7b3a; --oxy:#8fd0f2; --ocean:#3f7fdc; --city:#c9c4be;
+  --f-display:"Chakra Petch","IBM Plex Sans KR",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --s-1:.8125rem; --s0:1rem; --s1:1.125rem; --s2:1.375rem; --s3:1.875rem; --s4:2.75rem; --s5:clamp(2.3rem,5.6vw,4.3rem);
+  --nav-h:41px;
+}
+*{box-sizing:border-box}
+body{background:var(--space);color:var(--dust);font-family:var(--f-body);font-size:var(--s0);line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
+h2{font-size:var(--s3);font-weight:700;letter-spacing:-.01em}
+h3{font-size:var(--s1);font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--mc)}
+:focus-visible{outline:2px solid var(--mc);outline-offset:2px}
+.num{font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-display);font-size:var(--s-1);letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:600}
+.muted{color:var(--dust-2)}
+b.mc{color:var(--mc)} b.pl{color:var(--plant)} b.ht{color:var(--heat)} b.en{color:var(--energy)} b.oc{color:var(--ocean)} b.ox{color:var(--oxy)} b.st{color:var(--steel)} b.ti{color:var(--ti)}
+
+/* 개조식 규칙 리스트 */
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.rules li{position:relative;padding-left:14px;font-size:.97rem;line-height:1.55}
+.rules li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:2px;background:var(--dust-3)}
+.rules li b{font-weight:700}
+.rules .k{font-family:var(--f-display);font-weight:700;color:var(--mc);font-variant-numeric:tabular-nums}
+.why{display:block;color:var(--dust-3);font-size:.84rem;margin-top:6px;line-height:1.5}
+.arr{color:var(--dust-3);padding:0 .15em}
+
+/* ---------- HERO ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;align-items:center;padding-block:40px 24px}
+.hero h1{font-family:var(--f-display);font-size:var(--s5);font-weight:700;line-height:.95;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--rust)}
+.hero .facts{margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:var(--s1)}
+.hero .facts dt{font-family:var(--f-display);font-size:var(--s-1);letter-spacing:.12em;color:var(--dust-3);padding-top:.25em;text-transform:uppercase}
+.hero .facts dd{margin:0}
+.globe-box{position:relative;aspect-ratio:1/1;max-width:100%;width:100%}
+#globe{width:100%;height:100%;display:block;touch-action:pan-y}
+.terra{margin-top:22px;display:grid;gap:12px}
+.terra label{font-family:var(--f-display);font-size:var(--s-1);letter-spacing:.1em;color:var(--dust-2);display:flex;justify-content:space-between;gap:12px}
+input[type=range]{width:100%;accent-color:var(--rust)}
+.gauges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.gauge{border:1px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--panel)}
+.gauge .k{font-size:var(--s-1);color:var(--dust-2)}
+.gauge .v{font-family:var(--f-display);font-size:var(--s2);font-weight:700;font-variant-numeric:tabular-nums}
+.gauge .bar{height:4px;background:var(--line);border-radius:2px;margin-top:6px;overflow:hidden}
+.gauge .bar i{display:block;height:100%;width:0;transition:width .15s}
+.gauge.t .v{color:var(--temp)} .gauge.t .bar i{background:var(--temp)}
+.gauge.o .v{color:var(--oxy)}  .gauge.o .bar i{background:var(--oxy)}
+.gauge.w .v{color:var(--ocean)} .gauge.w .bar i{background:var(--ocean)}
+.gauge .goal{font-size:.75rem;color:var(--dust-3)}
+.end-flag{font-size:var(--s-1);color:var(--dust-2);min-height:1.7em}
+.end-flag.on{color:var(--plant);font-weight:600}
+
+/* ---------- NAV ---------- */
+nav.chap{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--space) 92%,transparent);backdrop-filter:blur(6px);border-block:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.chap ol{list-style:none;margin:0 auto;padding:0;display:flex;gap:4px;overflow-x:auto;max-width:1080px;scrollbar-width:none}
+nav.chap a{display:block;padding:10px 10px;white-space:nowrap;text-decoration:none;color:var(--dust-2);font-size:var(--s-1);border-bottom:2px solid transparent}
+nav.chap a .n{font-family:var(--f-display);color:var(--dust-3);margin-right:4px}
+nav.chap a.on{color:var(--dust);border-bottom-color:var(--rust)}
+
+/* ---------- SECTIONS ---------- */
+section.ch{padding-block:64px 8px;scroll-margin-top:52px}
+.ch-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:16px;align-items:start;margin-bottom:24px}
+.ch-no{font-family:var(--f-display);font-size:var(--s4);font-weight:700;line-height:1;color:var(--line-2)}
+.ch-head .rules{margin-top:10px}
+.ch-head .rules li{color:var(--dust-2)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.box h3{margin-bottom:8px}
+.note{border-left:3px solid var(--mc);padding:10px 14px;background:#f0c24b10;border-radius:0 6px 6px 0;font-size:.95rem;max-width:none}
+.warn{border-left-color:var(--rust);background:var(--rust-soft)}
+
+/* 목표 */
+.goal-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto minmax(0,1.2fr);gap:12px;align-items:stretch}
+.goal-row .arrow{display:grid;place-items:center;font-family:var(--f-display);font-size:var(--s3);color:var(--dust-3)}
+.param{border-radius:8px;padding:14px;border:1px solid var(--line)}
+.param .big{font-family:var(--f-display);font-size:var(--s3);font-weight:700;line-height:1.1}
+.param.t{background:#ff7b3a14}.param.t .big{color:var(--temp)}
+.param.o{background:#8fd0f214}.param.o .big{color:var(--oxy)}
+.param.w{background:#3f7fdc18}.param.w .big{color:var(--ocean)}
+.param.win{background:#f0c24b12}.param.win .big{color:var(--mc)}
+.param small{display:block;color:var(--dust-2);font-size:var(--s-1)}
+
+/* ---------- 02 TABLE SCENE (step player) ---------- */
+.scene{position:relative;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));scroll-margin-top:var(--nav-h);margin-top:56px}
+.stage{position:relative;height:calc(100svh - var(--nav-h));min-height:560px;max-height:980px;overflow:hidden;background:#150d0b;outline:none}
+.stage:focus-visible{box-shadow:inset 0 0 0 2px var(--mc)}
+#table3d{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:pointer}
+.scene-fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--dust-2);padding:24px;text-align:center}
+.hud{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;z-index:3;max-width:60%}
+.hud span{background:color-mix(in srgb,var(--space) 82%,transparent);border:1px solid var(--line-2);border-radius:5px;padding:4px 9px;font-size:var(--s-1);color:var(--dust-2);white-space:nowrap}
+.hud b{font-family:var(--f-display);font-size:1rem;margin-left:4px;font-variant-numeric:tabular-nums;color:var(--dust);transition:color .3s}
+.hud b.flash{color:var(--mc);text-shadow:0 0 10px var(--mc)}
+.spanel{position:absolute;z-index:3;left:max(16px,env(safe-area-inset-left,0px));top:14px;width:min(360px,calc(100% - 32px));background:color-mix(in srgb,var(--space) 86%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line-2);border-radius:10px;padding:14px 16px 16px}
+.spanel .chap-eb{display:flex;justify-content:space-between;gap:8px}
+.spanel h3{margin:6px 0 10px;font-size:var(--s2)}
+.spanel .cnt{font-family:var(--f-display);color:var(--dust-3);font-size:var(--s-1)}
+.spanel .rules li{animation:lineIn .45s both}
+.spanel .rules li:nth-child(2){animation-delay:.08s}.spanel .rules li:nth-child(3){animation-delay:.16s}.spanel .rules li:nth-child(4){animation-delay:.24s}.spanel .rules li:nth-child(5){animation-delay:.32s}
+@keyframes lineIn{from{opacity:.25;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.sctrl{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;background:linear-gradient(transparent,color-mix(in srgb,var(--space) 85%,transparent) 40%)}
+.chaps{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;min-width:0}
+.chaps button{background:none;border:0;padding:0;text-align:left;color:var(--dust-3);font-size:var(--s-1);min-width:0}
+.chaps button .seg{display:flex;gap:2px;margin-top:5px}
+.chaps button .seg i{flex:1;height:4px;border-radius:2px;background:var(--line-2);transition:background .3s}
+.chaps button .seg i.done{background:var(--dust-3)}
+.chaps button .seg i.on{background:var(--rust);box-shadow:0 0 8px var(--rust)}
+.chaps button.on{color:var(--dust)}
+.chaps button span.nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.sbtn{border:1px solid var(--line-2);background:var(--ground);border-radius:6px;padding:9px 14px;font-size:.92rem;white-space:nowrap}
+.sbtn.next{background:var(--rust);border-color:var(--rust);color:#1a0d08;font-weight:700}
+.sbtn kbd{font-family:var(--f-display);font-size:.72rem;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:6px;opacity:.75}
+.sbtn:disabled{opacity:.35;cursor:default}
+.lbl3d{position:absolute;z-index:2;left:0;top:0;pointer-events:none;transform:translate(-50%,-100%);white-space:nowrap;font-size:.8rem;font-weight:700;color:#1a0d08;background:var(--mc);padding:3px 8px;border-radius:4px;box-shadow:0 0 14px color-mix(in srgb,var(--mc) 70%,transparent);transition:opacity .25s}
+.lbl3d::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:10px;background:var(--mc);transform:translateX(-50%)}
+.lbl3d.hide{opacity:0}
+@media (max-width:760px){
+  .spanel{top:auto;bottom:74px;padding:11px 13px 12px}
+  .spanel h3{font-size:var(--s1);margin:4px 0 6px}
+  .spanel .rules li{font-size:.88rem}
+  .spanel .why{display:none}
+  .sctrl{grid-template-columns:auto minmax(0,1fr) auto;gap:8px}
+  .chaps button span.nm{font-size:.7rem}
+  .sbtn kbd{display:none}
+  .hud{top:8px;max-width:100%;left:max(16px,env(safe-area-inset-left,0px));justify-content:flex-start}
+  .hud span{padding:3px 7px}
+}
+
+/* 구성요소 */
+.comp{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:start}
+.ico{width:52px;height:52px;display:grid;place-items:center}
+.hex{width:40px;height:46px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.cube{width:16px;height:16px;border-radius:2px;display:inline-block;box-shadow:inset -3px -3px 0 #00000040}
+.cube.cu{background:linear-gradient(135deg,#e3a27a,#a35a2f)}.cube.ag{background:linear-gradient(135deg,#ffffff,#9ea2aa)}.cube.au{background:linear-gradient(135deg,#ffe28a,#c1922b)}
+.card-ico{width:36px;height:50px;border-radius:4px;border:2px solid var(--dust-2);position:relative;background:var(--ground)}
+.card-ico::before{content:"";position:absolute;left:4px;top:4px;width:10px;height:10px;background:var(--mc);border-radius:2px}
+
+/* 준비 */
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-display);font-weight:700;color:var(--rust);font-size:var(--s1)}
+.steps li label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.steps input{margin-top:5px;accent-color:var(--plant);width:18px;height:18px;flex:none}
+.steps li.done{opacity:.5}
+.mode-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid var(--line-2);background:var(--ground);border-radius:6px;padding:8px 14px;font-size:.92rem}
+.btn:hover{border-color:var(--dust-3)}
+.btn[aria-pressed=true],.btn.primary{background:var(--rust);border-color:var(--rust);color:#1a0d08;font-weight:700}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* 세대 링 */
+.gen{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px;align-items:center}
+.ring{position:relative;aspect-ratio:1/1;max-width:100%}
+.ring svg{width:100%;height:100%;display:block}
+.ring .node{cursor:pointer}
+.ring .node circle{fill:var(--panel);stroke:var(--line-2);stroke-width:2;transition:fill .3s,stroke .3s}
+.ring .node.on circle{fill:var(--rust);stroke:var(--rust)}
+.ring .node text{fill:var(--dust);font-family:var(--f-display);font-weight:700;font-size:20px}
+.ring .node.on text{fill:#1a0d08}
+.ring .node .lbl{font-family:var(--f-body);font-size:13px;font-weight:600;fill:var(--dust-2)}
+.ring .node.on .lbl{fill:var(--dust)}
+.ring .track{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:4 6}
+.ring .orbit{fill:var(--mc)}
+.phase-panel{min-height:230px}
+.phase-panel .rules{margin-top:10px}
+.phase-ctrl{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+
+/* 액션 */
+.act{position:relative}
+.act .cost{position:absolute;top:14px;right:14px;font-family:var(--f-display);font-weight:700;color:var(--mc)}
+.act h3{padding-right:72px}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);font-size:var(--s-1);letter-spacing:.1em;text-transform:uppercase;color:var(--dust-2);font-weight:600}
+td.c{font-family:var(--f-display);font-weight:700;color:var(--mc);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+
+/* 생산 데모 */
+.pboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.res{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--panel);transition:border-color .3s,box-shadow .3s;min-width:0}
+.res.hl{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent)}
+.res .name{display:flex;align-items:center;gap:8px;font-weight:700}
+.res .sw{width:12px;height:12px;border-radius:2px;background:var(--c)}
+.res .rows{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin-top:8px;font-size:var(--s-1);color:var(--dust-2)}
+.res .rows b{font-family:var(--f-display);font-size:var(--s2);color:var(--dust);font-variant-numeric:tabular-nums;text-align:right;transition:color .3s}
+.res .rows b.bump{color:var(--c)}
+.res .pips{display:flex;flex-wrap:wrap;gap:3px;min-height:12px;margin-top:8px}
+.res .pips i{width:9px;height:9px;border-radius:2px;background:var(--c)}
+.prod-ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.prod-msg{margin-top:12px;min-height:3.4em}
+.tr-pill{display:inline-flex;gap:8px;align-items:baseline;padding:6px 12px;border-radius:6px;border:1px solid var(--line-2);background:var(--ground)}
+.tr-pill b{font-family:var(--f-display);font-size:var(--s2);color:var(--mc)}
+.flyer{position:fixed;width:10px;height:10px;border-radius:2px;background:var(--energy);z-index:50;pointer-events:none;transition:transform .7s cubic-bezier(.5,0,.3,1),background .7s}
+
+/* 헥스 */
+.hexlab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:20px;align-items:start}
+.hexsvg-box{overflow-x:auto}
+.hexsvg-box svg{width:100%;max-width:520px;display:block;margin:0 auto}
+.hx polygon{stroke:var(--space);stroke-width:3;transition:fill .25s}
+.hx{cursor:pointer}
+.hx text{font-family:var(--f-display);font-size:11px;font-weight:700;pointer-events:none}
+.hx:hover polygon{filter:brightness(1.25)}
+.hx.bad polygon{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.tile-pick{display:flex;gap:6px;flex-wrap:wrap}
+.hexlog{margin-top:12px;min-height:5.5em;font-size:.95rem}
+.hexlog .ok{color:var(--plant);font-weight:700}
+.hexlog .no{color:var(--rust);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:10px 14px;font-size:var(--s-1);color:var(--dust-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
+
+/* 트랙 */
+.track-wrap{overflow-x:auto;padding-top:16px}
+.ptrack{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(30px,1fr);gap:3px;min-width:600px}
+.ptrack div{height:40px;border-radius:3px;display:grid;place-items:center;font-family:var(--f-display);font-size:.72rem;font-weight:600;color:#1a0d08;position:relative}
+.ptrack div.bonus::after{content:"★";position:absolute;top:-16px;font-size:.8rem;color:var(--mc)}
+
+/* 카드 해부 */
+.anat{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px;align-items:start}
+.pcard{position:relative;aspect-ratio:63/88;max-width:100%;border-radius:12px;background:linear-gradient(180deg,#2f201b,#1d1411);border:3px solid var(--plant);padding:14px;display:flex;flex-direction:column;gap:8px}
+.pcard .cst{position:absolute;top:-10px;left:-10px;width:52px;height:52px;border-radius:8px;background:var(--mc);color:#1a0d08;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:1.5rem;border:3px solid var(--space)}
+.pcard .tags{position:absolute;top:10px;right:10px;display:flex;gap:4px}
+.pcard .tags i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.7rem;font-weight:700;color:#1a0d08}
+.pcard .req{margin:30px 0 0 34px;align-self:flex-start;background:#8fd0f2;color:#1a0d08;font-family:var(--f-display);font-weight:700;font-size:.8rem;padding:2px 8px;border-radius:3px}
+.pcard .title{background:var(--plant);color:#1a0d08;text-align:center;font-weight:700;padding:5px;border-radius:3px;font-size:.92rem}
+.pcard .eff{flex:1;border:1px dashed var(--line-2);border-radius:6px;display:grid;place-items:center;text-align:center;font-size:.85rem;padding:8px}
+.pcard .vp{position:absolute;bottom:12px;right:12px;width:44px;height:44px;border-radius:50%;background:#7a4a2b;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:1.3rem;border:2px solid var(--mc)}
+.pcard .pin{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--rust);color:#1a0d08;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:.8rem;box-shadow:0 0 0 3px var(--space)}
+.callouts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.callouts li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start}
+.callouts li > b{width:22px;height:22px;border-radius:50%;background:var(--rust);color:#1a0d08;display:grid;place-items:center;font-family:var(--f-display);font-size:.8rem;margin-top:2px}
+.callouts strong{margin-right:6px}
+.ctype{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}
+.ctype .box{border-top:4px solid var(--c)}
+
+/* 점수 */
+.calc table input{width:72px;background:var(--ground);border:1px solid var(--line-2);color:var(--dust);border-radius:4px;padding:5px 6px;font-family:var(--f-display);font-size:1rem;text-align:right}
+.calc td.total{font-family:var(--f-display);font-weight:700;font-size:var(--s2);color:var(--mc)}
+.calc .lead{color:var(--plant)}
+
+/* 실수 */
+.mist{counter-reset:m;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.mist li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);font-size:.95rem}
+.mist li::before{counter-increment:m;content:counter(m);font-family:var(--f-display);font-weight:700;color:var(--rust);font-size:var(--s1)}
+.mist strong{display:block}
+.mist span{color:var(--dust-2)}
+
+/* 빠른참조 */
+.ref{columns:3 260px;column-gap:14px}
+.ref .box{break-inside:avoid;margin-bottom:14px}
+.ref dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.92rem}
+.ref dt{font-family:var(--f-display);font-weight:700;color:var(--mc);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ref dd{margin:0}
+footer{padding-block:48px 64px;color:var(--dust-3);font-size:var(--s-1);border-top:1px solid var(--line);margin-top:64px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .globe-box{max-width:420px;margin:0 auto}
+  .goal-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .goal-row .arrow{grid-column:1/-1;transform:rotate(90deg);height:28px}
+  .goal-row .win{grid-column:1/-1}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gen,.hexlab,.anat{grid-template-columns:minmax(0,1fr)}
+  .ring{max-width:320px;margin:0 auto;width:100%}
+  .anat .pcard{max-width:260px;margin:0 auto;width:100%}
+}
+@media (max-width:560px){
+  .g2,.g3,.mist,.ctype{grid-template-columns:minmax(0,1fr)}
+  .pboard{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ch-head{grid-template-columns:minmax(0,1fr);gap:4px}
+  .ch-no{font-size:var(--s3)}
+  .gauges .gauge .v{font-size:var(--s1)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ================= v3: 위계 (메인 → 목차) ================= */
+:root{--f-wide:"Archivo","IBM Plex Sans KR",system-ui,sans-serif;--f-stencil:"Big Shoulders Stencil Display","Archivo","IBM Plex Sans KR",Impact,sans-serif;--gut-l:max(16px,env(safe-area-inset-left,0px));--gut-r:max(16px,env(safe-area-inset-right,0px))}
+body{padding-left:0;padding-right:0;overflow-x:clip}
+.view[hidden]{display:none!important}
+
+/* ---- 메인 ---- */
+.home{position:relative;min-height:100svh;overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:20px var(--gut-r) calc(22px + env(safe-area-inset-bottom,0px)) var(--gut-l);
+  background:radial-gradient(90% 70% at 50% 46%,#2a1712 0%,var(--space) 62%)}
+.home-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-wide);font-stretch:125%;font-weight:600;font-size:.72rem;letter-spacing:.22em;color:var(--dust-3);text-transform:uppercase;z-index:3}
+.home-top button{background:none;border:0;color:var(--dust-2);font:inherit;letter-spacing:inherit;padding:6px 0}
+.home-top button:hover{color:var(--dust)}
+.stage-title{position:relative;display:grid;place-items:center;min-height:0}
+.t-terra{position:absolute;top:4%;left:50%;transform:translateX(-50%);margin:0;font-family:var(--f-wide);font-stretch:125%;font-weight:800;font-size:clamp(1rem,3.1vw,2.3rem);letter-spacing:.42em;padding-left:.42em;color:var(--dust);white-space:nowrap;z-index:3}
+.t-mars{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);margin:0;font-family:var(--f-stencil);font-weight:900;font-size:clamp(9rem,31vw,27rem);line-height:.8;letter-spacing:.02em;color:var(--rust);white-space:nowrap;z-index:1;user-select:none;
+  background:linear-gradient(180deg,#e9773f 0%,#c4481f 55%,#8e2c13 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.t-ko{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);margin:0;font-weight:700;font-size:.95rem;letter-spacing:.5em;padding-left:.5em;color:var(--dust-2);z-index:3;white-space:nowrap}
+.home .globe-box{position:relative;z-index:2;width:min(52svh,58vw);aspect-ratio:1/1;max-width:100%;cursor:pointer;touch-action:none}
+.home #globe{width:100%;height:100%;display:block}
+.globe-tip{position:absolute;left:50%;bottom:-6px;transform:translate(-50%,100%);font-family:var(--f-wide);font-stretch:125%;font-size:.66rem;letter-spacing:.25em;color:var(--dust-3);white-space:nowrap;pointer-events:none}
+.home-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px;align-items:end;z-index:3}
+.home .facts{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:.95rem;margin:0}
+.home .facts dt{font-family:var(--f-wide);font-stretch:125%;font-size:.66rem;letter-spacing:.2em;color:var(--dust-3);padding-top:.35em;text-transform:uppercase}
+.home .facts dd{margin:0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.cta button{font-family:var(--f-wide);font-stretch:125%;font-weight:800;letter-spacing:.24em;font-size:.95rem;padding:15px 26px 15px calc(26px + .24em);border-radius:3px;border:1px solid var(--dust-2);background:transparent;color:var(--dust);transition:background .2s,color .2s,border-color .2s}
+.cta button small{display:block;font-family:var(--f-body);font-stretch:100%;letter-spacing:0;font-weight:500;font-size:.72rem;color:inherit;opacity:.75;margin-top:4px}
+.cta button.go{background:var(--rust);border-color:var(--rust);color:#1a0d08}
+.cta button:hover{border-color:var(--dust)}.cta button.go:hover{background:#ec7240}
+.readout{justify-self:end;display:grid;gap:7px;min-width:min(250px,100%)}
+.readout .row{display:grid;grid-template-columns:42px minmax(0,1fr) 62px;gap:10px;align-items:center;font-size:.8rem;color:var(--dust-2)}
+.readout .row b{font-family:var(--f-display);font-size:1rem;color:var(--dust);text-align:right;font-variant-numeric:tabular-nums}
+.readout .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.readout .bar i{display:block;height:100%;width:0}
+.readout .t i{background:var(--temp)}.readout .o i{background:var(--oxy)}.readout .w i{background:var(--ocean)}
+.readout .hint{font-family:var(--f-wide);font-stretch:125%;font-size:.64rem;letter-spacing:.2em;color:var(--dust-3);text-transform:uppercase;display:flex;justify-content:space-between}
+.home .end-flag{font-size:.8rem;min-height:1.4em;margin:0}
+@media (max-width:860px){
+  .home-bottom{grid-template-columns:minmax(0,1fr);gap:16px}
+  .readout{justify-self:stretch;order:1}.home .facts{order:2}.cta{order:3}
+  .home .globe-box{width:min(64vw,40svh)}
+  .t-terra{letter-spacing:.3em;padding-left:.3em}
+}
+
+/* ---- 목차 페이지 ---- */
+.rulesview{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100svh}
+.toc{position:sticky;top:0;height:100svh;overflow:auto;border-right:1px solid var(--line);padding:22px 14px 22px var(--gut-l);background:#170e0c;display:flex;flex-direction:column;gap:18px;z-index:10;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.brand{background:none;border:0;padding:0;text-align:left;color:var(--dust);display:grid;gap:2px}
+.brand .b1{font-family:var(--f-wide);font-stretch:125%;font-weight:800;font-size:.62rem;letter-spacing:.32em}
+.brand .b2{font-family:var(--f-stencil);font-weight:900;font-size:2.4rem;line-height:.9;color:var(--rust)}
+.brand .b3{font-size:.72rem;color:var(--dust-3)}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc a{display:grid;grid-template-columns:30px minmax(0,1fr);gap:6px;align-items:baseline;padding:8px 10px;border-radius:5px;text-decoration:none;color:var(--dust-2);font-size:.92rem}
+.toc a .n{font-family:var(--f-display);font-size:.78rem;color:var(--dust-3)}
+.toc a:hover{background:var(--panel);color:var(--dust)}
+.toc a.on{background:var(--panel);color:var(--dust);box-shadow:inset 3px 0 0 var(--rust)}
+.toc a.play{color:var(--dust)}
+.toc a.play .n{color:var(--rust)}
+.toc .grp{font-family:var(--f-wide);font-stretch:125%;font-size:.6rem;letter-spacing:.24em;color:var(--dust-3);padding:12px 10px 4px;text-transform:uppercase}
+.content{min-width:0;padding:8px var(--gut-r) 0 max(24px,var(--gut-l))}
+.content .inner{max-width:1000px;margin:0 auto}
+.content section.ch{padding-block:36px 8px}
+.content section[hidden]{display:none}
+.content section.ch,.content section.scene{animation:secIn .45s both}
+@keyframes secIn{from{opacity:0}to{opacity:1}}
+.pager{display:flex;justify-content:space-between;gap:10px;margin:40px 0 0}
+.pager button{border:1px solid var(--line-2);background:var(--ground);border-radius:6px;padding:10px 14px;font-size:.9rem;text-align:left;max-width:48%}
+.pager button small{display:block;color:var(--dust-3);font-size:.72rem}
+.pager button[hidden]{visibility:hidden;display:block}
+@media (max-width:860px){
+  .rulesview{grid-template-columns:minmax(0,1fr)}
+  .toc{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;gap:12px;border-right:0;border-bottom:1px solid var(--line);padding:10px var(--gut-r) 10px var(--gut-l);overflow:visible}
+  .brand .b2{font-size:1.5rem}.brand .b1,.brand .b3{display:none}
+  .toc ol{display:flex;overflow-x:auto;scrollbar-width:none;gap:2px;min-width:0}
+  .toc a{display:block;white-space:nowrap;padding:7px 10px}.toc a .n{margin-right:4px}
+  .toc .grp{display:none}
+  .content{padding-left:var(--gut-l)}
+}
+
+/* ---- 플레이 모션: 목차 안 / 전체화면 ---- */
+.scene{margin:0;scroll-margin-top:0;padding-top:28px}
+.scene .scene-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}
+.scene .scene-head h2{font-size:var(--s3)}
+.stage{height:clamp(500px,74svh,780px);min-height:0;max-height:none;border-radius:10px;border:1px solid var(--line);transform-origin:0 0}
+.stage.full{position:fixed;inset:0;height:100svh;z-index:60;border-radius:0;border:0}
+.s-close{position:absolute;z-index:4;top:10px;right:var(--gut-r);display:none;border:1px solid var(--line-2);background:color-mix(in srgb,var(--space) 82%,transparent);color:var(--dust);border-radius:6px;padding:8px 12px;font-size:.85rem}
+.s-close kbd{font-family:var(--f-display);font-size:.68rem;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:6px;opacity:.7}
+.stage.full .s-close{display:block}
+.stage.full .hud{right:calc(var(--gut-r) + 128px)}
+body.playing .toc{transform:translateY(-100%);opacity:0;pointer-events:none}
+body.playing{overflow:hidden}
+body.reveal .toc{animation:tocDown .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes tocDown{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+@media (min-width:861px){body.reveal .toc{animation-name:tocSide}@keyframes tocSide{from{transform:translateX(-100%);opacity:0}to{transform:none;opacity:1}}}
+.stage.entering{animation:stageIn .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes stageIn{from{clip-path:circle(18% at 50% 46%);opacity:.3}to{clip-path:circle(120% at 50% 50%);opacity:1}}
+@media (max-width:760px){.stage.full .hud{right:auto;top:52px}.s-close{top:8px}}
+
+</style>
+</head>
+<body>
+
+
+<div class="view home" id="home">
+  <div class="home-top"><span>Board game guide · 2–5인</span><button type="button" data-open="goal">규칙 목차 →</button></div>
+  <div class="stage-title">
+    <p class="t-terra">TERRAFORMING</p>
+    <h1 class="t-mars" aria-label="Terraforming Mars">MARS</h1>
+    <div class="globe-box" id="globeBox" role="button" tabindex="0" aria-label="화성을 눌러 플레이 모션 시작. 휠로 테라포밍 진행"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-tip">휠 · 드래그 = 테라포밍 / 클릭 = 시작</span></div>
+    <p class="t-ko">테라포밍 마스</p>
+  </div>
+  <div class="home-bottom">
+    <dl class="facts">
+      <dt>역할</dt><dd>화성을 개조하는 기업</dd>
+      <dt>목표</dt><dd><b class="ht">온도</b> · <b class="ox">산소</b> · <b class="oc">바다</b> 끝까지 <span class="arr">→</span> 게임 종료</dd>
+      <dt>승리</dt><dd><b class="mc">승점(VP)</b> 최다</dd>
+    </dl>
+    <div class="cta">
+      <button type="button" class="go" id="btnStart">START<small>플레이 모션으로 배우기</small></button>
+      <button type="button" data-open="goal">RULES<small>규칙 목차</small></button>
+    </div>
+    <div class="readout" aria-live="polite">
+      <div class="hint"><span>Terraform</span><span class="num" id="tfPct">0%</span></div>
+      <div class="row t"><span>온도</span><div class="bar"><i id="bT"></i></div><b id="gT">−30°C</b></div>
+      <div class="row o"><span>산소</span><div class="bar"><i id="bO"></i></div><b id="gO">0%</b></div>
+      <div class="row w"><span>바다</span><div class="bar"><i id="bW"></i></div><b id="gW">0/9</b></div>
+      <p class="end-flag muted" id="endFlag">휠을 내려 화성을 개조해 보세요</p>
+    </div>
+  </div>
+</div>
+
+<div class="view rulesview" id="rules" hidden>
+<aside class="toc" aria-label="목차"><button class="brand" type="button" id="btnHome" aria-label="메인으로"><span class="b1">TERRAFORMING</span><span class="b2">MARS</span><span class="b3">플레이 가이드 · 메인으로</span></button><ol><li class="grp">보면서 배우기</li><li><a href="#table" data-sec="table" class="play"><span class="n">01</span>플레이 모션</a></li><li class="grp">규칙</li><li><a href="#goal" data-sec="goal" class=""><span class="n">02</span>목표</a></li><li><a href="#parts" data-sec="parts" class=""><span class="n">03</span>구성요소</a></li><li><a href="#setup" data-sec="setup" class=""><span class="n">04</span>게임 준비</a></li><li><a href="#gen" data-sec="gen" class=""><span class="n">05</span>한 세대</a></li><li><a href="#turn" data-sec="turn" class=""><span class="n">06</span>내 차례</a></li><li><a href="#prod" data-sec="prod" class=""><span class="n">07</span>자원·생산</a></li><li><a href="#tiles" data-sec="tiles" class=""><span class="n">08</span>타일</a></li><li><a href="#params" data-sec="params" class=""><span class="n">09</span>수치·TR</a></li><li><a href="#cards" data-sec="cards" class=""><span class="n">10</span>카드</a></li><li><a href="#ma" data-sec="ma" class=""><span class="n">11</span>마일스톤·어워드</a></li><li><a href="#end" data-sec="end" class=""><span class="n">12</span>종료·점수</a></li><li class="grp">게임 중</li><li><a href="#mistakes" data-sec="mistakes" class=""><span class="n">13</span>자주 틀리는 것</a></li><li><a href="#ref" data-sec="ref" class=""><span class="n">14</span>빠른 참조</a></li></ol></aside>
+<main class="content"><div class="inner">
+<section class="scene" id="table" aria-label="테이블 위에서: 셋팅부터 한 세대까지 장면별로 보기">
+  <div class="scene-head"><div><p class="eyebrow">01 · 플레이 모션</p><h2>셋팅부터 한 세대까지</h2></div><button class="btn" id="btnFull" type="button">⤢ 전체화면</button></div>
+  <div class="stage" tabindex="0" aria-roledescription="장면 플레이어" aria-label="테이블 위에서. Space 또는 Enter로 다음 장면">
+    <canvas id="table3d" aria-hidden="true"></canvas>
+    <button class="s-close" id="btnClose" type="button">✕ 목차 보기<kbd>Esc</kbd></button>
+    <div id="lbls" aria-hidden="true"></div>
+    <div class="hud" aria-live="polite">
+      <span>세대<b id="hudG">—</b></span><span>TR<b id="hudTR">—</b></span><span>온도<b id="hudT">—</b></span><span>산소<b id="hudO">—</b></span><span>M€<b id="hudM">—</b></span>
+    </div>
+    <div class="spanel" id="spanel" aria-live="polite"></div>
+    <div class="sctrl">
+      <button class="sbtn" id="sPrev" aria-label="이전 장면">◀</button>
+      <div class="chaps" id="chaps"></div>
+      <button class="sbtn next" id="sNext">다음<kbd>Space</kbd></button>
+    </div>
+  </div>
+</section>
+<section class="ch" id="goal">
+  <div class="ch-head"><div class="ch-no">02</div><div><h2>두 개의 경주</h2>
+    <ul class="rules">
+      <li>화성 개조 = 모두 함께 <span class="muted">(협력)</span></li>
+      <li>점수 = 각자 <span class="muted">(경쟁)</span></li>
+      <li>수치를 올린 사람 <span class="arr">→</span> 그 사람이 보상</li>
+    </ul></div></div>
+  <div class="goal-row">
+    <div class="param t"><small>온도</small><div class="big num">−30 → +8°C</div><small>1칸 = 2°C · 19칸</small></div>
+    <div class="param o"><small>산소</small><div class="big num">0 → 14%</div><small>1칸 = 1% · 14칸</small></div>
+    <div class="param w"><small>바다</small><div class="big num">0 → 9개</div><small>타일 1개 = 1칸</small></div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="param win"><small>셋 다 끝 = 게임 종료</small><div class="big">VP 최다 승리</div><small>TR + 타일 + 카드 + 마일스톤·어워드</small></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="note"><ul class="rules"><li>수치 1칸 <span class="arr">→</span> <b class="mc">TR +1</b></li><li>TR = <b>최종 점수</b> + <b>매 세대 수입</b></li></ul></div>
+    <div class="note warn"><ul class="rules"><li>TR 1등 ≠ 승리</li><li>녹지 · 도시 · 카드 점수까지 합산 <span class="muted">(12장)</span></li></ul></div>
+  </div>
+</section>
+<section class="ch" id="parts">
+  <div class="ch-head"><div class="ch-no">03</div><div><h2>구성요소</h2>
+    <ul class="rules"><li>이름만 알면 충분</li></ul></div></div>
+  <div class="grid g3">
+    <div class="box comp"><div class="ico"><div class="hex" style="background:#b4552c"></div></div><div><h3>메인 보드</h3><ul class="rules"><li>육각 칸 = 화성 지도</li><li>둘레 <b>TR 트랙</b> · 좌 <b class="ox">산소</b> · 우 <b class="ht">온도</b></li><li>아래 <b>표준 프로젝트 · 마일스톤 · 어워드</b></li></ul></div></div>
+    <div class="box comp"><div class="ico"><div style="display:grid;grid-template-columns:repeat(3,14px);gap:3px"><i class="cube" style="background:var(--mc)"></i><i class="cube" style="background:var(--steel)"></i><i class="cube" style="background:var(--ti)"></i><i class="cube" style="background:var(--plant)"></i><i class="cube" style="background:var(--energy)"></i><i class="cube" style="background:var(--heat)"></i></div></div><div><h3>개인 보드</h3><ul class="rules"><li>자원 6칸</li><li>칸 위 = <b>생산량</b> <span class="muted">(매 세대 수입)</span></li><li>칸 아래 = <b>보유량</b> <span class="muted">(지금 가진 것)</span></li></ul></div></div>
+    <div class="box comp"><div class="ico"><span style="display:flex;gap:4px;align-items:end"><i class="cube cu"></i><i class="cube ag"></i><i class="cube au"></i></span></div><div><h3>자원 큐브 (금속)</h3><ul class="rules"><li>동 <span class="k">1</span> · 은 <span class="k">5</span> · 금 <span class="k">10</span></li><li>놓인 칸 = 자원 종류</li></ul></div></div>
+    <div class="box comp"><div class="ico"><div class="card-ico"></div></div><div><h3>프로젝트 카드</h3><ul class="rules"><li>왼쪽 위 숫자 = 가격 (M€)</li><li>초록 · 파랑 · 빨강 <span class="muted">(10장)</span></li></ul></div></div>
+    <div class="box comp"><div class="ico"><div class="card-ico" style="width:50px;height:36px;border-color:var(--mc)"></div></div><div><h3>기업 카드</h3><ul class="rules"><li>내 회사 = 시작 자금 + 고유 능력</li><li>게임 내내 앞에 펼침</li></ul></div></div>
+    <div class="box comp"><div class="ico" style="grid-template-columns:repeat(3,1fr);gap:2px"><div class="hex" style="width:15px;height:17px;background:var(--ocean)"></div><div class="hex" style="width:15px;height:17px;background:var(--plant)"></div><div class="hex" style="width:15px;height:17px;background:var(--city)"></div></div><div><h3>타일</h3><ul class="rules"><li><b class="oc">바다</b> 9개 · 주인 없음</li><li><b class="pl">녹지</b> · <b>도시</b> + 내 큐브 = 소유</li></ul></div></div>
+    <div class="box comp"><div class="ico"><i class="cube" style="background:#e04848aa;width:18px;height:18px;outline:1px solid #e04848"></i></div><div><h3>플레이어 큐브 (반투명)</h3><ul class="rules"><li>TR · 생산량 · 타일 소유</li><li>파란 카드 사용 · 마일스톤·어워드</li></ul></div></div>
+    <div class="box comp"><div class="ico"><i class="cube" style="background:#fff;width:18px;height:18px"></i></div><div><h3>흰 큐브 3개</h3><ul class="rules"><li>온도 · 산소 · 세대 표시</li></ul></div></div>
+    <div class="box comp"><div class="ico"><div style="width:28px;height:28px;border-radius:50%;background:var(--rust)"></div></div><div><h3>선 플레이어 마커</h3><ul class="rules"><li>세대마다 왼쪽으로</li></ul></div></div>
+  </div>
+</section>
+<section class="ch" id="setup">
+  <div class="ch-head"><div class="ch-no">04</div><div><h2>게임 준비 (2인)</h2>
+    <ul class="rules"><li>처음 = <b>입문</b> · 해봤음 = <b>표준</b></li><li>체크하며 진행</li></ul></div></div>
+  <div class="mode-tabs" role="group" aria-label="준비 방식">
+    <button class="btn" id="modeA" aria-pressed="true">입문 게임</button>
+    <button class="btn" id="modeB" aria-pressed="false">표준 게임</button>
+    <button class="btn" id="setupReset">체크 초기화</button>
+  </div>
+  <ol class="steps" id="setupList"></ol>
+  <div class="note" style="margin-top:14px"><ul class="rules"><li><b>기업 시대 규칙</b> 사용 시: 생산량 <span class="k">0</span>에서 시작 + 기업시대 표시 카드 포함</li><li>처음 두세 판은 미사용 권장</li></ul></div>
+</section>
+<section class="ch" id="gen">
+  <div class="ch-head"><div class="ch-no">05</div><div><h2>한 세대 = 4단계</h2>
+    <ul class="rules"><li>세대 = 라운드</li><li>단계 클릭 또는 자동 재생</li></ul></div></div>
+  <div class="gen">
+    <div class="ring">
+      <svg viewBox="0 0 320 320" role="img" aria-label="세대 4단계 순환도">
+        <circle class="track" cx="160" cy="160" r="110"></circle>
+        <circle class="orbit" id="orbit" r="6" cx="160" cy="50"></circle>
+        <text x="160" y="152" text-anchor="middle" style="font-family:var(--f-display);font-size:13px;fill:var(--dust-3);letter-spacing:.1em">GENERATION</text>
+        <text x="160" y="180" text-anchor="middle" id="genNo" style="font-family:var(--f-display);font-size:30px;font-weight:700;fill:var(--dust)">1</text>
+      </svg>
+    </div>
+    <div class="box phase-panel" id="phasePanel" aria-live="polite"></div>
+  </div>
+</section>
+<section class="ch" id="turn">
+  <div class="ch-head"><div class="ch-no">06</div><div><h2>내 차례: 행동 1~2개</h2>
+    <ul class="rules"><li>차례마다 행동 <span class="k">1</span> 또는 <span class="k">2</span>개</li><li>할 게 없음 <span class="arr">→</span> <b>패스</b> = 이번 세대 끝</li><li>남은 사람은 혼자 계속 · 모두 패스 <span class="arr">→</span> 생산 단계</li></ul></div></div>
+  <div class="grid g3">
+    <div class="box act"><span class="cost">카드값</span><h3>① 카드 내기</h3><ul class="rules"><li>요구조건 확인 <span class="arr">→</span> 비용 <span class="arr">→</span> 효과</li><li><b class="st">철 1</b> = <span class="k">2</span> M€ <span class="muted">(건물 태그)</span></li><li><b class="ti">티타늄 1</b> = <span class="k">3</span> M€ <span class="muted">(우주 태그)</span></li></ul></div>
+    <div class="box act"><span class="cost">11–25</span><h3>② 표준 프로젝트</h3><ul class="rules"><li>카드 없이 언제든</li><li>같은 것 반복 가능 <span class="muted">(아래 표)</span></li></ul></div>
+    <div class="box act"><span class="cost">8</span><h3>③ 마일스톤</h3><ul class="rules"><li>조건 충족 <span class="arr">→</span> 8 M€ <span class="arr">→</span> <span class="k">5</span> VP</li><li>게임 전체 <span class="k">3</span>개까지</li></ul></div>
+    <div class="box act"><span class="cost">8/14/20</span><h3>④ 어워드 후원</h3><ul class="rules"><li>게임 끝 1등 <span class="k">5</span> VP</li><li><span class="k">3</span>개까지 · 갈수록 비쌈</li></ul></div>
+    <div class="box act"><span class="cost">—</span><h3>⑤ 파란 카드 행동</h3><ul class="rules"><li>"행동:" 카드 = <b>세대당 1번</b></li><li>사용 표시 = 카드 위 내 큐브</li></ul></div>
+    <div class="box act"><span class="cost">식물 8</span><h3>⑥ 식물 → 녹지</h3><ul class="rules"><li><b class="pl">식물 8</b> <span class="arr">→</span> 녹지 1</li><li>산소 +1 <span class="arr">→</span> TR +1</li></ul></div>
+    <div class="box act" style="grid-column:1/-1"><span class="cost">열 8</span><h3>⑦ 열 → 온도</h3><ul class="rules"><li><b class="ht">열 8</b> <span class="arr">→</span> 온도 +1칸 (2°C) <span class="arr">→</span> TR +1</li></ul><span class="why">열은 다른 쓸모가 거의 없음. 8개 모이면 바로 전환.</span></div>
+  </div>
+  <h3 style="margin:28px 0 8px">표준 프로젝트</h3>
+  <div class="tbl box" style="padding:4px 8px">
+    <table>
+      <thead><tr><th>이름</th><th>비용</th><th>효과</th></tr></thead>
+      <tbody>
+        <tr><td>특허 판매</td><td class="c">—</td><td>카드 버림 <span class="arr">→</span> 장당 1 M€</td></tr>
+        <tr><td>발전소</td><td class="c">11 M€</td><td><b class="en">에너지 생산 +1</b></td></tr>
+        <tr><td>소행성</td><td class="c">14 M€</td><td><b class="ht">온도 +1칸</b> · TR +1</td></tr>
+        <tr><td>대수층</td><td class="c">18 M€</td><td><b class="oc">바다 1개</b> · TR +1</td></tr>
+        <tr><td>녹지</td><td class="c">23 M€</td><td><b class="pl">녹지 1개</b> · 산소 +1 · TR +1</td></tr>
+        <tr><td>도시</td><td class="c">25 M€</td><td><b>도시 1개</b> · <b class="mc">M€ 생산 +1</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="ch" id="prod">
+  <div class="ch-head"><div class="ch-no">07</div><div><h2>자원과 생산</h2>
+    <ul class="rules"><li>생산량 키우기 = 매 세대 더 많이 받기 <span class="muted">(엔진 빌딩)</span></li><li>버튼 <span class="arr">→</span> 생산 단계 한 단계씩</li></ul></div></div>
+  <div class="prod-ctrl"><span class="tr-pill">TR <b class="num" id="pTR">22</b></span>
+    <button class="btn primary" id="prodNext">생산 단계 시작 ▶</button>
+    <button class="btn" id="prodReset">처음으로</button></div>
+  <div class="pboard" id="pboard" style="margin-top:14px"></div>
+  <p class="prod-msg note" id="prodMsg"></p>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="box"><h3><b class="mc">M€</b></h3><ul class="rules"><li>수입 = <b>TR + M€ 생산</b></li><li>M€ 생산만 <span class="k">−5</span>까지 가능</li></ul></div>
+    <div class="box"><h3><b class="st">철</b> · <b class="ti">티타늄</b></h3><ul class="rules"><li>철 = <span class="k">2</span> M€ <span class="muted">(건물 태그만)</span></li><li>티타늄 = <span class="k">3</span> M€ <span class="muted">(우주 태그만)</span></li></ul></div>
+    <div class="box"><h3><b class="pl">식물</b> · <b class="en">에너지</b> · <b class="ht">열</b></h3><ul class="rules"><li>식물 <span class="k">8</span> <span class="arr">→</span> 녹지</li><li>남은 에너지 <span class="arr">→</span> 생산 단계에 <b>전부 열</b></li><li>열 <span class="k">8</span> <span class="arr">→</span> 온도</li></ul></div>
+  </div>
+</section>
+<section class="ch" id="tiles">
+  <div class="ch-head"><div class="ch-no">08</div><div><h2>타일 놓기</h2>
+    <ul class="rules"><li>타일 선택 <span class="arr">→</span> 칸 클릭</li><li>규칙 위반 <span class="arr">→</span> 이유 표시</li><li>빨간 테두리 = 이미 놓인 <b>내 도시</b></li></ul></div></div>
+  <div class="hexlab">
+    <div>
+      <div class="hexsvg-box"><svg id="hexmap" viewBox="0 0 400 360" role="img" aria-label="타일 배치 연습 지도"></svg></div>
+      <div class="legend">
+        <span><i style="background:#2a3d66;outline:1px dashed var(--ocean)"></i>바다 예약 칸</span>
+        <span><i style="background:var(--ocean)"></i>바다</span>
+        <span><i style="background:var(--plant)"></i>녹지</span>
+        <span><i style="background:var(--city)"></i>도시</span>
+        <span><i style="background:#5b3426"></i>빈 땅</span>
+        <span><b class="pl">P</b> 식물 · <b class="st">S</b> 철 · <b>C</b> 카드 보너스</span>
+      </div>
+    </div>
+    <div>
+      <div class="tile-pick" role="group" aria-label="놓을 타일">
+        <button class="btn" data-tile="ocean" aria-pressed="true">바다</button>
+        <button class="btn" data-tile="green" aria-pressed="false">녹지</button>
+        <button class="btn" data-tile="city" aria-pressed="false">도시</button>
+        <button class="btn" id="hexReset">초기화</button>
+      </div>
+      <div class="box hexlog" id="hexlog" aria-live="polite"></div>
+      <div class="box" style="margin-top:10px"><div class="num" style="display:flex;gap:16px;flex-wrap:wrap"><span>TR <b class="mc" id="hTR">20</b></span><span>M€ <b class="mc" id="hMC">0</b></span><span>식물 <b class="pl" id="hP">0</b></span><span>철 <b class="st" id="hS">0</b></span><span>카드 <b id="hC">0</b></span></div></div>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="box"><h3><b class="oc">바다</b></h3><ul class="rules"><li>파란 <b>예약 칸</b>만</li><li>주인 없음</li><li>TR +1</li></ul></div>
+    <div class="box"><h3><b class="pl">녹지</b></h3><ul class="rules"><li>예약 칸 X</li><li>가능하면 <b>내 타일 옆</b></li><li>산소 +1 <span class="arr">→</span> TR +1 · 끝에 1 VP</li></ul></div>
+    <div class="box"><h3>도시</h3><ul class="rules"><li>예약 칸 X</li><li><b>도시끼리 인접 금지</b> <span class="muted">(누구 것이든)</span></li><li>끝에 옆 녹지 1개당 1 VP <span class="muted">(남의 녹지 포함)</span></li></ul></div>
+  </div>
+  <div class="note" style="margin-top:12px"><ul class="rules"><li>모든 타일: 칸에 그려진 <b>배치 보너스</b> 획득</li><li>모든 타일: 옆 <b class="oc">바다 1개당</b> <span class="k">+2</span> M€</li></ul></div>
+</section>
+<section class="ch" id="params">
+  <div class="ch-head"><div class="ch-no">09</div><div><h2>글로벌 수치와 TR</h2>
+    <ul class="rules"><li>★ 칸 도달시킨 사람 <span class="arr">→</span> 추가 보너스</li></ul></div></div>
+  <h3><b class="ht">온도</b> (°C)</h3>
+  <div class="track-wrap"><div class="ptrack" id="tTrack"></div></div>
+  <ul class="rules" style="margin-top:10px"><li>★ −24 · −20°C <span class="arr">→</span> <b class="ht">열 생산 +1</b></li><li>★ 0°C <span class="arr">→</span> <b class="oc">바다 1개</b> 배치 <span class="muted">(그 바다로 TR +1 추가)</span></li></ul>
+  <h3 style="margin-top:28px"><b class="ox">산소</b> (%)</h3>
+  <div class="track-wrap"><div class="ptrack" id="oTrack"></div></div>
+  <ul class="rules" style="margin-top:10px"><li>★ 8% <span class="arr">→</span> <b class="ht">온도 +1칸</b> <span class="muted">(그 온도로 TR +1 추가)</span></li></ul>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="box"><h3>TR</h3><ul class="rules"><li>시작 <span class="k">20</span></li><li>수치 1칸 <span class="arr">→</span> <span class="k">+1</span></li><li>수입 = TR + M€ 생산</li><li>게임 끝 TR = VP</li></ul></div>
+    <div class="box"><h3>최대치 도달 후</h3><ul class="rules"><li>그 수치 · TR 더 안 오름</li><li>녹지는 계속 가능 <span class="muted">(1 VP만)</span></li><li>바다 9개 끝 <span class="arr">→</span> 바다 더 못 놓음</li></ul></div>
+  </div>
+</section>
+<section class="ch" id="cards">
+  <div class="ch-head"><div class="ch-no">10</div><div><h2>카드 읽는 법</h2>
+    <ul class="rules"><li>설명용 도식 <span class="arr">→</span> 실제 카드에서 같은 위치 찾기</li></ul></div></div>
+  <div class="anat">
+    <div class="pcard" aria-label="카드 구조 도식">
+      <div class="cst">13</div><span class="pin" style="left:30px;top:30px">1</span>
+      <div class="tags"><i style="background:var(--steel)">건</i><i style="background:var(--plant)">식</i></div><span class="pin" style="right:-8px;top:40px">2</span>
+      <div class="req">산소 4% 이상</div><span class="pin" style="left:-8px;top:72px">3</span>
+      <div class="title">(예시) 온실 농장</div><span class="pin" style="right:-8px;top:118px">4</span>
+      <div class="eff">식물 생산 +2<br>식물 1개 받기</div><span class="pin" style="left:-8px;top:52%">5</span>
+      <div class="vp">1</div><span class="pin" style="right:48px;bottom:46px">6</span>
+    </div>
+    <ol class="callouts">
+      <li><b>1</b><div><strong>비용</strong>M€</div></li>
+      <li><b>2</b><div><strong>태그</strong>건물 · 우주 · 식물 · 과학 등 <span class="arr">→</span> 철·티타늄 사용, 카드 효과, 마일스톤·어워드 조건</div></li>
+      <li><b>3</b><div><strong>요구조건</strong><b>낼 때만</b> 확인 · "최대 X" = X 이하일 때만</div></li>
+      <li><b>4</b><div><strong>이름 띠 색</strong>= 카드 종류 (아래)</div></li>
+      <li><b>5</b><div><strong>효과</strong>상자 안 아이콘 = <b>생산량</b> · 상자 밖 = <b>즉시 자원</b> · <b style="color:var(--rust)">빨간 테두리</b> = 아무 플레이어나 대상</div></li>
+      <li><b>6</b><div><strong>승점</strong>게임 끝 합산 · 조건형 있음 <span class="muted">(예: 자원 2개당 1점)</span></div></li>
+    </ol>
+  </div>
+  <div class="ctype">
+    <div class="box" style="--c:var(--plant)"><h3>초록 = 자동</h3><ul class="rules"><li>1회 효과 후 끝</li><li>태그 계속 셈</li></ul></div>
+    <div class="box" style="--c:var(--ocean)"><h3>파랑 = 액티브</h3><ul class="rules"><li><b>효과</b> = 항상 적용</li><li><b>행동</b> = 세대당 1번</li></ul></div>
+    <div class="box" style="--c:var(--rust)"><h3>빨강 = 이벤트</h3><ul class="rules"><li>즉시 효과 <span class="arr">→</span> <b>뒤집어 둠</b></li><li>이후 태그 안 셈</li></ul></div>
+  </div>
+  <div class="note warn" style="margin-top:14px"><ul class="rules"><li>효과 전부 실행 불가 <span class="arr">→</span> 그 카드 못 냄</li><li>예외: 빨간 테두리 '자원 빼앗기/없애기' = 가능한 만큼만</li></ul></div>
+</section>
+<section class="ch" id="ma">
+  <div class="ch-head"><div class="ch-no">11</div><div><h2>마일스톤과 어워드</h2>
+    <ul class="rules"><li>둘 다 게임 전체 <span class="k">3</span>개까지</li><li>먼저 하는 사람이 가져감</li></ul></div></div>
+  <div class="grid g2">
+    <div class="box"><h3>마일스톤 · 8 M€ · 즉시 5 VP</h3>
+      <div class="tbl"><table><thead><tr><th>이름</th><th>조건</th></tr></thead><tbody>
+        <tr><td>테라포머</td><td>TR 35+</td></tr><tr><td>시장</td><td>도시 3+</td></tr><tr><td>정원사</td><td>녹지 3+</td></tr><tr><td>건축가</td><td>건물 태그 8+</td></tr><tr><td>기획자</td><td>손 카드 16+</td></tr>
+      </tbody></table></div></div>
+    <div class="box"><h3>어워드 · 8 → 14 → 20 M€ · 끝에 판정</h3>
+      <div class="tbl"><table><thead><tr><th>이름</th><th>최다 기준</th></tr></thead><tbody>
+        <tr><td>지주</td><td>화성 위 타일 수</td></tr><tr><td>은행가</td><td>M€ 생산량</td></tr><tr><td>과학자</td><td>과학 태그</td></tr><tr><td>열 전문가</td><td>열 보유량</td></tr><tr><td>광부</td><td>철 + 티타늄 보유량</td></tr>
+      </tbody></table></div></div>
+  </div>
+  <div class="note" style="margin-top:12px"><ul class="rules"><li>1등 <span class="k">5</span> VP · 2등 <span class="k">2</span> VP <span class="muted">(2인 = 2등 없음)</span></li><li>점수 = 후원자 X · <b>게임 끝 1등</b> O</li><li>동점 = 모두 그 순위 점수</li></ul></div>
+</section>
+<section class="ch" id="end">
+  <div class="ch-head"><div class="ch-no">12</div><div><h2>종료와 점수</h2>
+    <ul class="rules"><li>세 수치 완료 <span class="arr">→</span> 그 세대 <b>생산 단계까지</b> 진행</li><li>차례대로 남은 <b class="pl">식물 8</b> <span class="arr">→</span> 녹지 <span class="muted">(TR 변화 없음)</span></li><li>점수 계산 <span class="arr">→</span> 아래 표</li></ul></div></div>
+  <div class="box calc">
+    <div class="tbl"><table>
+      <thead><tr><th>항목</th><th>계산</th><th>A</th><th>B</th></tr></thead>
+      <tbody id="calcBody"></tbody>
+      <tfoot><tr><td><b>합계</b></td><td class="muted">동점 = M€ 많은 쪽 승</td><td class="total" id="totA">0</td><td class="total" id="totB">0</td></tr></tfoot>
+    </table></div>
+    <p id="calcLead" class="muted" style="margin-top:10px"></p>
+  </div>
+</section>
+<section class="ch" id="mistakes">
+  <div class="ch-head"><div class="ch-no">13</div><div><h2>자주 틀리는 것</h2>
+    <ul class="rules"><li>테이블 논쟁 시 여기부터</li></ul></div></div>
+  <ol class="mist">
+    <li><div><strong>1세대 = 연구 단계 없음</strong><span>준비 때 카드 구매 완료 · 2세대부터 4장</span></div></li>
+    <li><div><strong>에너지 = 다음 세대로 안 남음</strong><span>생산 단계에 전부 열</span></div></li>
+    <li><div><strong>수입 = TR + M€ 생산</strong><span>TR 빼먹는 실수 최다</span></div></li>
+    <li><div><strong>녹지 = 산소 +1 = TR +1</strong><span>식물 전환 · 표준 프로젝트 동일</span></div></li>
+    <li><div><strong>바다 옆 = 1개당 2 M€</strong><span>바다를 바다 옆에 놓아도 받음</span></div></li>
+    <li><div><strong>도시끼리 인접 금지</strong><span>상대 도시 옆도 금지</span></div></li>
+    <li><div><strong>파란 카드 행동 = 세대당 1번</strong><span>카드 위 큐브 · 생산 단계 끝에 회수</span></div></li>
+    <li><div><strong>패스 = 이번 세대 끝</strong><span>행동 1개 후 넘기기 ≠ 패스</span></div></li>
+    <li><div><strong>철·티타늄 = 태그 일치 필요</strong><span>철 → 건물 · 티타늄 → 우주</span></div></li>
+    <li><div><strong>빨강 이벤트 태그 = 이후 안 셈</strong><span>뒤집어 두기 때문 · 마일스톤 셀 때 주의</span></div></li>
+    <li><div><strong>요구조건 = 낼 때만</strong><span>이미 낸 카드는 그대로 유지</span></div></li>
+    <li><div><strong>2인 어워드 = 1등만</strong><span>후원은 내가 해도 1등이 상대면 상대 점수</span></div></li>
+  </ol>
+</section>
+<section class="ch" id="ref">
+  <div class="ch-head"><div class="ch-no">14</div><div><h2>빠른 참조</h2>
+    <ul class="rules"><li>게임 중엔 이 장만</li></ul></div></div>
+  <div class="ref">
+    <div class="box"><h3>세대 순서</h3><dl><dt>1</dt><dd>선 플레이어 넘기기 (1세대 X)</dd><dt>2</dt><dd>연구: 4장 · 장당 3 M€ (1세대 X)</dd><dt>3</dt><dd>행동: 1–2개씩 · 모두 패스까지</dd><dt>4</dt><dd>생산: 에너지→열 · TR+M€생산 · 나머지</dd></dl></div>
+    <div class="box"><h3>행동 7가지</h3><dl><dt>카드</dt><dd>비용 → 효과</dd><dt>표준</dt><dd>11–25 M€</dd><dt>8</dt><dd>마일스톤 (최대 3)</dd><dt>8/14/20</dt><dd>어워드 (최대 3)</dd><dt>파랑</dt><dd>세대당 1번</dd><dt>식물 8</dt><dd>녹지</dd><dt>열 8</dt><dd>온도 +1</dd></dl></div>
+    <div class="box"><h3>표준 프로젝트</h3><dl><dt>—</dt><dd>특허 판매: 1장 = 1 M€</dd><dt>11</dt><dd>에너지 생산 +1</dd><dt>14</dt><dd>온도 +1</dd><dt>18</dt><dd>바다</dd><dt>23</dt><dd>녹지</dd><dt>25</dt><dd>도시 + M€ 생산 +1</dd></dl></div>
+    <div class="box"><h3>교환 비율</h3><dl><dt>철</dt><dd>2 M€ (건물)</dd><dt>티타늄</dt><dd>3 M€ (우주)</dd><dt>카드 구매</dt><dd>3 M€</dd><dt>바다 인접</dt><dd>+2 M€ / 개</dd><dt>큐브</dt><dd>동 1 · 은 5 · 금 10</dd></dl></div>
+    <div class="box"><h3>보너스 칸</h3><dl><dt>−24·−20°C</dt><dd>열 생산 +1</dd><dt>0°C</dt><dd>바다 1개</dd><dt>산소 8%</dt><dd>온도 +1</dd></dl></div>
+    <div class="box"><h3>점수</h3><dl><dt>TR</dt><dd>1 = 1 VP</dd><dt>녹지</dt><dd>1개 = 1 VP</dd><dt>도시</dt><dd>옆 녹지 1개 = 1 VP</dd><dt>마일스톤</dt><dd>5 VP</dd><dt>어워드</dt><dd>1등 5 (3인↑ 2등 2)</dd><dt>카드</dt><dd>적힌 VP</dd></dl></div>
+  </div>
+</section>
+<nav class="pager" aria-label="이전·다음 항목"><button type="button" id="pgPrev"></button><button type="button" id="pgNext"></button></nav>
+<footer>테라포밍 마스(Terraforming Mars)는 FryxGames의 보드게임입니다. 수업 과제용 비공식 플레이 가이드 · 3D 부품은 실물 사진의 배치·크기·재질을 참고해 새로 그린 설명용 모형이며, 실제 아트워크가 아닙니다 · 확장 미포함.</footer>
+</div></main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NS='http://www.w3.org/2000/svg';
+
+/* ================= HERO: 3D Mars ================= */
+const W=512,H=256;
+function hash(x,y){let h=x*374761393+y*668265263;h=(h^(h>>>13))*1274126177;return ((h^(h>>>16))>>>0)/4294967295}
+function vnoise(x,y,per){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;const w=a=>((a%per)+per)%per;
+  const s=t=>t*t*(3-2*t);const a=hash(w(xi),yi),b=hash(w(xi+1),yi),c=hash(w(xi),yi+1),d=hash(w(xi+1),yi+1);
+  const u=s(xf),v=s(yf);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v}
+const height=new Float32Array(W*H);
+for(let y=0;y<H;y++)for(let x=0;x<W;x++){let f=0,amp=.5,fr=4;for(let o=0;o<6;o++){f+=amp*vnoise(x/W*fr,y/H*fr*.5,fr);amp*=.5;fr*=2}height[y*W+x]=f+(y/H-.5)*.18}
+const sorted=Array.from(height).sort((a,b)=>a-b);
+const q=p=>sorted[Math.min(sorted.length-1,Math.floor(p*sorted.length))];
+const tex=document.createElement('canvas');tex.width=W;tex.height=H;const tctx=tex.getContext('2d');const img=tctx.createImageData(W,H);
+function mix(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]}
+const lo=[96,38,22],mid=[178,82,44],hi=[214,140,92];
+function paint(p){const sea=p<=0?-9:q(.32*p),green=p<.15?-9:q(.32*p+.22*Math.min(1,(p-.15)/.85));const d=img.data;
+  for(let y=0;y<H;y++){const lat=Math.abs(y/H-.5)*2;for(let x=0;x<W;x++){const i=y*W+x,h=height[i];
+    const t=Math.max(0,Math.min(1,(h-sorted[0])/(sorted[sorted.length-1]-sorted[0])));let c=t<.5?mix(lo,mid,t*2):mix(mid,hi,(t-.5)*2);
+    if(h<sea)c=mix([64,128,200],[22,52,110],Math.min(1,(sea-h)*6));else if(h<green&&lat<.82)c=mix(c,[78,140,66],.55+.35*Math.min(1,(green-h)*10));
+    const cap=.86-p*.06;if(lat>cap)c=mix(c,[236,232,226],Math.min(1,(lat-cap)*12));
+    d[i*4]=c[0];d[i*4+1]=c[1];d[i*4+2]=c[2];d[i*4+3]=255}}tctx.putImageData(img,0,0)}
+paint(0);
+let globe=null;const gcv=$('#globe'),gbox=$('#globeBox');let marsMesh=null,spinV=0;
+try{if(!window.THREE)throw 0;
+  const renderer=new THREE.WebGLRenderer({canvas:gcv,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,100);cam.position.z=4.2;
+  const t=new THREE.CanvasTexture(tex);
+  const mars=new THREE.Mesh(new THREE.SphereGeometry(1,96,64),new THREE.MeshStandardMaterial({map:t,roughness:1,metalness:0}));mars.rotation.z=.44;scene.add(mars);marsMesh=mars;
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.05,64,48),new THREE.MeshBasicMaterial({color:0xff9a6a,transparent:true,opacity:.1,side:THREE.BackSide})));
+  const sun=new THREE.DirectionalLight(0xfff1e0,1.35);sun.position.set(-3,1.6,2.5);scene.add(sun);scene.add(new THREE.AmbientLight(0x5a3a30,.5));
+  function size(){const r=gcv.getBoundingClientRect();if(r.width)renderer.setSize(r.width,r.width,false)}size();addEventListener('resize',size);
+  let vis=true;new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(gcv);
+  (function loop(){if(vis&&!$('#home').hidden){mars.rotation.y+=(reduce?0:.002)+spinV;spinV*=.93;renderer.render(scene,cam)}requestAnimationFrame(loop)})();
+  globe={t};
+}catch(e){const c2=gcv.getContext('2d');gcv.width=512;gcv.height=512;globe={flat(){c2.clearRect(0,0,512,512);c2.save();c2.beginPath();c2.arc(256,256,240,0,7);c2.clip();c2.drawImage(tex,0,0,512,256,-128,16,768,480);c2.restore()}};globe.flat()}
+/* 휠 · 드래그 = 테라포밍 진행 */
+let tfv=0,tfTarget=0,pending=false;
+function setTF(v){const p=v/100,tStep=Math.round(p*19),temp=-30+tStep*2,ox=Math.round(p*14),oc=Math.round(p*9);
+  $('#gT').textContent=(temp>0?'+':temp<0?'−':'')+Math.abs(temp)+'°C';$('#gO').textContent=ox+'%';$('#gW').textContent=oc+'/9';
+  $('#bT').style.width=(tStep/19*100)+'%';$('#bO').style.width=(ox/14*100)+'%';$('#bW').style.width=(oc/9*100)+'%';$('#tfPct').textContent=Math.round(v)+'%';
+  const ef=$('#endFlag');ef.classList.toggle('on',v>=99.5);ef.innerHTML=v>=99.5?'세 수치 완료 <span class="arr">→</span> 그 세대 끝에 게임 종료':v>0?'세 수치 모두 끝 <span class="arr">→</span> 게임 종료':'휠을 내려 화성을 개조해 보세요';
+  if(!pending){pending=true;requestAnimationFrame(()=>{paint(tfv/100);if(globe.t)globe.t.needsUpdate=true;else globe.flat();pending=false})}}
+(function ease(){if(Math.abs(tfTarget-tfv)>.05){tfv+=(tfTarget-tfv)*.18;setTF(tfv)}requestAnimationFrame(ease)})();
+$('#home').addEventListener('wheel',e=>{e.preventDefault();tfTarget=Math.max(0,Math.min(100,tfTarget+e.deltaY*.06));spinV+=e.deltaY*.00004},{passive:false});
+let pd=null,moved=0;
+gbox.addEventListener('pointerdown',e=>{pd={x:e.clientX,y:e.clientY};moved=0;gbox.setPointerCapture(e.pointerId)});
+gbox.addEventListener('pointermove',e=>{if(!pd)return;const dx=e.clientX-pd.x,dy=e.clientY-pd.y;moved+=Math.abs(dx)+Math.abs(dy);
+  if(marsMesh)marsMesh.rotation.y+=dx*.006;tfTarget=Math.max(0,Math.min(100,tfTarget+dy*.25));pd={x:e.clientX,y:e.clientY}});
+gbox.addEventListener('pointerup',()=>{if(pd&&moved<6)startMotion();pd=null});
+gbox.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();startMotion()}});
+setTF(0);
+
+if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRect)CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h){this.rect(x,y,w,h)};
+/* ================= 02 TABLE SCENE (step player) ================= */
+(function(){
+const stage=$('.stage'),cv=$('#table3d'),lblBox=$('#lbls');
+const CH=['셋팅','요소 소개','1세대','2세대'];
+const STEPS=[
+ {id:'table',ch:0,t:'빈 테이블에서 시작',l:['<b>Space</b> · <b>Enter</b> · ▶ = 다음 장면','<b>←</b> = 이전 · 아래 막대 = 구간 이동','셋팅 <span class="arr">→</span> 요소 소개 <span class="arr">→</span> 한 세대'],cam:'over'},
+ {id:'board',ch:0,t:'메인 보드 펼치기',l:['테이블 가운데','둘레 숫자 띠 = <b class="mc">TR 트랙</b> 0–100'],cam:'over'},
+ {id:'white',ch:0,t:'흰 큐브 3개 = 공용 표시',l:['<b class="ox">산소</b> <span class="k">0%</span> · 화성 위 호','<b class="ht">온도</b> <span class="k">−30°C</span> · 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 트랙 1칸'],why:'세 개 모두 따로 움직임. 이 장면부터 이름표로 구분',cam:'board',lb:[['wOxy','산소 0%'],['wTmp','온도 −30°C'],['wGen','세대 1']]},
+ {id:'tiles',ch:0,t:'타일 놓기',l:['<b class="oc">바다 9개</b> <span class="arr">→</span> 보드 오른쪽 위 바다 자리','<b class="pl">녹지</b> · <b>도시</b> <span class="arr">→</span> 보드 옆 더미'],cam:'tilesCam',lb:[['oc8','바다 9'],['gr4','녹지'],['ci4','도시']]},
+ {id:'bank',ch:0,t:'은행 · 내 색 큐브',l:['금속 큐브 <span class="arr">→</span> 보드 위쪽 공용 은행','각자 색 반투명 큐브 한 줌','상대 = 파랑 (예시)'],cam:'overFar',lb:[['bank_cu','동'],['bank_ag','은'],['bank_au','금'],['pile_red','내 큐브']]},
+ {id:'pboard',ch:0,t:'개인 보드 · TR 20',l:['개인 보드 <span class="arr">→</span> 내 앞','생산 6칸 모두 <span class="k">1</span>에 내 큐브','TR 트랙 <span class="k">20</span>에 내 큐브 <span class="muted">(상대도)</span>'],cam:'over',lb:[['trMe','TR 20']]},
+ {id:'corp',ch:0,t:'기업 · 자금 · 카드',l:['초보 기업 카드 <span class="arr">→</span> 보드 왼쪽','시작 <b class="mc">42 M€</b> = 금 4 + 동 2','프로젝트 카드 <span class="k">10</span>장 <span class="arr">→</span> 손 <span class="muted">(입문 = 무료)</span>'],cam:'pb',lb:[['corp','초보 기업'],['slot_mc','42 M€']]},
+ {id:'first',ch:0,t:'선 플레이어 → 준비 끝',l:['선 플레이어 마커 <span class="arr">→</span> 나','준비 완료'],cam:'over',lb:[['firstMk','선 플레이어']]},
+ {id:'iBoard',ch:1,t:'메인 보드 읽기',l:['둘레 = <b class="mc">TR</b> 트랙','화성 위 호 = <b class="ox">산소</b> 0–14%','오른쪽 = <b class="ht">온도계</b> −30 → +8°C','왼쪽 = <b>표준 프로젝트</b>','아래 = <b>마일스톤</b> · <b>어워드</b>'],cam:'board',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','온도'],['rSP','표준 프로젝트'],['rMA','마일스톤 · 어워드']]},
+ {id:'iPB',ch:1,t:'개인 보드 읽기',l:['위 <b>M€ · 철 · 티타늄</b> / 아래 <b>식물 · 에너지 · 열</b>','칸 위 그림칸 = <b>보유</b> <span class="muted">(금속 큐브)</span>','칸 아래 숫자 = <b>생산량</b> <span class="muted">(내 큐브)</span>'],cam:'pbClose',rg:['rHold','rProd'],lb:[['slot_mc','보유'],['pm_mc','생산']]},
+ {id:'iCubes',ch:1,t:'큐브 크기 = 값',l:['<b style="color:#d98a5a">동</b> <span class="k">1</span> &lt; <b style="color:#dcdde2">은</b> <span class="k">5</span> &lt; <b class="mc">금</b> <span class="k">10</span>','내 색 큐브 = 동과 같은 크기 · 반투명','지금 42 M€ = 금 4 + 동 2'],why:'놓인 칸이 자원 종류. 금 큐브가 식물 칸에 있으면 식물 10개',cam:'show',lb:[['dCu','동 1'],['dAg','은 5'],['dAu','금 10'],['dRed','내 큐브']]},
+ {id:'iTiles',ch:1,t:'타일 3종',l:['<b class="oc">바다</b> = 주인 없음 · 파란 예약 칸만','<b class="pl">녹지</b> = 산소 +1 · 위에 내 큐브','<b>도시</b> = 도시끼리 인접 금지 · 위에 내 큐브'],cam:'show',lb:[['oc8','바다'],['gr4','녹지'],['ci4','도시']]},
+ {id:'iCards',ch:1,t:'카드 3종',l:['왼쪽 위 노란 칸 = <b class="mc">가격</b>','<b class="pl">초록</b> = 1회 효과','<b class="oc">파랑</b> = 계속 효과 / 세대당 1번 행동','<b style="color:var(--rust)">빨강</b> = 이벤트 · 쓰고 뒤집음'],cam:'show',lb:[['h0','초록'],['h1','파랑'],['h7','빨강']]},
+ {id:'g1',ch:2,t:'1세대 · 바로 행동 단계',l:['1세대 = 선 넘기기 · 연구 <b>생략</b>','선 플레이어(나)부터','차례마다 행동 <span class="k">1~2</span>개'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
+ {id:'g1a',ch:2,t:'나 · 행동 1: 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 금 1 내고 거스름 동 2','효과: <b class="en">에너지 생산 +1</b> · 에너지 <span class="k">2</span>개','카드 <span class="arr">→</span> 내 앞에 펼침'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
+ {id:'g1b',ch:2,t:'나 · 행동 2: 바다 (대수층)',l:['표준 프로젝트 <span class="k">18</span> M€','바다 자리 <span class="arr">→</span> 파란 예약 칸','바다 +1 <span class="arr">→</span> TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','바다 +1'],['trMe','TR 21']]},
+ {id:'g1c',ch:2,t:'상대 차례: 소행성',l:['상대 <span class="k">14</span> M€ <span class="arr">→</span> 온도 +1칸','온도 <span class="k">−30 → −28°C</span>','상대 TR <span class="k">20 → 21</span>'],why:'다른 사람이 수치를 올리면 TR은 그 사람 것',cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
+ {id:'g1d',ch:2,t:'모두 패스 → 행동 단계 끝',l:['할 게 없음 <span class="arr">→</span> 패스','패스 = 이번 세대 더 못 함','모두 패스 <span class="arr">→</span> 생산 단계'],cam:'over',lb:[['trMe','나 패스'],['trOpp','상대 패스']]},
+ {id:'p1',ch:2,t:'생산 ① 에너지 → 열',l:['남은 <b class="en">에너지 2</b> <span class="arr">→</span> 전부 <b class="ht">열</b> 칸','에너지 = 다음 세대로 안 남음'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
+ {id:'p2',ch:2,t:'생산 ② M€ 받기',l:['TR <span class="k">21</span> + M€ 생산 <span class="k">1</span> = <span class="k">22</span>','16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22']]},
+ {id:'p3',ch:2,t:'생산 ③ 나머지 자원',l:['각 칸 생산량만큼 은행에서','철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
+ {id:'g2',ch:3,t:'2세대 시작',l:['세대 마커 1 <span class="arr">→</span> <span class="k">2</span>','선 플레이어 <span class="arr">→</span> 상대','생산 큐브는 그대로 · 파란 카드 큐브 회수'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
+ {id:'g2r',ch:3,t:'연구: 카드 4장',l:['각자 덱에서 <span class="k">4</span>장','가질 카드 장당 <span class="k">3</span> M€ <span class="arr">→</span> 2장 = 6','나머지 <span class="arr">→</span> 버림'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
+ {id:'g2a',ch:3,t:'행동: 녹지 (표준 프로젝트)',l:['<span class="k">23</span> M€ <span class="arr">→</span> 녹지 타일','바다 옆 <span class="arr">→</span> <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위 내 큐브 = 소유'],why:'상대 행동은 생략. 실제로는 선(상대)부터 번갈아 진행',cam:'board',lb:[['gr4','녹지 · 내 것'],['wOxy','산소 1%'],['trMe','TR 22']]},
+ {id:'end',ch:3,t:'반복 → 게임 종료',l:['<b class="ox">산소 14%</b> · <b class="ht">온도 +8°C</b> · <b class="oc">바다 9개</b>','셋 다 완료 <span class="arr">→</span> 그 세대 생산까지','점수 계산 <span class="arr">→</span> 12장'],cam:'over',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
+];
+const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
+const HUD=[];{let g='—',tr='—',t='—',o='—',m='—';
+ STEPS.forEach(s=>{const id=s.id;
+  if(id==='white'){g=1;t=-30;o=0}if(id==='pboard')tr=20;if(id==='corp')m=42;if(id==='g1a')m=34;if(id==='g1b'){m=16;tr=21}
+  if(id==='g1c')t=-28;if(id==='p2')m=38;if(id==='g2')g=2;if(id==='g2r')m=32;if(id==='g2a'){m=11;tr=22;o=1}
+  HUD.push({g,tr,t:t==='—'?t:(t<0?'−'+Math.abs(t):t)+'°',o:o==='—'?o:o+'%',m})})}
+
+/* ---- UI ---- */
+$('#chaps').innerHTML=CH.map((c,ci)=>`<button data-ch="${ci}"><span class="nm">${c}</span><span class="seg">${STEPS.map((s,i)=>s.ch===ci?`<i data-i="${i}"></i>`:'').join('')}</span></button>`).join('');
+const segs=[...document.querySelectorAll('#chaps i')];
+document.querySelectorAll('#chaps button').forEach(b=>b.onclick=()=>go(STEPS.findIndex(s=>s.ch===+b.dataset.ch)));
+let cur=0;
+function ui(i){const s=STEPS[i];
+  $('#spanel').innerHTML=`<div class="chap-eb"><span class="eyebrow">${CH[s.ch]}</span><span class="cnt">${i+1} / ${N}</span></div><h3>${s.t}</h3><ul class="rules">${s.l.map(x=>`<li>${x}</li>`).join('')}</ul>${s.why?`<span class="why">${s.why}</span>`:''}`;
+  segs.forEach(e=>{const k=+e.dataset.i;e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});
+  document.querySelectorAll('#chaps button').forEach(b=>b.classList.toggle('on',+b.dataset.ch===s.ch));
+  $('#sPrev').disabled=i===0;$('#sNext').innerHTML=i===N-1?'처음부터<kbd>Space</kbd>':'다음<kbd>Space</kbd>';
+  const h=HUD[i],p=HUD[Math.max(0,i-1)];[['#hudG','g'],['#hudTR','tr'],['#hudT','t'],['#hudO','o'],['#hudM','m']].forEach(([sel,k])=>{const el=$(sel);el.textContent=h[k];
+    if(i>0&&h[k]!==p[k]){el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600)}})}
+ui(0);
+
+if(!window.THREE){cv.insertAdjacentHTML('afterend','<div class="scene-fallback">이 브라우저에서는 3D 장면을 표시할 수 없습니다. 왼쪽 위 설명은 그대로 넘겨볼 수 있습니다.</div>')}
+let renderer=null;try{if(window.THREE)renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(e){cv.insertAdjacentHTML('afterend','<div class="scene-fallback">3D를 불러오지 못했습니다. 설명은 그대로 넘겨볼 수 있습니다.</div>')}
+
+/* ---- 입력 ---- */
+function inView(){if(stage.classList.contains('full'))return true;const r=stage.getBoundingClientRect();return r.width>0&&r.top<innerHeight*.6&&r.bottom>innerHeight*.4}
+function go(i){i=Math.max(0,Math.min(N-1,i));fit();if(i===cur&&started)return;started=true;cur=i;ui(i);if(renderer)toStep(i)}
+function fit(){if(stage.classList.contains('full'))return;const r=stage.getBoundingClientRect();if(r.width&&(r.top<0||r.bottom>innerHeight))stage.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'})}
+
+let started=false;
+$('#sNext').onclick=()=>go(cur===N-1?0:cur+1);$('#sPrev').onclick=()=>go(cur-1);
+cv.addEventListener('click',()=>go(cur===N-1?0:cur+1));
+addEventListener('keydown',e=>{if(!inView()||e.altKey||e.metaKey||e.ctrlKey)return;
+  const tag=(e.target.closest&&e.target.closest('input,textarea,select,button,a'));
+  if((e.key===' '||e.key==='Enter')&&tag)return;
+  if(e.key===' '||e.key==='Enter'||e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur===N-1?0:cur+1)}
+  else if(e.key==='ArrowLeft'||e.key==='Backspace'||e.key==='PageUp'){e.preventDefault();go(cur-1)}});
+if(!renderer)return;
+
+/* ================= 3D ================= */
+renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x150d0b);scene.fog=new THREE.Fog(0x150d0b,80,150);
+const cam=new THREE.PerspectiveCamera(36,1,.1,300);
+(function(){const pm=new THREE.PMREMGenerator(renderer);const env=new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x6e5a4e,side:THREE.BackSide})));
+  const pan=(c,x,y,z,w,h)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)};
+  pan(0xffffff,0,40,0,50,50);pan(0xffe0c0,-40,12,10,30,36);pan(0xdfe8ff,40,10,-10,24,30);pan(0xffffff,0,14,40,30,16);pan(0x3a2a22,0,-40,0,80,80);
+  window.__envMap=pm.fromScene(env,.04).texture})();
+const ENV=window.__envMap;
+scene.add(new THREE.HemisphereLight(0xfff1e2,0x3a2a20,.5));
+const key=new THREE.DirectionalLight(0xfff3e6,1.15);key.position.set(-20,45,25);key.castShadow=true;key.shadow.mapSize.set(2048,2048);
+Object.assign(key.shadow.camera,{left:-38,right:38,top:38,bottom:-38,near:1,far:140});key.shadow.bias=-.0006;scene.add(key);
+const SRGB=t=>{t.encoding=THREE.sRGBEncoding;t.anisotropy=8;return t};
+const canvas=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return [c,c.getContext('2d')]};
+
+// 테이블 (흰 테이블: 실물 사진 기준)
+{const [c,g]=canvas(512,512);g.fillStyle='#cfc8bd';g.fillRect(0,0,512,512);for(let i=0;i<4000;i++){g.fillStyle=`rgba(${120+Math.random()*60},${110+Math.random()*50},100,.04)`;g.fillRect(Math.random()*512,Math.random()*512,2,2)}
+ const t=SRGB(new THREE.CanvasTexture(c));t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(6,6);
+ const tb=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({map:t,roughness:.95}));tb.rotation.x=-Math.PI/2;tb.receiveShadow=true;scene.add(tb)}
+scene.background=new THREE.Color(0x1d1512);
+
+/* ---- 좌표 ---- */
+const BZ=-4,BS=30,BP=2048,BT=.3,CELL=BP/26;
+const bw=(px,py)=>[(px/BP-.5)*BS,BZ+(py/BP-.5)*BS];
+function trPx(v){v=((v%100)+100)%100;const s=CELL;
+  if(v<=25)return [s/2,BP-s/2-v*s];if(v<=50)return [s/2+(v-25)*s,s/2];if(v<=75)return [BP-s/2,s/2+(v-50)*s];return [BP-s/2-(v-75)*s,BP-s/2]}
+const MC=[930,1060],HS=62,OXR=735,OXA0=205,OXA1=335;
+const hexPx=(q,r)=>[MC[0]+HS*Math.sqrt(3)*(q+r/2),MC[1]+HS*1.5*r];
+const oxPx=o=>{const a=(OXA0+(OXA1-OXA0)*o/14)*Math.PI/180;return [MC[0]+OXR*Math.cos(a),MC[1]+OXR*Math.sin(a)]};
+const tmPx=k=>[1700,1620-k*61];
+const OCEAN_SPOT=[1720,250];
+const RES=new Set(['0,-1','-1,0','0,0','-1,1','1,-2','2,-2','-2,2','3,-1','2,1','-3,3','1,2','4,-3']);
+/* ---- 메인 보드 텍스처 ---- */
+const [bc,b]=canvas(BP,BP);
+(function(){b.fillStyle='#0d0a12';b.fillRect(0,0,BP,BP);
+ for(let i=0;i<900;i++){b.fillStyle=`rgba(255,255,255,${Math.random()*.7})`;const r=Math.random()*1.8;b.beginPath();b.arc(Math.random()*BP,Math.random()*BP,r,0,7);b.fill()}
+ // 화성 원판 (히어로 지형 텍스처 재사용)
+ b.save();b.beginPath();b.arc(MC[0],MC[1],640,0,7);b.clip();b.drawImage(tex,0,30,512,200,MC[0]-900,MC[1]-660,1800,1320);
+ const sh=b.createRadialGradient(MC[0]-200,MC[1]-200,100,MC[0],MC[1],660);sh.addColorStop(0,'rgba(255,200,150,.18)');sh.addColorStop(1,'rgba(0,0,0,.55)');b.fillStyle=sh;b.fillRect(0,0,BP,BP);b.restore();
+ // 육각 칸
+ for(let q=-4;q<=4;q++)for(let r=-4;r<=4;r++){if(Math.abs(q+r)>4)continue;const [x,y]=hexPx(q,r);const k=q+','+r;
+  b.beginPath();for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);b.lineTo(x+(HS-2)*Math.cos(a),y+(HS-2)*Math.sin(a))}b.closePath();
+  if(RES.has(k)){b.fillStyle='rgba(70,130,220,.42)';b.fill()}b.lineWidth=3;b.strokeStyle=RES.has(k)?'rgba(150,200,255,.9)':'rgba(255,235,210,.45)';b.stroke()}
+ // TR 둘레
+ b.fillStyle='#5a2e1a';b.fillRect(0,0,BP,CELL);b.fillRect(0,BP-CELL,BP,CELL);b.fillRect(0,0,CELL,BP);b.fillRect(BP-CELL,0,CELL,BP);
+ for(let v=0;v<100;v++){const [x,y]=trPx(v);b.fillStyle=v%5===0?'#f6d24a':'#e7a93a';b.fillRect(x-CELL/2+5,y-CELL/2+5,CELL-10,CELL-10);
+  b.fillStyle='#2a1408';b.font='700 30px sans-serif';b.textAlign='center';b.fillText(v===0?'0':v,x,y+11)}
+ // 산소 호
+ b.lineWidth=86;b.strokeStyle='rgba(30,40,60,.85)';b.beginPath();b.arc(MC[0],MC[1],OXR,OXA0*Math.PI/180-.06,OXA1*Math.PI/180+.06);b.stroke();
+ for(let o=0;o<=14;o++){const [x,y]=oxPx(o);b.fillStyle=o===8?'#8fd0f2':'#cfe6f2';b.beginPath();b.arc(x,y,30,0,7);b.fill();b.fillStyle='#14202c';b.font='700 28px sans-serif';b.fillText(o,x,y+10)}
+ b.fillStyle='#8fd0f2';b.font='700 34px sans-serif';const [ox0,oy0]=oxPx(-1.1);b.fillText('O₂',ox0,oy0+10);
+ // 온도계
+ const tg=b.createLinearGradient(0,1640,0,440);tg.addColorStop(0,'#3a7bd8');tg.addColorStop(.5,'#c9a0d8');tg.addColorStop(1,'#e8453a');
+ b.fillStyle='#f2efe8';b.beginPath();b.roundRect(1650,400,100,1300,50);b.fill();b.fillStyle=tg;b.fillRect(1668,420,64,1250);
+ b.beginPath();b.arc(1700,1720,80,0,7);b.fillStyle='#f2efe8';b.fill();b.beginPath();b.arc(1700,1720,64,0,7);b.fillStyle='#3a7bd8';b.fill();
+ b.fillStyle='#fff';b.font='700 34px sans-serif';b.fillText('−30',1700,1732);
+ for(let k=0;k<=19;k++){const [x,y]=tmPx(k);b.fillStyle='#fff';b.font='600 24px sans-serif';b.textAlign='left';b.fillText((k*2-30>0?'+':'')+(k*2-30),1770,y+8);b.fillRect(1650,y-1,18,3)}b.textAlign='center';
+ // 바다 자리
+ b.beginPath();for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);b.lineTo(OCEAN_SPOT[0]+96*Math.cos(a),OCEAN_SPOT[1]+96*Math.sin(a))}b.closePath();b.fillStyle='#bfe0ff';b.fill();b.lineWidth=6;b.strokeStyle='#3f7fdc';b.stroke();
+ // 표준 프로젝트 패널
+ b.fillStyle='#e8e3da';b.beginPath();b.roundRect(130,1080,360,470,18);b.fill();b.fillStyle='#3a2a20';b.font='700 30px sans-serif';b.fillText('표준 프로젝트',310,1125);
+ [['—','#8a7365'],['11','#a98af0'],['14','#ff7b3a'],['18','#3f7fdc'],['23','#76c25b'],['25','#9a958e']].forEach(([c,col],i)=>{const y=1175+i*62;b.fillStyle='#f0c24b';b.fillRect(160,y-24,64,48);b.fillStyle='#1a0d08';b.font='700 28px sans-serif';b.fillText(c,192,y+10);b.fillStyle=col;b.fillRect(250,y-20,200,40)});
+ // 마일스톤 · 어워드
+ [[260,'마일스톤'],[1070,'어워드']].forEach(([x,nm])=>{b.fillStyle='#d9d2c6';b.beginPath();b.roundRect(x,1800,720,150,16);b.fill();b.fillStyle='#3a2a20';b.font='700 30px sans-serif';b.fillText(nm,x+360,1840);
+  for(let i=0;i<5;i++){b.fillStyle='#7a5a40';b.beginPath();b.roundRect(x+30+i*136,1860,120,70,10);b.fill()}});
+})();
+const boardTex=SRGB(new THREE.CanvasTexture(bc));
+const edge=new THREE.MeshStandardMaterial({color:0x2a160e,roughness:.8});
+const board=new THREE.Mesh(new THREE.BoxGeometry(BS,BT,BS),[edge,edge,new THREE.MeshStandardMaterial({map:boardTex,roughness:.6}),edge,edge,edge]);
+board.castShadow=board.receiveShadow=true;
+const onB=(px,py,h)=>{const [x,z]=bw(px,py);return [x,BT+h/2,z]};
+
+/* ---- 개인 보드 ---- */
+const PZ=17.6,PW=13,PH=8.6,PT=.2,PPX=100;
+const SL=[['mc','M€','#f0c24b'],['st','철','#a8734a'],['ti','티타늄','#4a4a52'],['pl','식물','#76c25b'],['en','에너지','#7c5bd6'],['ht','열','#e2552e']];
+const slotO=i=>[-PW/2+(i%3)*(PW/3),PZ-PH/2+Math.floor(i/3)*(PH/2)];
+const sIdx=k=>SL.findIndex(s=>s[0]===k);
+const prodXZ=(k,v)=>{const [x0,z0]=slotO(sIdx(k));if(k==='mc'){if(v<0)return [x0+.55+(v+5)*.64,z0+2.18];return [x0+.55+(v%6)*.64,z0+2.8+Math.floor(v/6)*.62]}return [x0+.55+(v%6)*.64,z0+2.7+Math.floor(v/6)*.66]};
+const coinXZ=(k,j)=>{const [x0,z0]=slotO(sIdx(k));return k==='mc'?[x0+.75+(j%4)*.95,z0+.62+Math.floor(j/4)*.8]:[x0+.75+(j%4)*.95,z0+.75+Math.floor(j/4)*.95]};
+const [pcv,pg]=canvas(PW*PPX,PH*PPX);
+(function(){pg.fillStyle='#6b4a36';pg.fillRect(0,0,pcv.width,pcv.height);
+ SL.forEach((s,i)=>{const [x0,z0]=slotO(i);const X=(x0+PW/2)*PPX,Y=(z0-(PZ-PH/2))*PPX,Wd=PW/3*PPX,Ht=PH/2*PPX;
+  pg.fillStyle='#ddd5c8';pg.fillRect(X+8,Y+8,Wd-16,Ht-16);
+  const PH_=s[0]==='mc'?168:210;const gr=pg.createLinearGradient(X,Y,X,Y+PH_);gr.addColorStop(0,s[2]);gr.addColorStop(1,'#bdb3a4');pg.fillStyle=gr;pg.fillRect(X+16,Y+16,Wd-32,PH_);
+  pg.fillStyle='rgba(0,0,0,.55)';pg.font='700 30px sans-serif';pg.textAlign='right';pg.fillText(s[1],X+Wd-28,Y+PH_+2);
+  for(let v=(s[0]==='mc'?-5:0);v<=10;v++){const [cx,cz]=prodXZ(s[0],v);const px=(cx+PW/2)*PPX,py=(cz-(PZ-PH/2))*PPX;pg.fillStyle='#fff';pg.fillRect(px-29,py-29,58,58);pg.strokeStyle='#7a5a40';pg.lineWidth=3;pg.strokeRect(px-29,py-29,58,58);
+   pg.fillStyle='#3a2a20';pg.font='700 26px sans-serif';pg.textAlign='center';pg.fillText(v,px,py+9)}});
+ const [ex,ez]=slotO(4);pg.fillStyle='#e2552e';pg.font='700 64px sans-serif';pg.fillText('➜',(ex+PW/3+PW/2)*PPX-34,(ez+1.3-(PZ-PH/2))*PPX);})();
+const pboard=new THREE.Mesh(new THREE.BoxGeometry(PW,PT,PH),[0,1,2,3,4,5].map(i=>i===2?new THREE.MeshStandardMaterial({map:SRGB(new THREE.CanvasTexture(pcv)),roughness:.6}):new THREE.MeshStandardMaterial({color:0x3a2418})));
+pboard.castShadow=pboard.receiveShadow=true;
+
+/* ---- 재질 · 형태 ---- */
+const SZ={cu:.6,ag:.74,au:.9,mk:.6};
+const MAT={cu:()=>new THREE.MeshStandardMaterial({color:0xd27a48,metalness:.9,roughness:.28,envMap:ENV}),
+ ag:()=>new THREE.MeshStandardMaterial({color:0xf0f2f6,metalness:.85,roughness:.2,envMap:ENV}),
+ au:()=>new THREE.MeshStandardMaterial({color:0xffc94a,metalness:.9,roughness:.2,envMap:ENV}),
+ red:()=>new THREE.MeshPhysicalMaterial({color:0xe01818,roughness:.08,transparent:true,opacity:.82,clearcoat:1,metalness:0,envMap:ENV,envMapIntensity:.6}),
+ blue:()=>new THREE.MeshPhysicalMaterial({color:0x1a7cf0,roughness:.08,transparent:true,opacity:.82,clearcoat:1,envMap:ENV,envMapIntensity:.6}),
+ white:()=>new THREE.MeshStandardMaterial({color:0xffffff,roughness:.35})};
+const box=(s,mat)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(s,s,s),mat);m.castShadow=true;return m};
+// 타일: 테두리 + 안쪽 면 (실물처럼 두께)
+const TH=.2,TRAD=HS/BP*BS*1.0;
+function tileTex(kind){const [c,g]=canvas(256,256);
+ if(kind==='oc'){const gr=g.createLinearGradient(0,0,256,256);gr.addColorStop(0,'#3d7fd0');gr.addColorStop(1,'#1f5aa8');g.fillStyle=gr;g.fillRect(0,0,256,256);
+  for(let i=0;i<40;i++){g.strokeStyle='rgba(180,220,255,.25)';g.lineWidth=2;g.beginPath();const y=Math.random()*256;g.moveTo(0,y);g.bezierCurveTo(80,y-10,170,y+10,256,y);g.stroke()}
+  g.fillStyle='rgba(220,240,255,.9)';g.beginPath();g.moveTo(128,70);g.bezierCurveTo(175,130,170,180,128,186);g.bezierCurveTo(86,180,81,130,128,70);g.fill()}
+ else if(kind==='gr'){g.fillStyle='#4f9a3a';g.fillRect(0,0,256,256);for(let i=0;i<900;i++){g.fillStyle=`rgba(${30+Math.random()*60},${90+Math.random()*80},${30+Math.random()*30},.6)`;g.beginPath();g.arc(Math.random()*256,Math.random()*256,2+Math.random()*4,0,7);g.fill()}}
+ else{g.fillStyle='#b98a62';g.fillRect(0,0,256,256);for(let i=0;i<60;i++){g.fillStyle=`rgba(${200+Math.random()*50},${190+Math.random()*50},${170+Math.random()*50},.85)`;g.fillRect(40+Math.random()*170,40+Math.random()*170,8+Math.random()*22,8+Math.random()*22)}}
+ return SRGB(new THREE.CanvasTexture(c))}
+const TT={oc:tileTex('oc'),gr:tileTex('gr'),ci:tileTex('ci')};
+const RIM={oc:0x2a5e9e,gr:0x3c7a2c,ci:0x9a958e};
+function makeTile(kind){const g=new THREE.Group();
+ const rim=new THREE.Mesh(new THREE.CylinderGeometry(TRAD*.97,TRAD*.97,TH,6),new THREE.MeshStandardMaterial({color:RIM[kind],roughness:.7}));rim.castShadow=rim.receiveShadow=true;g.add(rim);
+ const top=new THREE.Mesh(new THREE.CylinderGeometry(TRAD*(kind==='oc'?.95:.78),TRAD*(kind==='oc'?.95:.78),.02,6),new THREE.MeshStandardMaterial({map:TT[kind],roughness:kind==='oc'?.3:.8}));top.position.y=TH/2+.005;g.add(top);
+ return g}
+// 카드
+function cardTex(frame,cost,tags){const [c,g]=canvas(256,358);g.fillStyle='#fbfaf7';g.fillRect(0,0,256,358);
+ g.fillStyle=frame;g.fillRect(12,12,232,334);g.fillStyle='#f4f1ec';g.fillRect(20,62,216,276);
+ const im=g.createLinearGradient(0,70,0,190);im.addColorStop(0,'#2d3c66');im.addColorStop(1,'#b0563a');g.fillStyle=im;g.fillRect(26,74,204,112);
+ g.fillStyle=frame;g.fillRect(26,40,204,26);g.fillStyle='#c9c4bc';g.fillRect(36,200,184,86);
+ g.fillStyle='#f6c945';g.fillRect(14,14,52,46);g.strokeStyle='#8a6a2a';g.lineWidth=3;g.strokeRect(14,14,52,46);g.fillStyle='#1a0d08';g.font='700 30px sans-serif';g.textAlign='center';g.fillText(cost,40,48);
+ tags.forEach((t,i)=>{g.fillStyle=t;g.beginPath();g.arc(226-i*30,32,13,0,7);g.fill();g.strokeStyle='#fff';g.lineWidth=2;g.stroke()});
+ if(Math.random()>.4){g.fillStyle='#8a5a32';g.beginPath();g.arc(206,312,24,0,7);g.fill();g.fillStyle='#fff';g.font='700 22px sans-serif';g.fillText('1',206,320)}
+ return SRGB(new THREE.CanvasTexture(c))}
+const backTex=(()=>{const [c,g]=canvas(256,358);g.fillStyle='#0f0d16';g.fillRect(0,0,256,358);for(let i=0;i<120;i++){g.fillStyle=`rgba(255,255,255,${Math.random()*.6})`;g.fillRect(Math.random()*256,Math.random()*358,1.5,1.5)}
+ const gr=g.createRadialGradient(110,160,10,128,179,60);gr.addColorStop(0,'#e08a50');gr.addColorStop(1,'#7a2a14');g.fillStyle=gr;g.beginPath();g.arc(128,179,58,0,7);g.fill();return SRGB(new THREE.CanvasTexture(c))})();
+const CW=3.8,CL=5.3,CG=new THREE.BoxGeometry(CW,.03,CL);
+function makeCard(frame,cost,tags){const fr=new THREE.MeshStandardMaterial({map:cardTex(frame,cost,tags),roughness:.45}),bk=new THREE.MeshStandardMaterial({map:backTex,roughness:.5}),ed=new THREE.MeshStandardMaterial({color:0xf2f0ea});
+ const m=new THREE.Mesh(CG,[ed,ed,fr,bk,ed,ed]);m.castShadow=true;return m}
+function makeCorp(){const [c,g]=canvas(358,256);g.fillStyle='#2f4f86';g.fillRect(0,0,358,256);g.fillStyle='#fbfaf7';g.fillRect(8,8,342,240);g.fillStyle='#dfe6ee';g.fillRect(18,18,322,220);
+ g.fillStyle='#3a6ab0';g.font='700 34px sans-serif';g.textAlign='left';g.fillText('초보 기업',30,70);g.fillStyle='#f6c945';g.fillRect(30,100,70,52);g.fillStyle='#1a0d08';g.font='700 30px sans-serif';g.textAlign='center';g.fillText('42',65,137);
+ g.fillStyle='#c9c4bc';g.fillRect(130,100,196,110);const t=SRGB(new THREE.CanvasTexture(c));const fr=new THREE.MeshStandardMaterial({map:t,roughness:.45}),bk=new THREE.MeshStandardMaterial({map:backTex}),ed=new THREE.MeshStandardMaterial({color:0xf2f0ea});
+ const m=new THREE.Mesh(new THREE.BoxGeometry(CL,.03,CW),[ed,ed,fr,bk,ed,ed]);m.castShadow=true;return m}
+
+/* ================= 오브젝트 · 키프레임 ================= */
+const OBJ={};
+// st = {p:[x,y,z], s:scale, rx, ry}
+function mk(id,mesh,keys,opt={}){scene.add(mesh);
+ const arr=new Array(N);let last=null;let firstKey=null;
+ for(let i=0;i<N;i++){const k=keys[STEPS[i].id];if(k!==undefined){last=k==='hide'?{...last,s:0}:{s:1,rx:0,ry:0,...k};if(!firstKey)firstKey=last}arr[i]=last}
+ for(let i=0;i<N;i++)if(!arr[i])arr[i]={...(opt.spawn?{p:opt.spawn}:firstKey),s:0,rx:firstKey.rx||0,ry:firstKey.ry||0};
+ const mats=[];mesh.traverse(o=>{if(o.isMesh){const ms=Array.isArray(o.material)?o.material:[o.material];ms.forEach(m=>{if(m.emissive&&!mats.includes(m))mats.push(m)})}});
+ OBJ[id]={mesh,st:arr,mats,hs:opt.hs||1.4,arc:opt.arc??1.6,noHl:opt.noHl,cur:null};
+ const s0=arr[0];mesh.position.set(...s0.p);mesh.scale.setScalar(Math.max(1e-4,s0.s));mesh.rotation.set(s0.rx,s0.ry,0);return OBJ[id]}
+const P=(x,y,z)=>({p:[x,y,z]});
+
+mk('board',board,{board:P(0,BT/2,BZ)},{spawn:[0,-2,BZ],hs:0,noHl:true});
+// 흰 큐브
+const genPos=g=>{const [x,z]=bw(...trPx(g));return [x,BT+SZ.mk/2,z]};
+mk('wGen',box(SZ.mk,MAT.white()),{white:{p:genPos(1)},g2:{p:genPos(2)}},{spawn:[0,6,BZ]});
+mk('wOxy',box(SZ.mk,MAT.white()),{white:{p:onB(...oxPx(0),SZ.mk)},g2a:{p:onB(...oxPx(1),SZ.mk)}},{spawn:[0,6,BZ]});
+mk('wTmp',box(SZ.mk,MAT.white()),{white:{p:onB(...tmPx(0),SZ.mk)},g1c:{p:onB(...tmPx(1),SZ.mk)}},{spawn:[0,6,BZ]});
+// TR 마커 (같은 칸이면 쌓기)
+const trPos=(v,stack)=>{const [x,z]=bw(...trPx(v));return [x,BT+SZ.mk/2+stack*SZ.mk,z]};
+const PILE_RED=[-11.5,0,23.4],PILE_BLUE=[-10,0,-22.6];
+mk('trMe',box(SZ.mk,MAT.red()),{pboard:{p:trPos(20,0)},g1b:{p:trPos(21,0)},g2a:{p:trPos(22,0)}},{spawn:PILE_RED});
+mk('trOpp',box(SZ.mk,MAT.blue()),{pboard:{p:trPos(20,1)},g1b:{p:trPos(20,0)},g1c:{p:trPos(21,1)},g2a:{p:trPos(21,0)}},{spawn:PILE_BLUE});
+// 플레이어 큐브 더미 (장식)
+function pile(id,matf,center,step,n){const g=new THREE.Group();for(let i=0;i<n;i++){const m=box(SZ.mk,matf());m.position.set((Math.sin(i*2.3)*1.1),SZ.mk/2+(i>9?SZ.mk:0),(Math.cos(i*1.7)*1.0));m.rotation.y=i;g.add(m)}
+ mk(id,g,{[step]:{p:center}},{spawn:[center[0],-1,center[2]],hs:3})}
+pile('pile_red',MAT.red,PILE_RED,'bank',14);pile('pile_blue',MAT.blue,PILE_BLUE,'bank',14);
+// 은행 더미
+const BANK={cu:[-6,0,-23],ag:[0,0,-23],au:[6,0,-23]};
+['cu','ag','au'].forEach(t=>{const g=new THREE.Group();const mat=MAT[t]();for(let i=0;i<34;i++){const m=box(SZ[t],mat);const a=i*2.4,r=Math.sqrt(i)*.48;m.position.set(Math.cos(a)*r,SZ[t]/2+(i>20?SZ[t]*.9:0),Math.sin(a)*r);m.rotation.y=i*.7;g.add(m)}
+ mk('bank_'+t,g,{bank:{p:BANK[t]}},{spawn:[BANK[t][0],-2,BANK[t][2]],hs:4})});
+// 개인 보드 + 생산 마커
+mk('pboard',pboard,{pboard:P(0,PT/2,PZ)},{spawn:[0,-1,PZ],hs:0,noHl:true});
+const PROD={mc:1,st:1,ti:1,pl:1,en:1,ht:1};
+SL.forEach(([k])=>{const keys={pboard:{p:[...prodXZ(k,1)].length&&[prodXZ(k,1)[0],PT+SZ.mk/2,prodXZ(k,1)[1]]}};
+ if(k==='en'){const [x,z]=prodXZ('en',2);keys.g1a={p:[x,PT+SZ.mk/2,z]}}
+ mk('pm_'+k,box(SZ.mk,MAT.red()),keys,{spawn:PILE_RED})});
+// 슬롯 앵커(라벨용)
+SL.forEach(([k])=>{const [x0,z0]=slotO(sIdx(k));const a=new THREE.Object3D();mk('slot_'+k,a,{pboard:{p:[x0+PW/6,.4,z0+1.4]}},{hs:0,noHl:true})});
+// 선 플레이어 마커
+{const m=new THREE.Mesh(new THREE.CylinderGeometry(.8,.8,.16,32),new THREE.MeshStandardMaterial({color:0xb4402a,roughness:.5,metalness:.2}));m.castShadow=true;
+ mk('firstMk',m,{first:P(-9,.08,13.2),g2:P(9.5,.08,-21)},{spawn:[-9,4,13.2]})}
+// 타일: 바다 9 (보드 위 바다 자리), 녹지·도시 더미 5
+const ocSpot=bw(...OCEAN_SPOT);
+for(let h=0;h<9;h++){const keys={tiles:{p:[ocSpot[0],BT+TH/2+h*TH,ocSpot[1]]}};
+ if(h===8){keys.iTiles={p:[-2.8,3.4,PZ-1],rx:1.0};keys.iCards=keys.tiles;const [x,z]=bw(...hexPx(0,-1));keys.g1b={p:[x,BT+TH/2,z],rx:0}}
+ mk('oc'+h,makeTile('oc'),keys,{spawn:[ocSpot[0],8,ocSpot[1]],hs:2,noHl:h<8})}
+const GR=[18.6,0,2],CI=[18.6,0,6.4];
+for(let h=0;h<5;h++){const keys={tiles:{p:[GR[0],TH/2+h*TH,GR[2]]}};
+ if(h===4){keys.iTiles={p:[0,3.4,PZ-1],rx:1.0};keys.iCards=keys.tiles;const [x,z]=bw(...hexPx(1,-1));keys.g2a={p:[x,BT+TH/2,z],rx:0}}
+ mk('gr'+h,makeTile('gr'),keys,{spawn:[GR[0],8,GR[2]],hs:2,noHl:h<4})}
+for(let h=0;h<5;h++){const keys={tiles:{p:[CI[0],TH/2+h*TH,CI[2]]}};if(h===4){keys.iTiles={p:[2.8,3.4,PZ-1],rx:1.0};keys.iCards=keys.tiles}
+ mk('ci'+h,makeTile('ci'),keys,{spawn:[CI[0],8,CI[2]],hs:2,noHl:h<4})}
+{const [x,z]=bw(...hexPx(1,-1));mk('grMk',box(SZ.mk,MAT.red()),{g2a:{p:[x,BT+TH+SZ.mk/2,z]}},{spawn:PILE_RED})}
+// 상대 기존 도시 (장식: 보드에 1개)
+{const [x,z]=bw(...hexPx(-2,1));const t=makeTile('ci');mk('oppCity',t,{pboard:{p:[x,BT+TH/2,z]}},{spawn:[x,6,z],noHl:true});
+ mk('oppCityMk',box(SZ.mk,MAT.blue()),{pboard:{p:[x,BT+TH+SZ.mk/2,z]}},{spawn:PILE_BLUE,noHl:true})}
+// 카드: 덱, 손 10장
+const DECK=[22.5,0,-12],DISC=[22.5,0,-5.5];
+{const g=new THREE.Group();for(let i=0;i<14;i++){const c=makeCard('#76c25b','0',[]);c.rotation.x=Math.PI;c.position.y=.03*i;g.add(c)}mk('deck',g,{corp:{p:DECK}},{spawn:[DECK[0],-1,DECK[2]],noHl:true})}
+const FR=['#76c25b','#3f7fdc','#76c25b','#3f7fdc','#76c25b','#76c25b','#3f7fdc','#d9612f','#76c25b','#3f7fdc'];
+const COST=[13,11,9,20,8,6,15,7,12,10];
+const TAGC=['#b07a4f','#2b2b33','#76c25b','#e2e2ea','#ffcc4d','#7c5bd6'];
+const handPos=i=>({p:[-8.6+i*1.9,.05+i*.035,25.6+Math.abs(i-4.5)*.12],ry:(i-4.5)*-.025});
+for(let i=0;i<10;i++){const c=makeCard(FR[i],COST[i],[TAGC[i%6],TAGC[(i+2)%6]].slice(0,1+(i%2)));
+ const keys={corp:handPos(i)};
+ if(i===0)keys.iCards={p:[-3.6,2.6,PZ-.6],rx:1.05,s:.78},keys.g1=handPos(0);
+ if(i===1)keys.iCards={p:[0,2.6,PZ-.6],rx:1.05,s:.78},keys.g1=handPos(1);
+ if(i===7)keys.iCards={p:[3.6,2.6,PZ-.6],rx:1.05,s:.78},keys.g1=handPos(7);
+ if(i===4)keys.g1a={p:[10.6,.05,PZ],ry:0};
+ mk('h'+i,c,keys,{spawn:[DECK[0],.6,DECK[2]],hs:2.6,arc:2.2})}
+// 기업 카드
+mk('corp',makeCorp(),{corp:P(-11.2,.05,PZ)},{spawn:[-22,.6,PZ],hs:2.8,arc:2});
+// 연구 카드 4장
+for(let i=0;i<4;i++){const c=makeCard(['#3f7fdc','#76c25b','#d9612f','#76c25b'][i],[14,9,6,18][i],[TAGC[i]]);
+ const keys={g2r:{p:[-6+i*4,.4,21.2],rx:0}};
+ keys.g2a=i<2?handPos(10+i):{p:[DISC[0],.05+i*.04,DISC[2]],ry:.1*i};
+ if(i<2)keys.g2a.p=[11.2+i*1.9,.05+i*.04,25.8];
+ mk('r'+i,c,keys,{spawn:[DECK[0],.6,DECK[2]],hs:2.6,arc:2.2})}
+OBJ.r0.st.forEach((s,i)=>{if(i<SI.g2r){s.rx=Math.PI}});['r1','r2','r3'].forEach(id=>OBJ[id].st.forEach((s,i)=>{if(i<SI.g2r)s.rx=Math.PI}));
+// 데모 큐브 (요소 소개)
+[['dCu','cu',-2.6],['dAg','ag',-.9],['dAu','au',.9],['dRed','red',2.6]].forEach(([id,t,x])=>{const sz=t==='red'?SZ.mk:SZ[t];const src=t==='red'?PILE_RED:BANK[t];
+ mk(id,box(sz,MAT[t]()),{iCubes:{p:[x,3.2,PZ-1]},iTiles:'hide'},{spawn:src,hs:1.6,arc:3})});
+
+/* ---- 금속 자원 큐브 (금액 → 큐브 자동 배치) ---- */
+const AMT=[];{let a={mc:0,st:0,ti:0,pl:0,en:0,ht:0};
+ STEPS.forEach(s=>{a={...a};const id=s.id;
+  if(id==='corp')a.mc=42;if(id==='g1a'){a.mc=34;a.en=2}if(id==='g1b')a.mc=16;
+  if(id==='p1'){a.en=0;a.ht=2}if(id==='p2')a.mc=38;if(id==='p3'){a.st=1;a.ti=1;a.pl=1;a.en=2;a.ht=3}
+  if(id==='g2r')a.mc=32;if(id==='g2a')a.mc=11;AMT.push(a)})}
+const greedy=n=>({au:Math.floor(n/10),ag:Math.floor(n%10/5),cu:n%5});
+const TYPES=['au','ag','cu'];const coins=[];
+let hold={};SL.forEach(([k])=>{hold[k]={au:[],ag:[],cu:[]}});
+const bankPool={au:[],ag:[],cu:[]};
+function newCoin(t,stepIdx){const c={t,loc:new Array(N).fill(null)};for(let i=0;i<stepIdx;i++)c.loc[i]='bank';coins.push(c);return c}
+for(let i=0;i<N;i++){
+ const want={};SL.forEach(([k])=>want[k]=greedy(AMT[i][k]));
+ TYPES.forEach(t=>{const rem=[],addSlots=[];
+  SL.forEach(([k])=>{const have=hold[k][t].length,w=want[k][t];if(have>w){for(let n=0;n<have-w;n++)rem.push(hold[k][t].pop())}else for(let n=0;n<w-have;n++)addSlots.push(k)});
+  addSlots.forEach(k=>{let c=rem.shift()||bankPool[t].pop()||newCoin(t,i);hold[k][t].push(c)});
+  rem.forEach(c=>bankPool[t].push(c))});
+ SL.forEach(([k])=>{let j=0;TYPES.forEach(t=>hold[k][t].forEach(c=>{c.loc[i]={k,j:j++}}))});
+ TYPES.forEach(t=>bankPool[t].forEach(c=>c.loc[i]='bank'));
+ coins.forEach(c=>{if(c.loc[i]===null)c.loc[i]='bank'})}
+coins.forEach((c,n)=>{const keys={};let prev=null;
+ for(let i=0;i<N;i++){const L=c.loc[i],sig=L==='bank'?'bank':L.k+L.j;if(sig!==prev){keys[STEPS[i].id]=L==='bank'?{p:[BANK[c.t][0]+(n%3-1)*.5,.5,BANK[c.t][2]],s:0}:{p:[coinXZ(L.k,L.j)[0],PT+SZ[c.t]/2,coinXZ(L.k,L.j)[1]]}}prev=sig}
+ const o=mk('coin'+n,box(SZ[c.t],MAT[c.t]()),keys,{spawn:BANK[c.t],hs:1.5,arc:2.6});
+ // s:0 키도 반영
+ for(let i=0;i<N;i++){if(c.loc[i]==='bank')o.st[i]={...o.st[i],s:0}}
+ o.mesh.scale.setScalar(Math.max(1e-4,o.st[0].s))});
+
+/* ---- 영역 하이라이트 (요소 소개 · 종료) ---- */
+const REG={};
+function region(id,meshes,center){const g=new THREE.Group();meshes.forEach(m=>g.add(m));g.visible=false;scene.add(g);REG[id]={g,center,mats:meshes.map(m=>m.material)}}
+const glowMat=()=>new THREE.MeshBasicMaterial({color:0xffd257,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide});
+function rectOnBoard(px0,py0,px1,py1,y=BT+.02){const [x0,z0]=bw(px0,py0),[x1,z1]=bw(px1,py1);const m=new THREE.Mesh(new THREE.PlaneGeometry(Math.abs(x1-x0),Math.abs(z1-z0)),glowMat());m.rotation.x=-Math.PI/2;m.position.set((x0+x1)/2,y,(z0+z1)/2);return m}
+region('rTR',[rectOnBoard(0,0,BP,CELL),rectOnBoard(0,BP-CELL,BP,BP),rectOnBoard(0,CELL,CELL,BP-CELL),rectOnBoard(BP-CELL,CELL,BP,BP-CELL)],[...bw(CELL/2,BP*.3)].length&&[bw(CELL/2,BP*.32)[0],BT,bw(CELL/2,BP*.32)[1]]);
+{const [cx,cz]=bw(...MC),R=OXR/BP*BS,w=86/BP*BS;const m=new THREE.Mesh(new THREE.RingGeometry(R-w/2,R+w/2,48,1,(360-OXA1)*Math.PI/180,(OXA1-OXA0)*Math.PI/180),glowMat());m.rotation.x=-Math.PI/2;m.position.set(cx,BT+.02,cz);
+ const top=bw(...oxPx(7));region('rOxy',[m],[top[0],BT,top[1]])}
+{const c=bw(1700,1050);region('rTmp',[rectOnBoard(1640,380,1760,1810)],[c[0],BT,c[1]-3])}
+{const c=bw(310,1080);region('rSP',[rectOnBoard(120,1070,500,1560)],[c[0],BT,c[1]])}
+{const c=bw(1000,1800);region('rMA',[rectOnBoard(250,1790,1800,1960)],[c[0],BT,c[1]])}
+{const c=bw(...OCEAN_SPOT);region('rOcean',[rectOnBoard(OCEAN_SPOT[0]-110,OCEAN_SPOT[1]-110,OCEAN_SPOT[0]+110,OCEAN_SPOT[1]+110)],[c[0],BT+2,c[1]])}
+{const ms=[],ps=[];SL.forEach(([k])=>{const [x0,z0]=slotO(sIdx(k));
+  const a=new THREE.Mesh(new THREE.PlaneGeometry(PW/3-.4,2.1),glowMat());a.rotation.x=-Math.PI/2;a.position.set(x0+PW/6,PT+.02,z0+.16+1.05);ms.push(a);
+  const b2=new THREE.Mesh(new THREE.PlaneGeometry(PW/3-.4,1.4),glowMat());b2.rotation.x=-Math.PI/2;b2.position.set(x0+PW/6,PT+.02,z0+2.95);ps.push(b2)});
+ region('rHold',ms,[0,PT,PZ-3]);region('rProd',ps,[0,PT,PZ])}
+
+/* ---- 빛 (헤일로) ---- */
+const haloTex=(()=>{const [c,g]=canvas(128,128);const gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(255,240,200,1)');gr.addColorStop(.35,'rgba(255,200,90,.55)');gr.addColorStop(1,'rgba(255,170,60,0)');g.fillStyle=gr;g.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)})();
+const halos=[];for(let i=0;i<40;i++){const s=new THREE.Sprite(new THREE.SpriteMaterial({map:haloTex,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,opacity:0}));s.visible=false;scene.add(s);halos.push(s)}
+
+/* ---- 카메라 ---- */
+const CAM={over:{p:[0,50,46],l:[0,0,4]},overFar:{p:[0,52,34],l:[0,0,-4]},board:{p:[-2,28,12],l:[-1,0,-5]},boardR:{p:[10,27,6],l:[10,0,-6]},temp:{p:[4,21,16],l:[8,0,0]},tilesCam:{p:[6,36,18],l:[9,0,-4]},
+ pb:{p:[-2,17,35],l:[-2,0,18.5]},pbClose:{p:[0,13,28.5],l:[0,0,17.6]},show:{p:[0,10,28],l:[0,2.6,16.6]},hand:{p:[2,17,36],l:[2,0,21.5]}};
+
+/* ---- 진행 ---- */
+let anim=null;const camNow={p:[...CAM.over.p],l:[...CAM.over.l]};
+let hlSet=new Set(),hlStart=0,regOn=[];
+function stateNow(o){const m=o.mesh;return {p:[m.position.x,m.position.y,m.position.z],s:m.scale.x,rx:m.rotation.x,ry:m.rotation.y}}
+function toStep(i){const from={},movers=[];
+ Object.entries(OBJ).forEach(([id,o])=>{from[id]=stateNow(o);const t=o.st[i],f=from[id];
+   const d=Math.hypot(t.p[0]-f.p[0],t.p[1]-f.p[1],t.p[2]-f.p[2])+Math.abs(t.s-f.s)*2+Math.abs(t.rx-f.rx)+Math.abs(t.ry-f.ry);if(d>.01)movers.push(id)});
+ // 순서: 보드·큰 것 먼저, 그다음 작은 부품이 차례로 → 영상처럼
+ movers.sort((a,b)=>(OBJ[b].hs===0)-(OBJ[a].hs===0));
+ const delay={};movers.forEach((id,k)=>delay[id]=reduce?0:Math.min(1.2,k*.07));
+ anim={t0:performance.now(),from,delay,cam0:{p:[...camNow.p],l:[...camNow.l]},cam1:CAM[STEPS[i].cam]};
+ hlSet=new Set(movers.filter(id=>{const o=OBJ[id];return !o.noHl&&o.st[i].s>0&&o.hs>0}));hlStart=performance.now();
+ regOn=STEPS[i].rg||[];Object.entries(REG).forEach(([k,r])=>r.g.visible=regOn.includes(k));
+ setLabels(i)}
+const lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const DUR=reduce?.01:1.0;
+function tick(now){
+ if(anim){const el=(now-anim.t0)/1000;let done=true;
+  Object.entries(OBJ).forEach(([id,o])=>{const f=anim.from[id],t=o.st[cur];const dl=anim.delay[id]||0;let k=(el-dl)/DUR;if(k<1)done=false;k=ease(Math.max(0,Math.min(1,k)));
+   const m=o.mesh;const dist=Math.hypot(t.p[0]-f.p[0],t.p[2]-f.p[2]);
+   m.position.set(lerp(f.p[0],t.p[0],k),lerp(f.p[1],t.p[1],k)+(dist>1?Math.sin(Math.PI*k)*o.arc*Math.min(1.6,dist/6+.5):0),lerp(f.p[2],t.p[2],k));
+   m.scale.setScalar(Math.max(1e-4,lerp(f.s,t.s,k)));m.rotation.set(lerp(f.rx,t.rx,k),lerp(f.ry,t.ry,k),0)});
+  const kc=ease(Math.min(1,el/(DUR*1.25)));if(kc<1)done=false;
+  for(let a=0;a<3;a++){camNow.p[a]=lerp(anim.cam0.p[a],anim.cam1.p[a],kc);camNow.l[a]=lerp(anim.cam0.l[a],anim.cam1.l[a],kc)}
+  if(done)anim=null}
+ // 카메라 (세로 화면이면 뒤로)
+ const k=cam.aspect<1?Math.min(2.2,.95/cam.aspect):1,l=camNow.l,p=camNow.p;
+ cam.position.set(l[0]+(p[0]-l[0])*k,l[1]+(p[1]-l[1])*k,l[2]+(p[2]-l[2])*k);cam.lookAt(...l);
+ // 빛: 도착 순간 번쩍(3번) → 은은하게 유지
+ const ht=(now-hlStart)/1000;let hi=0;
+ Object.entries(OBJ).forEach(([id,o])=>{const on=hlSet.has(id);const dl=anim&&anim.delay?(anim.delay[id]||0):0;
+  let v=0;if(on){const tt=ht-dl-DUR*.6;v=tt<0?0:tt<1.5?(.55+.45*Math.sin(tt*Math.PI*4-Math.PI/2))*1.0:.25+.12*Math.sin(now/300)}
+  o.mats.forEach(m=>{m.emissive.setRGB(1,.75,.3);m.emissiveIntensity=v*.55});
+  if(on&&hi<halos.length&&v>0){const h=halos[hi++];h.visible=true;h.position.copy(o.mesh.position);h.position.y+=.2;const s=o.hs*(1.6+v*.8)*Math.max(.3,o.mesh.scale.x);h.scale.set(s,s,1);h.material.opacity=Math.min(1,v)}});
+ for(;hi<halos.length;hi++)halos[hi].visible=false;
+ regOn.forEach(id=>REG[id].mats.forEach(m=>m.opacity=.18+.22*(.5+.5*Math.sin(now/180))));
+ renderer.render(scene,cam);placeLabels()}
+/* ---- 3D 이름표 ---- */
+let labels=[];
+function setLabels(i){lblBox.innerHTML='';labels=(STEPS[i].lb||[]).map(([id,txt])=>{const e=document.createElement('div');e.className='lbl3d hide';e.textContent=txt;lblBox.appendChild(e);return {id,e}});
+ setTimeout(()=>labels.forEach(l=>l.e.classList.remove('hide')),reduce?0:DUR*700)}
+const v3=new THREE.Vector3();
+function placeLabels(){const r=cv.getBoundingClientRect();
+ labels.forEach(L=>{let pos;if(OBJ[L.id])pos=OBJ[L.id].mesh.position;else if(REG[L.id])pos=v3.set(...REG[L.id].center);else return;
+  v3.copy(pos);v3.y+=.9;v3.project(cam);const x=(v3.x*.5+.5)*r.width,y=(-v3.y*.5+.5)*r.height;
+  L.e.style.transform=`translate(${x}px,${y}px) translate(-50%,-100%) translateY(-10px)`})}
+
+function size(){const r=cv.getBoundingClientRect(),w=r.width,h=Math.max(1,r.height);renderer.setSize(w,h,false);cam.aspect=w/h;
+ if(w>=760)cam.setViewOffset(w,h,-Math.min(210,w*.14),-h*.03,w,h);else cam.setViewOffset(w,h,0,h*.17,w,h);cam.updateProjectionMatrix()}
+size();addEventListener('resize',size);if(window.ResizeObserver)new ResizeObserver(size).observe(stage);
+let vis=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargin:'120px'}).observe(stage);
+(function loop(now){if(vis)tick(now);requestAnimationFrame(loop)})(performance.now());
+tick(performance.now());
+window.__tmScene={go,N,cur:()=>cur};
+})();
+
+/* ================= 화면 위계: 메인 → 목차(서브) ================= */
+const SECS=[...document.querySelectorAll('.content section')].map(s=>s.id);
+const TITLES={};document.querySelectorAll('.toc a').forEach(a=>TITLES[a.dataset.sec]=a.textContent.replace(/^\d+/,''));
+const stageEl=$('.stage');
+function showView(v){$('#home').hidden=v!=='home';$('#rules').hidden=v!=='rules';document.body.dataset.view=v;scrollTo(0,0)}
+function openSec(id,opt={}){if(!SECS.includes(id))id='goal';
+  document.querySelectorAll('.content section').forEach(s=>s.hidden=s.id!==id);
+  document.querySelectorAll('.toc a').forEach(a=>a.classList.toggle('on',a.dataset.sec===id));
+  const on=document.querySelector('.toc a.on');if(on&&innerWidth<=860)on.scrollIntoView({block:'nearest',inline:'center'});
+  const i=SECS.indexOf(id),pv=SECS[i-1],nx=SECS[i+1];
+  $('#pgPrev').hidden=!pv;$('#pgNext').hidden=!nx;
+  if(pv)$('#pgPrev').innerHTML=`<small>← 이전</small>${TITLES[pv]}`;if(nx)$('#pgNext').innerHTML=`<small>다음 →</small>${TITLES[nx]}`;
+  $('#pgPrev').onclick=()=>openSec(pv);$('#pgNext').onclick=()=>openSec(nx);
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+  if(!opt.keepScroll)scrollTo(0,0);
+  dispatchEvent(new Event('resize'))}
+function flip(mutate,dur=700){const a=stageEl.getBoundingClientRect();mutate();const b=stageEl.getBoundingClientRect();
+  if(reduce||!b.width)return;stageEl.style.transition='none';
+  stageEl.style.transform=`translate(${a.left-b.left}px,${a.top-b.top}px) scale(${a.width/b.width},${a.height/b.height})`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{stageEl.style.transition=`transform ${dur}ms cubic-bezier(.2,.8,.2,1)`;stageEl.style.transform='none';
+    setTimeout(()=>{stageEl.style.transition='';stageEl.style.transform=''},dur+40)}))}
+function startMotion(){showView('rules');openSec('table');document.body.classList.remove('reveal');document.body.classList.add('playing');stageEl.classList.add('full');
+  if(!reduce){stageEl.classList.remove('entering');void stageEl.offsetWidth;stageEl.classList.add('entering');setTimeout(()=>stageEl.classList.remove('entering'),850)}
+  dispatchEvent(new Event('resize'));stageEl.focus({preventScroll:true});
+  setTimeout(()=>{if(window.__tmScene&&__tmScene.cur()===0)__tmScene.go(1)},reduce?0:700)}
+function collapse(){if(!stageEl.classList.contains('full'))return;
+  flip(()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');document.body.classList.add('reveal');scrollTo(0,0)});
+  setTimeout(()=>document.body.classList.remove('reveal'),900);dispatchEvent(new Event('resize'))}
+function expand(){flip(()=>{stageEl.classList.add('full');document.body.classList.add('playing')});stageEl.focus({preventScroll:true});dispatchEvent(new Event('resize'))}
+$('#btnStart').onclick=startMotion;
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{showView('rules');document.body.classList.add('reveal');setTimeout(()=>document.body.classList.remove('reveal'),900);openSec(b.dataset.open)});
+$('#btnClose').onclick=collapse;$('#btnFull').onclick=expand;
+$('#btnHome').onclick=()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');showView('home');try{history.replaceState(null,'','#')}catch(e){}};
+document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();openSec(a.dataset.sec)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&stageEl.classList.contains('full')){e.preventDefault();collapse()}});
+{const h=(location.hash||'').slice(1);if(h==='play')startMotion();else if(SECS.includes(h)){showView('rules');openSec(h)}else showView('home')}
+
+/* ================= SETUP ================= */
+const setupSteps={
+ A:['메인 보드 펼치기 <span class="arr">→</span> <b class="ht">온도</b> −30°C · <b class="ox">산소</b> 0% · 세대 1에 흰 큐브',
+  '<b class="oc">바다 타일 9개</b> 보드 옆 · 녹지·도시 타일도 옆',
+  '색 선택 <span class="arr">→</span> 개인 보드 · 내 큐브 <b class="mc">TR 20</b>칸',
+  '모든 생산량 <b>1</b> <span class="muted">(6종 각각)</span>',
+  '<b>초보 기업</b> 카드 <span class="arr">→</span> <b class="mc">42 M€</b>',
+  '프로젝트 카드 각자 <b>10장</b> <span class="arr">→</span> 입문은 <b>무료로 전부</b> 가짐',
+  '선 플레이어 결정 <span class="arr">→</span> 1세대는 <b>행동 단계</b>부터'],
+ B:['메인 보드 펼치기 <span class="arr">→</span> <b class="ht">온도</b> −30°C · <b class="ox">산소</b> 0% · 세대 1에 흰 큐브',
+  '<b class="oc">바다 타일 9개</b> 보드 옆 · 녹지·도시 타일도 옆',
+  '색 선택 <span class="arr">→</span> 개인 보드 · 내 큐브 <b class="mc">TR 20</b>칸',
+  '모든 생산량 <b>1</b> <span class="muted">(기업 시대 규칙 = 0)</span>',
+  '기업 카드 각자 <b>2장</b> <span class="muted">(초보 기업 제외)</span> + 프로젝트 카드 <b>10장</b>',
+  '기업 1개 선택 · 동시 공개 <span class="arr">→</span> <b class="mc">시작 M€</b> + 시작 자원·생산',
+  '가질 카드 선택 <span class="arr">→</span> <b>장당 3 M€</b> · 나머지 버림',
+  '선 플레이어 결정 <span class="arr">→</span> 1세대는 <b>행동 단계</b>부터 · 기업 "첫 행동" = 첫 차례에']};
+let mode='A';const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function renderSetup(){const done=store.get('tm1-setup-'+mode)||[];
+  $('#setupList').innerHTML=setupSteps[mode].map((s,i)=>`<li class="${done.includes(i)?'done':''}"><label><input type="checkbox" id="st${mode}${i}" data-i="${i}" ${done.includes(i)?'checked':''}><span>${s}</span></label></li>`).join('');
+  $('#modeA').setAttribute('aria-pressed',mode==='A');$('#modeB').setAttribute('aria-pressed',mode==='B')}
+$('#setupList').addEventListener('change',e=>{const i=+e.target.dataset.i;let d=store.get('tm1-setup-'+mode)||[];d=e.target.checked?[...d,i]:d.filter(x=>x!==i);store.set('tm1-setup-'+mode,d);e.target.closest('li').classList.toggle('done',e.target.checked)});
+$('#modeA').onclick=()=>{mode='A';renderSetup()};$('#modeB').onclick=()=>{mode='B';renderSetup()};$('#setupReset').onclick=()=>{store.set('tm1-setup-'+mode,[]);renderSetup()};
+renderSetup();
+
+/* ================= GENERATION RING ================= */
+const phases=[
+ {n:'선 플레이어',t:'1. 선 플레이어 넘기기',skip1:true,list:['선 마커 <span class="arr">→</span> 왼쪽 사람','세대 마커 +1','2인 = 매 세대 선 교대']},
+ {n:'연구',t:'2. 연구',skip1:true,list:['각자 카드 4장 보기','가질 카드 장당 <span class="k">3</span> M€','안 산 카드 <span class="arr">→</span> 버림 · 0장도 가능']},
+ {n:'행동',t:'3. 행동',list:['선부터 차례대로 행동 1~2개','할 게 없음 <span class="arr">→</span> 패스 = 이번 세대 끝','남은 사람 혼자 계속 · 모두 패스 <span class="arr">→</span> 생산']},
+ {n:'생산',t:'4. 생산 (모두 동시)',list:['에너지 전부 <span class="arr">→</span> 열 칸','M€ += TR + M€ 생산','나머지 자원 += 생산량','파란 카드 위 큐브 회수']}];
+const svg=$('.ring svg');let ph=2,gen=1,playing=false,pt=null;
+const pos=i=>{const a=-Math.PI/2+i*Math.PI/2;return [160+110*Math.cos(a),160+110*Math.sin(a)]};
+phases.forEach((p,i)=>{const [x,y]=pos(i);const g=document.createElementNS(NS,'g');g.setAttribute('class','node');g.setAttribute('tabindex','0');g.setAttribute('role','button');g.setAttribute('aria-label',p.t);
+  let lx=x,ly=y+52,anc='middle';if(i===0)ly=y-40;if(i===1){lx=x+42;ly=y+5;anc='start'}if(i===3){lx=x-42;ly=y+5;anc='end'}
+  g.innerHTML=`<circle cx="${x}" cy="${y}" r="30"></circle><text x="${x}" y="${y+7}" text-anchor="middle">${i+1}</text><text class="lbl" x="${lx}" y="${ly}" text-anchor="${anc}">${p.n}</text>`;
+  g.onclick=()=>{stopPlay();setPhase(i)};g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stopPlay();setPhase(i)}};svg.appendChild(g)});
+const nodes=[...svg.querySelectorAll('.node')];
+function setPhase(i){ph=i;nodes.forEach((n,k)=>n.classList.toggle('on',k===i));const [x,y]=pos(i);$('#orbit').setAttribute('cx',x);$('#orbit').setAttribute('cy',y-38);$('#genNo').textContent=gen;
+  const p=phases[i],skip=p.skip1&&gen===1;
+  $('#phasePanel').innerHTML=`<p class="eyebrow">${gen}세대 · ${i+1}/4</p><h3 style="margin-top:4px">${p.t}</h3>${skip?'<p class="note warn" style="margin-top:8px">1세대 = 이 단계 건너뜀</p>':''}<ul class="rules">${p.list.map(l=>`<li>${l}</li>`).join('')}</ul>
+  <div class="phase-ctrl"><button class="btn" id="phPrev">◀ 이전</button><button class="btn primary" id="phNext">다음 ▶</button><button class="btn" id="phPlay">${playing?'■ 멈춤':'▶ 자동 재생'}</button></div>`;
+  $('#phPrev').onclick=()=>{stopPlay();step(-1)};$('#phNext').onclick=()=>{stopPlay();step(1)};$('#phPlay').onclick=()=>{playing?stopPlay():startPlay()}}
+function step(d){let i=ph+d;if(i>3){i=0;gen=gen>=3?1:gen+1}if(i<0){i=3;gen=Math.max(1,gen-1)}if(gen===1&&i<2&&d>0)i=2;setPhase(i)}
+function startPlay(){playing=true;setPhase(ph);pt=setInterval(()=>step(1),2600)}
+function stopPlay(){if(playing){playing=false;clearInterval(pt);const b=$('#phPlay');if(b)b.textContent='▶ 자동 재생'}}
+setPhase(2);
+
+/* ================= PRODUCTION DEMO ================= */
+const R0=[{k:'mc',n:'M€',c:'var(--mc)',p:3,r:8},{k:'st',n:'철',c:'var(--steel)',p:1,r:2},{k:'ti',n:'티타늄',c:'var(--ti)',p:1,r:0},
+  {k:'pl',n:'식물',c:'var(--plant)',p:2,r:5},{k:'en',n:'에너지',c:'var(--energy)',p:2,r:3},{k:'ht',n:'열',c:'var(--heat)',p:1,r:1}];
+let PR,pstep;const TRv=22;
+const pget=k=>PR.find(x=>x.k===k);
+function renderPB(){$('#pboard').innerHTML=PR.map(x=>`<div class="res" id="res-${x.k}" style="--c:${x.c}"><div class="name"><span class="sw"></span>${x.n}</div><div class="rows"><span>생산</span><b>${x.p}</b><span>보유</span><b id="r-${x.k}">${x.r}</b></div><div class="pips" id="pip-${x.k}">${'<i></i>'.repeat(Math.min(x.r,40))}</div></div>`).join('')}
+function resetProd(){PR=R0.map(x=>({...x}));pstep=0;renderPB();$('#prodNext').textContent='생산 단계 시작 ▶';$('#prodNext').disabled=false;
+  $('#prodMsg').innerHTML='<ul class="rules"><li>예시 숫자</li><li><b>생산</b> = 매 세대 들어오는 양 · <b>보유</b> = 지금 가진 양</li></ul>'}
+function hl(ks){document.querySelectorAll('.res').forEach(e=>e.classList.toggle('hl',ks.includes(e.id.slice(4))))}
+function setR(k,v){pget(k).r=v;const b=$('#r-'+k);b.textContent=v;b.classList.add('bump');setTimeout(()=>b.classList.remove('bump'),700);$('#pip-'+k).innerHTML='<i></i>'.repeat(Math.min(v,40))}
+$('#prodNext').onclick=()=>{pstep++;
+  if(pstep===1){hl(['en','ht']);const en=pget('en').r;$('#prodMsg').innerHTML=`<ul class="rules"><li><b>① 에너지 ${en} → 열 칸</b></li><li>에너지 = 다음 세대로 안 남음</li></ul>`;
+    const from=[...document.querySelectorAll('#pip-en i')],to=$('#pip-ht').getBoundingClientRect();
+    if(!reduce)from.forEach((p,i)=>{const r=p.getBoundingClientRect();const f=document.createElement('div');f.className='flyer';f.style.left=r.left+'px';f.style.top=r.top+'px';document.body.appendChild(f);p.style.opacity=0;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{f.style.transform=`translate(${to.left+to.width/2-r.left+i*11-10}px,${to.top-r.top}px)`;f.style.background='var(--heat)'}));setTimeout(()=>f.remove(),800)});
+    setTimeout(()=>{setR('ht',pget('ht').r+en);setR('en',0)},reduce?0:750);$('#prodNext').textContent='다음: 돈 받기 ▶'}
+  else if(pstep===2){hl(['mc']);const m=pget('mc');setR('mc',m.r+TRv+m.p);$('#prodMsg').innerHTML=`<ul class="rules"><li><b>② M€ 수입 = TR ${TRv} + 생산 ${m.p} = ${TRv+m.p}</b></li><li>TR 높을수록 수입 증가</li></ul>`;$('#prodNext').textContent='다음: 나머지 생산 ▶'}
+  else if(pstep===3){hl(['st','ti','pl','en','ht']);['st','ti','pl','en','ht'].forEach(k=>setR(k,pget(k).r+pget(k).p));
+    $('#prodMsg').innerHTML=`<ul class="rules"><li><b>③ 나머지 자원 += 생산량</b></li><li>식물 <b class="pl">${pget('pl').r}</b> <span class="arr">→</span> 8 되면 녹지 · 열 <b class="ht">${pget('ht').r}</b></li></ul>`;$('#prodNext').textContent='다음 세대로 ▶'}
+  else{hl([]);$('#prodMsg').innerHTML='<ul class="rules"><li>생산 끝 <span class="arr">→</span> 파란 카드 큐브 회수 <span class="arr">→</span> 다음 세대</li></ul>';$('#prodNext').disabled=true}};
+$('#prodReset').onclick=resetProd;resetProd();
+
+/* ================= HEX LAB ================= */
+const hexSize=34,cx0=200,cy0=180;
+const spec={'2,-2':{res:1},'1,-2':{res:1},'2,-1':{res:1},'1,-1':{res:1},'-2,2':{res:1},'-1,2':{res:1},'1,0':{bonus:'P',n:2},'-1,1':{bonus:'S',n:2},'0,-2':{bonus:'C',n:1},'-2,0':{bonus:'P',n:1}};
+const startTiles={'2,-2':{t:'ocean'},'0,0':{t:'city',own:'me'},'-2,1':{t:'city',own:'opp'}};
+let tiles,tileSel='ocean',st;const hexes=[];for(let q=-2;q<=2;q++)for(let r=-2;r<=2;r++)if(Math.abs(q+r)<=2)hexes.push([q,r]);
+const nb=([q,r])=>[[q+1,r],[q-1,r],[q,r+1],[q,r-1],[q+1,r-1],[q-1,r+1]].filter(([a,b])=>Math.abs(a)<=2&&Math.abs(b)<=2&&Math.abs(a+b)<=2);
+const hk=([q,r])=>q+','+r;const px=([q,r])=>[cx0+hexSize*Math.sqrt(3)*(q+r/2),cy0+hexSize*1.5*r];
+function poly([x,y]){let s='';for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);s+=(x+(hexSize-1)*Math.cos(a)).toFixed(1)+','+(y+(hexSize-1)*Math.sin(a)).toFixed(1)+' '}return s}
+function resetHex(){tiles=JSON.parse(JSON.stringify(startTiles));st={TR:20,MC:0,P:0,S:0,C:0};drawHex();$('#hexlog').innerHTML='<ul class="rules"><li>바다부터 놓아 보기</li><li>오른쪽 위 = 이미 놓인 <b class="oc">바다</b> · 왼쪽 = <b>상대 도시</b></li></ul>';updStat()}
+function updStat(){$('#hTR').textContent=st.TR;$('#hMC').textContent=st.MC;$('#hP').textContent=st.P;$('#hS').textContent=st.S;$('#hC').textContent=st.C}
+function drawHex(){const s=$('#hexmap');s.innerHTML='';hexes.forEach(h=>{const k=hk(h),sp=spec[k]||{},tl=tiles[k],[x,y]=px(h);
+  let fill=sp.res?'#2a3d66':'#5b3426';if(tl)fill=tl.t==='ocean'?'var(--ocean)':tl.t==='green'?'var(--plant)':'var(--city)';
+  const g=document.createElementNS(NS,'g');g.setAttribute('class','hx');g.setAttribute('tabindex','0');g.setAttribute('role','button');g.setAttribute('aria-label',`칸 ${k}${sp.res?' 바다 예약':''}${tl?' '+tl.t:''}`);
+  let inner=`<polygon points="${poly([x,y])}" fill="${fill}" ${sp.res&&!tl?'stroke-dasharray="4 3" style="stroke:var(--ocean);stroke-width:2"':''}${tl&&tl.own==='me'&&tl.t==='city'?' style="stroke:#e04848;stroke-width:3"':''}></polygon>`;
+  if(tl&&tl.own)inner+=`<rect x="${x-6}" y="${y-6}" width="12" height="12" rx="2" fill="${tl.own==='me'?'#e04848':'#4aa0e0'}" stroke="#130c0b" stroke-width="2"></rect>`;
+  if(!tl&&sp.bonus)inner+=`<text x="${x}" y="${y+4}" text-anchor="middle" fill="${sp.bonus==='P'?'var(--plant)':sp.bonus==='S'?'var(--steel)':'var(--dust)'}">${sp.bonus.repeat(sp.n)}</text>`;
+  if(tl&&tl.t==='city'&&tl.own==='opp')inner+=`<text x="${x}" y="${y+22}" text-anchor="middle" fill="#130c0b" style="font-size:9px">상대</text>`;
+  g.innerHTML=inner;g.onclick=()=>place(h,g);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();place(h,g)}};s.appendChild(g)})}
+function myTiles(){return Object.entries(tiles).filter(([k,v])=>v.own==='me').map(([k])=>k.split(',').map(Number))}
+function canGreenAdj(){return myTiles().some(h=>nb(h).some(n=>{const k=hk(n);return !tiles[k]&&!(spec[k]||{}).res}))}
+function place(h,g){const k=hk(h),sp=spec[k]||{},log=$('#hexlog');
+  const fail=m=>{log.innerHTML='<span class="no">놓을 수 없음</span><ul class="rules" style="margin-top:6px"><li>'+m+'</li></ul>';g.classList.remove('bad');void g.getBBox();g.classList.add('bad')};
+  if(tiles[k])return fail('이미 타일 있음');
+  if(tileSel==='ocean'){if(!sp.res)return fail('바다 <span class="arr">→</span> 파란 점선 <b>예약 칸</b>만')}
+  else{if(sp.res)return fail('예약 칸 <span class="arr">→</span> 바다 전용');
+    if(tileSel==='city'&&nb(h).some(n=>(tiles[hk(n)]||{}).t==='city'))return fail('<b>도시 옆 도시 금지</b> <span class="muted">(상대 도시 포함)</span>');
+    if(tileSel==='green'&&canGreenAdj()&&!nb(h).some(n=>(tiles[hk(n)]||{}).own==='me'))return fail('녹지 <span class="arr">→</span> 가능하면 <b>내 타일 옆</b> <span class="muted">(빨간 큐브 주변)</span>')}
+  tiles[k]={t:tileSel,own:tileSel==='ocean'?null:'me'};const oceans=nb(h).filter(n=>(tiles[hk(n)]||{}).t==='ocean').length;const gains=[];
+  if(tileSel==='ocean'){st.TR++;gains.push('<b class="oc">바다</b> +1 <span class="arr">→</span> <b class="mc">TR +1</b>')}
+  if(tileSel==='green'){st.TR++;gains.push('<b class="ox">산소</b> +1 <span class="arr">→</span> <b class="mc">TR +1</b> · 끝에 1 VP')}
+  if(tileSel==='city')gains.push('도시 배치 · TR 변화 없음 · 옆 녹지 = 끝에 VP');
+  if(oceans){st.MC+=oceans*2;gains.push(`옆 바다 ${oceans} <span class="arr">→</span> <b class="mc">+${oceans*2} M€</b>`)}
+  if(sp.bonus){const m={P:['P','식물','pl'],S:['S','철','st'],C:['C','카드','']}[sp.bonus];st[m[0]]+=sp.n;gains.push(`배치 보너스 <span class="arr">→</span> <b class="${m[2]}">${m[1]} +${sp.n}</b>`)}
+  log.innerHTML='<span class="ok">배치 완료</span><ul class="rules" style="margin-top:6px">'+gains.map(x=>'<li>'+x+'</li>').join('')+'</ul>';drawHex();updStat()}
+document.querySelectorAll('[data-tile]').forEach(b=>b.onclick=()=>{tileSel=b.dataset.tile;document.querySelectorAll('[data-tile]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+$('#hexReset').onclick=resetHex;resetHex();
+
+/* ================= TRACKS ================= */
+let th='';for(let t=-30;t<=8;t+=2){const p=(t+30)/38;th+=`<div class="${[-24,-20,0].includes(t)?'bonus':''}" style="background:color-mix(in srgb,var(--heat) ${Math.round(25+p*75)}%,var(--ground))">${t>0?'+'+t:t}</div>`}$('#tTrack').innerHTML=th;
+let oh='';for(let o=0;o<=14;o++)oh+=`<div class="${o===8?'bonus':''}" style="background:color-mix(in srgb,var(--oxy) ${Math.round(25+o/14*75)}%,var(--ground))">${o}</div>`;$('#oTrack').innerHTML=oh;
+
+/* ================= SCORE ================= */
+const rows=[['tr','TR','= VP',1,20],['ms','마일스톤','× 5',5,0],['a1','어워드 1등','× 5',5,0],['a2','어워드 2등','× 2 (3인↑)',2,0],['gr','녹지','× 1',1,0],['ct','도시 옆 녹지','합계 × 1',1,0],['cd','카드 VP','합계',1,0]];
+$('#calcBody').innerHTML=rows.map(r=>`<tr><td>${r[1]}</td><td class="muted">${r[2]}</td><td><input type="number" inputmode="numeric" id="A-${r[0]}" value="${r[4]}" aria-label="A ${r[1]}"></td><td><input type="number" inputmode="numeric" id="B-${r[0]}" value="${r[4]}" aria-label="B ${r[1]}"></td></tr>`).join('');
+function calc(){const t={A:0,B:0};['A','B'].forEach(p=>rows.forEach(r=>{t[p]+=(+document.getElementById(p+'-'+r[0]).value||0)*r[3]}));$('#totA').textContent=t.A;$('#totB').textContent=t.B;
+  $('#calcLead').innerHTML=t.A===t.B?'동점 <span class="arr">→</span> 남은 <b class="mc">M€</b> 많은 쪽 승':`<span class="lead">${t.A>t.B?'A':'B'}</span> 앞섬 · ${Math.abs(t.A-t.B)}점 차`}
+$('#calcBody').addEventListener('input',calc);calc();
+})();
+</script>
+
+</body>
+</html>
