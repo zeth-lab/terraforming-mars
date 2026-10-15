@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261015230351">
+<meta name="build" content="20261015233955">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -545,6 +545,21 @@ body.playing .pager,body.playing footer{visibility:hidden}
 .stage.land .spanel{width:auto}
 @media (orientation:portrait) and (max-width:760px){.scene .stage.full{width:100svh;width:100dvh;height:100vw}}
 @media (max-width:860px){body[data-sec="table"] .pager,body[data-sec="table"] footer{display:none}}
+.interlude{position:absolute;inset:0;z-index:3;display:grid;place-items:center;align-content:center;gap:10px;padding:40px max(24px,8%) 84px;background:radial-gradient(ellipse at 50% 45%,rgba(40,22,16,.92),rgba(10,6,5,.96));color:#f3e8dc;opacity:0;pointer-events:none;transition:opacity .5s;text-align:center;cursor:pointer}
+.interlude.on{opacity:1;pointer-events:auto}
+.stage.il .sidecol{opacity:0;pointer-events:none}.stage .sidecol{transition:opacity .35s}
+.stage .sctrl{z-index:4}.stage .s-close{z-index:5}
+.il-eb{font-family:var(--f-wide);font-stretch:125%;font-weight:800;letter-spacing:.3em;font-size:.72rem;color:var(--rust);margin:0}
+.il-t{font-size:clamp(1.4rem,3.6vw,2.4rem);line-height:1.25;margin:0;animation:lineIn .6s both}
+.il-b{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px;font-size:clamp(.85rem,1.8vw,1.05rem);color:#e2d4c6}
+.il-b b{color:#fff}.il-red{color:#ff5a4a!important}.il-blue{color:#5aa2ff!important}
+.il-sub{margin:10px 0 0;color:#bba493;font-size:.85rem}
+.il-gens,.il-phases{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px}
+.il-gens span,.il-phases span{border:1px solid #5a3f35;border-radius:6px;padding:6px 10px;font-size:clamp(.78rem,1.6vw,.95rem);background:rgba(255,255,255,.04);animation:lineIn .5s both}
+.il-gens span.end{border-color:var(--plant);color:#bfe6ae}
+.il-phases span b{color:var(--rust);margin-right:5px}.il-phases span.on{border-color:var(--rust);background:rgba(217,97,47,.18)}
+.il-gens i,.il-phases i{font-style:normal;color:#8a7365}.il-phases i.back{font-size:1.3em;color:var(--rust)}
+.stage.land .interlude{padding:18px 6% 56px;gap:6px}.stage.land .il-t{font-size:1.25rem}.stage.land .il-b{font-size:.8rem;gap:3px}.stage.land .il-gens span,.stage.land .il-phases span{padding:3px 7px;font-size:.72rem}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -595,6 +610,7 @@ body.playing .pager,body.playing footer{visibility:hidden}
     <canvas id="table3d" aria-hidden="true"></canvas>
     <button class="s-close" id="btnClose" type="button">✕ 목차로<kbd>Esc</kbd></button>
     <div id="lbls" aria-hidden="true"></div>
+    <div class="interlude" id="interlude" aria-live="polite"></div>
     <div class="sidecol">
       <div class="spanel" id="spanel" aria-live="polite"></div>
       <div class="hud" aria-live="polite" aria-label="현재 상태">
@@ -903,38 +919,45 @@ if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRec
 /* ================= 02 TABLE SCENE (step player) ================= */
 (function(){
 const stage=$('.stage'),cv=$('#table3d'),lblBox=$('#lbls');
-const CH=['셋팅','요소 소개','1세대','2세대'];
+const CH=['셋팅','요소 소개','예시 1세대','예시 2세대'];
 const STEPS=[
- {id:'table',ch:0,t:'함께 테이블을 차려 볼까요?',l:['<b>Space</b> · <b>Enter</b>를 누르거나 화면을 탭하면 다음 장면으로 넘어가요','<b>◀</b> 버튼으로 언제든 되돌아갈 수 있어요','셋팅 <span class="arr">→</span> 요소 소개 <span class="arr">→</span> 한 세대 순서로 보여 드릴게요'],cam:'over'},
- {id:'board',ch:0,t:'먼저 메인 보드를 펼쳐요',l:['테이블 가운데에 놓아 주세요','둘레의 숫자 띠는 <b class="mc">TR 트랙</b>이에요 (0–100)'],cam:'over'},
- {id:'white',ch:0,t:'흰 큐브 3개를 놓아요',l:['<b class="ox">산소</b> <span class="k">0%</span> · 화성 위 둥근 띠','<b class="ht">온도</b> <span class="k">−30°C</span> · 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 트랙의 1칸'],why:'셋 다 흰색이라 헷갈리기 쉬워요. 이제부터 이름표를 붙여 둘게요',cam:'board',lb:[['wOxy','산소 0%'],['wTmp','온도 −30°C'],['wGen','세대 1']]},
+ {id:'table',ch:0,t:'함께 테이블을 차려 볼까요?',l:['<b>Space</b> · <b>Enter</b>를 누르거나 화면을 탭하면 다음 장면으로 넘어가요','<b>◀</b> 버튼으로 언제든 되돌아갈 수 있어요','셋팅 <span class="arr">→</span> 요소 소개 <span class="arr">→</span> 예시 플레이 순서로 보여 드릴게요'],cam:'over'},
+ {id:'board',ch:0,t:'먼저 메인 보드를 펼쳐요',l:['보드 = 우리가 바꿔 나갈 화성이에요','테이블 가운데에 놓아 주세요'],cam:'over'},
+ {id:'white',ch:0,t:'흰 큐브 3개를 놓아요',l:['<b class="ox">산소</b> <span class="k">0%</span> · 화성 위 둥근 띠의 맨 왼쪽','<b class="ht">온도</b> <span class="k">−30°C</span> · 오른쪽 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 숫자 띠의 1칸 (왼쪽 아래)'],why:'셋 다 흰색이라 헷갈리기 쉬워요. 이제부터 이름표를 붙여 둘게요',cam:'whole',lb:[['wOxy','산소 0%'],['wTmp','온도 −30°C'],['wGen','세대 1']]},
  {id:'tiles',ch:0,t:'타일을 준비해요',l:['<b class="oc">바다 9개</b>는 보드 오른쪽 위 바다 자리에 쌓아요','<b class="pl">녹지</b>와 <b>도시</b>는 보드 옆에 두면 돼요'],cam:'tilesCam',lb:[['oc8','바다 9'],['gr4','녹지'],['ci4','도시']]},
- {id:'bank',ch:0,t:'은행과 내 색 큐브',l:['금속 큐브는 보드 위쪽에 모아 두는 <b>공용 은행</b>이에요','각자 자기 색 반투명 큐브를 한 줌씩 가져가요','상대는 파랑으로 보여 드릴게요'],cam:'overFar',lb:[['bank_cu','동'],['bank_ag','은'],['bank_au','금'],['pile_red','내 큐브']]},
- {id:'pboard',ch:0,t:'개인 보드와 TR 20',l:['개인 보드를 내 앞에 놓아요','생산 6칸 모두 <span class="k">1</span>에 내 큐브를 올려요','TR 트랙 <span class="k">20</span>에도 내 큐브를 놓아요 <span class="muted">(상대도)</span>'],cam:'over',lb:[['trMe','TR 20']]},
- {id:'corp',ch:0,t:'기업 · 자금 · 카드를 받아요',l:['초보 기업 카드는 개인 보드 왼쪽에 놓아요','시작 자금 <b class="mc">42 M€</b> = 금 4 + 동 2','프로젝트 카드 <span class="k">10</span>장은 손에 들어요 <span class="muted">(입문은 무료)</span>'],cam:'pb',lb:[['corp','초보 기업'],['slot_mc','42 M€']]},
- {id:'first',ch:0,t:'선 플레이어를 정하면 준비 끝!',l:['선 플레이어 마커를 나에게 줄게요','이제 부품들을 하나씩 살펴봐요'],cam:'over',lb:[['firstMk','선 플레이어']]},
- {id:'iBoard',ch:1,t:'메인 보드는 이렇게 읽어요',l:['둘레 = <b class="mc">TR</b> 트랙','화성 위 둥근 띠 = <b class="ox">산소</b> 0–14%','오른쪽 = <b class="ht">온도계</b> −30 → +8°C','왼쪽 = <b>표준 프로젝트</b>','아래 = <b>마일스톤</b> · <b>어워드</b>'],cam:'board',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','온도'],['rSP','표준 프로젝트'],['rMA','마일스톤 · 어워드']]},
- {id:'iPB',ch:1,t:'개인 보드는 이렇게 읽어요',l:['윗줄 <b>M€ · 철 · 티타늄</b>, 아랫줄 <b>식물 · 에너지 · 열</b>','위쪽 그림 칸 = 지금 <b>가진 양</b> (금속 큐브)','아래 숫자 칸 = 매 세대 <b>받는 양</b> (내 큐브)'],cam:'pbClose',rg:['rHold','rProd'],lb:[['slot_mc','가진 양'],['pm_mc','받는 양']]},
- {id:'iCubes',ch:1,t:'큐브는 크기가 곧 값이에요',l:['<b style="color:#d98a5a">동</b> <span class="k">1</span> &lt; <b style="color:#dcdde2">은</b> <span class="k">5</span> &lt; <b class="mc">금</b> <span class="k">10</span>','내 색 큐브는 동과 같은 크기예요 (반투명)','지금 42 M€ = 금 4 + 동 2'],why:'어느 칸에 놓였는지가 자원 종류예요. 금 큐브가 식물 칸에 있으면 식물 10개!',cam:'show',lb:[['dCu','동 1'],['dAg','은 5'],['dAu','금 10'],['dRed','내 큐브']]},
- {id:'iTiles',ch:1,t:'타일은 3종류예요',l:['<b class="oc">바다</b> = 주인이 없어요 · 파란 칸에만','<b class="pl">녹지</b> = 산소가 1 올라가요 · 위에 내 큐브','<b>도시</b> = 도시끼리는 붙일 수 없어요 · 위에 내 큐브'],cam:'show',lb:[['oc8','바다'],['gr4','녹지'],['ci4','도시']]},
- {id:'iCards',ch:1,t:'카드는 테두리 색을 보세요',l:['왼쪽 위 노란 칸 = <b class="mc">가격</b>','<b class="pl">초록</b> = 한 번 쓰고 끝','<b class="oc">파랑</b> = 계속 효과, 또는 세대마다 1번 행동','<b style="color:var(--rust)">빨강</b> = 이벤트, 쓰고 뒤집어 둬요'],cam:'show',lb:[['h0','초록'],['h1','파랑'],['h7','빨강']]},
- {id:'g1',ch:2,t:'1세대는 바로 행동부터!',l:['1세대에는 선 넘기기와 연구를 <b>건너뛰어요</b>','선 플레이어(나)부터 시작해요','차례마다 행동을 <span class="k">1~2</span>개 해요'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
- {id:'g1a',ch:2,t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 금 1개 내고 동 2개 거슬러 받아요','효과: <b class="en">에너지 생산 +1</b>, 에너지 <span class="k">2</span>개','낸 카드는 내 앞에 펼쳐 둬요'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
- {id:'g1b',ch:2,t:'내 행동 ② 바다 놓기',l:['표준 프로젝트 <b>대수층</b> <span class="k">18</span> M€','바다 자리에서 꺼내 파란 칸에 놓아요','바다 +1 <span class="arr">→</span> 내 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','바다 +1'],['trMe','TR 21']]},
- {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대가 소행성(<span class="k">14</span> M€)으로 온도를 올렸어요','온도 <span class="k">−30 → −28°C</span>','상대 TR <span class="k">20 → 21</span>'],why:'수치를 올린 사람이 TR을 가져가요',cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
- {id:'g1d',ch:2,t:'둘 다 패스했어요',l:['더 할 게 없으면 패스해요','패스하면 이번 세대엔 더 못 해요','모두 패스하면 생산 단계로 가요'],cam:'over',lb:[['trMe','나 패스'],['trOpp','상대 패스']]},
- {id:'p1',ch:2,t:'생산 ① 에너지는 열로 바뀌어요',l:['남은 <b class="en">에너지 2</b>개가 전부 <b class="ht">열</b> 칸으로 가요','에너지는 다음 세대로 남지 않아요'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
- {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['TR <span class="k">21</span> + M€ 생산 <span class="k">1</span> = <span class="k">22</span> M€','16 + 22 = <b class="mc">38 M€</b>가 됐어요'],cam:'pbClose',lb:[['slot_mc','+22']]},
- {id:'p3',ch:2,t:'생산 ③ 나머지 자원도 받아요',l:['칸마다 생산량만큼 은행에서 가져와요','철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
- {id:'g2',ch:3,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 옮겨요','선 플레이어는 상대에게 넘어가요','생산 큐브는 그대로 둬요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
- {id:'g2r',ch:3,t:'연구: 카드 4장을 봐요',l:['각자 덱에서 <span class="k">4</span>장을 뽑아요','가질 카드는 한 장에 <span class="k">3</span> M€ (2장 = 6)','나머지는 버려요'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
- {id:'g2a',ch:3,t:'행동: 녹지를 놓아요',l:['표준 프로젝트 <span class="k">23</span> M€로 녹지 타일','바다 옆이라 <span class="k">+2</span> M€ 보너스','산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위에 내 큐브를 올려요'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 것'],['wOxy','산소 1%'],['trMe','TR 22']]},
- {id:'end',ch:3,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">온도 +8°C</b> · <b class="oc">바다 9개</b>','셋 다 채워지면 그 세대 생산까지 하고 끝','점수 계산은 메인의 <b>SCORE</b>에서 도와 드려요'],cam:'over',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
+ {id:'bank',ch:0,t:'공용 은행을 차려요',l:['동 · 은 · 금 금속 큐브 = 화성에서 쓰는 돈 <b class="mc">M€</b>(메가크레딧)','보드 위쪽에 모아 두고 모두 함께 써요'],cam:'overFar',lb:[['bank_cu','1 M€'],['bank_ag','5 M€'],['bank_au','10 M€']]},
+ {id:'pick',ch:0,t:'각자 색을 골라요',l:['반투명 색 큐브는 다섯 가지예요','고른 색이 게임 내내 <b>"내 것"</b>이라는 표시가 돼요','TR · 생산량 · 내 땅을 모두 이 색으로 표시해요'],cam:'pick',dim:1,lb:[['pile_red','나'],['pile_blue','상대']]},
+ {id:'deal',ch:0,t:'내 색은 내 앞으로',l:['나 = <b style="color:#c22">빨강</b> · 상대 = <b style="color:#2458b8">파랑</b>','남은 색은 상자에 돌려놓아요'],cam:'over',lb:[['pile_red','내 큐브'],['pile_blue','상대 큐브']]},
+ {id:'tr20',ch:0,t:'TR 20에서 출발해요',l:['<b class="mc">TR</b>(테라포밍 등급) = 화성을 얼마나 바꿨는지 보여주는 기록','둘 다 둘레 숫자 띠의 <span class="k">20</span>칸에 큐브를 놓아요','TR은 마지막 <b>점수</b>이면서 매 세대 <b>지원금</b>이 돼요'],cam:'trCam',lb:[['trMe','TR 20 · 나'],['trOpp','상대']]},
+ {id:'pboard',ch:0,t:'개인 보드 = 내 회사',l:['개인 보드를 내 앞에 놓아요','6칸 아래 숫자 <span class="k">1</span> 자리에 내 큐브를 하나씩 놓아요','이 큐브 = 내 공장이 매 세대 만드는 양(생산량)'],cam:'pbClose',lb:[['pm_mc','생산 1'],['pm_pl','생산 1']]},
+ {id:'corp',ch:0,t:'기업 · 자금 · 카드를 받아요',l:['초보 기업 카드는 개인 보드 왼쪽에 놓아요','시작 자금 <b class="mc">42 M€</b> = 10 M€ × 4 + 1 M€ × 2','프로젝트 카드 <span class="k">10</span>장은 손에 들어요 <span class="muted">(입문은 무료)</span>'],cam:'pb',lb:[['corp','초보 기업'],['slot_mc','42 M€']]},
+ {id:'first',ch:0,t:'선 플레이어를 정하면 준비 끝!',l:['먼저 할 사람에게 선 플레이어 마커를 줘요','이제 부품들을 하나씩 살펴봐요'],cam:'over',lb:[['firstMk','선 플레이어']]},
+ {id:'iBoard',ch:1,t:'메인 보드 = 화성 관제판',l:['둘레 <b class="mc">TR</b> = 화성 개조 기여도 · 점수이자 지원금','위 둥근 띠 <b class="ox">산소</b> · 오른쪽 <b class="ht">온도계</b> = 지금 화성의 상태','왼쪽 <b>표준 프로젝트</b> = 카드 없이도 언제든 살 수 있는 기본 사업','아래 <b>마일스톤 · 어워드</b> = 업적과 상 (보너스 점수)'],cam:'whole',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','온도'],['rSP','표준 프로젝트'],['rMA','마일스톤 · 어워드']]},
+ {id:'iPB',ch:1,t:'개인 보드 = 내 회사의 창고와 공장',l:['그림 칸의 <b>기호</b>로 자원을 구분해요: M€ · 철 · 티타늄 · 식물 · 에너지 · 열','그림 칸 위 금속 큐브 = 창고에 <b>가진 양</b>','아래 숫자 칸의 내 큐브 = 공장이 매 세대 <b>만드는 양</b>'],cam:'pbClose',rg:['rHold','rProd'],lb:[['slot_mc','가진 양'],['pm_mc','만드는 양']]},
+ {id:'iCubes',ch:1,t:'금속 큐브는 크기가 곧 금액',l:['동 = <span class="k">1</span> M€ · 은 = <span class="k">5</span> M€ · 금 = <span class="k">10</span> M€','지금 내 돈 <b class="mc">42 M€</b> = 금 4개 + 동 2개','다른 자원 칸에서도 같아요: 은 큐브 = 그 자원 5개'],why:'M€(메가크레딧)은 화성 개척 기업들이 쓰는 돈이에요',cam:'show',lb:[['dCu','1 M€'],['dAg','5 M€'],['dAu','10 M€'],['dRed','내 큐브']]},
+ {id:'iTiles',ch:1,t:'타일은 3종류예요',l:['<b class="oc">바다</b> = 화성에 생긴 바다 · 파란 칸에만 놓아요 · 모두의 것이라 큐브를 얹지 않아요','<b class="pl">녹지</b> = 숲 · 놓으면 산소가 1 올라가요','<b>도시</b> = 사람이 사는 곳 · 다른 도시와 붙여 지을 수 없어요','녹지 · 도시를 놓은 사람은 <b>그 위에 자기 색 큐브를 얹어</b> "내 땅"이라고 표시해요'],cam:'show',lb:[['oc8','바다 · 모두의 것'],['gr4','녹지 · 내 땅'],['ci4','도시 · 내 땅']]},
+ {id:'iCards',ch:1,t:'카드 = 회사의 사업 계획',l:['왼쪽 위 노란 칸 = <b class="mc">비용</b> (M€)','<b class="pl">초록</b> = 한 번 하고 끝나는 사업','<b class="oc">파랑</b> = 계속 남는 시설 (늘 효과 · 세대마다 1번 행동)','<b style="color:var(--rust)">빨강</b> = 한 번의 사건 · 쓰고 뒤집어 둬요'],cam:'show',lb:[['h0','초록'],['h1','파랑'],['h7','빨강']]},
+ {id:'play',ch:2,t:'이제 예시 플레이를 해 볼게요',l:['여기서 하는 행동은 하나의 예시예요','실제 게임에서는 할 수 있는 행동 중 원하는 걸 골라요'],cam:'over',dim:1,
+  il:`<p class="il-eb">예시 플레이</p><h3 class="il-t">이제 한 판을 예시로<br>함께 해 볼게요!</h3><ul class="il-b"><li>앞으로 나오는 행동은 <b>하나의 예시</b>예요</li><li>실제 게임에서는 할 수 있는 행동 중 <b>원하는 걸 골라요</b></li><li>나 = <b class="il-red">빨강</b> · 상대 = <b class="il-blue">파랑</b></li></ul>`},
+ {id:'loop',ch:2,t:'게임은 세대의 반복이에요',l:['세대 1 → 세대 2 → … 수치 3개가 다 차면 끝','한 세대 = ① 선 넘기기 ② 연구 ③ 행동 ④ 생산'],cam:'over',dim:1,
+  il:`<p class="il-eb">게임의 흐름</p><h3 class="il-t">게임은 '세대'의 반복이에요</h3><div class="il-gens"><span>세대 1</span><i>→</i><span>세대 2</span><i>→</i><span>세대 3</span><i>→</i><span>…</span><i>→</i><span class="end">산소·온도·바다 완성 = 끝</span></div><p class="il-sub">한 세대는 늘 이 4단계예요</p><div class="il-phases"><span><b>①</b>선 넘기기</span><i>→</i><span><b>②</b>연구</span><i>→</i><span class="on"><b>③</b>행동</span><i>→</i><span><b>④</b>생산</span><i class="back">↺</i></div>`},
+ {id:'g1',ch:2,t:'1세대: 바로 행동부터',l:['① <b>선 넘기기</b> = 먼저 할 사람을 옆으로 바꾸기','② <b>연구</b> = 새 카드 4장 중 살 카드 고르기','1세대는 준비 때 이미 카드를 받아서 ①②를 <b>건너뛰고</b> ③ <b>행동</b>부터 해요','차례마다 행동 1~2개: 카드 내기 · 표준 프로젝트 · 식물/열 바꾸기 등'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
+ {id:'g1a',ch:2,t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 10 M€ 내고 1 M€ 2개 거슬러 받아요','효과: <b class="en">에너지 생산 +1</b> (발전소를 지었어요), 에너지 <span class="k">2</span>개','낸 카드는 내 앞에 펼쳐 둬요'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
+ {id:'g1b',ch:2,t:'내 행동 ② 바다 만들기',l:['표준 프로젝트 <b>대수층</b> <span class="k">18</span> M€ = 얼음을 녹여 바다를 만들어요','바다 자리에서 꺼내 파란 칸에 놓아요','화성을 바꿨으니 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','바다 +1'],['trMe','TR 21']]},
+ {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대가 소행성(<span class="k">14</span> M€)을 떨어뜨려 화성을 데웠어요','온도 <span class="k">−30 → −28°C</span>','바꾼 사람이 TR을 받아요 → 상대 TR <span class="k">20 → 21</span>'],cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
+ {id:'g1d',ch:2,t:'둘 다 패스했어요',l:['더 할 게 없으면 패스해요','패스하면 이번 세대엔 더 못 해요','모두 패스하면 ④ 생산 단계로 가요'],cam:'over',lb:[['trMe','나 패스'],['trOpp','상대 패스']]},
+ {id:'p1',ch:2,t:'생산 ① 남은 에너지는 열이 돼요',l:['쓰지 않은 <b class="en">에너지 2</b>개는 전부 <b class="ht">열</b>로 바뀌어요','전기는 저장이 안 돼서 열로 흩어진다고 생각하면 쉬워요'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
+ {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['지구 정부가 화성을 바꾼 만큼 지원금을 줘요 <span class="arr">→</span> <b>TR만큼</b> (21)','회사 사업에서 나는 수익 <span class="arr">→</span> <b>M€ 생산량만큼</b> (1)','21 + 1 = <span class="k">22</span> M€ <span class="arr">→</span> 16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22 M€']]},
+ {id:'p3',ch:2,t:'생산 ③ 공장이 일한 결과',l:['광산 · 농장 · 발전소가 한 세대 동안 일했어요','각 칸 아래 숫자(내 큐브)만큼 은행에서 가져와요','철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
+ {id:'g2',ch:3,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 옮겨요','선 플레이어는 상대에게 넘어가요','생산량 큐브는 그대로: 한 번 지은 공장은 계속 남아서 매 세대 일해요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
+ {id:'g2r',ch:3,t:'② 연구: 새 카드 4장',l:['각자 덱에서 <span class="k">4</span>장을 뽑아요','갖고 싶은 카드는 한 장에 <span class="k">3</span> M€ (2장 = 6 M€)','나머지는 버려요'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
+ {id:'g2a',ch:3,t:'③ 행동: 녹지 만들기',l:['표준 프로젝트 <span class="k">23</span> M€로 숲(녹지)을 만들어요','바다 옆이라 <span class="k">+2</span> M€ 보너스','숲이 산소를 만들어요: 산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위에 내 큐브를 얹어 "내 땅" 표시'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 땅'],['wOxy','산소 1%'],['trMe','TR 22']]},
+ {id:'end',ch:3,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">온도 +8°C</b> · <b class="oc">바다 9개</b>','셋 다 채워지면 그 세대 생산까지 하고 끝','점수 계산은 메인의 <b>SCORE</b>에서 도와 드려요'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
 ];
 const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
 const HUD=[];{let g='—',tr='—',t='—',o='—',m='—';
  STEPS.forEach(s=>{const id=s.id;
-  if(id==='white'){g=1;t=-30;o=0}if(id==='pboard')tr=20;if(id==='corp')m=42;if(id==='g1a')m=34;if(id==='g1b'){m=16;tr=21}
+  if(id==='white'){g=1;t=-30;o=0}if(id==='tr20')tr=20;if(id==='corp')m=42;if(id==='g1a')m=34;if(id==='g1b'){m=16;tr=21}
   if(id==='g1c')t=-28;if(id==='p2')m=38;if(id==='g2')g=2;if(id==='g2r')m=32;if(id==='g2a'){m=11;tr=22;o=1}
   HUD.push({g,tr,t:t==='—'?t:(t<0?'−'+Math.abs(t):t)+'°',o:o==='—'?o:o+'%',m})})}
 
@@ -943,7 +966,7 @@ $('#chaps').innerHTML=CH.map((c,ci)=>`<button data-ch="${ci}"><span class="nm">$
 const segs=[...document.querySelectorAll('#chaps i')];
 document.querySelectorAll('#chaps button').forEach(b=>b.onclick=()=>go(STEPS.findIndex(s=>s.ch===+b.dataset.ch)));
 let cur=0;
-function ui(i){const s=STEPS[i];
+function ui(i){const s=STEPS[i];{const il=$('#interlude');if(s.il){il.innerHTML=s.il;il.classList.add('on');stage.classList.add('il')}else{il.classList.remove('on');stage.classList.remove('il')}}
   $('#spanel').innerHTML=`<div class="chap-eb"><span class="eyebrow">${CH[s.ch]}</span><span class="cnt">${i+1} / ${N}</span></div><h3>${s.t}</h3><ul class="rules">${s.l.map(x=>`<li>${x}</li>`).join('')}</ul>${s.why?`<span class="why">${s.why}</span>`:''}`;
   segs.forEach(e=>{const k=+e.dataset.i;e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});
   document.querySelectorAll('#chaps button').forEach(b=>b.classList.toggle('on',+b.dataset.ch===s.ch));
@@ -962,7 +985,7 @@ function fit(){if(stage.classList.contains('full'))return;const r=stage.getBound
 
 let started=false;
 $('#sNext').onclick=()=>go(cur===N-1?0:cur+1);$('#sPrev').onclick=()=>go(cur-1);
-cv.addEventListener('click',()=>go(cur===N-1?0:cur+1));
+cv.addEventListener('click',()=>go(cur===N-1?0:cur+1));$('#interlude').addEventListener('click',()=>go(cur===N-1?0:cur+1));
 addEventListener('keydown',e=>{if(!inView()||e.altKey||e.metaKey||e.ctrlKey)return;
   const tag=(e.target.closest&&e.target.closest('input,textarea,select,button,a'));
   if((e.key===' '||e.key==='Enter')&&tag)return;
@@ -1057,12 +1080,24 @@ const slotO=i=>[-PW/2+(i%3)*(PW/3),PZ-PH/2+Math.floor(i/3)*(PH/2)];
 const sIdx=k=>SL.findIndex(s=>s[0]===k);
 const prodXZ=(k,v)=>{const [x0,z0]=slotO(sIdx(k));if(k==='mc'){if(v<0)return [x0+.55+(v+5)*.64,z0+2.18];return [x0+.55+(v%6)*.64,z0+2.8+Math.floor(v/6)*.62]}return [x0+.55+(v%6)*.64,z0+2.7+Math.floor(v/6)*.66]};
 const coinXZ=(k,j)=>{const [x0,z0]=slotO(sIdx(k));return k==='mc'?[x0+.75+(j%4)*.95,z0+.62+Math.floor(j/4)*.8]:[x0+.75+(j%4)*.95,z0+.75+Math.floor(j/4)*.95]};
+/* 자원 기호 (실물 개인 보드의 아이콘 역할) */
+function resIcon(g,k,cx,cy,sz){const h=sz/2;g.save();g.translate(cx,cy);
+ const col={mc:'#f2c341',st:'#9a6238',ti:'#26262c',pl:'#4f9e3a',en:'#7b52d6',ht:'#e2552e'}[k];
+ g.fillStyle=col;g.strokeStyle='rgba(0,0,0,.35)';g.lineWidth=3;g.beginPath();g.roundRect(-h,-h,sz,sz,sz*.18);g.fill();g.stroke();
+ g.fillStyle='#fff';g.strokeStyle='#fff';g.lineCap='round';g.lineJoin='round';
+ if(k==='mc'){g.fillStyle='#3a2408';g.font=`800 ${sz*.42}px sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillText('M€',0,2)}
+ if(k==='st'){g.fillRect(-h*.62,-h*.6,h*1.24,h*.26);g.fillRect(-h*.62,h*.34,h*1.24,h*.26);g.fillRect(-h*.13,-h*.4,h*.26,h*.8)}
+ if(k==='ti'){g.beginPath();for(let i=0;i<10;i++){const r=i%2?h*.3:h*.68,a=-Math.PI/2+i*Math.PI/5;g.lineTo(Math.cos(a)*r,Math.sin(a)*r)}g.closePath();g.fill()}
+ if(k==='pl'){g.beginPath();g.moveTo(-h*.55,h*.55);g.bezierCurveTo(-h*.6,-h*.4,h*.2,-h*.7,h*.6,-h*.6);g.bezierCurveTo(h*.6,h*.1,h*.1,h*.6,-h*.55,h*.55);g.fill();g.strokeStyle='#4f9e3a';g.lineWidth=sz*.05;g.beginPath();g.moveTo(-h*.5,h*.5);g.lineTo(h*.35,-h*.35);g.stroke()}
+ if(k==='en'){g.beginPath();g.moveTo(h*.15,-h*.75);g.lineTo(-h*.45,h*.1);g.lineTo(-h*.02,h*.1);g.lineTo(-h*.2,h*.75);g.lineTo(h*.45,-h*.12);g.lineTo(h*.02,-h*.12);g.closePath();g.fill()}
+ if(k==='ht'){g.lineWidth=sz*.09;for(const x of [-h*.42,0,h*.42]){g.beginPath();g.moveTo(x,h*.6);g.bezierCurveTo(x-h*.3,h*.25,x+h*.3,-h*.05,x,-h*.3);g.bezierCurveTo(x-h*.2,-h*.45,x+h*.1,-h*.6,x,-h*.7);g.stroke()}}
+ g.restore()}
 const [pcv,pg]=canvas(PW*PPX,PH*PPX);
 (function(){pg.fillStyle='#6b4a36';pg.fillRect(0,0,pcv.width,pcv.height);
  SL.forEach((s,i)=>{const [x0,z0]=slotO(i);const X=(x0+PW/2)*PPX,Y=(z0-(PZ-PH/2))*PPX,Wd=PW/3*PPX,Ht=PH/2*PPX;
   pg.fillStyle='#ddd5c8';pg.fillRect(X+8,Y+8,Wd-16,Ht-16);
   const PH_=s[0]==='mc'?168:210;const gr=pg.createLinearGradient(X,Y,X,Y+PH_);gr.addColorStop(0,s[2]);gr.addColorStop(1,'#bdb3a4');pg.fillStyle=gr;pg.fillRect(X+16,Y+16,Wd-32,PH_);
-  pg.fillStyle='rgba(0,0,0,.55)';pg.font='700 30px sans-serif';pg.textAlign='right';pg.fillText(s[1],X+Wd-28,Y+PH_+2);
+  resIcon(pg,s[0],X+Wd-74,Y+PH_-44,88);pg.fillStyle='rgba(0,0,0,.6)';pg.font='700 24px sans-serif';pg.textAlign='right';pg.fillText(s[1],X+Wd-128,Y+PH_+2);
   for(let v=(s[0]==='mc'?-5:0);v<=10;v++){const [cx,cz]=prodXZ(s[0],v);const px=(cx+PW/2)*PPX,py=(cz-(PZ-PH/2))*PPX;pg.fillStyle='#fff';pg.fillRect(px-29,py-29,58,58);pg.strokeStyle='#7a5a40';pg.lineWidth=3;pg.strokeRect(px-29,py-29,58,58);
    pg.fillStyle='#3a2a20';pg.font='700 26px sans-serif';pg.textAlign='center';pg.fillText(v,px,py+9)}});
  const [ex,ez]=slotO(4);pg.fillStyle='#e2552e';pg.font='700 64px sans-serif';pg.fillText('➜',(ex+PW/3+PW/2)*PPX-34,(ez+1.3-(PZ-PH/2))*PPX);})();
@@ -1076,6 +1111,9 @@ const MAT={cu:()=>new THREE.MeshStandardMaterial({color:0xd9784a,metalness:1,rou
  au:()=>new THREE.MeshStandardMaterial({color:0xf7b52c,metalness:1,roughness:.16,envMap:ENV,envMapIntensity:2.2}),
  red:()=>new THREE.MeshPhysicalMaterial({color:0xc40000,roughness:.03,transparent:true,opacity:.78,clearcoat:1,clearcoatRoughness:.02,reflectivity:1,metalness:0,envMap:ENV,envMapIntensity:1.7}),
  blue:()=>new THREE.MeshPhysicalMaterial({color:0x2a8cff,roughness:.04,transparent:true,opacity:.78,clearcoat:1,clearcoatRoughness:.02,reflectivity:1,envMap:ENV,envMapIntensity:1.7}),
+ green:()=>new THREE.MeshPhysicalMaterial({color:0x14a83a,roughness:.03,transparent:true,opacity:.78,clearcoat:1,reflectivity:1,envMap:ENV,envMapIntensity:1.7}),
+ yellow:()=>new THREE.MeshPhysicalMaterial({color:0xe8c400,roughness:.03,transparent:true,opacity:.78,clearcoat:1,reflectivity:1,envMap:ENV,envMapIntensity:1.7}),
+ black:()=>new THREE.MeshPhysicalMaterial({color:0x111111,roughness:.03,transparent:true,opacity:.85,clearcoat:1,reflectivity:1,envMap:ENV,envMapIntensity:1.7}),
  white:()=>new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.3,clearcoat:.6,envMap:ENV,envMapIntensity:.8})};
 /* 모서리가 둥근 큐브: 가장자리 하이라이트가 생겨 금속·유리 느낌이 살아남 */
 const RB={};function rbox(s){const k=s.toFixed(3);if(RB[k])return RB[k];const r=s*.13,h=s/2-r;const sh=new THREE.Shape();sh.moveTo(-h,-h);sh.lineTo(h,-h);sh.lineTo(h,h);sh.lineTo(-h,h);sh.lineTo(-h,-h);
@@ -1135,13 +1173,17 @@ mk('wOxy',box(SZ.mk,MAT.white()),{white:{p:onB(...oxPx(0),SZ.mk)},g2a:{p:onB(...
 mk('wTmp',box(SZ.mk,MAT.white()),{white:{p:onB(...tmPx(0),SZ.mk)},g1c:{p:onB(...tmPx(1),SZ.mk)}},{spawn:[0,6,BZ]});
 // TR 마커 (같은 칸이면 쌓기)
 const trPos=(v,stack)=>{const [x,z]=bw(...trPx(v));return [x,BT+SZ.mk/2+stack*SZ.mk,z]};
-const PILE_RED=[-11.5,0,23.4],PILE_BLUE=[-10,0,-22.6];
-mk('trMe',box(SZ.mk,MAT.red()),{pboard:{p:trPos(20,0)},g1b:{p:trPos(21,0)},g2a:{p:trPos(22,0)}},{spawn:PILE_RED});
-mk('trOpp',box(SZ.mk,MAT.blue()),{pboard:{p:trPos(20,1)},g1b:{p:trPos(20,0)},g1c:{p:trPos(21,1)},g2a:{p:trPos(21,0)}},{spawn:PILE_BLUE});
+const PILE_RED=[-10.6,0,12.6],PILE_BLUE=[-10,0,-22.6];
+mk('trMe',box(SZ.mk,MAT.red()),{tr20:{p:trPos(20,0)},g1b:{p:trPos(21,0)},g2a:{p:trPos(22,0)}},{spawn:PILE_RED});
+mk('trOpp',box(SZ.mk,MAT.blue()),{tr20:{p:trPos(20,1)},g1b:{p:trPos(20,0)},g1c:{p:trPos(21,1)},g2a:{p:trPos(21,0)}},{spawn:PILE_BLUE});
 // 플레이어 큐브 더미 (장식)
 function pile(id,matf,center,step,n){const g=new THREE.Group();for(let i=0;i<n;i++){const m=box(SZ.mk,matf());m.position.set((Math.sin(i*2.3)*1.1),SZ.mk/2+(i>9?SZ.mk:0),(Math.cos(i*1.7)*1.0));m.rotation.y=i;g.add(m)}
- mk(id,g,{[step]:{p:center}},{spawn:[center[0],-1,center[2]],hs:3})}
-pile('pile_red',MAT.red,PILE_RED,'bank',14);pile('pile_blue',MAT.blue,PILE_BLUE,'bank',14);
+ mk(id,g,typeof step==='string'?{[step]:{p:center}}:step,{spawn:typeof step==='string'?[center[0],-1,center[2]]:[center[0],9,center[2]],hs:3})}
+/* 색 고르기: 어두운 화면 가운데 5색 → 빨강·파랑만 각자 자리로, 나머지는 치움 */
+const DIMY=2.6,PK=x=>[x,DIMY,2.5];
+pile('pile_red',MAT.red,[-8,0,2.5],{pick:{p:PK(-8)},deal:{p:PILE_RED}},12);pile('pile_blue',MAT.blue,[8,0,2.5],{pick:{p:PK(8)},deal:{p:PILE_BLUE}},12);
+pile('pile_green',MAT.green,[-4,0,2.5],{pick:{p:PK(-4)},deal:{p:[-4,DIMY,-30],s:0}},12);pile('pile_yellow',MAT.yellow,[0,0,2.5],{pick:{p:PK(0)},deal:{p:[0,DIMY,-30],s:0}},12);pile('pile_black',MAT.black,[4,0,2.5],{pick:{p:PK(4)},deal:{p:[4,DIMY,-30],s:0}},12);
+const dimMesh=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshBasicMaterial({color:0x0c0807,transparent:true,opacity:0,depthWrite:false}));dimMesh.rotation.x=-Math.PI/2;dimMesh.position.y=DIMY-.05;dimMesh.renderOrder=5;scene.add(dimMesh);let dimTarget=0;
 // 은행 더미
 const BANK={cu:[-6,0,-23],ag:[0,0,-23],au:[6,0,-23]};
 ['cu','ag','au'].forEach(t=>{const g=new THREE.Group();const mat=MAT[t]();for(let i=0;i<34;i++){const m=box(SZ[t],mat);const a=i*2.4,r=Math.sqrt(i)*.48;m.position.set(Math.cos(a)*r,SZ[t]/2+(i>20?SZ[t]*.9:0),Math.sin(a)*r);m.rotation.y=i*.7;g.add(m)}
@@ -1156,7 +1198,7 @@ SL.forEach(([k])=>{const keys={pboard:{p:[...prodXZ(k,1)].length&&[prodXZ(k,1)[0
 SL.forEach(([k])=>{const [x0,z0]=slotO(sIdx(k));const a=new THREE.Object3D();mk('slot_'+k,a,{pboard:{p:[x0+PW/6,.4,z0+1.4]}},{hs:0,noHl:true})});
 // 선 플레이어 마커
 {const m=new THREE.Mesh(new THREE.CylinderGeometry(.8,.8,.16,32),new THREE.MeshStandardMaterial({color:0xb4402a,roughness:.5,metalness:.2}));m.castShadow=true;
- mk('firstMk',m,{first:P(-9,.08,13.2),g2:P(9.5,.08,-21)},{spawn:[-9,4,13.2]})}
+ mk('firstMk',m,{first:P(14,.08,12.4),g2:P(9.5,.08,-21)},{spawn:[14,4,12.4]})}
 // 타일: 바다 9 (보드 위 바다 자리), 녹지·도시 더미 5
 const ocSpot=bw(...OCEAN_SPOT);
 for(let h=0;h<9;h++){const keys={tiles:{p:[ocSpot[0],BT+TH/2+h*TH,ocSpot[1]]}};
@@ -1248,7 +1290,7 @@ const haloTex=(()=>{const [c,g]=canvas(128,128);const gr=g.createRadialGradient(
 const halos=[];for(let i=0;i<40;i++){const s=new THREE.Sprite(new THREE.SpriteMaterial({map:haloTex,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,opacity:0}));s.visible=false;scene.add(s);halos.push(s)}
 
 /* ---- 카메라 ---- */
-const CAM={over:{p:[0,50,46],l:[0,0,4]},overFar:{p:[0,52,34],l:[0,0,-4]},board:{p:[-2,28,12],l:[-1,0,-5]},boardR:{p:[10,27,6],l:[10,0,-6]},temp:{p:[4,21,16],l:[8,0,0]},tilesCam:{p:[6,36,18],l:[9,0,-4]},
+const CAM={whole:{p:[-1,40,25],l:[-1,0,1]},pick:{p:[0,20,20],l:[0,DIMY,2.5]},trCam:{p:[-6,17,-3],l:[-12.5,0,-12.5]},over:{p:[0,50,46],l:[0,0,4]},overFar:{p:[0,52,34],l:[0,0,-4]},board:{p:[-2,28,12],l:[-1,0,-5]},boardR:{p:[10,27,6],l:[10,0,-6]},temp:{p:[4,21,16],l:[8,0,0]},tilesCam:{p:[6,36,18],l:[9,0,-4]},
  pb:{p:[-2,17,35],l:[-2,0,18.5]},pbClose:{p:[0,13,28.5],l:[0,0,17.6]},show:{p:[0,10,28],l:[0,2.6,16.6]},hand:{p:[2,17,36],l:[2,0,21.5]}};
 
 /* ---- 진행 ---- */
@@ -1263,11 +1305,13 @@ function toStep(i){const from={},movers=[];
  const delay={};movers.forEach((id,k)=>delay[id]=reduce?0:Math.min(1.2,k*.07));
  anim={t0:performance.now(),from,delay,cam0:{p:[...camNow.p],l:[...camNow.l]},cam1:CAM[STEPS[i].cam]};
  hlSet=new Set(movers.filter(id=>{const o=OBJ[id];return !o.noHl&&o.st[i].s>0&&o.hs>0}));hlStart=performance.now();
+ dimTarget=STEPS[i].dim?.84:0;window.__dimFrom=dimMesh.material.opacity;window.__dimT0=performance.now();
  regOn=STEPS[i].rg||[];Object.entries(REG).forEach(([k,r])=>r.g.visible=regOn.includes(k));
  setLabels(i)}
 const lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 const DUR=reduce?.01:1.0;
 function tick(now){
+ {const k=Math.min(1,(now-(window.__dimT0||0))/(reduce?1:550));dimMesh.material.opacity=(window.__dimFrom||0)+(dimTarget-(window.__dimFrom||0))*k;dimMesh.visible=dimMesh.material.opacity>.01}
  if(anim){const el=(now-anim.t0)/1000;let done=true;
   Object.entries(OBJ).forEach(([id,o])=>{const f=anim.from[id],t=o.st[cur];const dl=anim.delay[id]||0;let k=(el-dl)/DUR;if(k<1)done=false;k=ease(Math.max(0,Math.min(1,k)));
    const m=o.mesh;const dist=Math.hypot(t.p[0]-f.p[0],t.p[2]-f.p[2]);
