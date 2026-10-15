@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016040558">
+<meta name="build" content="20261016042355">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -982,6 +982,36 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .sb .slot .sprod>span .pc{width:72%}
 .sb .msp-i .pc{width:26%}
 .swipe-hint{bottom:auto;top:10px}
+
+/* 개인 보드 칸 안: 큐브 크기 = 빨간 생산 큐브와 같은 기준 */
+.slot{container-type:inline-size}
+.sb .slot .shold .pc-cu,.sb .slot .shold .pc-red,.sb .slot .shold .pc-blue{width:12.5cqw!important}
+.sb .slot .shold .pc-ag{width:15.4cqw!important}
+.sb .slot .shold .pc-au{width:18.8cqw!important}
+.sb .slot .sprod>span .pc{width:12.5cqw!important}
+.sb .slot .shold{gap:2cqw}
+/* 바깥 큐브도 동 = 빨강 */
+.sb .pc-cu,.sb .pc-red,.sb .pc-blue,.sb .pc-white{width:9.6cqw!important}
+.sb .pc-ag{width:11.8cqw!important}.sb .pc-au{width:14.4cqw!important}
+.sb .numcard .cubes .pc-au{width:14.4cqw!important}.sb .numcard .cubes .pc-cu{width:9.6cqw!important}
+.sb .msp-i .pc{width:26%!important}
+.sb .trk span .wc{width:auto!important}
+/* 세부 목차 */
+.toc .sub{display:none;margin:2px 0 8px 36px;border-left:2px solid var(--line-2);padding-left:6px}
+.toc li.open .sub{display:grid}
+.toc .sub button{display:grid;grid-template-columns:1.6em 1fr;gap:4px;text-align:left;background:none;border:0;padding:5px 6px;border-radius:5px;font-size:.8rem;color:var(--dust-2);line-height:1.3}
+.toc .sub button span{font-family:var(--f-display);color:var(--dust-3);font-size:.72rem}
+.toc .sub button:hover{background:#fff;color:var(--dust)}
+.toc .sub button.on{background:#fff;color:var(--dust);font-weight:700;box-shadow:inset 2px 0 0 var(--rust)}
+@media (max-width:860px){
+  .toc #tocList{display:none}
+  .toc.open #tocList{display:block;overflow:auto;grid-auto-rows:auto}
+  .toc #tocList>li{display:block}
+  .toc #tocList>li>a{display:grid;padding:9px 12px;font-size:1rem}
+  .toc .sub{margin:0 0 6px 14px;grid-template-columns:1fr 1fr;column-gap:4px}
+  .toc .sub button{font-size:.8rem;padding:6px}
+  .toc .grp{display:block;padding:10px 12px 2px}
+}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1898,6 +1928,7 @@ document.querySelectorAll('section.story').forEach(sec=>{const id=sec.id,fr=F[id
   cap.innerHTML=`<p class="st-n">${k+1} / ${fr.length}</p><h3>${f.h}</h3><p>${f.p}</p>${f.scene?`<button class="scn" type="button" data-scene="${f.scene}">▶ 모션</button>`:''}`;
   cap.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>playScene(b.dataset.scene));
   [...dots.children].forEach((d,j)=>{d.classList.toggle('on',j===k);d.classList.toggle('done',j<k)});
+  document.querySelectorAll(`.toc .sub[data-sec="${id}"] button`).forEach((b,j)=>b.classList.toggle('on',j===k));
   const last=k===fr.length-1,nx=sec.dataset.next;
   sec.querySelector('.st-prev').disabled=k===0;
   sec.querySelector('.st-next').innerHTML=last?(nx?`다음 장 →`:'처음으로 ↺'):'다음 ▶'}
@@ -1912,6 +1943,14 @@ document.querySelectorAll('section.story').forEach(sec=>{const id=sec.id,fr=F[id
 addEventListener('keydown',e=>{const id=document.body.dataset.sec;const p=pages[id];if(!p||document.body.classList.contains('playing'))return;if(e.target.closest&&e.target.closest('input,textarea'))return;
  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){if(e.target.closest&&e.target.closest('button,a')&&e.key!=='ArrowRight')return;e.preventDefault();p.next()}else if(e.key==='ArrowLeft'){e.preventDefault();p.prev()}});
 window.__story=pages;
+/* 목차 → 세부 목차 (장을 고르면 그 장의 화면 제목이 펼쳐짐) */
+document.querySelectorAll('.toc a[data-sec]').forEach(a=>{const id=a.dataset.sec,fr=F[id];if(!fr)return;
+ const box=document.createElement('div');box.className='sub';box.dataset.sec=id;
+ box.innerHTML=fr.map((f,i)=>`<button type="button" data-i="${i}"><span>${i+1}</span>${f.h}</button>`).join('');
+ a.after(box);
+ box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;e.preventDefault();typeof menu==='function'&&menu(false);openSec(id);pages[id].show(+b.dataset.i)})});
+function syncSub(){const cur=document.body.dataset.sec;document.querySelectorAll('.toc li').forEach(li=>{const a=li.querySelector('a[data-sec]');li.classList.toggle('open',!!a&&a.dataset.sec===cur)})}
+new MutationObserver(syncSub).observe(document.body,{attributes:true,attributeFilter:['data-sec']});syncSub();
 })();
 
 /* ================= v5 룰북 인터랙션 ================= */
