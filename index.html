@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016042355">
+<meta name="build" content="20261016042612">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1012,6 +1012,19 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
   .toc .sub button{font-size:.8rem;padding:6px}
   .toc .grp{display:block;padding:10px 12px 2px}
 }
+
+.mal{display:grid;gap:2.4cqw}
+.mal-r{display:grid;grid-template-columns:24cqw 1fr auto;align-items:center;gap:2.6cqw;background:#fff;border:1px solid var(--line);border-radius:10px;padding:2.4cqw;animation:fadeUp .45s var(--d) both;box-shadow:0 3px 8px rgba(60,35,20,.08)}
+.mal-r b{background:#7a5a40;color:#fff;border-radius:6px;text-align:center;padding:2.2cqw 0;font-size:clamp(.7rem,3.4cqw,1rem)}
+.mal-r.aw b{background:#3f5f8a}
+.mal-r span{font-size:clamp(.78rem,3.8cqw,1.08rem);font-weight:700}
+.mal-r>i{font-style:normal;display:flex;align-items:center;gap:1cqw;font-size:clamp(.66rem,3cqw,.9rem);color:var(--dust-2);white-space:nowrap}
+.mal-r .pt{width:8cqw!important}
+.mal-r .rs{width:5cqw;height:5cqw}
+.mal-r .tg{font-size:clamp(.6rem,2.8cqw,.82rem)}
+.mal-tr,.mal-cd{font-style:normal;font-family:var(--f-display);font-weight:700;background:#f0b43a;color:#3a2408;border-radius:4px;padding:.6cqw 2cqw}
+.mal-cd{background:#e9e2d6}
+.rs-mc{background:#f2c341}.rs-mc::after{content:"M€";position:absolute;inset:0;display:grid;place-items:center;font-size:.5em;font-weight:800;color:#3a2408;font-style:normal}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1897,6 +1910,10 @@ cards:[
 ma:[
  {h:'보드 아래 = 업적과 상',p:'왼쪽 마일스톤(업적) 5개, 오른쪽 어워드(상) 5개. 둘 다 게임 전체에서 3개까지만 생겨요',
   s:o(4,8,92,msPanel(['테라포머','시장','정원사','건축가','기획자'],{}),'in')+pill(6,34,'마일스톤 = 경주','big',.8)+o(4,52,92,msPanel(['지주','은행가','과학자','열 전문가','광부'],{},'aw'),'in',.2)+pill(6,78,'어워드 = 내기','big',1)},
+ {h:'마일스톤 5개: 먼저 채우면 8 M€ → 5점',p:'조건을 먼저 채운 사람이 자기 차례에 8 M€를 내고 가져가요. 전체 3개까지',
+  s:o(4,3,92,`<div class="mal"><div class="mal-r" style="--d:0.15s"><b>테라포머</b><span>TR이 35 이상</span><i><em class="mal-tr">TR 35</em></i></div><div class="mal-r" style="--d:0.27s"><b>시장</b><span>내 도시 3개</span><i>${sp('ci').repeat(3)}</i></div><div class="mal-r" style="--d:0.39s"><b>정원사</b><span>내 녹지 3개</span><i>${sp('gr').repeat(3)}</i></div><div class="mal-r" style="--d:0.51s"><b>건축가</b><span>건물 태그 8개</span><i><span class="tg tg-bd">건물</span> ×8</i></div><div class="mal-r" style="--d:0.63s"><b>기획자</b><span>손에 카드 16장</span><i><em class="mal-cd">16장</em></i></div></div>`,'in')},
+ {h:'어워드 5개: 게임 끝에 가장 많은 사람이 5점',p:'누구든 8 → 14 → 20 M€를 내고 후원해요(3개까지). 판정은 게임 끝, 1등 5점 · 2등 2점(3인 이상)',
+  s:o(4,3,92,`<div class="mal"><div class="mal-r aw" style="--d:0.15s"><b>지주</b><span>화성 위 내 타일 수</span><i>${sp('gr')+sp('ci')}</i></div><div class="mal-r aw" style="--d:0.27s"><b>은행가</b><span>M€ 생산량</span><i><i class="rs rs-mc"></i> 생산</i></div><div class="mal-r aw" style="--d:0.39s"><b>과학자</b><span>과학 태그 수</span><i><span class="tg tg-sc">과학</span></i></div><div class="mal-r aw" style="--d:0.51s"><b>열 전문가</b><span>지금 가진 열</span><i><i class="rs rs-ht"></i> 보유</i></div><div class="mal-r aw" style="--d:0.63s"><b>광부</b><span>가진 철 + 티타늄</span><i><i class="rs rs-st"></i>+<i class="rs rs-ti"></i></i></div></div>`,'in')},
  {h:'마일스톤: 먼저 채우면 확정',p:'정원사 = 내 녹지 3개. 채운 차례에 8 M€를 내고 큐브를 올리면 5점 확정',
   s:o(4,4,28,sp('gr'),'drop',.1)+o(36,4,28,sp('gr'),'drop',.3)+o(68,4,28,sp('gr'),'drop glow',.5)+o(13,7,10,sp('red'),'drop',.2)+o(45,7,10,sp('red'),'drop',.4)+o(77,7,10,sp('red'),'drop',.6)+o(30,40,40,`<div class="msp-i one f"><b>정원사</b>${sp('red')}</div>`,'pop glow',1.2)+pill(26,88,'8 M€ → 5점 확정','ok big',1.5)},
  {h:'3개가 차면 끝',p:'남이 나중에 조건을 채워도 소용없어요. 보이면 바로 잡는 게 좋아요',
