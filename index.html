@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="build" content="20261015230351">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -545,6 +546,13 @@ body.playing .pager,body.playing footer{visibility:hidden}
 @media (orientation:portrait) and (max-width:760px){.scene .stage.full{width:100svh;width:100dvh;height:100vw}}
 @media (max-width:860px){body[data-sec="table"] .pager,body[data-sec="table"] footer{display:none}}
 </style>
+<script>
+/* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
+(function(){try{const cur=(document.querySelector('meta[name=build]')||{}).content;
+  fetch(location.pathname+'?build='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/<meta name="build" content="(\d+)">/);
+    if(m&&cur&&m[1]!==cur){const k='tm-reload-'+m[1];if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1');
+      const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.toString())}}).catch(()=>{})}catch(e){}})();
+</script>
 </head>
 <body>
 
