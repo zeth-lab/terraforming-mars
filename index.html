@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261021232324">
+<meta name="build" content="20261021233740">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1790,6 +1790,9 @@ function tileTex(kind){const [c,g]=canvas(256,256);
  else{g.fillStyle='#b98a62';g.fillRect(0,0,256,256);for(let i=0;i<60;i++){g.fillStyle=`rgba(${200+Math.random()*50},${190+Math.random()*50},${170+Math.random()*50},.85)`;g.fillRect(40+Math.random()*170,40+Math.random()*170,8+Math.random()*22,8+Math.random()*22)}}
  return SRGB(new THREE.CanvasTexture(c))}
 const TT={oc:tileTex('oc'),gr:tileTex('gr'),ci:tileTex('ci')};
+const TILE_ROT=Math.PI/2;
+/* 원기둥 윗면 UV는 그림 위쪽이 옆(+x)을 향함 → 그림을 돌려 위쪽이 게임판 위쪽(−z)을 향하게 */
+Object.values(TT).forEach(t=>{t.center.set(.5,.5);t.rotation=TILE_ROT});
 const RIM={oc:0x2a5e9e,gr:0x3c7a2c,ci:0x9a958e};
 function makeTile(kind){const g=new THREE.Group();
  const rim=new THREE.Mesh(new THREE.CylinderGeometry(TRAD*.97,TRAD*.97,TH,6),new THREE.MeshStandardMaterial({color:RIM[kind],roughness:.7}));rim.castShadow=rim.receiveShadow=true;g.add(rim);
@@ -2336,7 +2339,7 @@ let vis=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargi
 (function loop(now){if(vis)tick(now);requestAnimationFrame(loop)})(performance.now());
 tick(performance.now());
 {const rb=document.createElement('button');rb.type='button';rb.className='d-replay';rb.innerHTML='↻ 다시 보기';rb.onclick=e=>{e.stopPropagation();if(D.id){const id=D.id;if(id!=='__card')camNow.p=[...CAM[STEPS[cur].cam].p];camNow.l=[...CAM[STEPS[cur].cam].l];setLabels(cur);dStart(id,cur)}};stage.appendChild(rb)}
-window.__tmScene={go,N,cur:()=>cur,goId:id=>go(SI[id]),demo:()=>D,testCards:()=>loadCards().then(d=>{const bad=[];let mx=0;d.forEach(c=>{try{const B=dBuilder(cur);cardDemo(B,c);mx=Math.max(mx,B.T);dClear()}catch(e){bad.push(c.num+':'+e.message)}});return {n:d.length,bad,mx}}),cam:n=>{anim=null;camNow.p=[...CAM[n].p];camNow.l=[...CAM[n].l]}};
+window.__tmScene={go,N,cur:()=>cur,goId:id=>go(SI[id]),demo:()=>D,testCards:()=>loadCards().then(d=>{const bad=[];let mx=0;d.forEach(c=>{try{const B=dBuilder(cur);cardDemo(B,c);mx=Math.max(mx,B.T);dClear()}catch(e){bad.push(c.num+':'+e.message)}});return {n:d.length,bad,mx}}),cam:n=>{anim=null;const c=typeof n==='string'?CAM[n]:n;camNow.p=[...c.p];camNow.l=[...c.l]}};
 })();
 
 /* ================= 화면 위계: 메인 → 목차(서브) ================= */
