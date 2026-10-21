@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261021230116">
+<meta name="build" content="20261021232324">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1160,7 +1160,7 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .duo .tri-c{border-color:var(--c);background:color-mix(in srgb,var(--c) 22%,transparent)}
 .duo-h{display:block;background:var(--c);border-radius:8px;padding:6px 14px;margin-bottom:6px}
 .gl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,5cqw,56px);align-items:center;width:min(980px,100%)}
-.gl-mars img{width:min(40cqmin,300px);height:auto;border-radius:50%;box-shadow:0 0 60px rgba(255,140,80,.25);animation:terra 4.5s .3s ease-in-out both,spin 60s linear infinite}
+.gl-mars{position:relative;line-height:0}.gl-mars img{width:min(40cqmin,300px);height:auto;border-radius:50%;box-shadow:0 0 60px rgba(255,140,80,.25);animation:spin 80s linear infinite}.gl-mars img.t{position:absolute;left:0;top:0;box-shadow:0 0 60px rgba(120,190,255,.3);animation:terraIn 4.5s .5s ease-in-out both,spin 80s linear infinite}@keyframes terraIn{from{opacity:0;clip-path:circle(0% at 30% 35%)}to{opacity:1;clip-path:circle(75% at 50% 50%)}}
 @keyframes terra{0%{filter:sepia(1) saturate(2.6) hue-rotate(-28deg) brightness(.8) contrast(1.1)}100%{filter:none}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .gl-tx{display:grid;gap:10px;min-width:0}
@@ -1222,6 +1222,7 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .kc.cmode .kc-p .ln{margin:1px 0}.kc-p b.r,.stage .spanel b.r{color:#ff6b5a}
 .card-x{margin-top:8px;border:1px solid var(--ov-line);background:#fff;border-radius:8px;padding:7px 10px;font-size:.82rem;font-weight:700;color:var(--ov-fg)}
 .stage.cardm .chaps{opacity:.4}
+.kc-card .kri{width:13cqw;height:13cqw;display:block}.kc-card .kri2{width:7.6cqw;height:7.6cqw}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1514,11 +1515,11 @@ const KI={leaf:'<svg viewBox="0 0 20 20"><path d="M4 16C3 8 9 3 17 3c0 8-5 14-13
  bld:'<svg viewBox="0 0 20 20"><path d="M3 17V9l4-3v3l4-3v3l4-3v11z" fill="#fff"/></svg>'};
 const KCARD=`<div class="kc"><div class="kc-cw"><div class="kc-card">
  <span class="kc-cost" data-k="cost">13</span>
- <span class="kc-req" data-k="req"><i class="kc-o2">O<sub>2</sub></i>4%</span>
- <span class="kc-tags" data-k="tags"><i class="kt bd">${KI.bld}</i><i class="kt pl">${KI.leaf}</i></span>
+ <span class="kc-req" data-k="req"><img class="kri2" src="img/rb/oxy.svg" alt="">4%</span>
+ <span class="kc-tags" data-k="tags"><img class="cc-tag" src="img/rb/t_bd.svg" alt=""><img class="cc-tag" src="img/rb/t_pl.svg" alt=""></span>
  <span class="kc-name" data-k="none">(예시) 화성 온실</span>
  <span class="kc-art" data-k="none"></span>
- <span class="kc-eff"><span class="kc-prod" data-k="prod"><i class="kr pl">${KI.leaf}</i><b>+1</b></span><span class="kc-red" data-k="red"><i class="kr pl">${KI.leaf}</i><b>−2</b></span></span>
+ <span class="kc-eff"><span class="kc-prod" data-k="prod"><img class="kri" src="img/rb/plant.svg" alt=""><b>+1</b></span><span class="kc-red" data-k="red"><img class="kri" src="img/rb/redb.svg" alt=""><b>−2</b></span></span>
  <span class="kc-text" data-k="text">조건: 산소 농도 4% 이상. 식물 생산력 1 증가. 아무 1명의 식물 자원 2개 제거.</span>
  <span class="kc-vp" data-k="vp">1</span>
 </div></div><div class="kc-txt"></div></div>`;
@@ -1576,11 +1577,11 @@ const BRIEF={
  aList:{ic:['vp'],t:'기업상 5개',l:['개척: 타일 수 · 금융: M€ 생산력 · 과학: 과학 태그','열: 가진 열 · 광업: 강철 + 티타늄']},
  mJudge:{ic:['vp'],t:'기업상 판정',l:['게임 끝에 조건으로 순위를 매겨요','1등 5점 · 2등 2점 (3인 이상)']},
  eLast:{ic:['plant','greenery'],t:'마지막 녹지 기회',l:['마지막 생산 뒤','식물 8개 → 녹지를 원하는 만큼']}};
-const IMG=n=>`<img src="img/rb/${n}.png" alt="">`;
+const IMG=n=>`<img src="img/rb/${n}.svg" alt="">`;
 const GOTXT='<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p>';
 function briefHTML(b,s){const eb=CH[s.ch];
  if(b.g){const score=b.g==='score';const rows=[['tr','TR (테라포밍 등급)','1 = 1점'],['greenery','내 녹지','1장 = 1점'],['city','내 도시 옆 녹지','1장 = 1점'],['vp','업적','5점씩'],['vp','기업상','1등 5 · 2등 2'],['card','카드의 승점','화성 그림 숫자']];
-  return `<div class="gl"><div class="gl-mars"><img src="img/rb/mars.webp" alt=""></div><div class="gl-tx"><p class="il-eb">${score?'점수 세기':'이기는 법'}</p><h3 class="il-t">${score?'이제 점수를 모두 더해요':'게임이 끝날 때<br>승점이 가장 많은 사람이 이겨요'}</h3><ul class="gl-sum">${rows.map((r,k)=>`<li style="--d:${(.6+k*.35).toFixed(2)}s">${IMG(r[0])}<b>${r[1]}</b><span>${r[2]}</span></li>`).join('')}<li class="tot" style="--d:${(.6+rows.length*.35).toFixed(2)}s"><b>= 총 승점</b><span>${score?'동점이면 M€ 많은 사람':'끝까지 기억해 두세요'}</span></li></ul>${GOTXT}</div></div>`}
+  return `<div class="gl"><div class="gl-mars"><img src="img/rb/mars_red.webp" alt=""><img class="t" src="img/rb/mars_terra.webp" alt=""></div><div class="gl-tx"><p class="il-eb">${score?'점수 세기':'이기는 법'}</p><h3 class="il-t">${score?'이제 점수를 모두 더해요':'게임이 끝날 때<br>승점이 가장 많은 사람이 이겨요'}</h3><ul class="gl-sum">${rows.map((r,k)=>`<li style="--d:${(.6+k*.35).toFixed(2)}s">${IMG(r[0])}<b>${r[1]}</b><span>${r[2]}</span></li>`).join('')}<li class="tot" style="--d:${(.6+rows.length*.35).toFixed(2)}s"><b>= 총 승점</b><span>${score?'동점이면 M€ 많은 사람':'끝까지 기억해 두세요'}</span></li></ul>${GOTXT}</div></div>`}
  if(b.tri)return `<div class="bf bf-wide"><p class="il-eb">${eb}</p><h3 class="il-t">${b.t}</h3><div class="tri">${b.tri.map((c,k)=>`<div class="tri-c" style="--d:${(.2+k*.3).toFixed(1)}s">${IMG(c[0])}<b>${c[1]}</b>${c[2].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</div>${b.ex?`<p class="kc-ex">${b.ex}</p>`:''}${GOTXT}</div>`;
  if(b.duo)return `<div class="bf bf-wide"><p class="il-eb">${eb}</p><h3 class="il-t">${b.t}</h3><div class="tri duo">${b.duo.map((c,k)=>`<div class="tri-c" style="--d:${(.2+k*.4).toFixed(1)}s;--c:${c[1]}"><b class="duo-h">${c[0]}</b>${c[2].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</div>${GOTXT}</div>`;
  return `<div class="bf"><div class="bf-ic">${b.ic.map(IMG).join('')}</div><div class="bf-tx"><p class="il-eb">${eb}</p><h3 class="il-t">${b.t}</h3><p class="kc-p">${b.l.map(x=>`<span class="ln">${x}</span>`).join('')}</p>${b.ex?`<p class="kc-ex">${b.ex}</p>`:''}${GOTXT}</div></div>`}
@@ -1681,7 +1682,7 @@ const NOCTIS=Object.keys(HEX).find(k=>HEX[k].t==='N');
 /* 룰북 기호 그림 */
 const RBN=['vp','tr','temp','oxy','mc','steel','ti','plant','energy','heat','special','prodbox','card','greenery','city','sp_tile','redb','ocean','t_bd','t_sp','t_en','t_sc','t_jo','t_ea','t_pl','t_mi','t_an','t_ci','t_ev'];
 const RBI={};let rbLeft=RBN.length;const rbWait=[];
-RBN.forEach(n=>{const im=new Image();im.onload=im.onerror=()=>{if(--rbLeft===0)rbWait.splice(0).forEach(f=>f())};im.src='img/rb/'+n+'.png';RBI[n]=im});
+RBN.forEach(n=>{const im=new Image();im.onload=im.onerror=()=>{if(--rbLeft===0)rbWait.splice(0).forEach(f=>f())};im.src='img/rb/'+n+'.svg';RBI[n]=im});
 const rbReady=f=>rbLeft===0?f():rbWait.push(f);
 /* ---- 메인 보드 텍스처 ---- */
 const [bc,b]=canvas(BP,BP);
@@ -2194,7 +2195,7 @@ function vpBadge(v){if(!v)return'';if(v.type==='fixed')return v.value;if(v.per)r
 function cardLines(c){const L=[];if(c.cost!=null)L.push(`비용 <b>${c.cost} M€</b>${c.tags.includes('building')?' · 강철 가능':''}${c.tags.includes('space')?' · 티타늄 가능':''}`);
  const r=reqOf(c);if(r)L.push(`조건: <b>${reqTxt(r)}</b>`);c.effects.forEach(a=>{const t=atomTxt(a);if(t&&a.atom!=='text')L.push(t)});const v=vpTxt(c.vp);if(v)L.push(v);
  if(c.color==='red')L.push('쓰고 나면 뒤집어 사건 더미에');if(c.color==='blue')L.push('계속 남아요 (파란 카드)');return L}
-function effIcons(c){const I=n=>`<img src="img/rb/${n}.png" alt="">`;const R={mc:'mc',st:'steel',ti:'ti',pl:'plant',en:'energy',ht:'heat'};
+function effIcons(c){const I=n=>`<img src="img/rb/${n}.svg" alt="">`;const R={mc:'mc',st:'steel',ti:'ti',pl:'plant',en:'energy',ht:'heat'};
  const one=a=>{const k=RESK[a.res];switch(a.atom){case 'prod':return `<span class="ce pbx${a.any?' rb':''}">${I(R[k]||'mc')}<b>${a.n>0?'+':'−'}${Math.abs(a.n)}</b></span>`;
   case 'gain':return `<span class="ce${a.any||a.n<0?' rb':''}">${I(R[k]||'mc')}<b>${a.n>0?'+':'−'}${Math.abs(a.n)}</b></span>`;
   case 'tile':return `<span class="ce">${I(a.tile==='ocean'?'ocean':a.tile==='greenery'?'greenery':a.tile==='city'?'city':'sp_tile')}</span>`;
@@ -2206,8 +2207,8 @@ function effIcons(c){const I=n=>`<img src="img/rb/${n}.png" alt="">`;const R={mc
  return c.effects.map(one).join('')}
 function cardHTML(c){const col=CCOL[c.color]||'#666',r=reqOf(c);
  const card=`<div class="kc-cw"><div class="kc-card cc" style="border-color:${col}">${c.cost!=null?`<span class="kc-cost">${c.cost}</span>`:''}
-  ${r?`<span class="kc-req cc-req${r.max?' mx':''}">${r.max?'max ':''}${r.type==='tag'?`<img src="img/rb/t_${TAGK[r.tag]||'sc'}.png" alt="">`:r.type==='oxygen'?`<img src="img/rb/oxy.png" alt="">${r.value}%`:r.type==='temperature'?`<img src="img/rb/temp.png" alt="">${r.value}°C`:r.type==='oceans'?`<img src="img/rb/ocean.png" alt="">${r.value}`:'조건'}</span>`:''}
-  <span class="kc-tags">${c.tags.map(t=>TAGK[t]?`<img class="cc-tag" src="img/rb/t_${TAGK[t]}.png" alt="">`:'').join('')}</span>
+  ${r?`<span class="kc-req cc-req${r.max?' mx':''}">${r.max?'max ':''}${r.type==='tag'?`<img src="img/rb/t_${TAGK[r.tag]||'sc'}.svg" alt="">`:r.type==='oxygen'?`<img src="img/rb/oxy.svg" alt="">${r.value}%`:r.type==='temperature'?`<img src="img/rb/temp.svg" alt="">${r.value}°C`:r.type==='oceans'?`<img src="img/rb/ocean.svg" alt="">${r.value}`:'조건'}</span>`:''}
+  <span class="kc-tags">${c.tags.map(t=>TAGK[t]?`<img class="cc-tag" src="img/rb/t_${TAGK[t]}.svg" alt="">`:'').join('')}</span>
   <span class="kc-name" style="background:${col}">${c.ko}</span><span class="kc-art cc-num">${c.corporateEra?'<i>대기업시대</i>':''}<b>${c.num}</b></span>
   <span class="kc-eff cc-eff">${effIcons(c)}</span><span class="kc-text">${c.ko_text||''}</span>${c.vp?`<span class="kc-vp">${vpBadge(c.vp)}</span>`:''}</div></div>`;
  return `<div class="kc cmode" data-f="all">${card}<div class="kc-txt"><p class="il-eb">카드 해독 · ${c.num}</p><h3 class="il-t">${c.ko}</h3><p class="kc-p">${cardLines(c).map(x=>`<span class="ln">${x}</span>`).join('')}</p>${c.needs_manual?'<p class="kc-ex">이 카드는 특별해요. 아래 카드 글을 꼭 읽어요</p>':''}<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p></div></div>`}
@@ -2261,7 +2262,7 @@ DEMOS.__card=B=>cardDemo(B,cardMode);
   if(/^\d+$/.test(v)){const p3=v.padStart(3,'0');res=CARDS.filter(c=>c.num===p3).concat(CARDS.filter(c=>c.num!==p3&&c.num.includes(v)))}
   else{const rank=c=>{const k=norm(c.ko),h=cho(c.ko);return k===v||h===v?0:k.startsWith(v)||h.startsWith(v)?1:k.includes(v)?2:h.includes(v)?3:4};res=CARDS.filter(c=>norm(c.search).includes(v)||norm(c.ko).includes(v)||cho(c.ko).includes(v)).sort((a,b)=>rank(a)-rank(b))}
   hint.textContent=res.length?`${res.length}장 찾음`:'찾는 카드가 없어요 · 다른 글자로 해 보세요';
-  list.innerHTML=res.slice(0,60).map(c=>`<li><button type="button" data-n="${c.num}"><span class="cs-dot" style="background:${CCOL[c.color]||'#888'}"></span><span class="cs-num">${c.num}</span><span class="cs-nm">${c.ko}${c.corporateEra?' <i>대기업</i>':''}</span><span class="cs-tags">${c.tags.map(t=>TAGK[t]?`<img src="img/rb/t_${TAGK[t]}.png" alt="">`:'').join('')}</span>${c.cost!=null?`<span class="cs-cost">${c.cost}</span>`:''}</button></li>`).join('')}
+  list.innerHTML=res.slice(0,60).map(c=>`<li><button type="button" data-n="${c.num}"><span class="cs-dot" style="background:${CCOL[c.color]||'#888'}"></span><span class="cs-num">${c.num}</span><span class="cs-nm">${c.ko}${c.corporateEra?' <i>대기업</i>':''}</span><span class="cs-tags">${c.tags.map(t=>TAGK[t]?`<img src="img/rb/t_${TAGK[t]}.svg" alt="">`:'').join('')}</span>${c.cost!=null?`<span class="cs-cost">${c.cost}</span>`:''}</button></li>`).join('')}
  const open=v=>{box.hidden=!v;btn.classList.toggle('on',v);if(v){loadCards().then(render).catch(()=>{hint.textContent='카드 목록을 불러오지 못했어요 (인터넷 연결 확인)'});render();setTimeout(()=>q.focus(),60)}};
  btn.onclick=e=>{e.stopPropagation();if(window.__slist)__slist(false);open(box.hidden)};
  q.addEventListener('input',render);q.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){const b=list.querySelector('button');b&&b.click()}if(e.key==='Escape')open(false)});
