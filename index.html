@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261022011205">
+<meta name="build" content="20261022013020">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -635,7 +635,7 @@ body.playing .pager,body.playing footer{visibility:hidden}
 .mc-g{position:absolute;top:calc(var(--i)*14px);border-color:var(--plant);background:linear-gradient(#76c25b 0 16px,#fbfaf7 16px)}
 .mc-g i,.mc-b i{position:absolute;top:2px;width:10px;height:10px;border-radius:50%;background:#b07a4f;border:1px solid #fff}
 .mc-g i:nth-child(1),.mc-b i:nth-child(1){right:4px}.mc-g i:nth-child(2){right:16px;background:#2b2b33}
-.mc-g.last::after{content:"가격 · 태그 줄만 보이게";position:absolute;left:84px;top:-46px;white-space:nowrap;font-size:.66rem;color:var(--mc)}
+.mc-g.last::after{content:"가격, 태그 줄만 보이게";position:absolute;left:84px;top:-46px;white-space:nowrap;font-size:.66rem;color:var(--mc)}
 .mc-b{border-color:var(--ocean);background:linear-gradient(#3f7fdc 0 16px,#fbfaf7 16px)}
 .mc-b .txt{position:absolute;left:8px;right:8px;top:44px;height:28px;background:repeating-linear-gradient(#c9c4bc 0 3px,transparent 3px 7px)}
 .mc-b .cube{position:absolute;left:50%;top:22px;width:16px;height:16px;margin-left:-8px;background:rgba(220,30,30,.8);border-radius:3px;box-shadow:0 0 10px rgba(255,80,60,.8)}
@@ -1263,7 +1263,7 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .stage.land .sidecol{left:auto;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-52%)}
 .stage.demo-run .sidecol{opacity:0;transform:translate(24px,-50%);pointer-events:none}
 .stage.demo-fin .spanel{box-shadow:0 0 0 2px var(--rust),0 10px 26px rgba(60,35,20,.25)}
-.stage.demo-fin .spanel .chap-eb .eyebrow::after{content:" · 정리";color:var(--rust)}
+.stage.demo-fin .spanel .chap-eb .eyebrow::after{content:"정리";margin-left:.5em;padding:.1em .5em;border-radius:99px;background:var(--rust);color:#fff;font-size:.85em}
 @media (max-width:760px){.stage:not(.land) .sidecol{top:auto;bottom:70px;transform:none}}
 /* 왼쪽 위 버튼 묶음 */
 .s-top{position:absolute;z-index:6;top:10px;left:max(12px,env(safe-area-inset-left,0px));display:flex;gap:7px;align-items:center}
@@ -1372,6 +1372,22 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
   .cta{gap:8px}.cta button{padding:10px 12px}
 }
 .gt-ph ul button{display:block}.gt-ph ul button b{display:inline}
+/* ================= v11: 큰 제목 · 가운데 점 대신 쓰는 구분법 ================= */
+/* ① 이름 + 값 → 값을 작은 칩으로 */
+.pr{display:inline-block;font-style:normal;font-weight:800;font-size:.78em;line-height:1.25;padding:.12em .55em;margin:0 .15em 0 .45em;border-radius:99px;background:color-mix(in srgb,var(--mc) 22%,transparent);color:inherit;border:1px solid color-mix(in srgb,var(--mc) 55%,transparent);vertical-align:.12em;white-space:nowrap}
+.pr+.pr{margin-left:.25em}
+.md-r .pr,.kc-p .pr,.rules .pr{font-size:.82em}
+/* ② 3D 말풍선: 주 문장 + 아래 작은 보조 줄 */
+.lbl3d.dl.ic{display:block;text-align:center}
+.lbl3d small{display:block;font-size:.8em;font-weight:600;opacity:.82;margin-top:1px;line-height:1.25}
+/* ③ 눈썹 글 옆 번호 → 숫자 칩 */
+.eb-n{display:inline-block;margin-left:.6em;padding:.05em .55em;border-radius:99px;background:color-mix(in srgb,var(--rust) 22%,transparent);letter-spacing:.05em;font-stretch:100%}
+/* 제목 키우기 */
+.bf-tx .il-t,.bf-wide .il-t,.tn-tx .il-t{font-size:clamp(1.4rem,5.4cqw,2.6rem);margin:.15em 0 .45em;line-height:1.25}
+.kc-txt .il-t{font-size:clamp(1.35rem,5cqw,2.5rem)}
+.stage .spanel h3{font-size:clamp(1.15rem,2.4cqw,1.5rem);line-height:1.3}
+.stage.land .spanel h3{font-size:1.12rem}
+.stage.land .bf-tx .il-t,.stage.land .bf-wide .il-t,.stage.land .tn-tx .il-t{font-size:1.45rem}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1385,17 +1401,17 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
 
 
 <div class="view home" id="home">
-  <div class="home-top"><span>Board game guide · 2–5인</span><button type="button" id="btnRules2">장면 목록 →</button></div>
+  <div class="home-top"><span>Board game guide <i class="pr">2–5인</i></span><button type="button" id="btnRules2">장면 목록 →</button></div>
   <div class="stage-title">
     <p class="t-terra">TERRAFORMING</p>
     <h1 class="t-mars" aria-label="Terraforming Mars">MARS</h1>
-    <div class="globe-box" id="globeBox" role="button" tabindex="0" aria-label="화성을 눌러 플레이 모션 시작. 휠로 테라포밍 진행"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-tip">휠·드래그로 화성을 바꿔 보세요 · 누르면 시작</span></div>
+    <div class="globe-box" id="globeBox" role="button" tabindex="0" aria-label="화성을 눌러 플레이 모션 시작. 휠로 테라포밍 진행"><canvas id="globe" aria-hidden="true"></canvas><span class="globe-tip">휠이나 드래그로 화성을 바꿔 보고, 누르면 시작해요</span></div>
     <p class="t-ko">테라포밍 마스</p>
   </div>
   <div class="home-bottom">
     <div class="tagline">
       <p class="tg-h">화성을 개조하라!</p>
-      <p class="tg-s"><b class="ht">기온</b> · <b class="ox">산소</b> · <b class="oc">해양</b>을 완성하고<br>가장 많은 승점을 모은 <b class="mc">최고의 테라포밍 기업</b>이 승리해요</p>
+      <p class="tg-s"><b class="ht">기온</b>, <b class="ox">산소</b>, <b class="oc">해양</b>을 완성하고<br>가장 많은 승점을 모은 <b class="mc">최고의 테라포밍 기업</b>이 승리해요</p>
     </div>
     <div class="cta">
       <button type="button" class="go" id="btnStart">START<small>셋팅부터 차례로 배우기</small></button>
@@ -1414,10 +1430,10 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
 </div>
 
 <div class="view rulesview" id="rules" hidden>
-<aside class="toc" aria-label="목차"><button class="brand" type="button" id="btnHome" aria-label="메인으로"><span class="b1">TERRAFORMING</span><span class="b2">MARS</span><span class="b3">플레이 가이드 · 메인으로</span></button><span class="cur-sec" id="curSec" aria-live="polite"></span><button class="menu-btn" id="btnMenu" type="button" aria-expanded="false" aria-controls="tocList"><i aria-hidden="true"><b></b><b></b><b></b></i><span id="menuLbl">목차</span></button><ol id="tocList"><li class="grp">보면서 배우기</li><li><a href="#table" data-sec="table" class="play"><span class="n">01</span>플레이 모션</a></li><li class="grp">규칙</li><li><a href="#win" data-sec="win" class=""><span class="n">02</span>이기는 법 · 승점</a></li><li><a href="#gen" data-sec="gen" class=""><span class="n">03</span>한 세대</a></li><li><a href="#turn" data-sec="turn" class=""><span class="n">04</span>내 차례 · 행동 8가지</a></li><li><a href="#tiles" data-sec="tiles" class=""><span class="n">05</span>타일 놓기</a></li><li><a href="#params" data-sec="params" class=""><span class="n">06</span>기온 · 산소 · TR</a></li><li><a href="#cards" data-sec="cards" class=""><span class="n">07</span>카드 읽고 놓기</a></li><li><a href="#ma" data-sec="ma" class=""><span class="n">08</span>업적 · 기업상</a></li><li class="grp">게임 중</li><li><a href="#ref" data-sec="ref" class=""><span class="n">09</span>한 장 요약</a></li></ol></aside>
+<aside class="toc" aria-label="목차"><button class="brand" type="button" id="btnHome" aria-label="메인으로"><span class="b1">TERRAFORMING</span><span class="b2">MARS</span><span class="b3">플레이 가이드, 메인으로</span></button><span class="cur-sec" id="curSec" aria-live="polite"></span><button class="menu-btn" id="btnMenu" type="button" aria-expanded="false" aria-controls="tocList"><i aria-hidden="true"><b></b><b></b><b></b></i><span id="menuLbl">목차</span></button><ol id="tocList"><li class="grp">보면서 배우기</li><li><a href="#table" data-sec="table" class="play"><span class="n">01</span>플레이 모션</a></li><li class="grp">규칙</li><li><a href="#win" data-sec="win" class=""><span class="n">02</span>이기는 법, 승점</a></li><li><a href="#gen" data-sec="gen" class=""><span class="n">03</span>한 세대</a></li><li><a href="#turn" data-sec="turn" class=""><span class="n">04</span>내 차례, 행동 8가지</a></li><li><a href="#tiles" data-sec="tiles" class=""><span class="n">05</span>타일 놓기</a></li><li><a href="#params" data-sec="params" class=""><span class="n">06</span>기온, 산소, TR</a></li><li><a href="#cards" data-sec="cards" class=""><span class="n">07</span>카드 읽고 놓기</a></li><li><a href="#ma" data-sec="ma" class=""><span class="n">08</span>업적과 기업상</a></li><li class="grp">게임 중</li><li><a href="#ref" data-sec="ref" class=""><span class="n">09</span>한 장 요약</a></li></ol></aside>
 <main class="content"><div class="inner">
 <section class="scene" id="table" aria-label="테이블 위에서: 셋팅부터 한 세대까지 장면별로 보기">
-  <div class="scene-head"><div><p class="eyebrow">01 · 플레이 모션</p><h2>셋팅부터 한 세대까지</h2></div><button class="btn" id="btnFull" type="button">⤢ 전체화면</button></div>
+  <div class="scene-head"><div><p class="eyebrow">01, 플레이 모션</p><h2>셋팅부터 한 세대까지</h2></div><button class="btn" id="btnFull" type="button">⤢ 전체화면</button></div>
   <div class="stage" tabindex="0" aria-roledescription="장면 플레이어" aria-label="테이블 위에서. Space 또는 Enter로 다음 장면">
     <canvas id="table3d" aria-hidden="true"></canvas>
     <button class="s-close" id="btnClose" type="button">✕ 메인으로<kbd>Esc</kbd></button>
@@ -1436,13 +1452,13 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
     </div>
   </div>
 </section>
-<section class="story" id="win" data-next="gen" aria-label="이기는 법 · 승점"><header class="st-h"><span class="ch-no">02</span><h2>이기는 법 · 승점</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
+<section class="story" id="win" data-next="gen" aria-label="이기는 법, 승점"><header class="st-h"><span class="ch-no">02</span><h2>이기는 법, 승점</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
 <section class="story" id="gen" data-next="turn" aria-label="한 세대"><header class="st-h"><span class="ch-no">03</span><h2>한 세대</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
-<section class="story" id="turn" data-next="tiles" aria-label="내 차례 · 행동 8가지"><header class="st-h"><span class="ch-no">04</span><h2>내 차례 · 행동 8가지</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
+<section class="story" id="turn" data-next="tiles" aria-label="내 차례, 행동 8가지"><header class="st-h"><span class="ch-no">04</span><h2>내 차례, 행동 8가지</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
 <section class="story" id="tiles" data-next="params" aria-label="타일 놓기"><header class="st-h"><span class="ch-no">05</span><h2>타일 놓기</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
-<section class="story" id="params" data-next="cards" aria-label="기온 · 산소 · TR"><header class="st-h"><span class="ch-no">06</span><h2>기온 · 산소 · TR</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
+<section class="story" id="params" data-next="cards" aria-label="기온, 산소, TR"><header class="st-h"><span class="ch-no">06</span><h2>기온, 산소, TR</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
 <section class="story" id="cards" data-next="ma" aria-label="카드 읽고 놓기"><header class="st-h"><span class="ch-no">07</span><h2>카드 읽고 놓기</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
-<section class="story" id="ma" data-next="ref" aria-label="업적 · 기업상"><header class="st-h"><span class="ch-no">08</span><h2>업적 · 기업상</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
+<section class="story" id="ma" data-next="ref" aria-label="업적과 기업상"><header class="st-h"><span class="ch-no">08</span><h2>업적과 기업상</h2></header><div class="st-stage" aria-live="polite"></div><div class="st-cap"></div><div class="st-ctl"><button class="st-prev" type="button" aria-label="이전">◀</button><div class="st-dots"></div><button class="st-next" type="button">다음 ▶</button></div></section>
 <div id="toolPark"><div class="tool" id="calcTool"><div class="box calc">
     <div class="tbl"><table>
       <thead><tr><th>항목</th><th>계산</th><th>A</th><th>B</th></tr></thead>
@@ -1455,9 +1471,9 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
     <ul id="clList">
       <li data-k="0"><label><input type="checkbox" id="cl0"><span><b class="en">에너지</b> 큐브 전부 <b class="ht">열</b> 칸으로 옮기기</span></label><button class="scn" data-scene="p1" type="button">▶ 장면</button></li>
       <li data-k="1"><label><input type="checkbox" id="cl1"><span><b class="mc">M€ 받기</b> = TR + M€ 생산력 <span class="muted">(지구 정부 지원금 + 회사 수익)</span></span></label><button class="scn" data-scene="p2" type="button">▶ 장면</button></li>
-      <li data-k="2"><label><input type="checkbox" id="cl2"><span>강철 · 티타늄 · 식물 · 에너지 · 열 = <b>생산력만큼</b> 받기</span></label><button class="scn" data-scene="p3" type="button">▶ 장면</button></li>
+      <li data-k="2"><label><input type="checkbox" id="cl2"><span>강철, 티타늄, 식물, 에너지, 열 = <b>생산력만큼</b> 받기</span></label><button class="scn" data-scene="p3" type="button">▶ 장면</button></li>
       <li data-k="3"><label><input type="checkbox" id="cl3"><span>파란 카드 위에 올려 둔 <b>내 큐브 회수</b> <span class="muted">(다음 세대에 다시 쓸 수 있게)</span></span></label></li>
-      <li data-k="4"><label><input type="checkbox" id="cl4"><span>시작 플레이어 마커 넘기기 · 흰 <b>세대 큐브 +1</b></span></label><button class="scn" data-scene="g2" type="button">▶ 장면</button></li>
+      <li data-k="4"><label><input type="checkbox" id="cl4"><span>시작 플레이어 마커 넘기고, 흰 <b>세대 큐브 +1</b></span></label><button class="scn" data-scene="g2" type="button">▶ 장면</button></li>
       <li data-k="5"><label><input type="checkbox" id="cl5"><span>각자 <b>카드 4장</b> 뽑아 연구 시작</span></label><button class="scn" data-scene="g2r" type="button">▶ 장면</button></li>
     </ul>
     <p class="muted cl-done" id="clDone"></p>
@@ -1471,7 +1487,7 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
         <span><i style="background:var(--plant)"></i>녹지</span>
         <span><i style="background:var(--city)"></i>도시</span>
         <span><i style="background:#5b3426"></i>빈 땅</span>
-        <span><b class="pl">P</b> 식물 · <b class="st">S</b> 강철 · <b>C</b> 카드 보너스</span>
+        <span><b class="pl">P</b> 식물, <b class="st">S</b> 강철, <b>C</b> 카드 보너스</span>
       </div>
     </div>
     <div>
@@ -1490,15 +1506,15 @@ body[data-view=rules] .content>section:not(#table){display:none!important}
   <div class="ch-head"><div class="ch-no">09</div><div><h2>한 장 요약</h2>
     <ul class="rules"><li>게임 중에 이 화면만 열어 두면 돼요</li></ul></div></div>
   <div class="ref2">
-    <div class="box"><h3>한 세대</h3><dl><dt>①</dt><dd>순서 조정 · 세대 +1</dd><dt>②</dt><dd>연구 4장 · 1장 3 M€</dd><dt>③</dt><dd>행동 1~2개씩 · 행동 종료까지</dd><dt>④</dt><dd>에너지→열 · TR+M€생산 · 생산 · 큐브 회수</dd></dl></div>
-    <div class="box"><h3>바꾸기</h3><dl><dt>식물 8</dt><dd>녹지 · 산소+1 · TR+1</dd><dt>열 8</dt><dd>기온 +1 · TR+1</dd><dt>강철</dt><dd>2 M€ (건물)</dd><dt>티타늄</dt><dd>3 M€ (우주)</dd></dl></div>
+    <div class="box"><h3>한 세대</h3><dl><dt>①</dt><dd>순서 조정, 세대 +1</dd><dt>②</dt><dd>연구 4장 (1장 3 M€)</dd><dt>③</dt><dd>행동 1~2개씩, 행동 종료까지</dd><dt>④</dt><dd>에너지→열, TR+M€생산, 생산, 큐브 회수</dd></dl></div>
+    <div class="box"><h3>바꾸기</h3><dl><dt>식물 8</dt><dd>녹지 → 산소+1 → TR+1</dd><dt>열 8</dt><dd>기온 +1 → TR+1</dd><dt>강철</dt><dd>2 M€ (건물)</dd><dt>티타늄</dt><dd>3 M€ (우주)</dd></dl></div>
     <div class="box"><h3>일반 프로젝트</h3><dl><dt>11</dt><dd>에너지 생산 +1</dd><dt>14</dt><dd>기온 +1</dd><dt>18</dt><dd>해양</dd><dt>23</dt><dd>녹지</dd><dt>25</dt><dd>도시 + M€ 생산</dd></dl></div>
-    <div class="box"><h3>승점</h3><dl><dt>TR</dt><dd>1 = 1점</dd><dt>녹지</dt><dd>1점</dd><dt>도시</dt><dd>옆 녹지 1 = 1점</dd><dt>업적·상</dt><dd>5점</dd><dt>카드</dt><dd>적힌 점수</dd></dl></div>
+    <div class="box"><h3>승점</h3><dl><dt>TR</dt><dd>1 = 1점</dd><dt>녹지</dt><dd>1점</dd><dt>도시</dt><dd>옆 녹지 1 = 1점</dd><dt>업적, 상</dt><dd>5점</dd><dt>카드</dt><dd>적힌 점수</dd></dl></div>
   </div>
 </section>
 
-<nav class="pager" aria-label="이전·다음 항목"><button type="button" id="pgPrev"></button><button type="button" id="pgNext"></button></nav>
-<footer>테라포밍 마스(Terraforming Mars)는 FryxGames의 보드게임입니다. 수업 과제용 비공식 플레이 가이드 · 3D 부품은 실물 사진의 배치·크기·재질을 참고해 새로 그린 설명용 모형이며, 실제 아트워크가 아닙니다 · 확장 미포함.</footer>
+<nav class="pager" aria-label="이전, 다음 항목"><button type="button" id="pgPrev"></button><button type="button" id="pgNext"></button></nav>
+<footer>테라포밍 마스(Terraforming Mars)는 FryxGames의 보드게임입니다. 수업 과제용 비공식 플레이 가이드입니다. 3D 부품은 실물 사진의 배치, 크기, 재질을 참고해 새로 그린 설명용 모형이며, 실제 아트워크가 아닙니다. 확장은 포함하지 않았어요.</footer>
 </div></main>
 </div>
 
@@ -1563,22 +1579,22 @@ if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRec
 /* ================= 02 TABLE SCENE (step player) ================= */
 (function(){
 const stage=$('.stage'),cv=$('#table3d'),lblBox=$('#lbls');
-const CH=['셋팅','카드 읽기','예시 1세대','행동 7가지','타일 · 지표','업적 · 기업상','예시 2세대','게임 끝'];
+const CH=['셋팅','카드 읽기','예시 1세대','행동 7가지','타일과 지표','업적과 기업상','예시 2세대','게임 끝'];
 const STEPS=[
  {id:'table',ch:0,t:'함께 테이블을 차려 볼까요?',l:['화면을 <b>탭</b>하거나 <b>다음</b>을 누르면 한 동작씩 넘어가요','<b>☰ 장면</b>을 누르면 원하는 장면으로 바로 가요'],cam:'over'},
  {id:'board',ch:0,t:'먼저 중앙 게임판을 펼쳐요',l:['게임판 = 우리가 바꿔 나갈 화성','테이블 가운데에 놓아요'],cam:'over'},
  {id:'goal',ch:0,t:'이기는 법: 승점',l:['게임이 끝날 때 <b>승점</b>이 가장 많은 사람이 이겨요','점수가 나오는 곳을 먼저 봐 둬요'],cam:'whole',demo:'goal'},
- {id:'white',ch:0,t:'흰 큐브 3개를 놓아요',l:['<b class="ox">산소</b> <span class="k">0%</span> · 둥근 띠의 맨 왼쪽','<b class="ht">기온</b> <span class="k">−30°C</span> · 온도계 맨 아래','<b>세대</b> <span class="k">1</span> · 둘레 숫자 띠의 1칸 (왼쪽 아래)'],why:'셋 다 흰색이라 헷갈리기 쉬워요. 이름표를 붙여 둘게요',cam:'whole',lb:[['wOxy','산소 0%'],['wTmp','기온 −30°C'],['wGen','세대 1']]},
- {id:'tiles',ch:0,t:'타일을 준비해요',l:['<b class="oc">해양 타일 9장</b>은 게임판 오른쪽 위 자리에 쌓아요','<b class="pl">녹지</b> · <b>도시</b> 타일은 게임판 옆에 둬요'],cam:'tilesCam',lb:[['oc8','해양 9장'],['gr4','녹지'],['ci4','도시']]},
- {id:'bank',ch:0,why:'큐브가 모자라면 다른 물건으로 대신해도 돼요 (개수 제한 없음)',t:'은행 = 금속 큐브로 된 돈',l:['큐브 크기가 곧 금액: <b>동 1</b> · <b>은 5</b> · <b>금 10</b>','<b class="mc">M€</b>(메가크레딧) = 이 게임의 돈 · 모두 함께 써요'],cam:'overFar',lb:[['bank_cu','동 = 1 M€'],['bank_ag','은 = 5 M€'],['bank_au','금 = 10 M€']]},
- {id:'deck',ch:0,t:'프로젝트 카드 덱',l:['카드를 섞어 <b>뒷면이 위로</b> 쌓아요','바로 옆은 <b>버림 더미</b> 자리 · 버릴 땐 항상 <b>뒷면</b>으로'],cam:'deckCam',lb:[['deck','프로젝트 덱 (뒷면)'],['discSpot','버림 더미']]},
- {id:'deckCE',ch:0,t:'기본 게임: 빨간 삼각형 카드는 빼요',l:['왼쪽 아래 빨간 삼각형 = 대기업시대 확장','프로젝트 · 기업 카드 모두 상자에'],cam:'deckCam',demo:'deckCE'},
- {id:'pick',ch:0,t:'각자 색을 골라요',l:['반투명 색 큐브 5가지 중 하나','이 색 = 게임 내내 <b>"내 것"</b> 표시 (TR · 생산력 · 내 땅)'],cam:'pick',dim:1,lb:[['pile_red','나'],['pile_blue','상대']]},
+ {id:'white',ch:0,t:'흰 큐브 3개를 놓아요',l:['<b class="ox">산소</b> <span class="k">0%</span>는 둥근 띠의 맨 왼쪽','<b class="ht">기온</b> <span class="k">−30°C</span>는 온도계 맨 아래','<b>세대</b> <span class="k">1</span>은 둘레 숫자 띠의 1칸 (왼쪽 아래)'],why:'셋 다 흰색이라 헷갈리기 쉬워요. 이름표를 붙여 둘게요',cam:'whole',lb:[['wOxy','산소 0%'],['wTmp','기온 −30°C'],['wGen','세대 1']]},
+ {id:'tiles',ch:0,t:'타일을 준비해요',l:['<b class="oc">해양 타일 9장</b>은 게임판 오른쪽 위 자리에 쌓아요','<b class="pl">녹지</b>와 <b>도시</b> 타일은 게임판 옆에 둬요'],cam:'tilesCam',lb:[['oc8','해양 9장'],['gr4','녹지'],['ci4','도시']]},
+ {id:'bank',ch:0,why:'큐브가 모자라면 다른 물건으로 대신해도 돼요 (개수 제한 없음)',t:'은행 = 금속 큐브로 된 돈',l:['큐브 크기가 곧 금액: <b>동 1</b>, <b>은 5</b>, <b>금 10</b>','<b class="mc">M€</b>(메가크레딧) = 이 게임의 돈, 은행은 모두 함께 써요'],cam:'overFar',lb:[['bank_cu','동 = 1 M€'],['bank_ag','은 = 5 M€'],['bank_au','금 = 10 M€']]},
+ {id:'deck',ch:0,t:'프로젝트 카드 덱',l:['카드를 섞어 <b>뒷면이 위로</b> 쌓아요','바로 옆은 <b>버림 더미</b> 자리, 버릴 땐 항상 <b>뒷면</b>으로'],cam:'deckCam',lb:[['deck','프로젝트 덱 (뒷면)'],['discSpot','버림 더미']]},
+ {id:'deckCE',ch:0,t:'기본 게임: 빨간 삼각형 카드는 빼요',l:['왼쪽 아래 빨간 삼각형 = 대기업시대 확장','프로젝트 카드와 기업 카드 모두 상자에'],cam:'deckCam',demo:'deckCE'},
+ {id:'pick',ch:0,t:'각자 색을 골라요',l:['반투명 색 큐브 5가지 중 하나','이 색 = 게임 내내 <b>"내 것"</b> 표시 (TR, 생산력, 내 땅)'],cam:'pick',dim:1,lb:[['pile_red','나'],['pile_blue','상대']]},
  {id:'deal',ch:0,t:'내 색은 내 앞으로',l:['{색}','남은 색은 상자에 돌려놓아요'],cam:'over',lb:[['pile_red','내 큐브'],['pile_blue','상대 큐브']]},
- {id:'tr20',ch:0,t:'TR 20에서 출발해요',l:['<b class="mc">TR</b>(테라포밍 등급) = 화성을 바꾼 기록 · 점수 · 지원금','둘 다 둘레 숫자 띠의 <span class="k">20</span>칸에 큐브를 놓아요'],cam:'trCam',lb:[['trMe','TR 20 · 나'],['trOpp','상대']]},
+ {id:'tr20',ch:0,t:'TR 20에서 출발해요',l:['<b class="mc">TR</b>(테라포밍 등급) = 화성을 바꾼 기록이자 점수이자 지원금','둘 다 둘레 숫자 띠의 <span class="k">20</span>칸에 큐브를 놓아요'],cam:'trCam',lb:[['trMe','TR 20<small>나</small>'],['trOpp','상대']]},
  {id:'pboard',ch:0,t:'개인 게임판 = 내 회사',l:['개인 게임판을 내 앞에 놓아요','6칸의 숫자 <span class="k">1</span>에 내 큐브 = 매 세대 만드는 양(생산력)'],cam:'pbClose',demo:'pbSetup'},
- {id:'corp',ch:0,ts:'기업 카드 2장 중 1장',ls:['기업 카드 2장 중 1장을 골라 <b>가로</b>로 놓아요','고른 카드의 시작 자금을 은행에서 받아요'],t:'기업 카드와 시작 자금',l:['기업 카드는 <b>가로</b> · 개인 게임판 왼쪽에 놓아요','은행에서 <b class="mc">42 M€</b> = 금 4 + 동 2 → <b>M€ 칸 위</b>에 올려요'],why:'일반 게임: 기업 카드 2장 중 1장을 골라 그 카드에 적힌 금액을 받아요 (이 장면은 초보자용 기업)',cam:'pb',demo:'corpSetup'},
- {id:'cards10',ch:0,ts:'카드 10장 중 살 카드 고르기',ls:['살 카드만 1장당 3 M€ · 손에 쥐어요','안 산 카드는 뒷면으로 버림 더미에'],t:'프로젝트 카드 10장은 손에 쥐어요',l:['내 카드는 <b>나만 보게</b> 손에 들어요 · 테이블에 펼치지 않아요','초보자용 기업은 10장 모두 무료'],why:'일반 게임: 10장 중 살 카드만 1장당 3 M€ · 나머지는 뒷면으로 버림 더미에',cam:'handCam',lb:[['h4','내 손 · 나만 봐요'],['deck','덱에서 10장']]},
+ {id:'corp',ch:0,ts:'기업 카드 2장 중 1장',ls:['기업 카드 2장 중 1장을 골라 <b>가로</b>로 놓아요','고른 카드의 시작 자금을 은행에서 받아요'],t:'기업 카드와 시작 자금',l:['기업 카드는 <b>가로</b>로, 개인 게임판 왼쪽에 놓아요','은행에서 <b class="mc">42 M€</b> = 금 4 + 동 2 → <b>M€ 칸 위</b>에 올려요'],why:'일반 게임: 기업 카드 2장 중 1장을 골라 그 카드에 적힌 금액을 받아요 (이 장면은 초보자용 기업)',cam:'pb',demo:'corpSetup'},
+ {id:'cards10',ch:0,ts:'카드 10장 중 살 카드 고르기',ls:['살 카드만 1장당 3 M€를 내고 손에 쥐어요','안 산 카드는 뒷면으로 버림 더미에'],t:'프로젝트 카드 10장은 손에 쥐어요',l:['내 카드는 <b>나만 보게</b> 손에 들고, 테이블에 펼치지 않아요','초보자용 기업은 10장 모두 무료'],why:'일반 게임: 10장 중 살 카드만 1장당 3 M€, 나머지는 뒷면으로 버림 더미에',cam:'handCam',lb:[['h4','내 손<small>나만 봐요</small>'],['deck','덱에서 10장']]},
  {id:'first',ch:0,t:'시작 플레이어를 정하면 준비 끝!',l:['먼저 할 사람에게 시작 플레이어 마커를 줘요','이제 카드와 부품을 읽는 법을 봐요'],cam:'over',lb:[['firstMk','시작 플레이어']]},
  {id:'k_all',ch:1,t:'카드 한 장을 해독해 봐요',l:['기호 하나하나가 규칙이에요','차례로 불이 들어오는 곳을 보세요'],cam:'over',dim:1,kc:'all'},
  {id:'k_cost',ch:1,t:'왼쪽 위 노란 칸 = 추진 비용',l:['이만큼 M€를 내고 카드를 사용해요'],cam:'over',dim:1,kc:'cost'},
@@ -1588,69 +1604,69 @@ const STEPS=[
  {id:'k_red',ch:1,t:'빨간 테두리 = 아무나',l:['나 또는 다른 플레이어 누구에게나'],cam:'over',dim:1,kc:'red'},
  {id:'k_vp',ch:1,t:'오른쪽 아래 = 승점',l:['게임이 끝날 때 받는 점수'],cam:'over',dim:1,kc:'vp'},
  {id:'k_text',ch:1,t:'맨 아래 작은 글 = 기호 풀이',l:['헷갈리면 이 글을 읽어요'],cam:'over',dim:1,kc:'text'},
- {id:'cardHelp',ch:1,t:'모르는 카드는 검색해요',l:['왼쪽 위 🔍 카드 · 번호 · 이름 · 초성'],cam:'over',flash:'card'},
- {id:'iBoard',ch:1,t:'중앙 게임판 = 화성 관제판',l:['둘레 <b class="mc">TR</b> · 둥근 띠 <b class="ox">산소</b> · 오른쪽 <b class="ht">온도계</b>','왼쪽 <b>일반 프로젝트</b> = 카드 없이도 하는 사업','아래 <b>업적 · 기업상</b> = 추가 점수'],cam:'whole',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','기온'],['rSP','일반 프로젝트'],['rMA','업적 · 기업상']]},
+ {id:'cardHelp',ch:1,t:'모르는 카드는 검색해요',l:['왼쪽 위 🔍 카드에서 번호, 이름, 초성으로'],cam:'over',flash:'card'},
+ {id:'iBoard',ch:1,t:'중앙 게임판 = 화성 관제판',l:['둘레는 <b class="mc">TR</b>, 둥근 띠는 <b class="ox">산소</b>, 오른쪽은 <b class="ht">온도계</b>','왼쪽 <b>일반 프로젝트</b> = 카드 없이도 하는 사업','아래 <b>업적과 기업상</b> = 추가 점수'],cam:'whole',rg:['rTR','rOxy','rTmp','rSP','rMA'],lb:[['rTR','TR'],['rOxy','산소'],['rTmp','기온'],['rSP','일반 프로젝트'],['rMA','업적과 기업상']]},
  {id:'iPB',ch:1,t:'주목! 개인 게임판',l:['<b>그림 칸 위</b> = 지금 가진 자원','<b>숫자 칸</b>의 내 큐브 = 생산력'],cam:'pbClose',demo:'pbFocus'},
  {id:'prod1',ch:1,t:'생산력 = 매 세대 받는 양',l:['갈색 박스 기호 = 생산력','개인 게임판 숫자 칸의 내 큐브가 움직여요'],cam:'pbClose',demo:'prod1'},
  {id:'prod2',ch:1,t:'생산력은 매 세대 계속 들어와요',l:['세대가 끝날 때마다 그만큼 받아요','그래서 일찍 올릴수록 이득이에요'],cam:'pbClose',demo:'prod2'},
  {id:'mcNeg',ch:1,t:'M€ 생산력만 마이너스가 돼요',l:['−5까지 내려갈 수 있어요','그래도 TR만큼은 받아요'],cam:'pbClose',demo:'mcNeg'},
- {id:'iTiles',ch:1,t:'타일은 3종류예요',l:['<b class="oc">해양</b> = 파란 칸에만 · 주인 없음','<b class="pl">녹지</b> · <b>도시</b> = 놓은 사람이 <b>자기 색 큐브</b>를 얹어요'],cam:'show',lb:[['oc8','해양 · 주인 없음'],['gr4','녹지 · 내 땅'],['ci4','도시 · 내 땅']]},
- {id:'colG',ch:1,t:'초록 카드는 겹쳐 놓아요',l:['위쪽 <b>태그 줄만</b> 보이게 겹쳐요','효과는 바로 끝 · 태그는 계속 내 것'],cam:'tab',demo:'colG'},
- {id:'colB',ch:1,t:'파란 카드는 펼쳐 놓아요',l:['행동 · 지속 효과가 <b>보이게</b> 따로 놓아요','행동을 쓰면 카드 위에 <b>내 큐브</b>'],cam:'tab',demo:'colB'},
+ {id:'iTiles',ch:1,t:'타일은 3종류예요',l:['<b class="oc">해양</b> = 파란 칸에만, 주인 없음','<b class="pl">녹지</b>와 <b>도시</b> = 놓은 사람이 <b>자기 색 큐브</b>를 얹어요'],cam:'show',lb:[['oc8','해양<small>주인 없음</small>'],['gr4','녹지<small>내 땅</small>'],['ci4','도시<small>내 땅</small>']]},
+ {id:'colG',ch:1,t:'초록 카드는 겹쳐 놓아요',l:['위쪽 <b>태그 줄만</b> 보이게 겹쳐요','효과는 바로 끝나고, 태그는 계속 내 것'],cam:'tab',demo:'colG'},
+ {id:'colB',ch:1,t:'파란 카드는 펼쳐 놓아요',l:['행동과 지속 효과가 <b>보이게</b> 따로 놓아요','행동을 쓰면 카드 위에 <b>내 큐브</b>'],cam:'tab',demo:'colB'},
  {id:'colR',ch:1,t:'빨간 카드는 뒤집어요',l:['쓰고 나면 <b>뒷면</b>으로 사건 더미에','사건 태그는 <b>세지 않아요</b>'],cam:'tabL',demo:'colR'},
- {id:'tag1',ch:1,t:'태그 ① 강철 · 티타늄으로 내기',l:['<b>건물</b> 태그 → 강철 1개 = 2 M€','<b>우주</b> 태그 → 티타늄 1개 = 3 M€'],cam:'tab',demo:'tag1'},
+ {id:'tag1',ch:1,t:'태그 ① 강철과 티타늄으로 내기',l:['<b>건물</b> 태그 → 강철 1개 = 2 M€','<b>우주</b> 태그 → 티타늄 1개 = 3 M€'],cam:'tab',demo:'tag1'},
  {id:'tag2',ch:1,t:'태그 ② 다른 카드의 조건',l:['"과학 태그 2개 이상" 같은 조건','내 앞에 보이는 태그를 세요'],cam:'tab',demo:'tag2'},
- {id:'tag3',ch:1,t:'태그 ③ 업적 · 기업상',l:['건축가 = 건물 태그 8개','과학기업상 = 과학 태그 가장 많이'],cam:'ma',demo:'tag3'},
+ {id:'tag3',ch:1,t:'태그 ③ 업적과 기업상',l:['건축가 = 건물 태그 8개','과학기업상 = 과학 태그 가장 많이'],cam:'ma',demo:'tag3'},
  {id:'tag4',ch:1,t:'태그 ④ "낼 때마다" 효과',l:['파란 카드의 지속 효과는','그 태그 카드를 낼 때마다 일어나요'],cam:'tab',demo:'tag4'},
  {id:'play',ch:2,t:'이제 예시 플레이를 해 볼게요',l:['여기서 하는 행동은 하나의 예시예요','실제 게임에서는 할 수 있는 행동 중 원하는 걸 골라요'],cam:'over',dim:1,
-  il:`<p class="il-eb">예시 플레이</p><h3 class="il-t">이제 한 판을 예시로<br>함께 해 볼게요!</h3><ul class="il-b"><li>앞으로 나오는 행동은 <b>하나의 예시</b>예요</li><li>실제 게임에서는 할 수 있는 행동 중 <b>원하는 걸 골라요</b></li><li>나 = <b class="il-red">빨강</b> · 상대 = <b class="il-blue">파랑</b></li></ul>`},
+  il:`<p class="il-eb">예시 플레이</p><h3 class="il-t">이제 한 판을 예시로<br>함께 해 볼게요!</h3><ul class="il-b"><li>앞으로 나오는 행동은 <b>하나의 예시</b>예요</li><li>실제 게임에서는 할 수 있는 행동 중 <b>원하는 걸 골라요</b></li><li>나는 <b class="il-red">빨강</b>, 상대는 <b class="il-blue">파랑</b></li></ul>`},
  {id:'loop',ch:2,t:'게임은 세대의 반복이에요',l:['세대 1 → 세대 2 → … 수치 3개가 다 차면 끝','한 세대 = ① 순서 조정 ② 연구 ③ 행동 ④ 생산'],cam:'over',dim:1,
-  il:`<p class="il-eb">게임의 흐름</p><h3 class="il-t">게임은 '세대'의 반복이에요</h3><div class="il-gens"><span>세대 1</span><i>→</i><span>세대 2</span><i>→</i><span>세대 3</span><i>→</i><span>…</span><i>→</i><span class="end">산소·기온·해양 완성 = 끝</span></div><p class="il-sub">한 세대는 늘 이 4단계예요</p><div class="il-phases"><span><b>①</b>순서 조정</span><i>→</i><span><b>②</b>연구</span><i>→</i><span class="on"><b>③</b>행동</span><i>→</i><span><b>④</b>생산</span><i class="back">↺</i></div>`},
- {id:'turns',ch:2,t:'차례는 이렇게 돌아요',l:['행동 1~2개 → 다음 사람 · 할 게 없으면 행동 종료'],cam:'over'},
- {id:'g1',ch:2,t:'1세대: 바로 행동부터',l:['1세대는 ① 순서 조정 · ② 연구를 <b>건너뛰고</b> ③ 행동부터','내 차례에 행동 1~2개 → 다음 사람 → … 모두 행동 종료할 때까지'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
- {id:'g1a',ch:2,flash:'card',t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ → 10 M€ 내고 1 M€ 2개 거슬러 받기','효과 <b class="en">에너지 생산력 +1</b> · 낸 카드는 내 앞에 <b>앞면</b>으로'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
+  il:`<p class="il-eb">게임의 흐름</p><h3 class="il-t">게임은 '세대'의 반복이에요</h3><div class="il-gens"><span>세대 1</span><i>→</i><span>세대 2</span><i>→</i><span>세대 3</span><i>→</i><span>…</span><i>→</i><span class="end">산소, 기온, 해양 완성 = 끝</span></div><p class="il-sub">한 세대는 늘 이 4단계예요</p><div class="il-phases"><span><b>①</b>순서 조정</span><i>→</i><span><b>②</b>연구</span><i>→</i><span class="on"><b>③</b>행동</span><i>→</i><span><b>④</b>생산</span><i class="back">↺</i></div>`},
+ {id:'turns',ch:2,t:'차례는 이렇게 돌아요',l:['행동 1~2개 → 다음 사람, 할 게 없으면 행동 종료'],cam:'over'},
+ {id:'g1',ch:2,t:'1세대: 바로 행동부터',l:['1세대는 ① 순서 조정과 ② 연구를 <b>건너뛰고</b> ③ 행동부터','내 차례에 행동 1~2개 → 다음 사람 → … 모두 행동 종료할 때까지'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
+ {id:'g1a',ch:2,flash:'card',t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ → 10 M€ 내고 1 M€ 2개 거슬러 받기','효과는 <b class="en">에너지 생산력 +1</b>, 낸 카드는 내 앞에 <b>앞면</b>으로'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
  {id:'g1b',ch:2,t:'내 행동 ② 해양 만들기',l:['일반 프로젝트 <b>지하수 추출</b> <span class="k">18</span> M€ → 해양 타일을 파란 칸에','화성을 바꿨으니 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','해양 +1'],['trMe','TR 21']]},
  {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대: <b>소행성 충돌 유도</b>(<span class="k">14</span> M€) → 기온 <span class="k">−30 → −28°C</span>','지표를 올린 사람이 TR +1 → 상대 TR <span class="k">21</span>'],cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
- {id:'g1d',ch:2,t:'둘 다 행동 종료를 선언했어요',l:['더 할 게 없으면 <b>행동 종료</b> 선언 · 이번 세대엔 더 못 해요','모두 행동 종료하면 ④ 생산 단계로'],cam:'over',lb:[['trMe','나 행동 종료'],['trOpp','상대 행동 종료']]},
+ {id:'g1d',ch:2,t:'둘 다 행동 종료를 선언했어요',l:['더 할 게 없으면 <b>행동 종료</b>를 선언하면 이번 세대엔 더 못 해요','모두 행동 종료하면 ④ 생산 단계로'],cam:'over',lb:[['trMe','나 행동 종료'],['trOpp','상대 행동 종료']]},
  {id:'p1',ch:2,t:'생산 ① 남은 에너지는 열이 돼요',l:['쓰지 않은 <b class="en">에너지 2</b>개는 전부 <b class="ht">열</b>로 바뀌어요','전기는 저장이 안 돼서 열로 흩어진다고 생각하면 쉬워요'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
  {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['받는 돈 = <b>TR</b>(21) + <b>M€ 생산력</b>(1) = <span class="k">22</span> M€','16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22 M€']]},
- {id:'p3',ch:2,t:'생산 ③ 공장이 일한 결과',why:'마지막으로 파란 카드 위에 올려 둔 행동 표시 큐브를 치워요',l:['다른 자원도 내 큐브가 놓인 숫자만큼 은행에서 받아요','강철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
- {id:'a0',ch:3,t:'내 차례: 행동 7가지',l:['차례마다 1~2개 · 같은 것을 두 번도 돼요','할 게 없으면 행동 종료'],cam:'over',dim:1,il:`<p class="il-eb">행동</p><h3 class="il-t">내 차례에 할 수 있는 7가지</h3><ul class="il-b il-acts"><li><b>A</b> 손의 카드 내기</li><li><b>B</b> 일반 프로젝트 (6종)</li><li><b>C</b> 업적 선언</li><li><b>D</b> 기업상 제정</li><li><b>E</b> 파란 카드 행동</li><li><b>F</b> 식물 8개 → 녹지</li><li><b>G</b> 열 8개 → 기온</li></ul><p class="il-sub">차례마다 1~2개 · 같은 행동을 두 번 해도 돼요</p>`},
+ {id:'p3',ch:2,t:'생산 ③ 공장이 일한 결과',why:'마지막으로 파란 카드 위에 올려 둔 행동 표시 큐브를 치워요',l:['다른 자원도 내 큐브가 놓인 숫자만큼 은행에서 받아요','강철 1, 티타늄 1, 식물 1, 에너지 2, 열 1'],cam:'pbClose'},
+ {id:'a0',ch:3,t:'내 차례: 행동 7가지',l:['차례마다 1~2개, 같은 것을 두 번 해도 돼요','할 게 없으면 행동 종료'],cam:'over',dim:1,il:`<p class="il-eb">행동</p><h3 class="il-t">내 차례에 할 수 있는 7가지</h3><ul class="il-b il-acts"><li><b>A</b> 손의 카드 내기</li><li><b>B</b> 일반 프로젝트 (6종)</li><li><b>C</b> 업적 선언</li><li><b>D</b> 기업상 제정</li><li><b>E</b> 파란 카드 행동</li><li><b>F</b> 식물 8개 → 녹지</li><li><b>G</b> 열 8개 → 기온</li></ul><p class="il-sub">차례마다 1~2개, 같은 행동을 두 번 해도 돼요</p>`},
  {id:'aCard',ch:3,t:'A 손의 카드 내기',l:['조건 확인 → 비용 → 효과 → 내 앞에 놓기'],cam:'tab',demo:'aCard'},
  {id:'reqOnce',ch:3,t:'조건은 낼 때만 확인해요',l:['낸 뒤 조건이 안 맞게 돼도 효과는 그대로'],cam:'tab',demo:'reqOnce'},
  {id:'aSell',ch:3,t:'B ① 특허권 매각',l:['손의 카드를 버리고 1장당 1 M€'],cam:'handCam',demo:'aSell'},
- {id:'aPower',ch:3,t:'B ② 발전소 건설 · 11 M€',l:['에너지 생산력 +1'],cam:'pbTab',demo:'aPower'},
- {id:'aAst',ch:3,t:'B ③ 소행성 충돌 유도 · 14 M€',l:['기온 +1단계 → TR +1'],cam:'pbTab',demo:'aAst'},
- {id:'aAqua',ch:3,t:'B ④ 지하수 추출 · 18 M€',l:['해양 타일 1장 → TR +1 · 점유 보너스'],cam:'pbTab',demo:'aAqua'},
- {id:'aGreen',ch:3,t:'B ⑤ 녹지 형성 · 23 M€',l:['녹지 1장 → 산소 +1% → TR +1'],cam:'pbTab',demo:'aGreen'},
- {id:'aCity',ch:3,t:'B ⑥ 도시 건설 · 25 M€',l:['도시 1장 + M€ 생산력 +1'],cam:'pbTab',demo:'aCity'},
- {id:'aMile',ch:3,t:'C 업적 선언 · 8 M€',l:['조건을 먼저 채운 사람이 가져가요 · 5점'],cam:'ma',demo:'aMile'},
- {id:'aAward',ch:3,t:'D 기업상 제정 · 8 → 14 → 20 M€',l:['상을 만들어 두고 판정은 게임 끝'],cam:'ma',demo:'aAward'},
- {id:'aBlue',ch:3,t:'E 파란 카드 행동',l:['세대에 1번 · 쓰면 카드 위에 내 큐브'],cam:'tab',demo:'aBlue'},
+ {id:'aPower',ch:3,t:'B ② 발전소 건설<i class="pr">11 M€</i>',l:['에너지 생산력 +1'],cam:'pbTab',demo:'aPower'},
+ {id:'aAst',ch:3,t:'B ③ 소행성 충돌 유도<i class="pr">14 M€</i>',l:['기온 +1단계 → TR +1'],cam:'pbTab',demo:'aAst'},
+ {id:'aAqua',ch:3,t:'B ④ 지하수 추출<i class="pr">18 M€</i>',l:['해양 타일 1장 → TR +1, 점유 보너스도'],cam:'pbTab',demo:'aAqua'},
+ {id:'aGreen',ch:3,t:'B ⑤ 녹지 형성<i class="pr">23 M€</i>',l:['녹지 1장 → 산소 +1% → TR +1'],cam:'pbTab',demo:'aGreen'},
+ {id:'aCity',ch:3,t:'B ⑥ 도시 건설<i class="pr">25 M€</i>',l:['도시 1장 + M€ 생산력 +1'],cam:'pbTab',demo:'aCity'},
+ {id:'aMile',ch:3,t:'C 업적 선언<i class="pr">8 M€</i>',l:['조건을 먼저 채운 사람이 5점을 가져가요'],cam:'ma',demo:'aMile'},
+ {id:'aAward',ch:3,t:'D 기업상 제정<i class="pr">8 → 14 → 20 M€</i>',l:['상을 만들어 두고 판정은 게임 끝'],cam:'ma',demo:'aAward'},
+ {id:'aBlue',ch:3,t:'E 파란 카드 행동',l:['세대에 1번, 쓰면 카드 위에 내 큐브'],cam:'tab',demo:'aBlue'},
  {id:'aPlant',ch:3,t:'F 식물 8개 → 녹지',l:['녹지 1장 → 산소 +1% → TR +1'],cam:'pbTab',demo:'aPlant'},
  {id:'aHeat',ch:3,t:'G 열 8개 → 기온 +1단계',l:['기온이 오르면 TR +1'],cam:'pbTab',demo:'aHeat'},
- {id:'t0',ch:4,t:'타일 3종류',l:['해양 · 녹지 · 도시가 하는 일'],cam:'board'},
+ {id:'t0',ch:4,t:'타일 3종류',l:['해양, 녹지, 도시가 하는 일'],cam:'board'},
  {id:'tOcean',ch:4,t:'해양 타일은 파란 칸에만',l:['파란 칸 12곳 = 해양 전용','해양은 주인이 없어요 (큐브 X)'],cam:'board',demo:'tOcean'},
  {id:'tBonus',ch:4,t:'점유 보너스',l:['칸에 그려진 그림 = 놓은 사람이 받는 것'],cam:'board',demo:'tBonus'},
  {id:'tAdj',ch:4,t:'해양 옆 = 1곳당 2 M€',l:['해양 옆에 타일을 놓으면 누구든 받아요'],cam:'board',demo:'tAdj'},
  {id:'tGreen',ch:4,t:'녹지는 내 타일 옆에',l:['내 타일 옆에 빈칸이 있으면 꼭 그 옆','없을 때만 아무 곳에'],cam:'board',demo:'tGreen'},
  {id:'tCity',ch:4,t:'도시끼리는 붙일 수 없어요',l:['어느 도시든 옆에는 도시 X'],cam:'board',demo:'tCity'},
- {id:'tSpecial',ch:4,t:'카드로만 놓는 자리',l:['노크티스 시티 자리 · 특수 타일','카드에 적힌 대로만'],cam:'board',demo:'tSpecial'},
- {id:'p0',ch:4,t:'지표 3가지',l:['기온 · 산소 · 해양이 오르면 TR +1'],cam:'whole'},
- {id:'bHeat',ch:4,t:'보너스 지점 ① −24 · −20°C',l:['이 칸으로 기온을 올린 사람 → 열 생산력 +1'],cam:'temp',demo:'bHeat'},
+ {id:'tSpecial',ch:4,t:'카드로만 놓는 자리',l:['노크티스 시티 자리와 특수 타일','카드에 적힌 대로만'],cam:'board',demo:'tSpecial'},
+ {id:'p0',ch:4,t:'지표 3가지',l:['기온, 산소, 해양이 오르면 TR +1'],cam:'whole'},
+ {id:'bHeat',ch:4,t:'보너스 지점 ① −24°C, −20°C',l:['이 칸으로 기온을 올린 사람 → 열 생산력 +1'],cam:'temp',demo:'bHeat'},
  {id:'bOcean',ch:4,t:'보너스 지점 ② 0°C',l:['0°C로 올린 사람 → 해양 타일 1장'],cam:'temp',demo:'bOcean'},
  {id:'bOxy',ch:4,t:'보너스 지점 ③ 산소 8%',l:['8%로 올린 사람 → 기온 +1단계'],cam:'oxyCam',demo:'bOxy'},
- {id:'bMax',ch:4,t:'지표가 다 차면',l:['더 못 올려요 · TR도 그대로','그 지표를 올리는 카드는 낼 수 있어요'],cam:'whole',demo:'bMax'},
- {id:'m0',ch:5,t:'업적과 기업상의 차이',l:['업적 = 경주 · 기업상 = 내기'],cam:'ma'},
- {id:'mList',ch:5,t:'업적 5개 · 먼저 채우면 5점',l:['조건을 채운 차례에 8 M€로 선언','5개 중 3개까지만'],cam:'maL',demo:'mList'},
- {id:'aList',ch:5,t:'기업상 5개 · 게임 끝 1등 5점',l:['누구든 8 → 14 → 20 M€로 제정','3개까지만'],cam:'maR',demo:'aList'},
+ {id:'bMax',ch:4,t:'지표가 다 차면',l:['더 못 올리고, TR도 그대로예요','그 지표를 올리는 카드는 낼 수 있어요'],cam:'whole',demo:'bMax'},
+ {id:'m0',ch:5,t:'업적과 기업상의 차이',l:['업적은 경주, 기업상은 내기'],cam:'ma'},
+ {id:'mList',ch:5,t:'업적 5개: 먼저 채우면 5점',l:['조건을 채운 차례에 8 M€로 선언','5개 중 3개까지만'],cam:'maL',demo:'mList'},
+ {id:'aList',ch:5,t:'기업상 5개: 게임 끝 1등 5점',l:['누구든 8 → 14 → 20 M€로 제정','3개까지만'],cam:'maR',demo:'aList'},
  {id:'mJudge',ch:5,t:'기업상 판정은 게임 끝',l:['제정한 사람이 아니라 1등이 5점','2등 2점 (3인 이상일 때만)'],cam:'ma',demo:'mJudge'},
- {id:'g2',ch:6,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 · 시작 플레이어 마커는 <b>왼쪽 사람</b>에게','생산력 큐브는 그대로: 지은 공장은 매 세대 계속 일해요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
- {id:'g2r',ch:6,t:'② 연구: 새 카드 4장',l:['덱에서 <span class="k">4</span>장을 뽑아 <b>손에 들고</b> 봐요','살 카드만 1장당 <span class="k">3</span> M€ (2장 = 6 M€) · 나머지는 <b>뒷면</b>으로 버림 더미에'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
- {id:'g2a',ch:6,t:'③ 행동: 녹지 만들기',l:['일반 프로젝트 <b>녹지 형성</b> <span class="k">23</span> M€ · 해양 옆이라 <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> → TR <span class="k">22</span> · 녹지 위에 내 큐브'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 땅'],['wOxy','산소 1%'],['trMe','TR 22']]},
- {id:'end',ch:7,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">기온 +8°C</b> · <b class="oc">해양 9장</b>이 모두 차면','그 세대 생산까지 하고 끝 → 점수 계산'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]},
+ {id:'g2',ch:6,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 옮기고, 시작 플레이어 마커는 <b>왼쪽 사람</b>에게','생산력 큐브는 그대로: 지은 공장은 매 세대 계속 일해요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
+ {id:'g2r',ch:6,t:'② 연구: 새 카드 4장',l:['덱에서 <span class="k">4</span>장을 뽑아 <b>손에 들고</b> 봐요','살 카드만 1장당 <span class="k">3</span> M€ (2장 = 6 M€), 나머지는 <b>뒷면</b>으로 버림 더미에'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
+ {id:'g2a',ch:6,t:'③ 행동: 녹지 만들기',l:['일반 프로젝트 <b>녹지 형성</b> <span class="k">23</span> M€를 내고, 해양 옆이라 <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> → TR <span class="k">22</span>, 녹지 위엔 내 큐브'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지<small>내 땅</small>'],['wOxy','산소 1%'],['trMe','TR 22']]},
+ {id:'end',ch:7,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b>, <b class="ht">기온 +8°C</b>, <b class="oc">해양 9장</b>이 모두 차면','그 세대 생산까지 하고 끝 → 점수 계산'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]},
  {id:'eLast',ch:7,t:'마지막 녹지 기회',l:['마지막 생산 뒤 식물 8개 → 녹지를 원하는 만큼','산소는 안 올라도 녹지 점수는 받아요'],cam:'pbTab',demo:'eLast'},
- {id:'eScore',ch:7,t:'점수 세기',l:['TR + 기업상 + 업적 + 녹지 + 도시 옆 녹지 + 카드','가장 높은 사람 승리 · 동점이면 M€'],cam:'boardW',demo:'eScore'},
+ {id:'eScore',ch:7,t:'점수 세기',l:['TR + 기업상 + 업적 + 녹지 + 도시 옆 녹지 + 카드','가장 높은 사람이 승리, 동점이면 M€가 많은 사람'],cam:'boardW',demo:'eScore'},
 ];
 const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
 const HUD=[];{let g='—',tr='—',t='—',o='—',m='—';
@@ -1682,26 +1698,26 @@ const KF=['all','cost','req','tags','prod','red','vp','text'];
 const KTXT={all:['카드 한 장을 해독해 봐요',['실물 카드는 <b>기호</b>로만 적혀 있어요.','불이 들어오는 곳을 하나씩 읽어요.'],''],
  cost:['왼쪽 위 노란 칸 = 추진 비용',['카드를 <b>낼 때</b> 이만큼 M€를 내요.'],'손에 들 때(연구) 내는 3 M€와는 따로예요'],
  req:['비용 옆 = 추진 조건',['조건이 맞을 때만 낼 수 있어요.','이 카드는 <b>산소 4% 이상</b>일 때.'],'<b>max</b>가 붙으면 <b>이하</b>예요 (해양 3장 이하일 때만)'],
- tags:['오른쪽 위 동그라미 = 태그',['카드의 분류 표시예요.','<b>건물</b> 태그 → <b>강철</b>로 낼 수 있어요.','<b>우주</b> 태그 → <b>티타늄</b>으로 낼 수 있어요.'],'강철 1개 = 2 M€ · 티타늄 1개 = 3 M€'],
+ tags:['오른쪽 위 동그라미 = 태그',['카드의 분류 표시예요.','<b>건물</b> 태그 → <b>강철</b>로 낼 수 있어요.','<b>우주</b> 태그 → <b>티타늄</b>으로 낼 수 있어요.'],'강철 1개 = 2 M€, 티타늄 1개 = 3 M€'],
  prod:['갈색 박스 = 생산력',['박스 안 기호 = <b>매 세대 받는 양</b>.','개인 게임판의 내 큐브를 옮겨요.'],'박스가 <b>없는</b> 기호 = 지금 바로 받는 자원'],
  red:['빨간 테두리 = 아무나',['나 또는 <b>다른 플레이어</b>에게도 써요.'],'자원 빼기는 덜 빼도 되지만 <b>생산력 감소</b>는 꼭 해야 해요'],
  vp:['오른쪽 아래 화성 = 승점',['게임이 끝날 때 받는 점수예요.'],'<b>1/2</b> = 2개당 1점 (예: 동물 2개당 1점)'],
  text:['맨 아래 작은 글 = 기호 풀이',['기호가 헷갈리면 이 글을 읽어요.'],'<b>＊ 별표</b> = 규칙의 <b>예외</b>라서 꼭 읽어요']};
 function kcShow(il,f){let k=il.querySelector('.kc:not(.cmode)');if(!k){il.innerHTML=KCARD;k=il.querySelector('.kc')}k.dataset.f=f;const t=KTXT[f],n=KF.indexOf(f);
- k.querySelector('.kc-txt').innerHTML=`<p class="il-eb">카드 읽는 법 · ${n+1} / ${KF.length}</p><h3 class="il-t">${t[0]}</h3><p class="kc-p">${t[1].map(x=>`<span class="ln">${x}</span>`).join('')}</p>${t[2]?`<p class="kc-ex">${t[2]}</p>`:''}`}
+ k.querySelector('.kc-txt').innerHTML=`<p class="il-eb">카드 읽는 법 <span class="eb-n">${n+1} / ${KF.length}</span></p><h3 class="il-t">${t[0]}</h3><p class="kc-p">${t[1].map(x=>`<span class="ln">${x}</span>`).join('')}</p>${t[2]?`<p class="kc-ex">${t[2]}</p>`:''}`}
 
 /* ---- 설명 먼저 → 터치 → 3D : 장면마다 어두운 설명 화면 ---- */
 const BRIEF={
  goal:{g:'goal'},eScore:{g:'score'},turns:{g:'turns'},table:{g:'setup'},
- deckCE:{ic:['ce'],m:'기본 게임에선 대기업시대 카드를 빼요',d:['카드 왼쪽 아래에 <b>빨간 삼각형</b>이 있는 카드','프로젝트 카드 · 기업 카드 모두 상자에 넣어요'],ex:'익숙해지면 넣고 해도 돼요 (대기업시대 확장 · 기본 생산력 0에서 시작)'},
- cards10:{ic:['card'],m:'프로젝트 카드 10장 = 내 사업 후보',d:['<b>나만 보게</b> 손에 쥐어요 · 테이블에 펼치지 않아요','초보자용 기업: 10장 모두 무료']},
+ deckCE:{ic:['ce'],m:'기본 게임에선 대기업시대 카드를 빼요',d:['카드 왼쪽 아래에 <b>빨간 삼각형</b>이 있는 카드','프로젝트 카드와 기업 카드 모두 상자에 넣어요'],ex:'익숙해지면 넣고 해도 돼요 (대기업시대 확장, 기본 생산력 0에서 시작)'},
+ cards10:{ic:['card'],m:'프로젝트 카드 10장 = 내 사업 후보',d:['<b>나만 보게</b> 손에 쥐고, 테이블에 펼치지 않아요','초보자용 기업: 10장 모두 무료']},
  cards10_std:{ic:['card','mc'],m:'10장 중에서 살 카드를 골라요',d:['살 카드만 <b>1장당 3 M€</b> (기업 자금에서)','안 산 카드는 <b>뒷면</b>으로 버림 더미에'],ex:'초보자용 기업은 이 과정 없이 10장 무료'},
  corp_std:{ic:['corp'],m:'기업 카드 = 내가 경영하는 회사',d:['기업 카드 <b>2장</b>을 받아 1장을 골라요','고른 카드의 <b>시작 자금</b>을 받고 나머지는 상자에'],ex:'모두 고른 뒤 시작 플레이어부터 시계 방향으로 공개해요'},
  reqOnce:{ic:['oxy'],m:'조건은 카드를 낼 때만 확인해요',d:['낸 뒤에 조건이 안 맞게 돼도','이미 낸 카드의 효과는 <b>그대로</b>'],ex:'예: "산소 5% 이하" 카드를 낸 뒤 산소가 7%가 돼도 계속 효과'},
- mcNeg:{ic:['mc','prodbox'],m:'M€ 생산력만 마이너스가 될 수 있어요',d:['M€ 칸 숫자 줄 맨 위 <b>−5 ~ −1</b>','그래도 생산 때 <b>TR + M€ 생산력</b>을 받아요'],ex:'TR 20 · M€ 생산력 −1 → 19 M€ · 다른 자원은 0 아래로 못 내려가요'},
- corp:{ic:['corp'],m:'기업 카드 = 내가 경영하는 회사',d:['<b>시작 자금</b>과 회사의 특별 능력이 적혀 있어요','개인 게임판 왼쪽에 <b>가로</b>로 놓아요'],ex:'초보자용 기업: 42 M€ · 프로젝트 카드 10장 무료'},
- pboard:{ic:['prodbox'],m:'개인 게임판 = 자원 6가지의 창고와 공장',d:['<b>그림 칸 위</b> = 지금 가진 양 (큐브를 올려요)','<b>숫자 칸</b>의 내 큐브 = 생산력 (매 세대 받는 양)'],ex:'금속 큐브는 어느 칸에서나 <b>개수</b>예요 · 강철 칸 위 동 큐브 1개 = 강철 1개'},
- cardHelp:{ic:['card'],m:'카드는 200장이 넘고 모두 달라요',d:['모르는 카드가 나오면 <b>왼쪽 위 🔍 카드</b>','번호 · 이름 · 초성(ㄱㅅ)으로 찾으면 3D로 풀어 줘요']},
+ mcNeg:{ic:['mc','prodbox'],m:'M€ 생산력만 마이너스가 될 수 있어요',d:['M€ 칸 숫자 줄 맨 위 <b>−5 ~ −1</b>','그래도 생산 때 <b>TR + M€ 생산력</b>을 받아요'],ex:'TR 20에 M€ 생산력 −1이면 19 M€, 다른 자원은 0 아래로 못 내려가요'},
+ corp:{ic:['corp'],m:'기업 카드 = 내가 경영하는 회사',d:['<b>시작 자금</b>과 회사의 특별 능력이 적혀 있어요','개인 게임판 왼쪽에 <b>가로</b>로 놓아요'],ex:'초보자용 기업: 42 M€에 프로젝트 카드 10장 무료'},
+ pboard:{ic:['prodbox'],m:'개인 게임판 = 자원 6가지의 창고와 공장',d:['<b>그림 칸 위</b> = 지금 가진 양 (큐브를 올려요)','<b>숫자 칸</b>의 내 큐브 = 생산력 (매 세대 받는 양)'],ex:'금속 큐브는 어느 칸에서나 <b>개수</b>라서, 강철 칸 위 동 큐브 1개 = 강철 1개'},
+ cardHelp:{ic:['card'],m:'카드는 200장이 넘고 모두 달라요',d:['모르는 카드가 나오면 <b>왼쪽 위 🔍 카드</b>','번호, 이름, 초성(ㄱㅅ)으로 찾으면 3D로 풀어 줘요']},
  iPB:{ic:['prodbox'],m:'가진 자원과 생산력은 다른 것',d:['받은 자원은 <b>그림 칸 위</b>에 큐브로 올려요','생산력이 오르면 <b>숫자 칸의 내 큐브</b>를 옮겨요']},
  prod1:{ic:['prodbox'],m:'생산력 = 매 세대 자동으로 받는 양',d:['카드에 <b>갈색 박스</b>가 나오면','숫자 칸의 내 큐브를 그만큼 옮겨요']},
  prod2:{ic:['prodbox','plant'],m:'한 번 올린 생산력은 끝까지 일해요',d:['세대가 끝날 때마다 숫자만큼 은행에서 받아요','그래서 일찍 올릴수록 이득']},
@@ -1710,47 +1726,47 @@ const BRIEF={
  colR:{ic:['t_ev'],m:'빨강 = 한 번 일어나는 사건',d:['효과를 쓰고 <b>뒤집어</b> 사건 더미에','뒤집은 카드의 태그는 세지 않아요'],ex:'사건 카드의 태그는 <b>낼 때 한 번만</b> 효과에 반응해요'},
  tag1:{ic:['t_bd','steel','t_sp','ti'],m:'태그 = 카드의 분류 표시',d:['<b>건물</b> 카드 → 강철로 낼 수 있어요 (1개 = 2 M€)','<b>우주</b> 카드 → 티타늄으로 낼 수 있어요 (1개 = 3 M€)']},
  tag2:{ic:['t_sc'],m:'어떤 카드는 태그가 있어야 낼 수 있어요',d:['내 앞에 <b>보이는 태그</b>를 세서 확인해요']},
- tag3:{ic:['t_bd','t_sc'],m:'업적 · 기업상은 태그 개수로 정해지기도 해요',d:['건축가 = 건물 태그 8개','과학기업상 = 과학 태그가 가장 많은 사람']},
+ tag3:{ic:['t_bd','t_sc'],m:'업적과 기업상은 태그 개수로 정해지기도 해요',d:['건축가 = 건물 태그 8개','과학기업상 = 과학 태그가 가장 많은 사람']},
  tag4:{ic:['t_sp','mc'],m:'파란 카드 효과가 태그에 반응해요',d:['예: "우주 태그 카드를 낼 때마다 +2 M€"','조건이 맞으면 저절로 받아요']},
  aCard:{ic:['card'],m:'카드 = 내 회사가 벌이는 사업',d:['① 조건 확인 → ② 비용 내기','③ 효과 적용 → ④ 내 앞에 놓기']},
  aSell:{ic:['card','mc'],m:'필요 없는 카드를 돈으로 바꿔요',d:['손의 카드를 골라 <b>뒷면</b>으로 버려요','1장당 1 M€']},
  aPower:{ic:['energy'],m:'에너지를 매 세대 받는 발전소를 지어요',d:['11 M€ 내기','<b>에너지 생산력 +1</b>']},
  aAst:{ic:['temp'],m:'소행성을 떨어뜨려 화성을 데워요',d:['14 M€ 내기','<b>기온 +1단계</b> → 내 TR +1']},
- aAqua:{ic:['ocean'],m:'얼음을 녹여 바다를 만들어요',d:['18 M€ 내기','<b>해양 타일</b>을 파란 칸에 → TR +1 · 점유 보너스']},
+ aAqua:{ic:['ocean'],m:'얼음을 녹여 바다를 만들어요',d:['18 M€ 내기','<b>해양 타일</b>을 파란 칸에 → TR +1, 점유 보너스도']},
  aGreen:{ic:['greenery'],m:'숲을 만들어 산소를 늘려요',d:['23 M€ 내기','<b>녹지 타일</b> + 내 큐브 → 산소 +1% → TR +1']},
  aCity:{ic:['city'],m:'사람이 사는 도시를 지어요',d:['25 M€ 내기','<b>도시 타일</b> + 내 큐브 → M€ 생산력 +1']},
  aMile:{ic:['milestone'],m:'업적 = 먼저 달성한 사람이 갖는 목표',d:['조건을 채웠으면 8 M€ → 내 큐브 → <b>5점 확정</b>','5개 중 3개가 차면 끝']},
- aAward:{ic:['award'],m:'기업상 = 게임 끝에 1등을 가리는 상',d:['8 → 14 → 20 M€로 상을 <b>만들어</b> 둬요','게임 끝에 1등 5점 · {2등}']},
+ aAward:{ic:['award'],m:'기업상 = 게임 끝에 1등을 가리는 상',d:['8 → 14 → 20 M€로 상을 <b>만들어</b> 둬요','게임 끝에 1등 5점, {2등}']},
  aBlue:{ic:['special'],m:'파란 카드의 행동 = 시설을 한 번 돌리기',d:['빨간 화살표 왼쪽을 내고 오른쪽을 받아요','쓰면 카드 위에 내 큐브 (세대에 1번)']},
  aPlant:{ic:['plant','greenery'],m:'모은 식물로 숲을 만들어요',d:['식물 8개 내기','녹지 타일 → 산소 +1% → TR +1']},
  aHeat:{ic:['heat','temp'],m:'모은 열로 화성을 데워요',d:['열 8개 내기','기온 +1단계 → TR +1']},
  t0:{tri:[['ocean','해양',['<b>파란 칸</b>에만','주인 없음 (큐브 X)','놓으면 TR +1']],['greenery','녹지',['놓으면 산소 +1% → TR +1','위에 <b>내 큐브</b>','1장 = <b>1점</b>']],['city','도시',['위에 <b>내 큐브</b>','도시 자체는 <b>0점</b>','옆 녹지 1장당 <b>1점</b>']]],t:'타일 3종류',ex:'어느 타일이든 <b>해양 옆</b>에 놓으면 1곳당 2 M€'},
- tOcean:{ic:['ocean'],m:'해양 = 모두의 바다',d:['<b>파란 칸</b>에만 놓아요 (12곳)','큐브 없음 · 놓은 사람 TR +1']},
- tBonus:{ic:['steel','plant'],m:'칸에 그려진 그림 = 그 칸의 선물',d:['타일을 놓은 사람이 그림만큼 받아요','강철 · 식물 · 티타늄 · 카드']},
+ tOcean:{ic:['ocean'],m:'해양 = 모두의 바다',d:['<b>파란 칸</b>에만 놓아요 (12곳)','큐브는 없고, 놓은 사람이 TR +1']},
+ tBonus:{ic:['steel','plant'],m:'칸에 그려진 그림 = 그 칸의 선물',d:['타일을 놓은 사람이 그림만큼 받아요','강철, 식물, 티타늄, 카드']},
  tAdj:{ic:['ocean','mc'],m:'해양 옆은 살기 좋은 땅',d:['해양 옆에 타일을 놓으면','옆 해양 1곳마다 2 M€']},
  tGreen:{ic:['greenery'],m:'숲은 내 땅에 붙여서 넓혀요',d:['내 타일 옆에 빈칸이 있으면 꼭 그 옆','없을 때만 아무 곳에']},
- tCity:{ic:['city'],m:'도시끼리는 거리를 둬요',d:['어느 도시든 그 옆 칸에는 도시 X','녹지 · 해양은 괜찮아요']},
- tSpecial:{ic:['sp_tile'],m:'특별한 자리 · 특별한 타일',d:['노크티스 시티 자리는 그 카드로만','갈색 특수 타일은 카드에 적힌 대로'],ex:'가니메데 · 포보스 도시는 게임판 <b>밖</b> 자리 (카드로만)'},
- p0:{tri:[['temp','기온',['−30 → +8°C','1단계 = 2°C','올리면 TR +1']],['oxy','산소',['0 → 14%','1단계 = 1%','올리면 TR +1']],['ocean','해양',['0 → 9장','1장 놓을 때마다','TR +1']]],t:'지표 3가지 = 모두의 목표',ex:'셋 다 차면 그 세대가 마지막 · <b>올린 사람</b>이 TR을 받아요'},
- bHeat:{ic:['heat'],m:'기온을 올리다 보면 선물이 있어요',d:['−24°C · −20°C 칸으로 올린 사람','<b>열 생산력 +1</b>']},
+ tCity:{ic:['city'],m:'도시끼리는 거리를 둬요',d:['어느 도시든 그 옆 칸에는 도시 X','녹지와 해양은 괜찮아요']},
+ tSpecial:{ic:['sp_tile'],m:'특별한 자리, 특별한 타일',d:['노크티스 시티 자리는 그 카드로만','갈색 특수 타일은 카드에 적힌 대로'],ex:'가니메데와 포보스 도시는 게임판 <b>밖</b> 자리 (카드로만)'},
+ p0:{tri:[['temp','기온',['−30 → +8°C','1단계 = 2°C','올리면 TR +1']],['oxy','산소',['0 → 14%','1단계 = 1%','올리면 TR +1']],['ocean','해양',['0 → 9장','1장 놓을 때마다','TR +1']]],t:'지표 3가지 = 모두의 목표',ex:'셋 다 차면 그 세대가 마지막이고, <b>올린 사람</b>이 TR을 받아요'},
+ bHeat:{ic:['heat'],m:'기온을 올리다 보면 선물이 있어요',d:['−24°C나 −20°C 칸으로 올린 사람','<b>열 생산력 +1</b>']},
  bOcean:{ic:['ocean'],m:'0°C = 얼음이 녹는 온도',d:['0°C로 올린 사람이','<b>해양 타일 1장</b>을 놓아요']},
  bOxy:{ic:['oxy','temp'],m:'산소 8% = 온실 효과',d:['산소를 8%로 올린 사람이','<b>기온도 +1단계</b> (TR +1 더)']},
  bMax:{ic:['temp','oxy','ocean'],m:'지표가 다 차면 더는 못 올려요',d:['TR도 그대로','그 지표를 올리는 카드는 낼 수 있어요 (나머지 효과만)'],ex:'해양 9장이 다 놓이면 해양 놓기는 건너뛰고 다른 효과만'},
- m0:{duo:[['업적 = 경주','#7a5a40',['조건을 <b>먼저</b> 채운 사람','내 차례에 8 M€ → <b>바로 5점</b>','5개 중 3개까지']],['기업상 = 내기','#3f5f8a',['누구든 8 → 14 → 20 M€로 <b>만들어</b> 둠','판정은 <b>게임 끝</b>','1등 5점 · {2등}']]],t:'업적과 기업상의 차이'},
- mList:{ic:['milestone'],m:'업적 5개',d:['테라포머 TR 35 · 시장 도시 3 · 원예가 녹지 3','건축가 건물 태그 8 · 전략가 카드 16장']},
- aList:{ic:['award'],m:'기업상 5개',d:['개척: 타일 수 · 금융: M€ 생산력 · 과학: 과학 태그','열: 가진 열 · 광업: 강철 + 티타늄']},
- mJudge:{ic:['award'],m:'기업상은 게임 끝에 순위를 매겨요',d:['만든 사람이 아니라 <b>1등</b>이 5점','{2등} · 동점이면 함께 받아요']},
+ m0:{duo:[['업적 = 경주','#7a5a40',['조건을 <b>먼저</b> 채운 사람','내 차례에 8 M€ → <b>바로 5점</b>','5개 중 3개까지']],['기업상 = 내기','#3f5f8a',['누구든 8 → 14 → 20 M€로 <b>만들어</b> 둠','판정은 <b>게임 끝</b>','1등 5점, {2등}']]],t:'업적과 기업상의 차이'},
+ mList:{ic:['milestone'],m:'업적 5개',d:['테라포머 <i class="pr">TR 35</i> 시장 <i class="pr">도시 3</i> 원예가 <i class="pr">녹지 3</i>','건축가 <i class="pr">건물 태그 8</i> 전략가 <i class="pr">카드 16장</i>']},
+ aList:{ic:['award'],m:'기업상 5개',d:['개척 <i class="pr">타일 수</i> 금융 <i class="pr">M€ 생산력</i> 과학 <i class="pr">과학 태그</i>','열 <i class="pr">가진 열</i> 광업 <i class="pr">강철 + 티타늄</i>']},
+ mJudge:{ic:['award'],m:'기업상은 게임 끝에 순위를 매겨요',d:['만든 사람이 아니라 <b>1등</b>이 5점','{2등}, 동점이면 함께 받아요']},
  eLast:{ic:['plant','greenery'],m:'마지막 생산 뒤 한 번 더 기회',d:['식물 8개 → 녹지를 원하는 만큼','산소는 안 올라도 녹지 점수는 받아요']}};
 const IMG=n=>`<img src="img/rb/${n}.svg" alt="">`;
 const GOTXT='<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p>';
 function briefHTML(b,s){const eb=CH[s.ch];
  if(b.g==='turns')return TURNS;
  if(b.g==='setup')return SETUP();
- if(b.g){const score=b.g==='score';const rows=[['tr','TR (테라포밍 등급)','1 = 1점'],['greenery','내 녹지','1장 = 1점'],['city','내 도시','옆 녹지 1장당 1점 · 도시 자체 0점'],['milestone','업적','5점씩'],['award','기업상','1등 5 · 2등 2'],['vp','카드의 승점','카드 아래 화성 숫자']];
+ if(b.g){const score=b.g==='score';const rows=[['tr','TR (테라포밍 등급)','1 = 1점'],['greenery','내 녹지','1장 = 1점'],['city','내 도시','옆 녹지 1장당 1점 (도시 자체는 0점)'],['milestone','업적','5점씩'],['award','기업상','1등 5점, 2등 2점'],['vp','카드의 승점','카드 아래 화성 숫자']];
   return `<div class="gl"><div class="gl-mars"><img src="img/rb/mars_red.webp" alt=""><img class="t" src="img/rb/mars_terra.webp" alt=""></div><div class="gl-tx"><p class="il-eb">${score?'점수 세기':'이기는 법'}</p><h3 class="il-t">${score?'이제 점수를 모두 더해요':'게임이 끝날 때<br>승점이 가장 많은 사람이 이겨요'}</h3><ul class="gl-sum">${rows.map((r,k)=>`<li style="--d:${(.6+k*.35).toFixed(2)}s">${IMG(r[0])}<b>${r[1]}</b><span>${r[2]}</span></li>`).join('')}<li class="tot" style="--d:${(.6+rows.length*.35).toFixed(2)}s"><b>= 총 승점</b><span>${score?'동점이면 M€ 많은 사람':'끝까지 기억해 두세요'}</span></li></ul>${GOTXT}</div></div>`}
  if(b.tri)return `<div class="bf bf-wide"><p class="il-eb">${eb}</p><h3 class="il-t">${b.t}</h3><div class="tri">${b.tri.map((c,k)=>`<div class="tri-c" style="--d:${(.2+k*.3).toFixed(1)}s">${IMG(c[0])}<b>${c[1]}</b>${c[2].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</div>${b.ex?`<p class="kc-ex">${b.ex}</p>`:''}${GOTXT}</div>`;
  if(b.duo)return `<div class="bf bf-wide"><p class="il-eb">${eb}</p><h3 class="il-t">${b.t}</h3><div class="tri duo">${b.duo.map((c,k)=>`<div class="tri-c" style="--d:${(.2+k*.4).toFixed(1)}s;--c:${c[1]}"><b class="duo-h">${c[0]}</b>${c[2].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</div>${GOTXT}</div>`;
- return `<div class="bf"><div class="bf-ic">${b.ic.map(IMG).join('')}</div><div class="bf-tx"><p class="il-eb">${eb} · ${s.t}</p><div class="md"><p class="md-r"><em>의미</em><span>${b.m}</span></p><p class="md-r do"><em>할 일</em><span>${b.d.map(x=>`<span class="ln">${x}</span>`).join('')}</span></p></div>${b.ex?`<p class="kc-ex">${b.ex}</p>`:''}${GOTXT}</div></div>`}
+ return `<div class="bf"><div class="bf-ic">${b.ic.map(IMG).join('')}</div><div class="bf-tx"><p class="il-eb">${eb}</p><h3 class="il-t">${s.t}</h3><div class="md"><p class="md-r"><em>의미</em><span>${b.m}</span></p><p class="md-r do"><em>할 일</em><span>${b.d.map(x=>`<span class="ln">${x}</span>`).join('')}</span></p></div>${b.ex?`<p class="kc-ex">${b.ex}</p>`:''}${GOTXT}</div></div>`}
 
 /* 차례가 도는 모습: 탁자 + 사람 픽토그램 */
 const PERSON=(c)=>`<g><circle cx="0" cy="-26" r="10" fill="${c}"/><path d="M-15 8 V-6 A15 13 0 0 1 15 -6 V8 Z" fill="${c}"/></g>`;
@@ -1760,15 +1776,15 @@ const TURNS=`<div class="tn"><svg class="tn-svg" viewBox="-160 -120 320 220" ari
  <g class="tn-op" transform="translate(92 -58)">${PERSON('#2f6fc8')}<g class="tn-x"><path d="M-14 -16 L14 6 M14 -16 L-14 6" stroke="#fff" stroke-width="6" stroke-linecap="round"/></g></g>
  <text x="-92" y="102" text-anchor="middle" class="tn-n">나</text><text x="92" y="-96" text-anchor="middle" class="tn-n">상대</text>
  </svg>
- <div class="tn-chips"><span class="c1 me">나: 행동 1</span><span class="c2 me">나: 행동 2</span><span class="c3 op">상대: 행동 1</span><span class="c4 me">나: 행동 1</span><span class="c5 op">상대: ✕ 행동 종료</span><span class="c6 me">나: 행동 1 · 2</span><span class="c7 me">나: ✕ 행동 종료</span><span class="c8 all">모두 종료 → ④ 생산</span></div>
- <div class="tn-tx"><p class="il-eb">한 세대 · 행동 단계</p><h3 class="il-t">차례는 이렇게 돌아요</h3><div class="md"><p class="md-r"><em>의미</em><span>내 차례 = 행동 1~2개 하기</span></p><p class="md-r do"><em>할 일</em><span><span class="ln">1~2개 하고 다음 사람에게 넘겨요</span><span class="ln">할 게 없으면 <b>✕ 행동 종료</b> → 이번 세대는 끝</span><span class="ln">모두 종료하면 생산 단계</span></span></p></div>${GOTXT}</div></div>`;
+ <div class="tn-chips"><span class="c1 me">나: 행동 1</span><span class="c2 me">나: 행동 2</span><span class="c3 op">상대: 행동 1</span><span class="c4 me">나: 행동 1</span><span class="c5 op">상대: ✕ 행동 종료</span><span class="c6 me">나: 행동 1, 2</span><span class="c7 me">나: ✕ 행동 종료</span><span class="c8 all">모두 종료 → ④ 생산</span></div>
+ <div class="tn-tx"><p class="il-eb">한 세대의 행동 단계</p><h3 class="il-t">차례는 이렇게 돌아요</h3><div class="md"><p class="md-r"><em>의미</em><span>내 차례 = 행동 1~2개 하기</span></p><p class="md-r do"><em>할 일</em><span><span class="ln">1~2개 하고 다음 사람에게 넘겨요</span><span class="ln">할 게 없으면 <b>✕ 행동 종료</b> → 이번 세대는 끝</span><span class="ln">모두 종료하면 생산 단계</span></span></p></div>${GOTXT}</div></div>`;
 
 /* ---- 인원수 · 셋팅 방식 (처음 화면에서 고름) ---- */
 let NP=2,MODE='beg';try{NP=+localStorage.getItem('tm-np')||2;MODE=localStorage.getItem('tm-mode')||'beg'}catch(e){}
-const tok=h=>h.replace(/\{2등\}/g,NP>2?'2등 2점':'2인 게임은 2등 점수 없음').replace(/\{색\}/g,NP>2?'나 = <b style="color:#c22">빨강</b> · 다른 사람도 각자 한 색':'나 = <b style="color:#c22">빨강</b> · 상대 = <b style="color:#2458b8">파랑</b>');
+const tok=h=>h.replace(/\{2등\}/g,NP>2?'2등 2점':'2인 게임은 2등 점수 없음').replace(/\{색\}/g,NP>2?'나 = <b style="color:#c22">빨강</b>, 다른 사람도 각자 한 색':'나 = <b style="color:#c22">빨강</b>, 상대 = <b style="color:#2458b8">파랑</b>');
 const SETUP=()=>`<div class="su"><p class="il-eb">시작하기 전에</p><h3 class="il-t">몇 명이서 하나요?</h3><div class="su-row" data-k="np">${[2,3,4,5].map(n=>`<button type="button" data-v="${n}" class="${NP===n?'on':''}">${n}명</button>`).join('')}</div>
- <h3 class="il-t sm">셋팅 방식</h3><div class="su-row" data-k="mode"><button type="button" data-v="beg" class="${MODE==='beg'?'on':''}"><b>초보자용 기업</b><small>42 M€ · 카드 10장 무료 (처음이면 추천)</small></button><button type="button" data-v="std" class="${MODE==='std'?'on':''}"><b>일반 게임</b><small>기업 2장 중 1장 · 카드 1장당 3 M€</small></button></div>
- <p class="kc-ex">이 사이트의 3D는 2명(나 · 상대) 기준이에요. 인원이 달라도 규칙은 같아요</p><p class="bf-go">고른 뒤 화면을 누르면 시작해요 ▶</p></div>`;
+ <h3 class="il-t sm">셋팅 방식</h3><div class="su-row" data-k="mode"><button type="button" data-v="beg" class="${MODE==='beg'?'on':''}"><b>초보자용 기업</b><small>42 M€, 카드 10장 무료 (처음이면 추천)</small></button><button type="button" data-v="std" class="${MODE==='std'?'on':''}"><b>일반 게임</b><small>기업 2장 중 1장, 카드 1장당 3 M€</small></button></div>
+ <p class="kc-ex">이 사이트의 3D는 2명(나와 상대) 기준이에요. 인원이 달라도 규칙은 같아요</p><p class="bf-go">고른 뒤 화면을 누르면 시작해요 ▶</p></div>`;
 let briefOpen=false;
 function ui(i){const s0=STEPS[i],s=MODE==='std'&&s0.ts?{...s0,t:s0.ts,l:s0.ls}:s0;{const il=$('#interlude');stage.classList.toggle('kcm',!!s.kc);const bf=(MODE==='std'&&BRIEF[s.id+'_std'])||BRIEF[s.id];briefOpen=!!bf;stage.classList.toggle('brief',!!bf);if(bf){il.innerHTML=tok(briefHTML(bf,s));window.__gloss&&__gloss(il.querySelector('.md'));il.classList.add('on');stage.classList.add('il')}else if(s.kc){kcShow(il,s.kc);il.classList.add('on');stage.classList.add('il')}else if(s.il){il.innerHTML=s.il;il.classList.add('on');stage.classList.add('il')}else{il.classList.remove('on');stage.classList.remove('il')}}
   $('#spanel').innerHTML=tok(`<div class="chap-eb"><span class="eyebrow">${CH[s.ch]}</span><span class="cnt">${i+1} / ${N}</span></div><h3>${s.t}</h3><ul class="rules">${s.l.map(x=>`<li>${x}</li>`).join('')}</ul>${s.why?`<span class="why">${s.why}</span>`:''}`);
@@ -1900,8 +1916,8 @@ const [bc,b]=canvas(BP,BP);
  // 일반 프로젝트 패널
  b.fillStyle='#e8e3da';b.beginPath();b.roundRect(130,1080,360,470,18);b.fill();b.fillStyle='#3a2a20';b.font='700 30px sans-serif';b.fillText('일반 프로젝트',310,1125);
  [['—','특허권 매각','#8a7365'],['11','발전소 건설','#a98af0'],['14','소행성 충돌','#ff7b3a'],['18','지하수 추출','#3f7fdc'],['23','녹지 형성','#76c25b'],['25','도시 건설','#9a958e']].forEach(([c,nm,col],i)=>{const y=1175+i*62;b.fillStyle='#f0c24b';b.fillRect(160,y-24,64,48);b.fillStyle='#1a0d08';b.font='700 28px sans-serif';b.textAlign='center';b.fillText(c,192,y+10);b.fillStyle=col;b.fillRect(240,y-22,226,44);b.fillStyle='#fff';b.font='700 24px sans-serif';b.fillText(nm,353,y+8)});
- // 업적 · 기업상
- [[260,'업적 · 8 M€ · 5점',['테라포머','시장','원예가','건축가','전략가'],'#7a5a40'],[1070,'기업상 · 8 → 14 → 20 M€',['개척','금융','과학','열','광업'],'#3f5f8a']].forEach(([x,nm,ns,col])=>{b.fillStyle='#d9d2c6';b.beginPath();b.roundRect(x,1800,720,150,16);b.fill();b.fillStyle='#3a2a20';b.font='700 28px sans-serif';b.textAlign='center';b.fillText(nm,x+360,1840);
+ // 업적과 기업상
+ [[260,'업적 (8 M€, 5점)',['테라포머','시장','원예가','건축가','전략가'],'#7a5a40'],[1070,'기업상 (8 → 14 → 20 M€)',['개척','금융','과학','열','광업'],'#3f5f8a']].forEach(([x,nm,ns,col])=>{b.fillStyle='#d9d2c6';b.beginPath();b.roundRect(x,1800,720,150,16);b.fill();b.fillStyle='#3a2a20';b.font='700 28px sans-serif';b.textAlign='center';b.fillText(nm,x+360,1840);
   for(let i=0;i<5;i++){b.fillStyle=col;b.beginPath();b.roundRect(x+30+i*136,1860,120,70,10);b.fill();b.fillStyle='#fff';b.font='700 23px sans-serif';b.fillText(ns[i],x+90+i*136,1903)}});
 })();
 const boardTex=SRGB(new THREE.CanvasTexture(bc));
@@ -2203,18 +2219,18 @@ function dBuilder(i){const S=baseState(i),B={T:.12,S,i};
  B.pay=(n,{steel=0,ti=0,label}={})=>{B.cam('pbTab',.9);const at=B.T;let j=0;
   if(steel){B.ring(slotTop('st'));B.icon('steel',slotTop('st'),{label:`강철 ${steel}개 = ${steel*2} M€`});for(let k=0;k<steel;k++)fly('cu',holdP('st',k),bankP('cu',k),B.T+.2+k*.3,{vanish:true,dur:.9});B.T+=.4+steel*.3}
   if(ti){B.ring(slotTop('ti'));B.icon('ti',slotTop('ti'),{label:`티타늄 ${ti}개 = ${ti*3} M€`});for(let k=0;k<ti;k++)fly('cu',holdP('ti',k),bankP('cu',k),B.T+.2+k*.3,{vanish:true,dur:.9});B.T+=.4+ti*.3}
-  const rest=n-steel*2-ti*3;if(rest>0){B.ring(slotTop('mc'));const h0=S.hold.mc;S.hold.mc=Math.max(0,h0-rest);B.icon('mc',slotTop('mc'),{label:(label?label+' · ':'')+`${h0} → ${S.hold.mc} M€`});const g=greedy(rest);const a2=B.T;
+  const rest=n-steel*2-ti*3;if(rest>0){B.ring(slotTop('mc'));const h0=S.hold.mc;S.hold.mc=Math.max(0,h0-rest);B.icon('mc',slotTop('mc'),{label:label?label+`<small>${h0} → ${S.hold.mc} M€</small>`:`${h0} → ${S.hold.mc} M€`});const g=greedy(rest);const a2=B.T;
    ['au','ag','cu'].forEach(t=>{for(let k=0;k<g[t];k++){fly(t,holdP('mc',j),bankP(t,j),a2+.2+j*.26,{vanish:true,dur:.9});j++}});B.T=a2+.6+j*.26+.5}
   else B.T=at+1.5;return B};
  B.gain=(k,n,{label,from='bank',cls=''}={})=>{B.ring(slotTop(k));const at=B.T;const g=greedy(n);let j=0;const h0=S.hold[k]||0;S.hold[k]=h0+n;
-  B.icon(RES_K[k],slotTop(k),{label:(label||`+${n} ${RES_NM[k]}`)+` · ${h0} → ${S.hold[k]}`,cls});
+  B.icon(RES_K[k],slotTop(k),{label:(label||`+${n} ${RES_NM[k]}`)+`<small>${h0} → ${S.hold[k]}</small>`,cls});
   ['au','ag','cu'].forEach(t=>{for(let q=0;q<g[t];q++){fly(t,from==='bank'?bankP(t,j):from,holdP(k,4+j,t),at+.25+j*.28,{dur:.9});j++}});B.T=at+.7+j*.28+.4;return B};
- B.spend=(k,n,{label}={})=>{B.ring(slotTop(k));const at=B.T;const g=greedy(n);let j=0;const h0=Math.max(n,S.hold[k]||0);S.hold[k]=h0-n;B.icon(RES_K[k],slotTop(k),{label:(label||`${RES_NM[k]} ${n}개 쓰기`)+` · ${h0} → ${S.hold[k]}`});
+ B.spend=(k,n,{label}={})=>{B.ring(slotTop(k));const at=B.T;const g=greedy(n);let j=0;const h0=Math.max(n,S.hold[k]||0);S.hold[k]=h0-n;B.icon(RES_K[k],slotTop(k),{label:(label||`${RES_NM[k]} ${n}개 쓰기`)+`<small>${h0} → ${S.hold[k]}</small>`});
   ['au','ag','cu'].forEach(t=>{for(let q=0;q<g[t];q++){fly(t,holdP(k,j,t),bankP(t,j),at+.25+j*.28,{vanish:true,dur:.9});j++}});B.T=at+.7+j*.28+.4;return B};
  B.prod=(k,n,{any=false,label}={})=>{const at=B.T;
   if(any){B.cam('opp',.9);B.icon('redb',TAB.opp,{s:1.6,dy:2.6});B.icon('pb_'+RES_K[k],TAB.opp,{s:2,dy:1.2,label:label||`상대의 ${RES_NM[k]} 생산력 ${n>0?'+':'−'}${Math.abs(n)}`,cls:'red'});B.T+=1.4;return B}
   const v0=S.prod[k],v1=v0+n;S.prod[k]=v1;B.ring(prodP(k,v0),{s:2});B.hide('pm_'+k);
-  B.icon('pb_'+RES_K[k],slotTop(k),{s:2,label:label||`${RES_NM[k]} 생산력 ${n>0?'+':'−'}${Math.abs(n)} · ${v0} → ${v1}`,cls:'brown'});
+  B.icon('pb_'+RES_K[k],slotTop(k),{s:2,label:label||`${RES_NM[k]} 생산력 ${n>0?'+':'−'}${Math.abs(n)}<small>${v0} → ${v1}</small>`,cls:'brown'});
   const m=dAdd(box(SZ.mk,MAT.red()));const steps=Math.abs(n);let p0=prodP(k,v0);TW(m,at,.2,{p:p0,s:1},{p:p0,s:1});
   for(let q=1;q<=steps;q++){const p1=prodP(k,v0+Math.sign(n)*q);TW(m,at+.35+(q-1)*.45,.42,{p:p0,s:1},{p:p1,s:1},.8);p0=p1}
   B.T=at+.5+steps*.45+.6;return B};
@@ -2239,7 +2255,7 @@ function dBuilder(i){const S=baseState(i),B={T:.12,S,i};
   const hp=hexP(q,r,TH/2);TW(t,B.T,.7,{p:from||[hp[0],8,hp[2]],s:1},{p:hp,s:1},from?3:0,easeOut);
   EV(B.T+.7,()=>gl.forEach(m=>{m.userData.pulse=0;m.visible=false}));
   S.occ[key]=kind;B.T+=.8;
-  if(owner&&kind!=='oc'){const c=dAdd(box(SZ.mk,MAT.red()));TW(c,B.T,.5,{p:[hp[0],6,hp[2]],s:1},{p:[hp[0],BT+TH+SZ.mk/2,hp[2]],s:1},0,easeOut);B.say(kind==='gr'?'녹지 · 내 큐브 = 내 땅':'도시 · 내 큐브 = 내 땅',hexP(q,r,1.6));B.T+=.7}
+  if(owner&&kind!=='oc'){const c=dAdd(box(SZ.mk,MAT.red()));TW(c,B.T,.5,{p:[hp[0],6,hp[2]],s:1},{p:[hp[0],BT+TH+SZ.mk/2,hp[2]],s:1},0,easeOut);B.say(kind==='gr'?'녹지<small>내 큐브 = 내 땅</small>':'도시<small>내 큐브 = 내 땅</small>',hexP(q,r,1.6));B.T+=.7}
   if(label)B.say(label,hexP(q,r,2.6));
   if(bonus&&HEX[key]&&HEX[key].bn){const BN={s:['st','steel','강철'],p:['pl','plant','식물'],t:['ti','ti','티타늄'],c:['card','card','카드']};const cnt={};[...HEX[key].bn].forEach(c=>cnt[c]=(cnt[c]||0)+1);
    Object.entries(cnt).forEach(([c,n])=>{B.icon(BN[c][1],hexP(q,r,.2),{s:1.6,dy:1.2,label:`점유 보너스: ${BN[c][2]} ${n}`,cls:'gold'});B.T+=.9;
@@ -2285,23 +2301,23 @@ const DEMOS={
  goal:B=>{B.say('승점이 가장 많은 사람이 이겨요',[0,4,-4],'big');B.wait(.4);
   B.cam('trCam',1).icon('vp',trPos(20,0),{label:'TR 1 = 1점'}).wait(.8);
   B.cam('board',1);{const t=makeTile('gr');dAdd(t);const p=hexP(1,-2,TH/2);TW(t,B.T,.6,{p:[p[0],6,p[2]],s:1},{p,s:1},0,easeOut);B.wait(.6).vp('녹지 1장 = 1점',p);
-   const c=makeTile('ci');dAdd(c);const p2=hexP(2,-2,TH/2);TW(c,B.T,.6,{p:[p2[0],6,p2[2]],s:1},{p:p2,s:1},0,easeOut);B.wait(.6).vp('도시는 0점 · 옆 녹지 1장당 1점',p2).wait(.8)}
-  B.cam('ma',1).vp('업적 5점',[-5.9,BT,8.3],{ic:'milestone'}).vp('기업상 1등 5 · 2등 2',[4,BT,8.3],{ic:'award'}).wait(.9);
+   const c=makeTile('ci');dAdd(c);const p2=hexP(2,-2,TH/2);TW(c,B.T,.6,{p:[p2[0],6,p2[2]],s:1},{p:p2,s:1},0,easeOut);B.wait(.6).vp('도시 자체는 0점<small>옆 녹지 1장당 1점</small>',p2).wait(.8)}
+  B.cam('ma',1).vp('업적 5점',[-5.9,BT,8.3],{ic:'milestone'}).vp('기업상 1등 5점<small>3인 이상: 2등 2점</small>',[4,BT,8.3],{ic:'award'}).wait(.9);
   B.cam('over',1);B.card('g',12,['pl']).vp('카드 아래 화성 숫자 = 승점',[TAB.g[0],.2,TAB.g[2]],{ic:'vp'}).wait(.6);
-  B.say('게임 끝에 모두 더해요 · 끝까지 기억하기!',[0,4,-4],'big')},
+  B.say('게임 끝에 모두 더해요<small>끝까지 기억하기!</small>',[0,4,-4],'big')},
  colG:B=>{B.cam('tab',.9);const zs=[0,1.05,2.1];[['bd','en'],['pl'],['sc']].forEach((tg,k)=>{B.card('g',[12,8,6][k],tg,{to:[TAB.g[0],k*.05,TAB.g[2]+zs[k]]});B.wait(.2)});
   B.tags(['bd','en','pl','sc'],[TAB.g[0],.4,TAB.g[2]-2.2],{label:'위쪽 태그 줄만 보이게 겹쳐요'}).wait(.6);
-  B.say('초록 = 바로 효과 · 태그는 계속 내 것',[TAB.g[0],.6,TAB.g[2]+5.4],'big')},
+  B.say('초록 = 바로 효과<small>태그는 계속 내 것</small>',[TAB.g[0],.6,TAB.g[2]+5.4],'big')},
  colB:B=>{B.cam('tab',.9);B.card('b',11,['sc'],{to:[TAB.b[0],0,TAB.b[2]]});B.card('b',14,['sp'],{to:[TAB.b[0],.05,TAB.b[2]+3.2]});
-  B.say('파랑 = 계속 남는 시설 · 행동 · 지속 효과가 보이게',[TAB.b[0],.6,TAB.b[2]+7.4]);B.wait(.8);
+  B.say('파랑 = 계속 남는 시설<small>행동과 지속 효과가 보이게</small>',[TAB.b[0],.6,TAB.b[2]+7.4]);B.wait(.8);
   B.cube([TAB.b[0],.1,TAB.b[2]],{label:'행동을 쓰면 내 큐브 올리기 (세대에 1번)'});B.wait(1);
   B.say('생산 단계 끝에 치워요 → 다음 세대에 또',[TAB.b[0],1.8,TAB.b[2]-1.6],'red')},
  colR:B=>{B.cam('tabL',.9);const m=B.card('r',14,['ev','sp'],{to:[-11.4,0,11.4]}).last;B.tags(['ev','sp'],[-11.4,.4,9.2]);
-  B.say('빨강 = 한 번의 사건 · 효과를 쓰고',[-11.4,1,14]);B.wait(1.2);
+  B.say('빨강 = 한 번의 사건<small>효과를 쓰고</small>',[-11.4,1,14]);B.wait(1.2);
   TW(m,B.T,.9,{p:[-11.4,.05,11.4],s:.85,rx:0},{p:[TAB.ev[0],.05,TAB.ev[2]],s:.85,rx:Math.PI},2.6);B.wait(1);
-  B.say('뒤집어서 사건 더미로 · 사건 태그는 세지 않아요',[TAB.ev[0],1,TAB.ev[2]],'red')},
- tag1:B=>{B.cam('tab',.8);B.card('g',12,['bd'],{to:[TAB.g[0],0,TAB.g[2]]});B.tags(['bd'],[TAB.g[0],.4,TAB.g[2]-2.2],{label:'건물 태그 카드 · 비용 12'});B.wait(.6);
-  B.pay(12,{steel:2,label:'나머지 8 M€'});B.say('강철 1개 = 2 M€ · 우주 태그는 티타늄 1개 = 3 M€',slotTop('st'),'big')},
+  B.say('뒤집어서 사건 더미로<small>사건 태그는 세지 않아요</small>',[TAB.ev[0],1,TAB.ev[2]],'red')},
+ tag1:B=>{B.cam('tab',.8);B.card('g',12,['bd'],{to:[TAB.g[0],0,TAB.g[2]]});B.tags(['bd'],[TAB.g[0],.4,TAB.g[2]-2.2],{label:'건물 태그 카드<small>비용 12</small>'});B.wait(.6);
+  B.pay(12,{steel:2,label:'나머지 8 M€'});B.say('강철 1개 = 2 M€<small>우주 태그는 티타늄 1개 = 3 M€</small>',slotTop('st'),'big')},
  tag2:B=>{B.cam('tab',.8);[0,1.05].forEach((z,k)=>B.card('g',8,['sc'],{to:[TAB.g[0],k*.05,TAB.g[2]+z]}));B.tags(['sc','sc'],[TAB.g[0],.4,TAB.g[2]-2.2],{label:'내 과학 태그 2개'});
   B.wait(.6);B.card('b',10,['sc'],{to:[TAB.b[0],0,TAB.b[2]],label:'조건: 과학 태그 2개 이상 → OK'})},
  tag3:B=>{B.cam('ma',1);B.icon('t_bd',[-3.9,BT,8.3],{s:1.6,label:'건축가 = 건물 태그 8개'}).wait(.5);B.icon('t_sc',[6,BT,8.3],{s:1.6,label:'과학기업상 = 과학 태그 가장 많이'}).wait(.6);
@@ -2310,13 +2326,13 @@ const DEMOS={
   B.card('g',9,['sp'],{to:[TAB.g[0],0,TAB.g[2]]});B.tags(['sp'],[TAB.g[0],.4,TAB.g[2]-2.2]);B.wait(.3);B.cam('pbTab',.8);B.gain('mc',2,{label:'+2 M€ (지속 효과)'})},
  deckCE:B=>{B.ring([DECK[0],.3,DECK[2]],{s:3.2});B.icon('ce',[DECK[0],.3,DECK[2]],{s:1.8,dy:2.2,label:'빨간 삼각형 카드 → 상자로',cls:'red'});
   for(let k=0;k<3;k++){const m=dAdd(makeCard('#76c25b',0,[]));TW(m,B.T+k*.3,1,{p:[DECK[0],.5,DECK[2]],s:1,rx:0},{p:[31+k*.4,.1+k*.05,-16],s:1,rx:0,ry:.3},2.4)}B.wait(1.4);B.say('상자 (이번 게임엔 안 써요)',[31.4,1,-16],'gold')},
- corpSetup_std:B=>{for(let k=0;k<2;k++){const m=dAdd(makeCorp());TW(m,B.T+k*.2,.8,{p:[-1.5+k*5.2,3.4,26],s:.75,rx:FT},{p:[-1.5+k*5.2,3.4,26],s:.75,rx:FT},0)}B.cam('pb',.8);B.say('기업 카드 2장 중 1장을 골라요',[1,5.4,26],'big');B.wait(1.2);B.ring([-11.2,.2,PZ],{s:3.4});B.say('고른 카드 = 가로로 · 적힌 시작 자금',[-11.2,1.2,PZ-2.6],'gold')},
+ corpSetup_std:B=>{for(let k=0;k<2;k++){const m=dAdd(makeCorp());TW(m,B.T+k*.2,.8,{p:[-1.5+k*5.2,3.4,26],s:.75,rx:FT},{p:[-1.5+k*5.2,3.4,26],s:.75,rx:FT},0)}B.cam('pb',.8);B.say('기업 카드 2장 중 1장을 골라요',[1,5.4,26],'big');B.wait(1.2);B.ring([-11.2,.2,PZ],{s:3.4});B.say('고른 카드는 가로로<small>적힌 시작 자금을 받아요</small>',[-11.2,1.2,PZ-2.6],'gold')},
  cards10_std:B=>{B.cam('handCam',.6);B.say('살 카드만 남기고',[0,6.2,27],'big');B.wait(.5);for(let k=0;k<4;k++){const m=dAdd(makeCard('#3f7fdc',0,[]));TW(m,B.T+k*.3,1.2,{p:[-3+k*2,3.6,26.4],s:.8,rx:FT},{p:[DISC[0],.08+k*.04,DISC[2]],s:1,rx:Math.PI,ry:.05*k},3)}B.cam('deckCam',1.1);B.wait(1.4);B.say('안 산 카드 → 버림 더미 (뒷면)',[DISC[0],1.2,DISC[2]],'gold');B.wait(.6);B.cam('pbTab',.8);B.pay(18,{label:'산 카드 6장 × 3 M€'})},
- reqOnce:B=>{B.S.oxy=3;B.cam('oxyCam',.6);B.ring(oxP(5),{s:2.4});B.icon('oxy',oxP(5),{s:1.3,label:'조건: 산소 5% 이하 · 지금 3% ✓',cls:'gold'});B.wait(.6);
+ reqOnce:B=>{B.S.oxy=3;B.cam('oxyCam',.6);B.ring(oxP(5),{s:2.4});B.icon('oxy',oxP(5),{s:1.3,label:'조건: 산소 5% 이하<small>지금 3% ✓</small>',cls:'gold'});B.wait(.6);
   B.cam('tab',.8);B.card('g',9,['mi'],{to:[TAB.g[0],0,TAB.g[2]],label:'낸 카드'});B.wait(.4);B.glob('oxy',4,{tr:false,label:'나중에 산소 3 → 7%'});B.cam('tab',.8);B.say('그래도 이미 낸 카드 효과는 그대로 ✓',[TAB.g[0],1.4,TAB.g[2]+2.6],'big')},
- mcNeg:B=>{B.ring(prodP('mc',-5),{s:2.4});B.say('M€ 칸 숫자 줄 맨 위 = −5 ~ −1',[-4.3,.6,PZ-4.6],'gold');B.wait(.5);B.prod('mc',-2,{label:'M€ 생산력 1 → −1'});B.wait(.4);B.say('생산: TR 20 + (−1) = 19 M€ · TR만큼은 꼭 받아요',[0,.6,PZ+5.2],'big')},
+ mcNeg:B=>{B.ring(prodP('mc',-5),{s:2.4});B.say('M€ 칸 숫자 줄 맨 위 = −5 ~ −1',[-4.3,.6,PZ-4.6],'gold');B.wait(.5);B.prod('mc',-2,{label:'M€ 생산력 1 → −1'});B.wait(.4);B.say('생산: TR 20 + (−1) = 19 M€<small>TR만큼은 꼭 받아요</small>',[0,.6,PZ+5.2],'big')},
  corpSetup:B=>{B.ring([-11.2,.2,PZ],{s:3.4});B.say('기업 카드 = 내 회사 (가로로 놓아요)',[-11.2,1.2,PZ-2.6],'big');B.wait(.6);
-  B.say('시작 자금 · 회사의 특별 능력',[-11.2,.6,PZ+2.4],'gold');B.wait(.6);B.ring(slotTop('mc'));B.icon('mc',slotTop('mc'),{label:'은행에서 42 M€ = 금 4 + 동 2 → M€ 칸 위에'})},
+  B.say('시작 자금과 회사의 특별 능력',[-11.2,.6,PZ+2.4],'gold');B.wait(.6);B.ring(slotTop('mc'));B.icon('mc',slotTop('mc'),{label:'은행에서 42 M€ = 금 4 + 동 2 → M€ 칸 위에'})},
  pbSetup:B=>{B.spot();[['mc','M€'],['st','강철'],['ti','티타늄'],['pl','식물'],['en','에너지'],['ht','열']].forEach(([k,n],j)=>{B.icon(RES_K[k],slotTop(k),{s:1.15,dy:.9,label:n});B.T+=.12});B.wait(.5);
   B.reg(['rHold']);B.say('그림 칸 위 = 지금 가진 양',[-4.3,.6,PZ-4.6],'gold');B.wait(.9);
   B.reg(['rProd']);B.say('숫자 칸의 내 큐브 = 생산력 (지금 1)',[-4.3,.6,PZ+4.8],'red');B.wait(.9);B.reg([]);
@@ -2324,7 +2340,7 @@ const DEMOS={
  pbFocus:B=>{B.cam('pbClose',1);B.spot();B.say('주목! 개인 게임판',[0,.6,PZ+5.2],'big',2.4);B.wait(.5);
   B.reg(['rHold']);B.say('그림 칸 위 = 지금 가진 자원',[-4.3,.6,PZ-4.6],'gold');B.wait(.5);B.gain('pl',3,{label:'식물 3개 받기 → 그림 칸 위에 올려요'});B.wait(.8);
   B.reg(['rProd']);B.say('숫자 칸의 내 큐브 = 생산력',[-4.3,.6,PZ+4.8],'red');B.wait(1);B.prod('pl',1,{label:'생산력 +1 = 내 큐브가 한 칸 이동'});B.wait(.8);
-  B.reg([]);B.say('생산 단계: 숫자만큼 그림 칸에 들어와요',[0,.6,PZ+5.2],'big',2.6);B.wait(1);B.gain('pl',2,{label:'생산력 2 → 식물 2개'});B.wait(.4);B.say('받은 자원 = 그림 칸 위 · 생산력 = 숫자 칸의 내 큐브',[0,.6,PZ+5.2],'big')},
+  B.reg([]);B.say('생산 단계: 숫자만큼 그림 칸에 들어와요',[0,.6,PZ+5.2],'big',2.6);B.wait(1);B.gain('pl',2,{label:'생산력 2 → 식물 2개'});B.wait(.4);B.say('받은 자원 = 그림 칸 위<small>생산력 = 숫자 칸의 내 큐브</small>',[0,.6,PZ+5.2],'big')},
  prod1:B=>{B.cam('pbClose',.8);B.icon('prodbox',slotTop('pl'),{s:1.8,dy:2.6,label:'갈색 박스 = 생산력'}).wait(.6);B.prod('pl',1,{label:'식물 생산력 1 → 2'})},
  prod2:B=>{B.cam('pbClose',.8);B.prod('pl',1,{label:'식물 생산력 2'});[1,2,3].forEach(g=>{B.say(`${g}세대 끝: 생산`,[-4,.6,PZ+5],'',1.2);B.gain('pl',2,{label:`+2 식물 (${g}세대)`});B.wait(.2)});
   B.say('한 번 올린 생산력은 매 세대 계속 들어와요',[0,.6,PZ+5],'big')},
@@ -2340,36 +2356,36 @@ const DEMOS={
  aMile:B=>{B.cam('ma',.9);B.say('조건을 먼저 채웠다면',[-5.9,1.2,8.3]);B.wait(.3);B.pay(8,{label:'업적 선언 8 M€'});B.cam('ma',.8);B.cube([-5.9,BT,8.3],{label:'내 큐브 = 원예가 달성 (5점)'});B.vp('+5점',[-5.9,BT,7.6],{ic:'milestone'});
   B.say('5개 중 3개가 차면 더는 못 해요',[-5.9,3.4,8.3],'red')},
  aAward:B=>{B.cam('ma',.9);B.pay(8,{label:'기업상 제정 8 M€ (첫 번째)'});B.cam('ma',.8);B.cube([4,BT,8.3],{label:'금융기업상 제정'});
-  B.say('다음 제정 14 M€ → 마지막 20 M€ · 3개까지',[6,2.2,8.3]);B.wait(.6);B.say('누가 제정했든 판정은 게임 끝 · 1등 5점',[4,3.6,8.3],'gold')},
+  B.say('다음 제정 14 M€ → 마지막 20 M€<small>3개까지</small>',[6,2.2,8.3]);B.wait(.6);B.say('누가 제정했든 판정은 게임 끝<small>1등 5점</small>',[4,3.6,8.3],'gold')},
  aBlue:B=>{B.cam('tab',.8);B.card('b',11,['mi'],{to:[TAB.b[0],0,TAB.b[2]],label:'행동: 에너지 1 → 미생물 1'});B.wait(.5);B.cube([TAB.b[0]-1.2,.1,TAB.b[2]+1.6],{label:'내 큐브 = 이번 세대 사용함'});
   B.cam('pbTab',.8);B.spend('en',1);B.cam('tab',.8);const m=dAdd(box(SZ.cu,MAT.cu()));TW(m,B.T,.6,{p:[TAB.b[0]+.8,4,TAB.b[2]],s:1},{p:[TAB.b[0]+.8,.05+SZ.cu/2,TAB.b[2]],s:1},0,easeOut);
   B.icon('special',[TAB.b[0]+.8,.4,TAB.b[2]],{s:1.4,label:'카드 위 큐브 = 미생물 1 (특수 자원)'})},
  aPlant:B=>{B.cam('pbTab',.8);B.spend('pl',8,{label:'식물 8개'});B.tile('gr',3,-3)},
  aHeat:B=>{B.cam('pbTab',.8);B.spend('ht',8,{label:'열 8개'});B.glob('temp',1)},
  /* 타일 · 지표 */
- tOcean:B=>{B.cam('board',.8);const gl=hexGlow([...RES]);EV(B.T,()=>gl.forEach(m=>{m.visible=true;m.userData.pulse=1}));B.say('파란 칸 = 해양 전용 · 다른 타일은 못 놓아요',hexP(0,0,2.4),'big');B.wait(1.2);
+ tOcean:B=>{B.cam('board',.8);const gl=hexGlow([...RES]);EV(B.T,()=>gl.forEach(m=>{m.visible=true;m.userData.pulse=1}));B.say('파란 칸 = 해양 전용<small>다른 타일은 못 놓아요</small>',hexP(0,0,2.4),'big');B.wait(1.2);
   EV(B.T,()=>gl.forEach(m=>{m.visible=false;m.userData.pulse=0}));B.tile('oc',-1,0,{allow:[]})},
  tBonus:B=>{B.say('칸에 그려진 그림 = 그 칸에 놓으면 받는 것',hexP(0,-1,1),'big',2.2);B.wait(.3);B.tile('ci',0,-4,{allow:[],label:'점유 보너스'})},
  tAdj:B=>{B.tile('oc',4,-3,{allow:[],bonus:false,param:false});B.tile('gr',3,-3,{allow:[],param:false})},
  tGreen:B=>{B.tile('ci',2,0,{allow:[],bonus:false,ocean:false});B.say('녹지는 내 타일 옆이 비어 있으면 꼭 그 옆에',hexP(2,0,3),'big');B.wait(1);B.tile('gr',2,-1,{bonus:false,param:false})},
  tCity:B=>{B.cam('board',.8);const bad=hexGlow(NB(-2,1).filter(k=>HEX[k].t!=='O'),0xff3b2f);EV(B.T,()=>bad.forEach(m=>{m.visible=true;m.userData.pulse=1}));
-  B.say('상대 도시 옆 = 도시 X (녹지 · 해양은 OK)',hexP(-2,1,2.6),'red');B.wait(1);B.tile('ci',1,-2,{bonus:false})},
+  B.say('상대 도시 옆 = 도시 X (녹지와 해양은 OK)',hexP(-2,1,2.6),'red');B.wait(1);B.tile('ci',1,-2,{bonus:false})},
  tSpecial:B=>{B.cam('board',.8);const [q,r]=NOCTIS.split(',').map(Number);const g=hexGlow([NOCTIS],0xffe08a);EV(B.T,()=>g.forEach(m=>{m.visible=true;m.userData.pulse=1}));
   B.say('노크티스 시티 자리: 그 카드로만 도시를 놓아요',hexP(q,r,2.4),'gold');B.wait(1.2);B.icon('sp_tile',hexP(2,1),{s:1.8,label:'갈색 특수 타일: 카드에 적힌 대로'})},
- bHeat:B=>{B.S.temp=2;B.glob('temp',1,{tr:false,label:'−26 → −24°C'});B.icon('pb_heat',tmP(3),{s:1.6,dy:2.8,label:'보너스: 열 생산력 +1',cls:'gold'});B.tr(1);B.cam('pbTab',.8);B.prod('ht',1,{label:'−24 · −20°C 칸 = 열 생산력 +1'})},
+ bHeat:B=>{B.S.temp=2;B.glob('temp',1,{tr:false,label:'−26 → −24°C'});B.icon('pb_heat',tmP(3),{s:1.6,dy:2.8,label:'보너스: 열 생산력 +1',cls:'gold'});B.tr(1);B.cam('pbTab',.8);B.prod('ht',1,{label:'−24°C, −20°C 칸<small>열 생산력 +1</small>'})},
  bOcean:B=>{B.S.temp=14;B.glob('temp',1,{tr:false,label:'−2 → 0°C'});B.icon('ocean',tmP(15),{s:1.6,dy:2.8,label:'보너스: 해양 1장 놓기',cls:'gold'});B.tr(1);B.tile('oc',1,0,{bonus:false})},
  bOxy:B=>{B.S.oxy=7;B.glob('oxy',1,{tr:false,label:'산소 7 → 8%'});B.icon('temp',oxP(8),{s:1.4,dy:2.6,label:'보너스: 기온 +1단계',cls:'gold'});B.tr(1);B.glob('temp',1)},
- bMax:B=>{B.cam('whole',.9);B.say('산소 14% · 기온 +8°C · 해양 9장이 끝',[0,3,-4],'big');B.wait(1.2);B.say('꽉 찬 지표를 올리는 카드도 낼 수 있어요 · TR만 안 올라요',[0,1,4])},
- /* 업적 · 기업상 */
+ bMax:B=>{B.cam('whole',.9);B.say('산소 14%, 기온 +8°C, 해양 9장이 끝',[0,3,-4],'big');B.wait(1.2);B.say('꽉 찬 지표를 올리는 카드도 낼 수 있어요<small>TR만 안 올라요</small>',[0,1,4])},
+ /* 업적과 기업상 */
  mList:B=>{B.cam('maL',1);[['테라포머','TR 35 이상'],['시장','내 도시 3개'],['원예가','내 녹지 3개'],['건축가','건물 태그 8개'],['전략가','손에 카드 16장']].forEach(([n,c],k)=>{B.say(c,[-9.87+k*1.99,BT+.2+((k%2)?1.3:0),8.3],'ma');B.wait(.35)})},
  aList:B=>{B.cam('maR',1);[['개척','화성 위 내 타일 수'],['금융','M€ 생산력'],['과학','과학 태그 수'],['열','지금 가진 열'],['광업','강철 + 티타늄']].forEach(([n,c],k)=>{B.say(c,[2+k*1.99,BT+.2+((k%2)?1.3:0),8.3],'aw');B.wait(.35)})},
  mJudge:B=>{B.cam('ma',.9);B.cube([2,BT,8.3],{label:'개척기업상 (상대가 제정)'});B.wait(.6);B.say('게임 끝: 화성 위 타일이 가장 많은 사람',[2,2.8,8.3]);B.wait(1);
   B.vp('1등 5점',[.2,BT,7],{ic:'award'});B.vp('2등 2점 (3인 이상)',[4.2,BT,7],{ic:'award'});B.say('제정한 사람이 아니라 1등이 받아요',[2,4.6,8.3],'red')},
  /* 게임 끝 · 점수 */
  eLast:B=>{B.cam('pbTab',.8);B.say('마지막 생산 뒤, 식물로 녹지를 한 번 더 놓을 수 있어요',[0,3,PZ-6],'big');B.wait(.4);B.spend('pl',8,{label:'식물 8개'});B.tile('gr',3,-2,{param:false,label:'산소는 안 올라도 녹지 1점'})},
- eScore:B=>{B.cam('boardW',.9).vp('① TR = 점수의 바탕',trPos(B.S.tr,0)).wait(.6);B.cam('ma',.9).vp('② 기업상 1등 5 · 2등 2',[4,BT,8.3],{ic:'award'}).vp('③ 업적 5점씩',[-5.9,BT,8.3],{ic:'milestone'}).wait(.6);
-  B.cam('board',.9).vp('④ 내 녹지 1장 = 1점',hexP(3,-3,.2)).vp('⑤ 내 도시: 옆 녹지 1장당 1점 (누구 녹지든) · 도시 자체 0점',hexP(-2,1,.2)).wait(.6);
-  B.cam('tab',.9).vp('⑥ 카드 승점 · 카드 위 동물 등',[TAB.g[0],.2,TAB.g[2]],{ic:'vp'}).wait(.6);B.say('가장 높은 사람 승리 · 동점이면 M€ 많은 사람',[TAB.g[0],3,TAB.g[2]-2],'big')}
+ eScore:B=>{B.cam('boardW',.9).vp('① TR = 점수의 바탕',trPos(B.S.tr,0)).wait(.6);B.cam('ma',.9).vp('② 기업상 1등 5점<small>3인 이상: 2등 2점</small>',[4,BT,8.3],{ic:'award'}).vp('③ 업적 5점씩',[-5.9,BT,8.3],{ic:'milestone'}).wait(.6);
+  B.cam('board',.9).vp('④ 내 녹지 1장 = 1점',hexP(3,-3,.2)).vp('⑤ 내 도시: 옆 녹지 1장당 1점 (누구 녹지든)<small>도시 자체는 0점</small>',hexP(-2,1,.2)).wait(.6);
+  B.cam('tab',.9).vp('⑥ 카드 승점<small>카드 위 동물 등</small>',[TAB.g[0],.2,TAB.g[2]],{ic:'vp'}).wait(.6);B.say('가장 높은 사람 승리<small>동점이면 M€ 많은 사람</small>',[TAB.g[0],3,TAB.g[2]-2],'big')}
 };
 
 /* ================= 3차: 카드 검색 → 카드 해독 → 기호 애니메이션 ================= */
@@ -2398,7 +2414,7 @@ function atomTxt(a){const R=RESKO[RESK[a.res]]||a.res;
   case 'text':return a.ko||'';default:return ''}}
 function vpTxt(v){if(!v)return'';if(v.type==='fixed')return `승점 ${v.value}`;if(v.type==='per_resource')return `${CRES[v.of]||v.of} ${v.per}개당 ${v.value}점`;if(v.type==='per_tag')return `${TAGKO[v.of]||v.of} 태그 ${v.per}개당 ${v.value}점`;if(v.type==='per_tile')return `${TILEKO[v.of]||v.of} ${v.per}개당 ${v.value}점`;return '승점 (카드 글 참고)'}
 function vpBadge(v){if(!v)return'';if(v.type==='fixed')return v.value;if(v.per)return `${v.value}/${v.per}`;return '★'}
-function cardLines(c){const L=[];if(c.cost!=null)L.push(`비용 <b>${c.cost} M€</b>${c.tags.includes('building')?' · 강철 가능':''}${c.tags.includes('space')?' · 티타늄 가능':''}`);
+function cardLines(c){const L=[];if(c.cost!=null)L.push(`비용 <b>${c.cost} M€</b>${c.tags.includes('building')?' <i class="pr">강철 가능</i>':''}${c.tags.includes('space')?' <i class="pr">티타늄 가능</i>':''}`);
  const r=reqOf(c);if(r)L.push(`조건: <b>${reqTxt(r)}</b>`);c.effects.forEach(a=>{const t=atomTxt(a);if(t&&a.atom!=='text')L.push(t)});const v=vpTxt(c.vp);if(v)L.push(v);
  if(c.color==='red')L.push('쓰고 나면 뒤집어 사건 더미에');if(c.color==='blue')L.push('계속 남아요 (파란 카드)');return L}
 function effIcons(c){const I=n=>`<img src="img/rb/${n}.svg" alt="">`;const R={mc:'mc',st:'steel',ti:'ti',pl:'plant',en:'energy',ht:'heat'};
@@ -2417,7 +2433,7 @@ function cardHTML(c){const col=CCOL[c.color]||'#666',r=reqOf(c);
   <span class="kc-tags">${c.tags.map(t=>TAGK[t]?`<img class="cc-tag" src="img/rb/t_${TAGK[t]}.svg" alt="">`:'').join('')}</span>
   <span class="kc-name" style="background:${col}">${c.ko}</span><span class="kc-art cc-num">${c.corporateEra?'<i>대기업시대</i>':''}<b>${c.num}</b></span>
   <span class="kc-eff cc-eff">${effIcons(c)}</span><span class="kc-text">${c.ko_text||''}</span>${c.vp?`<span class="kc-vp">${vpBadge(c.vp)}</span>`:''}</div></div>`;
- return `<div class="kc cmode" data-f="all">${card}<div class="kc-txt"><p class="il-eb">카드 해독 · ${c.num}</p><h3 class="il-t">${c.ko}</h3><p class="kc-p">${cardLines(c).map(x=>`<span class="ln">${x}</span>`).join('')}</p>${c.needs_manual?'<p class="kc-ex">이 카드는 특별해요. 아래 카드 글을 꼭 읽어요</p>':''}<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p></div></div>`}
+ return `<div class="kc cmode" data-f="all">${card}<div class="kc-txt"><p class="il-eb">카드 해독 <span class="eb-n">${c.num}</span></p><h3 class="il-t">${c.ko}</h3><p class="kc-p">${cardLines(c).map(x=>`<span class="ln">${x}</span>`).join('')}</p>${c.needs_manual?'<p class="kc-ex">이 카드는 특별해요. 아래 카드 글을 꼭 읽어요</p>':''}<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p></div></div>`}
 /* 카드 검색은 언제 열어도 셋팅이 다 된 테이블 위에서 보여 줌 */
 const cardBase=()=>{const s=STEPS[cur];return (!s.dim&&cur>=SI.first)?cur:(cur<SI.g1a?SI.first:SI.p3)};
 function openCard(c){if(!c)return;window.__csr&&__csr(false);cardMode=c;if(renderer){const b=cardBase();if(b!==sceneI)toStep(b);lblBox.innerHTML='';}dClear();const il=$('#interlude');il.innerHTML=cardHTML(c);il.classList.add('on');stage.classList.add('il','brief','cardm');stage.classList.remove('kcm');briefOpen=true;
@@ -2433,7 +2449,7 @@ function cardDemo(B,c){const S=B.S;S.hold.mc=Math.max(S.hold.mc,(c.cost||0)+5);
   else if(r.type==='temperature'){B.cam('temp',.9);const k=Math.round((r.value+30)/2);B.ring(tmP(k),{s:2.4});B.icon('temp',tmP(k),{s:1.4,label:`조건: ${reqTxt(r)}`})}
   else if(r.type==='oceans'){B.cam('board',.9);B.icon('ocean',[ocSpot[0],BT,ocSpot[1]],{s:1.6,label:`조건: ${reqTxt(r)}`})}
   else{B.cam('tab',.9);B.say(`조건: ${reqTxt(r)}`,[TAB.g[0],1.5,TAB.g[2]-2],'gold')}B.wait(.8)}
- if(c.kind!=='corporation'){B.cam('tab',.9);B.card(ck,c.cost||0,tg,{to:spot});if(tg.length)B.tags(tg,[spot[0],.4,spot[2]-2.2],{label:tg.map(t=>({bd:'건물',sp:'우주',en:'에너지',sc:'과학',jo:'목성',ea:'지구',pl:'식물',mi:'미생물',an:'동물',ci:'도시',ev:'사건'})[t]).join(' · ')+' 태그'});
+ if(c.kind!=='corporation'){B.cam('tab',.9);B.card(ck,c.cost||0,tg,{to:spot});if(tg.length)B.tags(tg,[spot[0],.4,spot[2]-2.2],{label:tg.map(t=>({bd:'건물',sp:'우주',en:'에너지',sc:'과학',jo:'목성',ea:'지구',pl:'식물',mi:'미생물',an:'동물',ci:'도시',ev:'사건'})[t]).join(', ')+' 태그'});
   if(c.cost)B.pay(c.cost,{label:'카드 비용'});if(c.tags.includes('building'))B.say('건물 태그: 강철 1개 = 2 M€로 대신 낼 수 있어요',slotTop('st'),'',2.4);if(c.tags.includes('space'))B.say('우주 태그: 티타늄 1개 = 3 M€로 대신 낼 수 있어요',slotTop('ti'),'',2.4)}
  else{B.cam('pb',.9);B.ring([-11.2,.2,PZ]);B.say('기업 카드 (게임 시작 때 1장)',[-11.2,1.4,PZ],'gold')}
  const used={};
@@ -2447,10 +2463,10 @@ function cardDemo(B,c){const S=B.S;S.hold.mc=Math.max(S.hold.mc,(c.cost||0)+5);
    case 'tile':{const t=a.tile;if(t==='ocean'){const key=[...RES].find(x=>!S.occ[x]);if(key){const [q,rr]=key.split(',').map(Number);B.tile('oc',q,rr)}}
     else if(t==='greenery'){const key=greenOK(S)[0];if(key){const [q,rr]=key.split(',').map(Number);B.tile('gr',q,rr)}}
     else if(t==='city'){const ks=cityOK(S).sort((x,y)=>{const [a1,b1]=x.split(',').map(Number),[a2,b2]=y.split(',').map(Number);return (Math.abs(a1)+Math.abs(b1)+Math.abs(a1+b1))-(Math.abs(a2)+Math.abs(b2)+Math.abs(a2+b2))});const key=ks[0];if(key){const [q,rr]=key.split(',').map(Number);B.tile('ci',q,rr)}}
-    else{const key=cityOK(S)[3]||NOCTIS;const [q,rr]=key.split(',').map(Number);B.cam('board',.8);B.icon('sp_tile',hexP(q,rr),{s:1.8,label:`특수 타일: ${TILEKO[t]||t} · 카드 글대로`,cls:'gold'});B.wait(.8)}break}
+    else{const key=cityOK(S)[3]||NOCTIS;const [q,rr]=key.split(',').map(Number);B.cam('board',.8);B.icon('sp_tile',hexP(q,rr),{s:1.8,label:`특수 타일: ${TILEKO[t]||t}<small>카드에 적힌 대로</small>`,cls:'gold'});B.wait(.8)}break}
    case 'card_res':{const tgt=a.target==='any'?[TAB.b[0]+3,0,TAB.b[2]]:spot;B.cam('tab',.8);const m=dAdd(box(SZ.cu,MAT.cu()));TW(m,B.T,.6,{p:[tgt[0]+.6,4,tgt[2]],s:1},{p:[tgt[0]+.6,.05+SZ.cu/2,tgt[2]],s:a.n<0?.01:1},0,easeOut);
     B.icon('special',[tgt[0]+.6,.4,tgt[2]],{s:1.3,label:`${a.target==='any'?'아무 카드':'이 카드'} 위 ${CRES[a.res]||a.res} ${a.n>0?'+':'−'}${Math.abs(a.n)}`});B.wait(.4);break}
-   case 'action':B.cam('tab',.8);B.cube([spot[0]-1.2,.1,spot[2]+1.6],{label:'행동 = 세대에 1번 · 쓰면 내 큐브'});(a.cost||[]).forEach(run);(a.gain||[]).forEach(run);break;
+   case 'action':B.cam('tab',.8);B.cube([spot[0]-1.2,.1,spot[2]+1.6],{label:'행동 = 세대에 1번<small>쓰면 내 큐브</small>'});(a.cost||[]).forEach(run);(a.gain||[]).forEach(run);break;
    case 'effect':B.cam('tab',.8);B.say(a.trigger||'지속 효과',[spot[0],1.6,spot[2]+2.6],'gold',3.2);B.wait(1.4);(a.result||[]).filter(x=>x.atom!=='text').slice(0,2).forEach(run);break;
    case 'discount':B.cam('tab',.8);B.say(atomTxt(a),[spot[0],1.2,spot[2]],'gold');B.wait(1);break;
    case 'text':if(a.ko){B.say(a.ko,[spot[0],1.4,spot[2]+3],'',3.4);B.wait(1.6)}break}};
@@ -2462,17 +2478,17 @@ DEMOS.__card=B=>cardDemo(B,cardMode);
 /* 검색 패널 */
 {const btn=document.createElement('button');btn.type='button';btn.className='s-card';btn.innerHTML='<i></i>카드';btn.setAttribute('aria-label','카드 검색');
  const box=document.createElement('div');box.className='csr';box.hidden=true;
- box.innerHTML=`<div class="sl-in"><div class="sl-h"><b>카드 검색</b><button type="button" class="sl-x" aria-label="닫기">✕</button></div><input class="cs-q" type="search" inputmode="search" placeholder="카드 번호 · 이름 · 초성 (예: 056, 광산, ㄱㅅ)" autocomplete="off"><div class="cs-f">${[['green','초록'],['blue','파랑'],['red','빨강'],['corp','기업']].map(([c,n])=>`<button type="button" data-c="${c}"><i style="background:${CCOL[c]}"></i>${n}</button>`).join('')}${Object.entries({bd:'building',sp:'space',en:'power',sc:'science',jo:'jovian',ea:'earth',pl:'plant',mi:'microbe',an:'animal',ci:'city',ev:'event'}).map(([k,t])=>`<button type="button" class="tg" data-t="${t}" aria-label="${TAGKO[t]} 태그"><img src="img/rb/t_${k}.svg" alt=""></button>`).join('')}</div><p class="cs-hint">카드를 고르면 해독 화면 → 누르면 3D로 보여 드려요</p><ol class="cs-list"></ol></div>`;
+ box.innerHTML=`<div class="sl-in"><div class="sl-h"><b>카드 검색</b><button type="button" class="sl-x" aria-label="닫기">✕</button></div><input class="cs-q" type="search" inputmode="search" placeholder="번호, 이름, 초성 (예: 056, 광산, ㄱㅅ)" autocomplete="off"><div class="cs-f">${[['green','초록'],['blue','파랑'],['red','빨강'],['corp','기업']].map(([c,n])=>`<button type="button" data-c="${c}"><i style="background:${CCOL[c]}"></i>${n}</button>`).join('')}${Object.entries({bd:'building',sp:'space',en:'power',sc:'science',jo:'jovian',ea:'earth',pl:'plant',mi:'microbe',an:'animal',ci:'city',ev:'event'}).map(([k,t])=>`<button type="button" class="tg" data-t="${t}" aria-label="${TAGKO[t]} 태그"><img src="img/rb/t_${k}.svg" alt=""></button>`).join('')}</div><p class="cs-hint">카드를 고르면 해독 화면 → 누르면 3D로 보여 드려요</p><ol class="cs-list"></ol></div>`;
  stage.append(btn,box);const q=box.querySelector('.cs-q'),list=box.querySelector('.cs-list'),hint=box.querySelector('.cs-hint');
  const norm=x=>(x||'').toLowerCase().replace(/\s+/g,'');const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';const cho=t=>[...(t||'')].map(ch=>{const c=ch.charCodeAt(0)-44032;return c>=0&&c<11172?CHO[Math.floor(c/588)]:ch}).join('').replace(/\s+/g,'');
  function render(){if(!CARDS){hint.textContent='카드 목록을 불러오는 중…';return}const v=norm(q.value);let res=[];
   const fc=[...box.querySelectorAll('.cs-f button.on[data-c]')].map(b=>b.dataset.c),ft=[...box.querySelectorAll('.cs-f button.on[data-t]')].map(b=>b.dataset.t);const flt=c=>(!fc.length||fc.includes(c.color))&&ft.every(t=>c.tags.includes(t));
-  if(!v&&!fc.length&&!ft.length){const rc=LS.get('tm-recent',[]).map(n=>CARDS.find(c=>c.num===n)).filter(Boolean);hint.textContent=rc.length?'최근 본 카드':`카드 ${CARDS.length}장 · 번호 · 이름 · 초성으로 찾아요`;res=rc}
+  if(!v&&!fc.length&&!ft.length){const rc=LS.get('tm-recent',[]).map(n=>CARDS.find(c=>c.num===n)).filter(Boolean);hint.textContent=rc.length?'최근 본 카드':`카드 ${CARDS.length}장을 번호, 이름, 초성으로 찾아요`;res=rc}
   else if(!v){res=CARDS.filter(flt);hint.textContent=`${res.length}장`}
   if(!v){list.innerHTML=res.slice(0,60).map(c=>`<li><button type="button" data-n="${c.num}"><span class="cs-dot" style="background:${CCOL[c.color]||'#888'}"></span><span class="cs-num">${c.num}</span><span class="cs-nm">${c.ko}${c.corporateEra?' <i>대기업</i>':''}</span><span class="cs-tags">${c.tags.map(t=>TAGK[t]?`<img src="img/rb/t_${TAGK[t]}.svg" alt="">`:'').join('')}</span>${c.cost!=null?`<span class="cs-cost">${c.cost}</span>`:''}</button></li>`).join('');return}
   if(/^\d+$/.test(v)){const p3=v.padStart(3,'0');res=CARDS.filter(c=>c.num===p3).concat(CARDS.filter(c=>c.num!==p3&&c.num.includes(v)))}
   else{const rank=c=>{const k=norm(c.ko),h=cho(c.ko);return k===v||h===v?0:k.startsWith(v)||h.startsWith(v)?1:k.includes(v)?2:h.includes(v)?3:4};res=CARDS.filter(c=>(norm(c.search).includes(v)||norm(c.ko).includes(v)||cho(c.ko).includes(v))&&flt(c)).sort((a,b)=>rank(a)-rank(b))}
-  hint.textContent=res.length?`${res.length}장 찾음`:'찾는 카드가 없어요 · 다른 글자로 해 보세요';
+  hint.textContent=res.length?`${res.length}장 찾음`:'찾는 카드가 없어요. 다른 글자로 해 보세요';
   list.innerHTML=res.slice(0,60).map(c=>`<li><button type="button" data-n="${c.num}"><span class="cs-dot" style="background:${CCOL[c.color]||'#888'}"></span><span class="cs-num">${c.num}</span><span class="cs-nm">${c.ko}${c.corporateEra?' <i>대기업</i>':''}</span><span class="cs-tags">${c.tags.map(t=>TAGK[t]?`<img src="img/rb/t_${TAGK[t]}.svg" alt="">`:'').join('')}</span>${c.cost!=null?`<span class="cs-cost">${c.cost}</span>`:''}</button></li>`).join('')}
  const open=v=>{box.hidden=!v;btn.classList.toggle('on',v);if(v){loadCards().then(render).catch(()=>{hint.textContent='카드 목록을 불러오지 못했어요 (인터넷 연결 확인)'});render();setTimeout(()=>q.focus(),60)}};
  btn.onclick=e=>{e.stopPropagation();if(window.__slist)__slist(false);open(box.hidden)};
@@ -2490,9 +2506,9 @@ const LS={get:(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.
 const park=document.getElementById('toolPark');
 const mkTool=(id,html)=>{const d=document.createElement('div');d.className='tool tool2';d.id=id;d.innerHTML=html;park.appendChild(d);return d};
 /* 1) 세대 진행판 */
-{const PH=[['① 순서 조정','시작 플레이어 마커를 <b>왼쪽 사람</b>에게 · 세대 마커 +1',1],['② 연구','덱에서 4장 → 살 카드만 1장당 3 M€ · 나머지는 뒷면으로 버림',1],['③ 행동','차례마다 행동 1~2개 → 다음 사람 · 할 게 없으면 행동 종료',0],['④ 생산','',0]];
+{const PH=[['① 순서 조정','시작 플레이어 마커를 <b>왼쪽 사람</b>에게 넘기고, 세대 마커 +1',1],['② 연구','덱에서 4장 → 살 카드만 1장당 3 M€, 나머지는 뒷면으로 버림',1],['③ 행동','차례마다 행동 1~2개 → 다음 사람, 할 게 없으면 행동 종료',0],['④ 생산','',0]];
  const PR=['남은 <b>에너지 → 전부 열</b>로 옮기기','M€ 받기 = <b>TR + M€ 생산력</b>','다른 자원 = 각 <b>생산력</b>만큼','파란 카드 위 <b>내 큐브 치우기</b>'];
- const el=mkTool('genTool','<div class="gt"><div class="gt-gen"><button type="button" data-g="-1" aria-label="이전 세대">−</button><b><span class="gt-n">1</span>세대</b><button type="button" data-g="1" aria-label="다음 세대">+</button></div><ol class="gt-ph"></ol><p class="gt-end">기온 +8°C · 산소 14% · 해양 9장이 <b>모두</b> 찼나요? → 이 세대 생산까지 하고 끝 → 마지막 녹지 → 점수 세기</p><button type="button" class="gt-next">이번 세대 끝 · 다음 세대로 ▶</button></div>');
+ const el=mkTool('genTool','<div class="gt"><div class="gt-gen"><button type="button" data-g="-1" aria-label="이전 세대">−</button><b><span class="gt-n">1</span>세대</b><button type="button" data-g="1" aria-label="다음 세대">+</button></div><ol class="gt-ph"></ol><p class="gt-end">기온 +8°C, 산소 14%, 해양 9장이 <b>모두</b> 찼나요? → 이 세대 생산까지 하고 끝 → 마지막 녹지 → 점수 세기</p><button type="button" class="gt-next">이번 세대 끝, 다음 세대로 ▶</button></div>');
  let S=LS.get('tm-gen',{g:1,done:[]});
  const draw=()=>{el.querySelector('.gt-n').textContent=S.g;el.querySelector('.gt-ph').innerHTML=PH.map((p,k)=>{const skip=S.g===1&&p[2];const sub=k===3?`<ul>${PR.map((r,j)=>`<li><button type="button" data-d="p${j}" class="${S.done.includes('p'+j)?'on':''}">${r}</button></li>`).join('')}</ul>`:'';
    return `<li class="${skip?'skip':''}"><button type="button" data-d="${k}" class="gt-h ${S.done.includes(String(k))||skip?'on':''}"><b>${p[0]}</b><span>${skip?'1세대는 건너뛰어요':p[1]}</span></button>${sub}</li>`}).join('');LS.set('tm-gen',S)};
@@ -2508,16 +2524,16 @@ const mkTool=(id,html)=>{const d=document.createElement('div');d.className='tool
   it(V.pl>=8,'F 식물 8개 → 녹지',V.pl>=8?'산소 +1% → TR +1':`식물 ${8-V.pl}개 더 필요`);
   it(V.ht>=8,'G 열 8개 → 기온 +1',V.ht>=8?'TR +1 (기온이 최대면 불가)':`열 ${8-V.ht}개 더 필요`);
   it(V.hand>0,'B 특허권 매각','손 카드 1장당 1 M€');
-  [['발전소 건설',11],['소행성 충돌 유도',14],['지하수 추출',18],['녹지 형성',23],['도시 건설',25]].forEach(([n,c])=>it(m>=c,`B ${n} · ${c} M€`,m>=c?'':`${c-m} M€ 부족`));
-  it(m>=8&&V.ms<3,'C 업적 선언 · 8 M€',V.ms>=3?'이미 3개가 달성됨':'조건을 채웠을 때만');
-  const ac=[8,14,20][V.aw];it(V.aw<3&&m>=ac,`D 기업상 제정 · ${ac||'-'} M€`,V.aw>=3?'이미 3개가 만들어짐':m<ac?`${ac-m} M€ 부족`:'');
-  o.push(`<li class="info"><b>카드</b><span>낼 수 있는 비용: 보통 <b>${m}</b> · 건물 <b>${m+V.st*2}</b> · 우주 <b>${m+V.ti*3}</b> M€까지</span><small>조건(산소 · 기온 등)도 맞아야 해요</small></li>`);
+  [['발전소 건설',11],['소행성 충돌 유도',14],['지하수 추출',18],['녹지 형성',23],['도시 건설',25]].forEach(([n,c])=>it(m>=c,`B ${n}<i class="pr">${c} M€</i>`,m>=c?'':`${c-m} M€ 부족`));
+  it(m>=8&&V.ms<3,'C 업적 선언<i class="pr">8 M€</i>',V.ms>=3?'이미 3개가 달성됨':'조건을 채웠을 때만');
+  const ac=[8,14,20][V.aw];it(V.aw<3&&m>=ac,`D 기업상 제정<i class="pr">${ac||'-'} M€</i>`,V.aw>=3?'이미 3개가 만들어짐':m<ac?`${ac-m} M€ 부족`:'');
+  o.push(`<li class="info"><b>카드</b><span>낼 수 있는 비용: 보통 <b>${m}</b>, 건물 <b>${m+V.st*2}</b>, 우주 <b>${m+V.ti*3}</b> M€까지</span><small>조건(산소, 기온 등)도 맞아야 해요</small></li>`);
   o.push(`<li class="info"><b>E</b><span>아직 안 쓴 파란 카드 행동이 있나요?</span></li><li class="info"><b>종료</b><span>할 게 없으면 <b>행동 종료</b> → 이번 세대는 끝</span></li>`);
   el.querySelector('.wt-out').innerHTML=o.join('');LS.set('tm-what',V)};
  el.addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;const k=b.dataset.k,mx=k==='aw'||k==='ms'?3:999;V[k]=Math.max(0,Math.min(mx,V[k]+ +b.dataset.v*(k==='mc'&&e.shiftKey?5:1)));draw()});draw()}
 /* 3) 점수 계산기 (새로) */
 {const R=[['tr','TR',1],['gr','내 녹지 (장)',1],['cg','내 도시 옆 녹지 (장)',1],['ms','업적 (개)',5],['a1','기업상 1등 (개)',5],['a2','기업상 2등 (개)',2],['cv','카드 승점 합',1]];
- const el=mkTool('scoreTool','<div class="sc"><div class="sc-tbl"></div><p class="sc-note">동점이면 M€가 많은 사람이 이겨요 · 도시 자체는 0점</p><button type="button" class="sc-reset">모두 지우기</button></div>');
+ const el=mkTool('scoreTool','<div class="sc"><div class="sc-tbl"></div><p class="sc-note">동점이면 M€가 많은 사람이 이기고, 도시 자체는 0점이에요</p><button type="button" class="sc-reset">모두 지우기</button></div>');
  let S=LS.get('tm-score',null);
  const draw=()=>{const n=Math.max(2,Math.min(5,NP));if(!S||S.length!==n)S=Array.from({length:n},(_,k)=>({name:k?['상대','C','D','E'][k-1]:'나',tr:20,gr:0,cg:0,ms:0,a1:0,a2:0,cv:0}));
   const tot=S.map(p=>R.reduce((a,[k,,w])=>a+(+p[k]||0)*w,0)),best=Math.max(...tot);
@@ -2525,7 +2541,7 @@ const mkTool=(id,html)=>{const d=document.createElement('div');d.className='tool
  el.addEventListener('input',e=>{const t=e.target;if(!t.dataset.k)return;S[+t.dataset.j][t.dataset.k]=Math.max(0,+t.value||0);const pos=t.selectionStart;const k=t.dataset.k,j=t.dataset.j;draw();const n=el.querySelector(`input[data-j="${j}"][data-k="${k}"]`);n&&n.focus()});
  el.querySelector('.sc-reset').onclick=()=>{S=null;draw()};window.__scoreDraw=draw;draw()}
 /* 4) 용어 바로 풀이 */
-const GLOSS={'TR':'테라포밍 등급 = 화성을 바꾼 기록. 점수이자 매 세대 받는 돈(TR만큼 M€)','M€':'메가크레딧 = 이 게임의 돈. 동 1 · 은 5 · 금 10','생산력':'매 세대 생산 단계에 자동으로 받는 양. 숫자 칸의 내 큐브 위치','세대':'한 판의 단위. 순서 조정 → 연구 → 행동 → 생산','점유 보너스':'칸에 그려진 그림. 그 칸에 타일을 놓은 사람이 받아요','태그':'카드 오른쪽 위 동그라미 = 카드의 분류','행동 종료':'더 할 게 없을 때 선언. 이번 세대엔 더 못 해요','일반 프로젝트':'카드 없이 언제든 할 수 있는 사업 6가지 (게임판 왼쪽)','업적':'먼저 달성한 사람이 8 M€로 가져가는 5점짜리 목표','기업상':'돈을 내고 만들어 두면 게임 끝에 1등이 5점 받는 상','해양':'파란 칸에만 놓는 주인 없는 타일 · 9장','녹지':'숲 타일 · 놓으면 산소 +1% · 1장 = 1점','기온':'화성의 평균 온도 · −30 → +8°C','산소':'대기 속 산소 · 0 → 14%','강철':'건물 태그 카드를 낼 때 1개 = 2 M€','티타늄':'우주 태그 카드를 낼 때 1개 = 3 M€','시작 플레이어':'그 세대에 먼저 하는 사람 · 마커를 왼쪽으로 넘겨요','추진 조건':'카드를 낼 수 있는 조건 (낼 때만 확인)','갈색 박스':'카드에서 생산력을 뜻하는 표시'};
+const GLOSS={'TR':'테라포밍 등급 = 화성을 바꾼 기록. 점수이자 매 세대 받는 돈(TR만큼 M€)','M€':'메가크레딧 = 이 게임의 돈. 동 1, 은 5, 금 10','생산력':'매 세대 생산 단계에 자동으로 받는 양. 숫자 칸의 내 큐브 위치','세대':'한 판의 단위. 순서 조정 → 연구 → 행동 → 생산','점유 보너스':'칸에 그려진 그림. 그 칸에 타일을 놓은 사람이 받아요','태그':'카드 오른쪽 위 동그라미 = 카드의 분류','행동 종료':'더 할 게 없을 때 선언. 이번 세대엔 더 못 해요','일반 프로젝트':'카드 없이 언제든 할 수 있는 사업 6가지 (게임판 왼쪽)','업적':'먼저 달성한 사람이 8 M€로 가져가는 5점짜리 목표','기업상':'돈을 내고 만들어 두면 게임 끝에 1등이 5점 받는 상','해양':'파란 칸에만 놓는 주인 없는 타일 (9장)','녹지':'숲 타일. 놓으면 산소 +1%, 1장 = 1점','기온':'화성의 평균 온도 (−30 → +8°C)','산소':'대기 속 산소 (0 → 14%)','강철':'건물 태그 카드를 낼 때 1개 = 2 M€','티타늄':'우주 태그 카드를 낼 때 1개 = 3 M€','시작 플레이어':'그 세대에 먼저 하는 사람. 마커를 왼쪽으로 넘겨요','추진 조건':'카드를 낼 수 있는 조건 (낼 때만 확인)','갈색 박스':'카드에서 생산력을 뜻하는 표시'};
 const GK=Object.keys(GLOSS).sort((a,b)=>b.length-a.length),GRX=new RegExp('('+GK.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')');
 function glossify(root){if(!root)return;const used=new Set();const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('.term,button,kbd')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});const list=[];while(w.nextNode())list.push(w.currentNode);
  list.forEach(t=>{const m=t.data.match(GRX);if(!m||used.has(m[1]))return;used.add(m[1]);const i=m.index,sp=document.createElement('span');sp.className='term';sp.dataset.t=m[1];sp.textContent=m[1];const after=t.splitText(i);after.data=after.data.slice(m[1].length);t.parentNode.insertBefore(sp,after)})}
@@ -2536,7 +2552,7 @@ window.__gloss=glossify;
   pop.style.left=Math.max(8,Math.min((rot?sr.height:sr.width)-268,x-20))+'px';pop.style.top=(y+6)+'px';return}if(!pop.hidden&&!e.target.closest('.gl-pop')){pop.hidden=true}},true)}
 /* 5) 이어서 보기 · 첫 조작 안내 */
 const _go=go;
-{const ob=document.createElement('div');ob.className='ob';ob.hidden=true;ob.innerHTML=`<div class="ob-in"><p class="il-eb">조작 안내</p><div class="ob-g"><div><span class="ob-hand"></span><b>옆으로 밀기</b><small>다음 · 이전 장면</small></div><div><span class="ob-arw">◀ ▶</span><b>왼쪽 아래 화살표</b><small>한 장면씩</small></div><div><span class="ob-top">✕ ☰ 🔍</span><b>왼쪽 위</b><small>메인 · 장면 목록 · 카드 검색</small></div><div><span class="ob-tap">TAP</span><b>어두운 설명 화면</b><small>누르면 3D로 보여 줘요</small></div></div><p class="bf-go">화면을 누르면 시작해요</p></div>`;stage.appendChild(ob);
+{const ob=document.createElement('div');ob.className='ob';ob.hidden=true;ob.innerHTML=`<div class="ob-in"><p class="il-eb">조작 안내</p><div class="ob-g"><div><span class="ob-hand"></span><b>옆으로 밀기</b><small>다음, 이전 장면</small></div><div><span class="ob-arw">◀ ▶</span><b>왼쪽 아래 화살표</b><small>한 장면씩</small></div><div><span class="ob-top">✕ ☰ 🔍</span><b>왼쪽 위</b><small>메인, 장면 목록, 카드 검색</small></div><div><span class="ob-tap">TAP</span><b>어두운 설명 화면</b><small>누르면 3D로 보여 줘요</small></div></div><p class="bf-go">화면을 누르면 시작해요</p></div>`;stage.appendChild(ob);
  ob.addEventListener('click',e=>{e.stopPropagation();ob.hidden=true;LS.set('tm-ob',1)});window.__ob=()=>{if(!LS.get('tm-ob',0))ob.hidden=false}}
 
 /* ---- 카메라 ---- */
@@ -2586,7 +2602,7 @@ function tick(now){
  dTick(now);renderer.render(scene,cam);placeLabels()}
 /* ---- 3D 이름표 ---- */
 let labels=[];
-function setLabels(i){lblBox.innerHTML='';labels=(STEPS[i].lb||[]).map(([id,txt])=>{const e=document.createElement('div');e.className='lbl3d hide';e.textContent=txt;lblBox.appendChild(e);return {id,e}});
+function setLabels(i){lblBox.innerHTML='';labels=(STEPS[i].lb||[]).map(([id,txt])=>{const e=document.createElement('div');e.className='lbl3d hide';e.innerHTML=txt;lblBox.appendChild(e);return {id,e}});
  setTimeout(()=>labels.forEach(l=>l.e.classList.remove('hide')),reduce?0:DUR*700)}
 const v3=new THREE.Vector3();
 function placeLabels(){const r={width:cv.clientWidth,height:cv.clientHeight};
@@ -2661,7 +2677,7 @@ document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{showView('rul
 $('#btnClose').onclick=()=>{collapse();setTimeout(()=>{if(!stageEl.classList.contains('full')){showView('home');try{history.replaceState(null,'','#')}catch(e){}}},reduce?0:760)};
 $('#btnRules').onclick=()=>{startMotion();setTimeout(()=>window.__slist&&__slist(true),reduce?0:900)};
 $('#btnRules2').onclick=()=>$('#btnRules').click();
-{const r=+(localStorage.getItem('tm-last')||0);if(r>2&&window.__tmScene){$('#btnResume').hidden=false;$('#resumeT').textContent=(r+1)+'번째 장면 · '+(__tmScene.title(r)||'')}}
+{const r=+(localStorage.getItem('tm-last')||0);if(r>2&&window.__tmScene){$('#btnResume').hidden=false;$('#resumeT').textContent=(r+1)+'번째 장면: '+(__tmScene.title(r)||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}}
 $('#btnResume').onclick=()=>{const r=+(localStorage.getItem('tm-last')||0);startMotion();setTimeout(()=>window.__tmScene&&__tmScene.go(r),reduce?0:760)};
 $('#btnScore').onclick=()=>{startMotion();setTimeout(()=>window.__tmScene&&__tmScene.goId('eScore'),reduce?0:760)};$('#btnFull').onclick=expand;
 $('#btnHome').onclick=()=>{stageEl.classList.remove('full');document.body.classList.remove('playing');showView('home');try{history.replaceState(null,'','#')}catch(e){}};
@@ -2680,7 +2696,7 @@ let tiles,tileSel='ocean',st;const hexes=[];for(let q=-2;q<=2;q++)for(let r=-2;r
 const nb=([q,r])=>[[q+1,r],[q-1,r],[q,r+1],[q,r-1],[q+1,r-1],[q-1,r+1]].filter(([a,b])=>Math.abs(a)<=2&&Math.abs(b)<=2&&Math.abs(a+b)<=2);
 const hk=([q,r])=>q+','+r;const px=([q,r])=>[cx0+hexSize*Math.sqrt(3)*(q+r/2),cy0+hexSize*1.5*r];
 function poly([x,y]){let s='';for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);s+=(x+(hexSize-1)*Math.cos(a)).toFixed(1)+','+(y+(hexSize-1)*Math.sin(a)).toFixed(1)+' '}return s}
-function resetHex(){tiles=JSON.parse(JSON.stringify(startTiles));st={TR:20,MC:0,P:0,S:0,C:0};drawHex();$('#hexlog').innerHTML='<ul class="rules"><li>해양부터 놓아 보기</li><li>오른쪽 위 = 이미 놓인 <b class="oc">해양</b> · 왼쪽 = <b>상대 도시</b></li></ul>';updStat()}
+function resetHex(){tiles=JSON.parse(JSON.stringify(startTiles));st={TR:20,MC:0,P:0,S:0,C:0};drawHex();$('#hexlog').innerHTML='<ul class="rules"><li>해양부터 놓아 보기</li><li>오른쪽 위 = 이미 놓인 <b class="oc">해양</b>, 왼쪽 = <b>상대 도시</b></li></ul>';updStat()}
 function updStat(){$('#hTR').textContent=st.TR;$('#hMC').textContent=st.MC;$('#hP').textContent=st.P;$('#hS').textContent=st.S;$('#hC').textContent=st.C}
 function drawHex(){const s=$('#hexmap');s.innerHTML='';hexes.forEach(h=>{const k=hk(h),sp=spec[k]||{},tl=tiles[k],[x,y]=px(h);
   let fill=sp.res?'#2a3d66':'#5b3426';if(tl)fill=tl.t==='ocean'?'var(--ocean)':tl.t==='green'?'var(--plant)':'var(--city)';
@@ -2701,8 +2717,8 @@ function place(h,g){const k=hk(h),sp=spec[k]||{},log=$('#hexlog');
     if(tileSel==='green'&&canGreenAdj()&&!nb(h).some(n=>(tiles[hk(n)]||{}).own==='me'))return fail('녹지 <span class="arr">→</span> 가능하면 <b>내 타일 옆</b> <span class="muted">(빨간 큐브 주변)</span>')}
   tiles[k]={t:tileSel,own:tileSel==='ocean'?null:'me'};const oceans=nb(h).filter(n=>(tiles[hk(n)]||{}).t==='ocean').length;const gains=[];
   if(tileSel==='ocean'){st.TR++;gains.push('<b class="oc">해양</b> +1 <span class="arr">→</span> <b class="mc">TR +1</b>')}
-  if(tileSel==='green'){st.TR++;gains.push('<b class="ox">산소</b> +1 <span class="arr">→</span> <b class="mc">TR +1</b> · 끝에 1 VP')}
-  if(tileSel==='city')gains.push('도시 배치 · TR 변화 없음 · 옆 녹지 = 끝에 VP');
+  if(tileSel==='green'){st.TR++;gains.push('<b class="ox">산소</b> +1 <span class="arr">→</span> <b class="mc">TR +1</b>, 끝에 1 VP')}
+  if(tileSel==='city')gains.push('도시 배치, TR 변화 없음, 옆 녹지 = 끝에 VP');
   if(oceans){st.MC+=oceans*2;gains.push(`옆 해양 ${oceans} <span class="arr">→</span> <b class="mc">+${oceans*2} M€</b>`)}
   if(sp.bonus){const m={P:['P','식물','pl'],S:['S','강철','st'],C:['C','카드','']}[sp.bonus];st[m[0]]+=sp.n;gains.push(`점유 보너스 <span class="arr">→</span> <b class="${m[2]}">${m[1]} +${sp.n}</b>`)}
   log.innerHTML='<span class="ok">배치 완료</span><ul class="rules" style="margin-top:6px">'+gains.map(x=>'<li>'+x+'</li>').join('')+'</ul>';drawHex();updStat()}
@@ -2761,19 +2777,19 @@ const ACT8=['카드 내기','일반 프로젝트','파란 카드 행동','식물
 const F={
 win:[
  {h:'우승 = 게임 끝 승점 1등',p:'화성은 모두 함께 바꾸지만, 승점(VP)이 가장 높은 기업이 이겨요',
-  s:o(26,4,48,`<div class="bigvp"><b>VP</b><span>승점</span></div>`,'pop')+o(8,54,36,cubes('au',2),'in out',.6)+pill(8,76,'돈 = 점수 X','muted',1)+o(70,58,10,sp('red'),'in glow',.8)+pill(52,76,'TR · 땅 · 카드 = 점수','ok',1.2)},
+  s:o(26,4,48,`<div class="bigvp"><b>VP</b><span>승점</span></div>`,'pop')+o(8,54,36,cubes('au',2),'in out',.6)+pill(8,76,'돈 = 점수 X','muted',1)+o(70,58,10,sp('red'),'in glow',.8)+pill(52,76,'TR, 땅, 카드 = 점수','ok',1.2)},
  {h:'TR 1칸 = 1점',p:'화성을 바꿀 때마다 오르는 TR이 그대로 점수가 돼요. 가장 큰 점수원이에요',
   s:o(4,36,92,`<div class="trrow">${[18,19,20,21,22,23,24].map(v=>`<span>${v}</span>`).join('')}</div>`,'in')+o(58.6,24,9,sp('red'),'slide glow',.6,'--fx:-291%')+pill(24,62,'20 → 22 = +2점','ok big',1.4)},
  {h:'녹지 1개 = 1점, 도시 옆 녹지 = 1점씩',p:'내 큐브가 얹힌 녹지는 1점. 내 도시에 붙은 녹지는 누구 것이든 1점씩 더',
   s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','drop',.2)+onHex(1,0,'gr','drop',.5)+onHex(0,-1,'gr','drop',.7)+onHex(-1,1,'gr','drop',.9)+onHex(0,0,'red','drop glow',1.1,7)+onHex(1,0,'red','drop',1.2,7)+onHex(-1,1,'red','drop',1.25,7)+onHex(0,-1,'blue','drop',1.3,7)+pill(4,86,'도시 옆 녹지 3 = +3점','ok',1.6)+pill(56,86,'내 녹지 2 = +2점','ok',1.9)},
  {h:'카드의 갈색 원 = 카드 점수',p:'카드 오른쪽 아래 갈색 원의 숫자가 게임 끝에 점수로 더해져요',
   s:o(20,4,60,card2d('farm',rc('vp','1점',.6,'b')),'in')},
- {h:'업적 · 기업상 = 5점씩',p:'보드 아래의 업적(먼저 채우면)과 상(게임 끝 1등)도 5점이에요 → 08장',
+ {h:'업적과 기업상 = 5점씩',p:'보드 아래의 업적(먼저 채우면)과 상(게임 끝 1등)도 5점이에요 → 08장',
   s:o(4,26,92,msPanel(['테라포머','시장','원예가','건축가','전략가'],{2:'red'}),'in')+pill(38,62,'+5점','ok big',.9)},
- {h:'돈과 자원은 승점을 사는 도구',p:'남은 M€는 동점일 때만 쓰여요. 모은 돈은 결국 TR·땅·점수 카드로 바꿔야 해요',
+ {h:'돈과 자원은 승점을 사는 도구',p:'남은 M€는 동점일 때만 쓰여요. 모은 돈은 결국 TR, 땅, 점수 카드로 바꿔야 해요',
   s:o(10,16,34,cubes('au',2),'in out')+o(14,8,26,'<span class="xmark">✕</span>','pop',.7)+pill(8,46,'남은 돈 = 0점','muted',.9)+o(44,20,12,'<span class="arrow">→</span>','in',1.1)+o(58,10,34,sp('gr'),'pop glow',1.3)+pill(52,46,'녹지 = 1점 + TR 1점','ok',1.5)},
  {h:'시기마다 중요한 게 달라요',p:'초반엔 생산(엔진), 중반엔 TR과 땅, 후반엔 남는 걸 전부 점수로',
-  s:o(8,6,84,`<div class="phase3b"><div><b>초반</b><span>생산 카드</span><small>지금 +1 생산 = 남은 세대마다 +1</small></div><div><b>중반</b><span>TR · 땅</span><small>수치 올리기 · 업적</small></div><div class="on"><b>후반</b><span>전부 점수로</span><small>녹지 · 점수 카드 · 기업상</small></div></div>`,'in')},
+  s:o(8,6,84,`<div class="phase3b"><div><b>초반</b><span>생산 카드</span><small>지금 +1 생산 = 남은 세대마다 +1</small></div><div><b>중반</b><span>TR, 땅</span><small>수치 올리기, 업적</small></div><div class="on"><b>후반</b><span>전부 점수로</span><small>녹지, 점수 카드, 기업상</small></div></div>`,'in')},
  {h:'게임 끝: 점수 계산',p:'수치 3개가 다 차면 그 세대 생산까지 하고, 남은 식물을 녹지로 바꾼 뒤 계산해요',tool:'#calcTool'}
 ],
 gen:[
@@ -2789,7 +2805,7 @@ gen:[
   s:o(14,2,72,slot('en',`<span class="cubes out">${sp('cu').repeat(3)}</span>`,1),'in')+o(44,38,12,'<span class="arrow">↓</span>','in',.6)+o(14,52,72,slot('ht',cubes('cu',1)+`<span class="cubes flyin" style="--fy:-180%">${sp('cu').repeat(3)}</span>`,1),'in',.2)+pill(56,40,'에너지 3 → 열 +3','ok',1)},
  {h:'④-2 돈 = TR + M€ 생산',p:'화성을 바꾼 만큼(TR) 지구 정부의 지원금, 여기에 회사 사업 수익(M€ 생산)을 더해 받아요',scene:'p2',
   s:o(6,4,38,`<div class="numcard"><small>TR</small><b>21</b><span>지원금</span></div>`,'pop',.2)+pill(46,14,'+','big',.4)+o(56,4,38,`<div class="numcard"><small>M€ 생산</small><b>1</b><span>사업 수익</span></div>`,'pop',.5)+o(44,40,12,'<span class="arrow">↓</span>','in',.7)+o(22,54,56,`<div class="numcard ok"><small>받는 돈</small><b>22</b>${cubes('au',2)}${cubes('cu',2)}</div>`,'pop glow',.9)},
- {h:'④-3 공장이 일한 만큼',p:'강철·티타늄·식물·에너지·열도 숫자 칸(빨간 큐브)이 가리키는 만큼 은행에서 받아요. 빨간 큐브는 그대로 둬요',scene:'p3',
+ {h:'④-3 공장이 일한 만큼',p:'강철, 티타늄, 식물, 에너지, 열도 숫자 칸(빨간 큐브)이 가리키는 만큼 은행에서 받아요. 빨간 큐브는 그대로 둬요',scene:'p3',
   s:o(3,0,45,slot('st',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0)+o(52,0,45,slot('ti',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0.15)+o(3,33,45,slot('pl',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',0.3)+o(52,33,45,slot('en',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(2)}</span>`,2),'in',0.45)+o(27.5,66,45,slot('ht',`<span class="cubes flyin" style="--fy:-140%">${sp('cu').repeat(1)}</span>`,1),'in',0.6)},
  {h:'④-4 파란 카드 위 큐브 회수',p:'이번 세대에 쓴 파란 카드의 내 큐브를 거둬요. 다음 세대에 또 쓸 수 있어요',
   s:o(20,4,60,card2d('microbe'),'in')+o(45,40,10,sp('red'),'lift glow',.6)+pill(66,22,'회수!','ok big',1)},
@@ -2797,20 +2813,20 @@ gen:[
 ],
 turn:[
  {h:'내 차례 = 행동 1개 또는 2개',p:'아래 8가지 중 골라요. 같은 걸 두 번 해도 돼요. 할 게 없으면 행동 종료',
-  s:o(6,8,88,`<div class="act8">${ACT8.map((t,i)=>`<span style="--d:${.1+i*.08}s">${i+1} · ${t}</span>`).join('')}</div>`,'in')},
- {h:'1 · 카드 내기',p:'요구조건 확인 → 비용 지불 → 효과 → 내 앞에 놓기. 자세한 건 07장',scene:'g1a',
+  s:o(6,8,88,`<div class="act8">${ACT8.map((t,i)=>`<span style="--d:${.1+i*.08}s">${i+1}, ${t}</span>`).join('')}</div>`,'in')},
+ {h:'1, 카드 내기',p:'요구조건 확인 → 비용 지불 → 효과 → 내 앞에 놓기. 자세한 건 07장',scene:'g1a',
   s:o(6,4,54,card2d('farm',rc('cost','13 M€',.4)),'in')+o(68,6,22,cubes('au',1),'slide',.9,'--ty:-150%')+o(68,20,22,cubes('ag',1),'slide',1,'--ty:-250%')+pill(62,36,'10 + 5 내고','muted',1.2)+o(68,50,22,cubes('cu',2),'flyin',1.6,'--fy:-200%')+pill(60,66,'2 거슬러 받기','ok',1.9)},
- {h:'2 · 일반 프로젝트',p:'카드 없이도 보드 왼쪽 메뉴를 돈으로 살 수 있어요',scene:'g1b',
+ {h:'2, 일반 프로젝트',p:'카드 없이도 보드 왼쪽 메뉴를 돈으로 살 수 있어요',scene:'g1b',
   s:o(6,2,88,`<div class="spl">${[['특허권 매각','—','카드 1장 = 1 M€'],['발전소 건설','11','에너지 생산 +1'],['소행성 충돌 유도','14','기온 +1'],['지하수 추출','18','해양 1장'],['녹지 형성','23','녹지 1장'],['도시 건설','25','도시 + M€ 생산 +1']].map((r,i)=>`<div class="${i===3?'hl':''}" style="--d:${.1+i*.1}s"><b>${r[1]}</b><span>${r[0]}</span><small>${r[2]}</small></div>`).join('')}</div>`,'in')+o(34,60,32,sp('oc'),'drop glow',1)+pill(16,90,'지하수 추출 18 → 해양 + TR 1','ok',1.4)},
- {h:'3 · 파란 카드 행동',p:'"행동:"이 적힌 파란 카드는 세대마다 1번. 쓰면 카드 위에 내 큐브를 올려요',
+ {h:'3, 파란 카드 행동',p:'"행동:"이 적힌 파란 카드는 세대마다 1번. 쓰면 카드 위에 내 큐브를 올려요',
   s:o(20,4,60,card2d('microbe',rc('eff','행동',.4)),'in')+o(45,26,10,sp('red'),'drop glow',.9)+pill(48,90,'이번 세대에 사용함','ok',1.3)},
- {h:'4 · 식물 8개 → 녹지',p:'식물 8개를 은행에 내고 녹지를 놓아요. 산소 +1 → TR +1, 녹지는 1점',scene:'g2a',
-  s:o(14,2,72,slot('pl',`<span class="cubes out">${sp('cu').repeat(8)}</span>`,1),'in')+o(44,47,12,'<span class="arrow">↓</span>','in',.6)+o(35,57,30,sp('gr'),'drop glow',.9)+o(45.5,66,9,sp('red'),'drop',1.3)+pill(28,92,'산소 +1 · TR +1','ok',1.5)},
- {h:'5 · 열 8개 → 기온 +1',p:'열 8개를 내고 기온을 한 칸(2°C) 올려요. TR +1. 열은 이것 말고 쓸 데가 거의 없어요',
+ {h:'4, 식물 8개 → 녹지',p:'식물 8개를 은행에 내고 녹지를 놓아요. 산소 +1 → TR +1, 녹지는 1점',scene:'g2a',
+  s:o(14,2,72,slot('pl',`<span class="cubes out">${sp('cu').repeat(8)}</span>`,1),'in')+o(44,47,12,'<span class="arrow">↓</span>','in',.6)+o(35,57,30,sp('gr'),'drop glow',.9)+o(45.5,66,9,sp('red'),'drop',1.3)+pill(28,92,'산소 +1, TR +1','ok',1.5)},
+ {h:'5, 열 8개 → 기온 +1',p:'열 8개를 내고 기온을 한 칸(2°C) 올려요. TR +1. 열은 이것 말고 쓸 데가 거의 없어요',
   s:o(4,8,56,slot('ht',`<span class="cubes out">${sp('cu').repeat(8)}</span>`,1),'in')+o(68,4,28,track('t',[-24,-26,-28,-30],-28,[],'기온'),'in',.6)+pill(8,62,'열 8 → 기온 +1칸','ok',1.2)+pill(8,74,'TR +1','ok big',1.4)},
- {h:'6 · 업적  7 · 기업상',p:'업적을 8 M€로 확정하거나, 상에 돈을 걸어요 → 08장에서 자세히',
+ {h:'6, 업적  7, 기업상',p:'업적을 8 M€로 확정하거나, 상에 돈을 걸어요 → 08장에서 자세히',
   s:o(4,26,92,msPanel(['테라포머','시장','원예가','건축가','전략가'],{2:'red'}),'in')},
- {h:'8 · 행동 종료',p:'이번 세대엔 더 안 해요. 1개만 하고 넘기는 것과 달라요. 모두 행동 종료하면 생산 단계',scene:'g1d',
+ {h:'8, 행동 종료',p:'이번 세대엔 더 안 해요. 1개만 하고 넘기는 것과 달라요. 모두 행동 종료하면 생산 단계',scene:'g1d',
   s:o(18,22,64,`<div class="passbig">PASS</div>`,'pop',.3)+pill(10,70,'남은 사람은 혼자 계속 차례를 가져요','muted',.9)}
 ],
 tiles:[
@@ -2821,7 +2837,7 @@ tiles:[
  {h:'칸에 그려진 그림 = 보너스',p:'그 땅에 묻힌 자원을 찾은 거예요. 그림만큼 바로 받아요',
   s:hexSvg([{t:'철철',tc:'st',g:1},{t:'식',tc:'pl'},{},{},{t:'카',tc:'w'},{},{}])+onHex(0,0,'gr','drop',.5)+onHex(0,0,'red','drop',.8,7)+o(8,6,24,cubes('cu',2),'flyin',1,'--fy:120%')+pill(40,88,'+강철 2','ok big',1.2)},
  {h:'녹지는 내 땅 옆에',p:'내 타일 옆에 빈자리가 있으면 녹지는 그 옆에. 숲은 내 개척지에서 번져 나가요',
-  s:hexSvg([{},{g:1},{},{},{},{},{}])+onHex(0,0,'ci','in',0)+onHex(0,0,'red','in',0,7)+onHex(1,0,'gr','drop glow',.5)+onHex(1,0,'red','drop',.9,7)+pill(30,88,'산소 +1 · TR +1','ok',1.2)},
+  s:hexSvg([{},{g:1},{},{},{},{},{}])+onHex(0,0,'ci','in',0)+onHex(0,0,'red','in',0,7)+onHex(1,0,'gr','drop glow',.5)+onHex(1,0,'red','drop',.9,7)+pill(30,88,'산소 +1, TR +1','ok',1.2)},
  {h:'도시끼리는 붙일 수 없어요',p:'누구의 도시든, 바로 옆 칸엔 도시를 못 지어요',
   s:hexSvg([{},{},{},{},{},{},{}])+onHex(0,0,'ci','in',0)+onHex(0,0,'blue','in',0,7)+onHex(1,0,'ci','drop shake',.5)+o(64,30,18,'<span class="xmark">✕</span>','pop',1.1)},
  {h:'도시 옆 녹지 = 도시 주인 점수',p:'게임 끝에 내 도시에 붙은 녹지마다 1점. 파란(남의) 녹지도 세요. 도시 둘레를 숲으로!',
@@ -2829,14 +2845,14 @@ tiles:[
  {h:'직접 놓아 보기',p:'타일을 고르고 칸을 눌러 보세요. 안 되는 칸이면 이유를 알려 드려요',tool:'#hexTool'}
 ],
 params:[
- {h:'수치 1칸 = TR +1',p:'기온·산소·해양을 올린 사람이 TR +1. 점수 +1이면서 매 세대 지원금 +1 M€',
+ {h:'수치 1칸 = TR +1',p:'기온, 산소, 해양을 올린 사람이 TR +1. 점수 +1이면서 매 세대 지원금 +1 M€',
   s:o(10,2,34,track('t',[-20,-22,-24,-26,-28,-30],-28,[-24,-20],'기온'),'in')+o(56,2,34,track('o',[5,4,3,2,1,0],1,[],'산소'),'in',.1)+pill(10,76,'TR +1 = 점수 +1','ok big',1.2)+pill(10,89,'+ 매 세대 지원금 +1 M€','ok',1.4)},
  {h:'일찍 올릴수록 이득',p:'1세대에 올린 TR은 남은 모든 세대 동안 지원금을 줘요',
   s:o(6,10,88,`<div class="earn">${[1,2,3,4,5,6,7,8].map((g,i)=>`<span style="--d:${.2+i*.12}s"><small>${g}세대</small>+1</span>`).join('')}</div>`,'in')+pill(8,62,'1세대에 올린 1칸','ok',1.3)+pill(8,74,'= 8세대 동안 +8 M€','ok big',1.5)},
- {h:'★ 기온 −24°C · −20°C',p:'이 칸에 기온을 올린 사람은 열 생산 +1도 받아요',
+ {h:'★ 기온 −24°C, −20°C',p:'이 칸에 기온을 올린 사람은 열 생산 +1도 받아요',
   s:o(10,2,34,track('t',[-18,-20,-22,-24,-26],-24,[-24,-20],'기온'),'in')+o(50,10,46,slot('ht','',2),'in glow',.8)+pill(52,56,'열 생산 1 → 2','ok',1.2)},
  {h:'★ 기온 0°C',p:'0°C에 도달시킨 사람은 해양 1개도 놓아요 (그 해양으로 TR +1 더)',
-  s:o(10,2,34,track('t',[4,2,0,-2,-4],0,[0],'기온'),'in')+o(54,14,38,sp('oc'),'drop glow',.8)+pill(52,56,'해양 +1 · TR +1 더','ok',1.2)},
+  s:o(10,2,34,track('t',[4,2,0,-2,-4],0,[0],'기온'),'in')+o(54,14,38,sp('oc'),'drop glow',.8)+pill(52,56,'해양 +1, TR +1 더','ok',1.2)},
  {h:'★ 산소 8%',p:'산소를 8%로 올린 사람은 기온도 한 칸 함께 올려요 (TR +1 더)',
   s:o(10,2,34,track('o',[10,9,8,7,6],8,[8],'산소'),'in')+o(56,2,34,track('t',[-6,-8,-10,-12,-14],-10,[],'기온'),'in',.6)+pill(14,84,'산소 8% → 기온도 +1칸 → TR +1 더','ok',1.3)},
  {h:'꽉 차면?',p:'그 수치는 더 못 올리고 TR도 그대로예요. 녹지는 계속 놓을 수 있어요 (녹지 1점)',
@@ -2845,16 +2861,16 @@ params:[
 cards:[
  {h:'실물 카드와 설명용 카드',p:'왼쪽은 실제 카드, 오른쪽은 이 가이드에서 쓰는 설명용 그림이에요. 같은 자리에 같은 정보가 있어요',
   s:o(3,8,43,photo('c_season',ring(-2,-2,18,12,'',.5)+ring(14,1,24,8,'',1)+ring(80,0,20,11,'',1.5)+ring(3,12,94,30,'',2)+ring(72,78,27,20,'',2.5)),'in')+o(54,8,43,card2d('season',rc('cost','',.5)+rc('req','',1)+rc('tags','',1.5)+rc('eff','',2)+rc('vp','',2.5)),'in',.2)+pill(16,2,'실물','muted',.6)+pill(62,2,'설명용 그림','ok',.8)+pill(8,72,'① 비용  ② 요구조건  ③ 태그','',2.6)+pill(8,82,'④ 효과  ⑤ 점수 — 같은 자리!','',2.9)},
- {h:'카드는 4가지',p:'초록·파랑·빨강 = 프로젝트 카드, 가로로 긴 카드 = 기업(내 회사)',
-  s:o(4,1,29,card2d('farm'),'in',.1)+o(35.5,1,29,card2d('microbe'),'in',.25)+o(67,1,29,card2d('asteroid'),'in',.4)+pill(7,36,'초록 · 한 번','',.8)+pill(38,36,'파랑 · 계속','',.9)+pill(70,36,'빨강 · 사건','',1)+o(12,48,76,corp2d(),'in',.55)+pill(34,92,'기업 · 내 회사','',1.1)},
- {h:'기업 카드 = 내 회사',p:'게임 내내 앞에 펼쳐 둬요. 시작 자금·시작 생산·회사만의 지속 효과가 적혀 있어요',
-  s:o(2,18,96,corp2d(ring(3,40,42,40,'시작 자금 · 생산',.5)+ring(47,26,51,62,'지속 효과',1)+ring(84,3,15,20,'태그',1.4,'r')),'in')},
+ {h:'카드는 4가지',p:'초록, 파랑, 빨강 = 프로젝트 카드, 가로로 긴 카드 = 기업(내 회사)',
+  s:o(4,1,29,card2d('farm'),'in',.1)+o(35.5,1,29,card2d('microbe'),'in',.25)+o(67,1,29,card2d('asteroid'),'in',.4)+pill(7,36,'초록, 한 번','',.8)+pill(38,36,'파랑, 계속','',.9)+pill(70,36,'빨강, 사건','',1)+o(12,48,76,corp2d(),'in',.55)+pill(34,92,'기업, 내 회사','',1.1)},
+ {h:'기업 카드 = 내 회사',p:'게임 내내 앞에 펼쳐 둬요. 시작 자금, 시작 생산, 회사만의 지속 효과가 적혀 있어요',
+  s:o(2,18,96,corp2d(ring(3,40,42,40,'시작 자금, 생산',.5)+ring(47,26,51,62,'지속 효과',1)+ring(84,3,15,20,'태그',1.4,'r')),'in')},
  {h:'왼쪽 위 노란 칸 = 비용',p:'이 숫자만큼 M€를 내야 낼 수 있어요',
   s:o(4,4,56,card2d('farm',rc('cost','비용 13',.5)),'in')+o(68,10,22,cubes('au',1),'slide',1,'--ty:-160%')+o(68,24,26,cubes('cu',3),'slide',1.1,'--ty:-220%')+pill(64,46,'10 + 3 = 13 M€','ok',1.4)},
  {h:'비용 옆 = 요구조건',p:'"산소 4% 이상"처럼 화성 상태가 맞아야 낼 수 있어요. 확인은 낼 때 한 번만',
   s:o(4,4,56,card2d('farm',rc('req','요구조건',.5)),'in')+o(66,4,30,track('o',[7,6,5,4,3],5,[],'지금 산소',0),'in',.8)+pill(6,88,'지금 산소 5% ≥ 4% → 낼 수 있어요 ✓','ok',1.3)},
- {h:'오른쪽 위 = 태그',p:'카드의 분야예요. 할인, 다른 카드의 조건, 업적·상 계산에 쓰여요',
-  s:o(4,4,58,card2d('station',rc('tags','우주 · 지구',.5,'r')),'in')+o(70,10,26,`<div class="tags-col"><span class="tg tg-bd">건물</span><span class="tg tg-sp">우주</span><span class="tg tg-sc">과학</span><span class="tg tg-pl">식물</span><span class="tg tg-ea">지구</span></div>`,'in',.9)+pill(6,88,'우주 태그가 있으면 → 티타늄 할인','ok',1.2)},
+ {h:'오른쪽 위 = 태그',p:'카드의 분야예요. 할인, 다른 카드의 조건, 업적, 상 계산에 쓰여요',
+  s:o(4,4,58,card2d('station',rc('tags','우주, 지구',.5,'r')),'in')+o(70,10,26,`<div class="tags-col"><span class="tg tg-bd">건물</span><span class="tg tg-sp">우주</span><span class="tg tg-sc">과학</span><span class="tg tg-pl">식물</span><span class="tg tg-ea">지구</span></div>`,'in',.9)+pill(6,88,'우주 태그가 있으면 → 티타늄 할인','ok',1.2)},
  {h:'우주 태그 카드 = 티타늄 1개가 3 M€',p:'개인 보드의 티타늄을 돈처럼 낼 수 있어요. 우주 태그가 있을 때만!',
   s:o(4,2,44,card2d('station',rc('tags','',.3,'r')),'in')+o(52,4,44,slot('ti',cubes('cu',2),1),'in glow',.6)+pill(6,70,'2개 × 3 = 6 M€','ok big',1.6)+pill(6,84,'10 − 6 = 4 M€만 내요','ok',1.8)},
  {h:'건물 태그 카드 = 강철 1개가 2 M€',p:'강철은 건물 태그 카드를 낼 때만 돈 대신 쓸 수 있어요',
@@ -2864,12 +2880,12 @@ cards:[
  {h:'오른쪽 아래 갈색 원 = 점수',p:'게임 끝에 더해져요. "−1"처럼 감점 카드도 있어요',
   s:o(3,10,46,card2d('farm',rc('vp','+1',.5,'b')),'in')+o(51,10,46,card2d('solar',rc('vp','−1',.8,'b')),'in',.2)},
  {h:'초록은 겹쳐 쌓기',p:'효과는 낼 때 끝. 나중엔 태그만 필요해서 위쪽 줄만 보이게 겹쳐 둬요',
-  s:o(22,2,56,`<div class="stack">${['farm','station','factory'].map((k,i)=>`<div class="stk" style="--i:${i}">${card2d(k)}</div>`).join('')}</div>`,'in')+ring(20,1,60,8,'비용 · 태그 줄만 보이게',1.4)},
+  s:o(22,2,56,`<div class="stack">${['farm','station','factory'].map((k,i)=>`<div class="stk" style="--i:${i}">${card2d(k)}</div>`).join('')}</div>`,'in')+ring(20,1,60,8,'비용, 태그 줄만 보이게',1.4)},
  {h:'파랑은 펼쳐 두기',p:'능력이 계속 남아서 글이 보이게 나란히. "행동:"을 쓰면 그 위에 내 큐브를 올려 표시',
   s:o(4,10,44,card2d('microbe'),'in')+o(52,10,44,card2d('port'),'in',.2)+o(21,26,10,sp('red'),'drop glow',.8)},
  {h:'빨강은 뒤집어 두기',p:'한 번의 사건(이벤트). 효과를 처리하면 뒤집어서 한쪽에. 뒤집은 카드의 태그는 안 세요',
   s:o(22,6,56,`<div class="flipc">${card2d('asteroid')}<span class="back"></span></div>`,'in')},
- {h:'태그가 모이면 엔진이 돼요',p:'"○○ 태그 카드를 낼 때마다 보너스" 같은 파란 카드·기업이 있어요. 같은 태그를 모을수록 이득',
+ {h:'태그가 모이면 엔진이 돼요',p:'"○○ 태그 카드를 낼 때마다 보너스" 같은 파란 카드, 기업이 있어요. 같은 태그를 모을수록 이득',
   s:o(4,6,40,card2d('station',rc('tags','',.3,'r')),'in')+o(45,26,10,'<span class="arrow">→</span>','in',.6)+o(56,6,40,card2d('port',rc('eff','',.9)),'in glow',.9)+o(64,64,24,cubes('cu',2),'flyin',1.4,'--fy:-160%')+pill(8,88,'우주 카드 1장 낼 때마다 +2 M€','ok',1.6)}
 ],
 ma:[
@@ -2877,7 +2893,7 @@ ma:[
   s:o(4,8,92,msPanel(['테라포머','시장','원예가','건축가','전략가'],{}),'in')+pill(6,34,'업적 = 경주','big',.8)+o(4,52,92,msPanel(['개척기업상','금융기업상','과학기업상','열기업상','광업기업상'],{},'aw'),'in',.2)+pill(6,78,'기업상 = 내기','big',1)},
  {h:'업적 5개: 먼저 채우면 8 M€ → 5점',p:'조건을 먼저 채운 사람이 자기 차례에 8 M€를 내고 가져가요. 전체 3개까지',
   s:o(4,3,92,`<div class="mal"><div class="mal-r" style="--d:0.15s"><b>테라포머</b><span>TR이 35 이상</span><i><em class="mal-tr">TR 35</em></i></div><div class="mal-r" style="--d:0.27s"><b>시장</b><span>내 도시 3개</span><i>${sp('ci').repeat(3)}</i></div><div class="mal-r" style="--d:0.39s"><b>원예가</b><span>내 녹지 3개</span><i>${sp('gr').repeat(3)}</i></div><div class="mal-r" style="--d:0.51s"><b>건축가</b><span>건물 태그 8개</span><i><span class="tg tg-bd">건물</span> ×8</i></div><div class="mal-r" style="--d:0.63s"><b>전략가</b><span>손에 카드 16장</span><i><em class="mal-cd">16장</em></i></div></div>`,'in')},
- {h:'기업상 5개: 게임 끝에 가장 많은 사람이 5점',p:'누구든 8 → 14 → 20 M€를 내고 후원해요(3개까지). 판정은 게임 끝, 1등 5점 · 2등 2점(3인 이상)',
+ {h:'기업상 5개: 게임 끝에 가장 많은 사람이 5점',p:'누구든 8 → 14 → 20 M€를 내고 후원해요(3개까지). 판정은 게임 끝, 1등 5점, 2등 2점(3인 이상)',
   s:o(4,3,92,`<div class="mal"><div class="mal-r aw" style="--d:0.15s"><b>개척기업상</b><span>화성 위 내 타일 수</span><i>${sp('gr')+sp('ci')}</i></div><div class="mal-r aw" style="--d:0.27s"><b>금융기업상</b><span>M€ 생산력</span><i><i class="rs rs-mc"></i> 생산</i></div><div class="mal-r aw" style="--d:0.39s"><b>과학기업상</b><span>과학 태그 수</span><i><span class="tg tg-sc">과학</span></i></div><div class="mal-r aw" style="--d:0.51s"><b>열기업상</b><span>지금 가진 열</span><i><i class="rs rs-ht"></i> 보유</i></div><div class="mal-r aw" style="--d:0.63s"><b>광업기업상</b><span>가진 강철 + 티타늄</span><i><i class="rs rs-st"></i>+<i class="rs rs-ti"></i></i></div></div>`,'in')},
  {h:'업적: 먼저 채우면 확정',p:'원예가 = 내 녹지 3개. 채운 차례에 8 M€를 내고 큐브를 올리면 5점 확정',
   s:o(4,4,28,sp('gr'),'drop',.1)+o(36,4,28,sp('gr'),'drop',.3)+o(68,4,28,sp('gr'),'drop glow',.5)+o(13,7,10,sp('red'),'drop',.2)+o(45,7,10,sp('red'),'drop',.4)+o(77,7,10,sp('red'),'drop',.6)+o(30,40,40,`<div class="msp-i one f"><b>원예가</b>${sp('red')}</div>`,'pop glow',1.2)+pill(26,88,'8 M€ → 5점 확정','ok big',1.5)},
@@ -2886,7 +2902,7 @@ ma:[
  {h:'기업상: 돈을 걸어요',p:'먼저 거는 사람 순서로 8 → 14 → 20 M€. 내 큐브를 올려 둬요',
   s:o(4,20,92,msPanel(['개척기업상','금융기업상','과학기업상','열기업상','광업기업상'],{1:'red'},'aw'),'in')+pill(12,62,'1번째 8','big ok',.6)+pill(12,74,'2번째 14','big',.9)+pill(12,86,'3번째 20','big',1.2)},
  {h:'점수는 게임 끝 1등이 가져가요',p:'건 사람이 아니라, 끝날 때 그 항목 1등이 5점! 내가 걸었어도 상대가 1등이면 상대 점수',
-  s:o(6,6,88,`<div class="race"><p>금융기업상 · M€ 생산</p><div><span>나</span><i style="--w:70%;--c:#d22"></i><b>7</b></div><div><span>상대</span><i style="--w:45%;--c:#2a7be0"></i><b>4</b></div></div>`,'in')+pill(8,56,'나 1등 → +5점','ok big',.9)+pill(8,72,'2인 게임 = 2등 점수 없음','muted',1.2)},
+  s:o(6,6,88,`<div class="race"><p>금융기업상, M€ 생산</p><div><span>나</span><i style="--w:70%;--c:#d22"></i><b>7</b></div><div><span>상대</span><i style="--w:45%;--c:#2a7be0"></i><b>4</b></div></div>`,'in')+pill(8,56,'나 1등 → +5점','ok big',.9)+pill(8,72,'2인 게임 = 2등 점수 없음','muted',1.2)},
  {h:'언제 걸까?',p:'이미 크게 앞선 항목에 걸면 거의 확실한 5점. 애매하면 상대에게 점수를 줄 수도 있어요',
   s:o(8,8,84,`<div class="phase3b"><div class="on"><b>걸기 좋음</b><span>내가 크게 앞섬</span><small>금융기업상: 내 생산 7 vs 상대 3</small></div><div><b>위험</b><span>비슷함</span><small>상대가 따라잡으면 상대가 5점</small></div></div>`,'in')}
 ]};
@@ -2959,7 +2975,7 @@ new MutationObserver(syncSub).observe(document.body,{attributes:true,attributeFi
   return o+'</svg>'}
  const L={k:'land'},OC={k:'oc'};
  const EX=[
-  {t:'칸의 그림 = 점유 보너스',d:'강철·티타늄·식물·카드 그림이 있는 칸에 놓으면 그만큼 바로 받아요',w:'그 땅에 묻힌 자원을 찾은 거예요',c:[{k:'land',hl:1,t:'철철',tc:'#f0b080'},L,{k:'land',t:'식',tc:'#a6e08a'},L,L,{k:'land',t:'카',tc:'#fff'},L],tag:'+강철 2'},
+  {t:'칸의 그림 = 점유 보너스',d:'강철, 티타늄, 식물, 카드 그림이 있는 칸에 놓으면 그만큼 바로 받아요',w:'그 땅에 묻힌 자원을 찾은 거예요',c:[{k:'land',hl:1,t:'철철',tc:'#f0b080'},L,{k:'land',t:'식',tc:'#a6e08a'},L,L,{k:'land',t:'카',tc:'#fff'},L],tag:'+강철 2'},
   {t:'해양 옆 = 1개당 +2 M€',d:'어떤 타일이든, 놓은 자리 옆에 해양이 있으면 해양 1개마다 2 M€',w:'바닷가 땅은 값이 비싸요',c:[{k:'ci',hl:1,me:1},OC,OC,L,L,L,L],tag:'+4 M€'},
   {t:'해양은 파란 칸에만',d:'점선 파란 칸 = 해양 자리. 해양은 여기만, 다른 타일은 여기 못 놓아요',w:'물이 고일 수 있는 낮은 땅이에요',c:[{k:'oc',hl:1},{k:'res'},L,L,{k:'land',t:'✕',tc:'#ff6a5a'},L,L]},
   {t:'녹지는 내 땅 옆에',d:'내 타일 옆에 빈자리가 있으면 녹지는 반드시 그 옆에. 없을 때만 아무 데나',w:'숲은 내 개척지에서 번져 나가요',c:[{k:'ci',me:1},{k:'gr',hl:1,me:1,t:''},L,L,L,L,L]},
@@ -2981,7 +2997,7 @@ new MutationObserver(syncSub).observe(document.body,{attributes:true,attributeFi
 const rows=[['tr','TR','= VP',1,20],['ms','업적','× 5',5,0],['a1','기업상 1등','× 5',5,0],['a2','기업상 2등','× 2 (3인↑)',2,0],['gr','녹지','× 1',1,0],['ct','도시 옆 녹지','합계 × 1',1,0],['cd','카드 VP','합계',1,0]];
 $('#calcBody').innerHTML=rows.map(r=>`<tr><td>${r[1]}</td><td class="muted">${r[2]}</td><td><input type="number" inputmode="numeric" id="A-${r[0]}" value="${r[4]}" aria-label="A ${r[1]}"></td><td><input type="number" inputmode="numeric" id="B-${r[0]}" value="${r[4]}" aria-label="B ${r[1]}"></td></tr>`).join('');
 function calc(){const t={A:0,B:0};['A','B'].forEach(p=>rows.forEach(r=>{t[p]+=(+document.getElementById(p+'-'+r[0]).value||0)*r[3]}));$('#totA').textContent=t.A;$('#totB').textContent=t.B;
-  $('#calcLead').innerHTML=t.A===t.B?'동점 <span class="arr">→</span> 남은 <b class="mc">M€</b> 많은 쪽 승':`<span class="lead">${t.A>t.B?'A':'B'}</span> 앞섬 · ${Math.abs(t.A-t.B)}점 차`}
+  $('#calcLead').innerHTML=t.A===t.B?'동점 <span class="arr">→</span> 남은 <b class="mc">M€</b> 많은 쪽 승':`<span class="lead">${t.A>t.B?'A':'B'}</span> 앞섬, ${Math.abs(t.A-t.B)}점 차`}
 $('#calcBody').addEventListener('input',calc);calc();
 })();
 </script>
