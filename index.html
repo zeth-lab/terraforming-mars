@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261016043939">
+<meta name="build" content="20261021212009">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1071,7 +1071,7 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
 .stage.kcm .interlude{container-type:size;padding:54px max(18px,5%) 78px;background:radial-gradient(ellipse at 40% 45%,rgba(48,28,20,.94),rgba(10,6,5,.97))}
 .kc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,4cqw,44px);align-items:center;width:min(980px,100%)}
 .kc-cw{perspective:900px}
-.kc-card{position:relative;width:min(34cqw,calc(78cqh * .716));aspect-ratio:63/88;container-type:inline-size;background:#f6f1e7;border:1.2cqw solid #4c9a35;border-radius:5cqw;box-shadow:0 18px 40px rgba(0,0,0,.5);animation:kFly 1.1s cubic-bezier(.2,.8,.2,1) both;transform-style:preserve-3d}
+.kc-card{position:relative;width:min(34cqw,calc(90cqh * .716));aspect-ratio:63/88;container-type:inline-size;background:#f6f1e7;border:1.2cqw solid #4c9a35;border-radius:5cqw;box-shadow:0 18px 40px rgba(0,0,0,.5);animation:kFly 1.1s cubic-bezier(.2,.8,.2,1) both;transform-style:preserve-3d}
 @keyframes kFly{0%{transform:translateY(40%) rotateY(-160deg) scale(.4);opacity:0}60%{opacity:1}100%{transform:none}}
 .kc-card>*{position:absolute;transition:opacity .35s,box-shadow .35s,transform .35s}
 .kc-cost{left:-4%;top:-3%;width:22%;aspect-ratio:1;display:grid;place-items:center;background:#f6c945;border:.9cqw solid #8a6a2a;border-radius:16%;font-family:var(--f-display);font-weight:800;font-size:12cqw;color:#2b1d16;z-index:2}
@@ -1108,7 +1108,7 @@ section.story .st-h h2{font-size:1rem;color:var(--dust-2)}
   .kc-p{font-size:clamp(.88rem,4cqw,1.05rem)}
   .kc-ex{font-size:clamp(.8rem,3.6cqw,.95rem);text-align:left}
 }
-.stage.land.kcm .interlude{padding:44px 5% 56px}
+.stage.land.kcm .interlude{padding:40px 5% 52px}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1332,17 +1332,17 @@ const STEPS=[
  {id:'loop',ch:2,t:'게임은 세대의 반복이에요',l:['세대 1 → 세대 2 → … 수치 3개가 다 차면 끝','한 세대 = ① 순서 조정 ② 연구 ③ 행동 ④ 생산'],cam:'over',dim:1,
   il:`<p class="il-eb">게임의 흐름</p><h3 class="il-t">게임은 '세대'의 반복이에요</h3><div class="il-gens"><span>세대 1</span><i>→</i><span>세대 2</span><i>→</i><span>세대 3</span><i>→</i><span>…</span><i>→</i><span class="end">산소·기온·해양 완성 = 끝</span></div><p class="il-sub">한 세대는 늘 이 4단계예요</p><div class="il-phases"><span><b>①</b>순서 조정</span><i>→</i><span><b>②</b>연구</span><i>→</i><span class="on"><b>③</b>행동</span><i>→</i><span><b>④</b>생산</span><i class="back">↺</i></div>`},
  {id:'g1',ch:2,t:'1세대: 바로 행동부터',l:['1세대는 ① 순서 조정 · ② 연구를 <b>건너뛰고</b> ③ 행동부터','내 차례에 행동 1~2개 → 다음 사람 → … 모두 행동 종료할 때까지'],cam:'over',lb:[['wGen','세대 1'],['firstMk','선']]},
- {id:'g1a',ch:2,t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ <span class="arr">→</span> 10 M€ 내고 1 M€ 2개 거슬러 받아요','효과: <b class="en">에너지 생산 +1</b> (발전소를 지었어요), 에너지 <span class="k">2</span>개','낸 카드는 내 앞에 <b>앞면</b>으로 놓아요'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
- {id:'g1b',ch:2,t:'내 행동 ② 해양 만들기',l:['일반 프로젝트 <b>지하수 추출</b> <span class="k">18</span> M€ = 얼음을 녹여 해양을 만들어요','해양 자리에서 꺼내 파란 칸에 놓아요','화성을 바꿨으니 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','해양 +1'],['trMe','TR 21']]},
- {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대가 소행성(<span class="k">14</span> M€)을 떨어뜨려 화성을 데웠어요','기온 <span class="k">−30 → −28°C</span>','바꾼 사람이 TR을 받아요 → 상대 TR <span class="k">20 → 21</span>'],cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
- {id:'g1d',ch:2,t:'둘 다 행동 종료를 선언했어요',l:['더 할 게 없으면 행동 종료를 선언해요','행동 종료하면 이번 세대엔 더 못 해요','모두 행동 종료하면 ④ 생산 단계로 가요'],cam:'over',lb:[['trMe','나 행동 종료'],['trOpp','상대 행동 종료']]},
+ {id:'g1a',ch:2,t:'내 행동 ① 카드 내기',l:['비용 <span class="k">8</span> M€ → 10 M€ 내고 1 M€ 2개 거슬러 받기','효과 <b class="en">에너지 생산력 +1</b> · 낸 카드는 내 앞에 <b>앞면</b>으로'],cam:'pb',lb:[['h4','8 M€'],['pm_en','생산 2']]},
+ {id:'g1b',ch:2,t:'내 행동 ② 해양 만들기',l:['일반 프로젝트 <b>지하수 추출</b> <span class="k">18</span> M€ → 해양 타일을 파란 칸에','화성을 바꿨으니 TR <span class="k">20 → 21</span>'],cam:'board',lb:[['oc8','해양 +1'],['trMe','TR 21']]},
+ {id:'g1c',ch:2,t:'이번엔 상대 차례예요',l:['상대: <b>소행성 충돌 유도</b>(<span class="k">14</span> M€) → 기온 <span class="k">−30 → −28°C</span>','지표를 올린 사람이 TR +1 → 상대 TR <span class="k">21</span>'],cam:'temp',lb:[['wTmp','−28°C'],['trOpp','상대 TR 21']]},
+ {id:'g1d',ch:2,t:'둘 다 행동 종료를 선언했어요',l:['더 할 게 없으면 <b>행동 종료</b> 선언 · 이번 세대엔 더 못 해요','모두 행동 종료하면 ④ 생산 단계로'],cam:'over',lb:[['trMe','나 행동 종료'],['trOpp','상대 행동 종료']]},
  {id:'p1',ch:2,t:'생산 ① 남은 에너지는 열이 돼요',l:['쓰지 않은 <b class="en">에너지 2</b>개는 전부 <b class="ht">열</b>로 바뀌어요','전기는 저장이 안 돼서 열로 흩어진다고 생각하면 쉬워요'],cam:'pbClose',lb:[['slot_ht','열 +2']]},
- {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['지구 정부가 화성을 바꾼 만큼 지원금을 줘요 <span class="arr">→</span> <b>TR만큼</b> (21)','회사 사업에서 나는 수익 <span class="arr">→</span> <b>M€ 생산력만큼</b> (1)','21 + 1 = <span class="k">22</span> M€ <span class="arr">→</span> 16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22 M€']]},
- {id:'p3',ch:2,t:'생산 ③ 공장이 일한 결과',l:['광산 · 농장 · 발전소가 한 세대 동안 일했어요','각 칸 아래 숫자(내 큐브)만큼 은행에서 가져와요','강철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
- {id:'g2',ch:3,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 옮겨요','시작 플레이어는 상대에게 넘어가요','생산력 큐브는 그대로: 한 번 지은 공장은 계속 남아서 매 세대 일해요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
+ {id:'p2',ch:2,t:'생산 ② 돈을 받아요',l:['받는 돈 = <b>TR</b>(21) + <b>M€ 생산력</b>(1) = <span class="k">22</span> M€','16 + 22 = <b class="mc">38 M€</b>'],cam:'pbClose',lb:[['slot_mc','+22 M€']]},
+ {id:'p3',ch:2,t:'생산 ③ 공장이 일한 결과',why:'마지막으로 파란 카드 위에 올려 둔 행동 표시 큐브를 치워요',l:['다른 자원도 내 큐브가 놓인 숫자만큼 은행에서 받아요','강철 1 · 티타늄 1 · 식물 1 · 에너지 2 · 열 1'],cam:'pbClose'},
+ {id:'g2',ch:3,t:'2세대가 시작돼요',l:['세대 큐브를 <span class="k">2</span>로 · 시작 플레이어 마커는 왼쪽 사람에게','생산력 큐브는 그대로: 지은 공장은 매 세대 계속 일해요'],cam:'over',lb:[['wGen','세대 2'],['firstMk','선 → 상대']]},
  {id:'g2r',ch:3,t:'② 연구: 새 카드 4장',l:['덱에서 <span class="k">4</span>장을 뽑아 <b>손에 들고</b> 봐요','살 카드만 1장당 <span class="k">3</span> M€ (2장 = 6 M€) · 나머지는 <b>뒷면</b>으로 버림 더미에'],cam:'hand',lb:[['r0','구매'],['r1','구매'],['r2','버림'],['r3','버림']]},
- {id:'g2a',ch:3,t:'③ 행동: 녹지 만들기',l:['일반 프로젝트 <span class="k">23</span> M€로 숲(녹지)을 만들어요','해양 옆이라 <span class="k">+2</span> M€ 보너스','숲이 산소를 만들어요: 산소 <span class="k">0 → 1%</span> <span class="arr">→</span> TR <span class="k">21 → 22</span>','녹지 위에 내 큐브를 얹어 "내 땅" 표시'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 땅'],['wOxy','산소 1%'],['trMe','TR 22']]},
- {id:'end',ch:3,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">기온 +8°C</b> · <b class="oc">해양 타일 9장</b>','셋 다 채워지면 그 세대 생산까지 하고 끝','점수 계산은 메인의 <b>SCORE</b>에서 도와 드려요'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
+ {id:'g2a',ch:3,t:'③ 행동: 녹지 만들기',l:['일반 프로젝트 <b>녹지 형성</b> <span class="k">23</span> M€ · 해양 옆이라 <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> → TR <span class="k">22</span> · 녹지 위에 내 큐브'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지 · 내 땅'],['wOxy','산소 1%'],['trMe','TR 22']]},
+ {id:'end',ch:3,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b> · <b class="ht">기온 +8°C</b> · <b class="oc">해양 9장</b>이 모두 차면','그 세대 생산까지 하고 끝 → 점수 계산'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]}
 ];
 const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
 const HUD=[];{let g='—',tr='—',t='—',o='—',m='—';
@@ -1413,7 +1413,7 @@ cv.addEventListener('click',tapNav);$('#interlude').addEventListener('click',tap
 /* ☰ 장면 목록: 3D 안에서 원하는 장면으로 바로 */
 {const btn=document.createElement('button');btn.type='button';btn.className='s-list';btn.innerHTML='<i></i>장면';btn.setAttribute('aria-label','장면 목록');
  const box=document.createElement('div');box.className='slist';box.hidden=true;
- box.innerHTML=`<div class="sl-in"><div class="sl-h"><b>장면 목록</b><button type="button" class="sl-x" aria-label="닫기">✕</button></div>${CH.map((c,ci)=>`<section><h4>${c}</h4><ol>${STEPS.map((s,i)=>s.ch===ci?`<li><button type="button" data-i="${i}"><span>${i+1}</span>${s.t}</button></li>`:'').join('')}</ol></section>`).join('')}</div>`;
+ box.innerHTML=`<div class="sl-in"><div class="sl-h"><b>장면 목록</b><button type="button" class="sl-x" aria-label="닫기">✕</button></div>${CH.map((c,ci)=>`<div class="sl-sec"><h4>${c}</h4><ol>${STEPS.map((s,i)=>s.ch===ci?`<li><button type="button" data-i="${i}"><span>${i+1}</span>${s.t}</button></li>`:'').join('')}</ol></div>`).join('')}</div>`;
  stage.append(btn,box);
  const open=v=>{box.hidden=!v;btn.classList.toggle('on',v);if(v){box.querySelectorAll('button[data-i]').forEach(b=>b.classList.toggle('on',+b.dataset.i===cur));const on=box.querySelector('button.on');on&&on.scrollIntoView({block:'center'})}};
  btn.onclick=e=>{e.stopPropagation();open(box.hidden)};
@@ -1735,7 +1735,7 @@ const halos=[];for(let i=0;i<40;i++){const s=new THREE.Sprite(new THREE.SpriteMa
 
 /* ---- 카메라 ---- */
 const CAM={whole:{p:[-1,40,25],l:[-1,0,1]},pick:{p:[0,20,20],l:[0,DIMY,2.5]},trCam:{p:[-6,17,-3],l:[-12.5,0,-12.5]},over:{p:[0,50,46],l:[0,0,4]},overFar:{p:[0,52,34],l:[0,0,-4]},board:{p:[-2,28,12],l:[-1,0,-5]},boardR:{p:[10,27,6],l:[10,0,-6]},temp:{p:[4,21,16],l:[8,0,0]},tilesCam:{p:[6,36,18],l:[9,0,-4]},
- pb:{p:[-2,17,35],l:[-2,0,18.5]},pbClose:{p:[0,13,28.5],l:[0,0,17.6]},show:{p:[0,10,28],l:[0,2.6,16.6]},hand:{p:[1,12,42],l:[1,3.6,25]},handCam:{p:[0,11,41],l:[0,3.2,24.5]},deckCam:{p:[14,24,10],l:[20,0,-9]}};
+ pb:{p:[-2,17,35],l:[-2,0,18.5]},pbClose:{p:[0,13,28.5],l:[0,0,17.6]},show:{p:[0,10,28],l:[0,2.6,16.6]},hand:{p:[1,12,42],l:[1,3.6,25]},handCam:{p:[0,11,41],l:[0,3.2,24.5]},deckCam:{p:[31,15,4],l:[21,0,-9]}};
 
 /* ---- 진행 ---- */
 let anim=null;const camNow={p:[...CAM.over.p],l:[...CAM.over.l]};
