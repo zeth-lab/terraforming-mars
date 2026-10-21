@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261022003002">
+<meta name="build" content="20261022011205">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1687,7 +1687,7 @@ const KTXT={all:['카드 한 장을 해독해 봐요',['실물 카드는 <b>기�
  red:['빨간 테두리 = 아무나',['나 또는 <b>다른 플레이어</b>에게도 써요.'],'자원 빼기는 덜 빼도 되지만 <b>생산력 감소</b>는 꼭 해야 해요'],
  vp:['오른쪽 아래 화성 = 승점',['게임이 끝날 때 받는 점수예요.'],'<b>1/2</b> = 2개당 1점 (예: 동물 2개당 1점)'],
  text:['맨 아래 작은 글 = 기호 풀이',['기호가 헷갈리면 이 글을 읽어요.'],'<b>＊ 별표</b> = 규칙의 <b>예외</b>라서 꼭 읽어요']};
-function kcShow(il,f){let k=il.querySelector('.kc');if(!k){il.innerHTML=KCARD;k=il.querySelector('.kc')}k.dataset.f=f;const t=KTXT[f],n=KF.indexOf(f);
+function kcShow(il,f){let k=il.querySelector('.kc:not(.cmode)');if(!k){il.innerHTML=KCARD;k=il.querySelector('.kc')}k.dataset.f=f;const t=KTXT[f],n=KF.indexOf(f);
  k.querySelector('.kc-txt').innerHTML=`<p class="il-eb">카드 읽는 법 · ${n+1} / ${KF.length}</p><h3 class="il-t">${t[0]}</h3><p class="kc-p">${t[1].map(x=>`<span class="ln">${x}</span>`).join('')}</p>${t[2]?`<p class="kc-ex">${t[2]}</p>`:''}`}
 
 /* ---- 설명 먼저 → 터치 → 3D : 장면마다 어두운 설명 화면 ---- */
@@ -1785,7 +1785,7 @@ let renderer=null;try{if(window.THREE)renderer=new THREE.WebGLRenderer({canvas:c
 
 /* ---- 입력 ---- */
 function inView(){if(stage.classList.contains('full'))return true;const r=stage.getBoundingClientRect();return r.width>0&&r.top<innerHeight*.6&&r.bottom>innerHeight*.4}
-function nextStep(){if(briefOpen){briefOpen=false;$('#interlude').classList.remove('on');stage.classList.remove('il','brief');const sd=STEPS[cur];if(sd.id==='table'&&!cardMode){go(1);return}const sk=(sd.demo||sd.id)+'_std';if(renderer)dStart(cardMode?'__card':(MODE==='std'&&DEMOS[sk])?sk:sd.demo,cur);return}if(cardMode){closeCard();return}go(cur===N-1?0:cur+1)}
+function nextStep(){if(briefOpen){briefOpen=false;$('#interlude').classList.remove('on');stage.classList.remove('il','brief');const sd=STEPS[cur];if(sd.id==='table'&&!cardMode){go(1);return}const sk=(sd.demo||sd.id)+'_std';if(renderer)dStart(cardMode?'__card':(MODE==='std'&&DEMOS[sk])?sk:sd.demo,cardMode?sceneI:cur);return}if(cardMode){closeCard();return}go(cur===N-1?0:cur+1)}
 function go(i,force){i=Math.max(0,Math.min(N-1,i));fit();if(cardMode){cardMode=null;stage.classList.remove('cardm')}if(i===cur&&started&&!force)return;if(i>0)try{localStorage.setItem('tm-last',i)}catch(_){}started=true;cur=i;ui(i);if(renderer)toStep(i)}
 function fit(){if(stage.classList.contains('full'))return;const r=stage.getBoundingClientRect();if(r.width&&(r.top<0||r.bottom>innerHeight))stage.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'})}
 
@@ -2418,7 +2418,9 @@ function cardHTML(c){const col=CCOL[c.color]||'#666',r=reqOf(c);
   <span class="kc-name" style="background:${col}">${c.ko}</span><span class="kc-art cc-num">${c.corporateEra?'<i>대기업시대</i>':''}<b>${c.num}</b></span>
   <span class="kc-eff cc-eff">${effIcons(c)}</span><span class="kc-text">${c.ko_text||''}</span>${c.vp?`<span class="kc-vp">${vpBadge(c.vp)}</span>`:''}</div></div>`;
  return `<div class="kc cmode" data-f="all">${card}<div class="kc-txt"><p class="il-eb">카드 해독 · ${c.num}</p><h3 class="il-t">${c.ko}</h3><p class="kc-p">${cardLines(c).map(x=>`<span class="ln">${x}</span>`).join('')}</p>${c.needs_manual?'<p class="kc-ex">이 카드는 특별해요. 아래 카드 글을 꼭 읽어요</p>':''}<p class="bf-go">화면을 누르면 3D로 보여 드려요 ▶</p></div></div>`}
-function openCard(c){if(!c)return;window.__csr&&__csr(false);cardMode=c;dClear();const il=$('#interlude');il.innerHTML=cardHTML(c);il.classList.add('on');stage.classList.add('il','brief','cardm');stage.classList.remove('kcm');briefOpen=true;
+/* 카드 검색은 언제 열어도 셋팅이 다 된 테이블 위에서 보여 줌 */
+const cardBase=()=>{const s=STEPS[cur];return (!s.dim&&cur>=SI.first)?cur:(cur<SI.g1a?SI.first:SI.p3)};
+function openCard(c){if(!c)return;window.__csr&&__csr(false);cardMode=c;if(renderer){const b=cardBase();if(b!==sceneI)toStep(b);lblBox.innerHTML='';}dClear();const il=$('#interlude');il.innerHTML=cardHTML(c);il.classList.add('on');stage.classList.add('il','brief','cardm');stage.classList.remove('kcm');briefOpen=true;
  $('#spanel').innerHTML=`<div class="chap-eb"><span class="eyebrow">카드 검색</span><span class="cnt">${c.num}</span></div><h3>${c.ko}</h3><ul class="rules">${cardLines(c).slice(0,5).map(x=>`<li>${x}</li>`).join('')}</ul><button type="button" class="card-x">✕ 카드 닫고 원래 장면으로</button>`;
  $('#spanel .card-x').onclick=e=>{e.stopPropagation();closeCard()}}
 function closeCard(){if(!cardMode)return;cardMode=null;stage.classList.remove('cardm');go(cur,true)}
@@ -2545,7 +2547,8 @@ const CAM={whole:{p:[-1,40,25],l:[-1,0,1]},pick:{p:[0,20,20],l:[0,DIMY,2.5]},trC
 let anim=null;const camNow={p:[...CAM.over.p],l:[...CAM.over.l]};
 let hlSet=new Set(),hlStart=0,regOn=[];
 function stateNow(o){const m=o.mesh;return {p:[m.position.x,m.position.y,m.position.z],s:m.scale.x,rx:m.rotation.x,ry:m.rotation.y}}
-function toStep(i){const from={},movers=[];
+let sceneI=0;
+function toStep(i){sceneI=i;const from={},movers=[];
  Object.entries(OBJ).forEach(([id,o])=>{from[id]=stateNow(o);const t=o.st[i],f=from[id];
    const d=Math.hypot(t.p[0]-f.p[0],t.p[1]-f.p[1],t.p[2]-f.p[2])+Math.abs(t.s-f.s)*2+Math.abs(t.rx-f.rx)+Math.abs(t.ry-f.ry);if(d>.01)movers.push(id)});
  // 순서: 보드·큰 것 먼저, 그다음 작은 부품이 차례로 → 영상처럼
@@ -2561,7 +2564,7 @@ const DUR=reduce?.01:1.0;
 function tick(now){
  {const k=Math.min(1,(now-(window.__dimT0||0))/(reduce?1:550));dimMesh.material.opacity=(window.__dimFrom||0)+(dimTarget-(window.__dimFrom||0))*k;dimMesh.visible=dimMesh.material.opacity>.01}
  if(anim){const el=(now-anim.t0)/1000;let done=true;
-  Object.entries(OBJ).forEach(([id,o])=>{const f=anim.from[id],t=o.st[cur];const dl=anim.delay[id]||0;let k=(el-dl)/DUR;if(k<1)done=false;k=ease(Math.max(0,Math.min(1,k)));
+  Object.entries(OBJ).forEach(([id,o])=>{const f=anim.from[id],t=o.st[sceneI];const dl=anim.delay[id]||0;let k=(el-dl)/DUR;if(k<1)done=false;k=ease(Math.max(0,Math.min(1,k)));
    const m=o.mesh;const dist=Math.hypot(t.p[0]-f.p[0],t.p[2]-f.p[2]);
    m.position.set(lerp(f.p[0],t.p[0],k),lerp(f.p[1],t.p[1],k)+(dist>1?Math.sin(Math.PI*k)*o.arc*Math.min(1.6,dist/6+.5):0),lerp(f.p[2],t.p[2],k));
    m.scale.setScalar(Math.max(1e-4,lerp(f.s,t.s,k)));m.rotation.set(lerp(f.rx,t.rx,k),lerp(f.ry,t.ry,k),0)});
@@ -2598,7 +2601,7 @@ size();addEventListener('resize',size);if(window.ResizeObserver)new ResizeObserv
 let vis=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargin:'120px'}).observe(stage);
 (function loop(now){if(vis)tick(now);requestAnimationFrame(loop)})(performance.now());
 tick(performance.now());
-{const rb=document.createElement('button');rb.type='button';rb.className='d-replay';rb.innerHTML='↻ 다시 보기';rb.onclick=e=>{e.stopPropagation();if(D.id){const id=D.id;if(id!=='__card')camNow.p=[...CAM[STEPS[cur].cam].p];camNow.l=[...CAM[STEPS[cur].cam].l];setLabels(cur);dStart(id,cur)}};stage.appendChild(rb)}
+{const rb=document.createElement('button');rb.type='button';rb.className='d-replay';rb.innerHTML='↻ 다시 보기';rb.onclick=e=>{e.stopPropagation();if(D.id){const id=D.id;if(id!=='__card')camNow.p=[...CAM[STEPS[cur].cam].p];else{setLabels(sceneI);lblBox.innerHTML='';dStart(id,sceneI);return}camNow.l=[...CAM[STEPS[cur].cam].l];setLabels(cur);dStart(id,cur)}};stage.appendChild(rb)}
 {const top=document.createElement('div');top.className='s-top';stage.appendChild(top);top.append($('#btnClose'),stage.querySelector('.s-list'),stage.querySelector('.s-card'));
  const ctl=stage.querySelector('.sctrl');ctl.insertBefore($('#sNext'),ctl.querySelector('.chaps'));$('#sPrev').textContent='◀'}
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
