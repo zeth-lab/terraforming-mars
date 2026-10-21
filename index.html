@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261022014148">
+<meta name="build" content="20261022014454">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1530,7 +1530,7 @@ body .home.hl .cta3 button{padding:min(12px,2.6cqh) 6px!important}
     <div class="cta cta3">
       <button type="button" class="go" id="btnStart">START<small>셋팅부터 차례로</small></button>
       <button type="button" id="btnCards" class="cards-b">CARDS<small>카드 찾아 3D로 보기</small></button>
-      <button type="button" id="btnSym" class="sym-b">SYMBOLS<small>아이콘 설명서</small></button>
+      <button type="button" id="btnSym" class="sym-b">ICONS<small>아이콘 설명서</small></button>
       <button type="button" id="btnResume" class="resume" hidden>이어서 보기<small id="resumeT"></small></button>
     </div>
     <div class="readout" aria-live="polite">
@@ -2978,7 +2978,7 @@ const exHTML=e=>{if(!cards||!(e.tag||e.ev))return '';const l=cards.filter(c=>c.k
 const mini=e=>`<div class="sy-mini at-${e.at}">${e.at==='board'?`<span class="mb-hex">${SICO(e)}</span>`:`<span class="mc-cost">${e.at==='cost'?'':'12'}</span><span class="mc-req"></span><span class="mc-tag"></span><span class="mc-body"></span><span class="mc-vp"></span><span class="mc-pin">${SICO(e)}</span>`}</div>`;
 const L=a=>a.map(x=>`<li>${x}</li>`).join('');
 function draw(){const c=SYM.find(x=>x.id===cat);
- if(!c){sym.innerHTML=`<div class="sy-h"><button type="button" class="sy-back" data-go="home">✕ 메인</button><p class="sy-eb">SYMBOLS</p><h2>아이콘 설명서</h2><p class="sy-sub">카드와 게임판의 기호를 하나씩 풀어 봐요</p></div>
+ if(!c){sym.innerHTML=`<div class="sy-h"><button type="button" class="sy-back" data-go="home">✕ 메인</button><p class="sy-eb">ICONS</p><h2>아이콘 설명서</h2><p class="sy-sub">카드와 게임판의 기호를 하나씩 풀어 봐요</p></div>
  <div class="sy-cats">${SYM.map((x,i)=>`<button type="button" data-cat="${x.id}" style="--d:${i*.06}s"><span class="sy-ics">${x.ic.map(k=>`<span class="ci">${G[k]||SICO({k})}</span>`).join('')}</span><b>${x.n}</b><small>${x.d}</small><em>${x.items.length}</em></button>`).join('')}</div>`;return}
  if(idx<0){sym.innerHTML=`<div class="sy-h"><button type="button" class="sy-back" data-go="cats">← 분류</button><p class="sy-eb">${c.en}</p><h2>${c.n}</h2><p class="sy-sub">${c.intro.split('|').join(' ')}</p></div>
  <div class="sy-grid">${c.items.map((e,i)=>`<button type="button" data-i="${i}" style="--d:${i*.035}s"><span class="sy-ic">${SICO(e)}</span><b>${e.n}</b></button>`).join('')}</div>`;return}
