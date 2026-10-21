@@ -1,0 +1,8394 @@
+[
+ {
+  "num": "153",
+  "ko": "적응기술",
+  "en": "Adaptation Technology",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 카드 사용 시, 추진 조건 중 행성 지표에는 +/- 2단계 중 원하는 것을 적용.",
+    "result": [
+     {
+      "atom": "text",
+      "en": "+/- 2",
+      "ko": null
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "+/- 2 지속 효과: 카드 사용 시, 추진 조건 중 행성 지표에는 +/- 2단계 중 원하는 것을 적용.",
+  "en_text": "+/- 2 Your global requirements are +2 or -2 steps, your choice in each case.",
+  "needs_manual": false,
+  "note": "",
+  "search": "적응기술 Adaptation Technology jeogeunggisul ㅈㅇㄱㅅ 153 adaptationtechnology"
+ },
+ {
+  "num": "048",
+  "ko": "개량종 지의류",
+  "en": "Adapted Lichen",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "식물 생산력 1 증가.",
+  "en_text": "Increase your plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "개량종 지의류 Adapted Lichen gaeryangjong jiyiryu ㄱㄹㅈㅈㅇㄹ 048 adaptedlichen"
+ },
+ {
+  "num": "135",
+  "ko": "발달된 생태계",
+  "en": "Advanced Ecosystems",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "plant",
+   "microbe",
+   "animal"
+  ],
+  "req": [
+   {
+    "type": "tag",
+    "value": "plant",
+    "max": false,
+    "tag": "plant"
+   },
+   {
+    "type": "tag",
+    "value": "animal",
+    "max": false,
+    "tag": "animal"
+   },
+   {
+    "type": "tag",
+    "value": "microbe",
+    "max": false,
+    "tag": "microbe"
+   }
+  ],
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 3
+  },
+  "ko_text": "조건: 보유한 식물/미생물/동물 태그 각 1개 이상.",
+  "en_text": "Requires a plant tag, a microbe tag, and an animal tag.",
+  "needs_manual": false,
+  "note": "",
+  "search": "발달된 생태계 Advanced Ecosystems baldaldoen saengtaegye ㅂㄷㄷㅅㅌㄱ 135 advancedecosystems"
+ },
+ {
+  "num": "170",
+  "ko": "암모니아 소행성 대기권제동 소각",
+  "en": "Aerobraked Ammonia Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 26,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 2,
+    "target": "this"
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 3 증가. 식물 생산력 1 증가. 자신의 다른 카드 1장에 미생물 자원 2개 추가.",
+  "en_text": "Increase your heat production 3 steps and your plant production 1 step. Add 2 microbes to ANOTHER card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "암모니아 소행성 대기권제동 소각 Aerobraked Ammonia Asteroid ammonia sohaengseong daegigweonjedong sogag ㅇㅁㄴㅇㅅㅎㅅㄷㄱㄱㅈㄷㅅㄱ 170 aerobrakedammoniaasteroid"
+ },
+ {
+  "num": "035",
+  "ko": "개미",
+  "en": "Ants",
+  "kind": "project",
+  "color": "blue",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "card_res",
+      "res": "microbe",
+      "n": 1,
+      "target": "any"
+     }
+    ],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "microbe",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 2,
+   "of": "microbe"
+  },
+  "ko_text": "조건: 산소 농도 4% 이상.",
+  "en_text": "Requires 4% oxygen.",
+  "needs_manual": false,
+  "note": "",
+  "search": "개미 Ants gaemi ㄱㅁ 035 ants"
+ },
+ {
+  "num": "187",
+  "ko": "지하수 개발",
+  "en": "Aquifer Pumping",
+  "kind": "project",
+  "color": "blue",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 8,
+      "any": false
+     },
+     {
+      "atom": "text",
+      "en": "superscript: steel([1])"
+     }
+    ],
+    "gain": [
+     {
+      "atom": "tile",
+      "tile": "ocean",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 8 M€ 소비해서 해양 타일 1장 배치. 강철 자원도 소비 가능.",
+  "en_text": "Spend 8 M€ to place 1 ocean tile. STEEL MAY BE USED as if you were playing a building card.",
+  "needs_manual": true,
+  "note": "superscript-annotation",
+  "search": "지하수 개발 Aquifer Pumping jihasu gaebal ㅈㅎㅅㄱㅂ 187 aquiferpumping"
+ },
+ {
+  "num": "047",
+  "ko": "조류",
+  "en": "Algae",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 5,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 해양 타일 5장 이상.) (식물 생산력 2 증가. 식물 자원 1개 획득.",
+  "en_text": "Requires 5 ocean tiles. Gain 1 plant and increase your plant production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "조류 Algae joryu ㅈㄹ 047 algae"
+ },
+ {
+  "num": "042",
+  "ko": "고세균",
+  "en": "ArchaeBacteria",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -18,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -18℃ 이하.) (식물 생산력 1 증가.",
+  "en_text": "It must be -18 C or colder. Increase your plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "고세균 ArchaeBacteria gosegyun ㄱㅅㄱ 042 archaebacteria"
+ },
+ {
+  "num": "023",
+  "ko": "극지 미세조류",
+  "en": "Arctic Algae",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -12,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 아무나 해양 타일을 1장 놓을 때마다, 자신의 식물 자원 2개 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "plants",
+      "n": 2,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -12℃ 이하.) (식물 자원 1개 획득.",
+  "en_text": "It must be -12 C or colder to play. Gain 1 plant.",
+  "needs_manual": false,
+  "note": "",
+  "search": "극지 미세조류 Arctic Algae geugji misejoryu ㄱㅈㅁㅅㅈㄹ 023 arcticalgae"
+ },
+ {
+  "num": "116",
+  "ko": "인공 호수",
+  "en": "Artificial Lake",
+  "kind": "project",
+  "color": "green",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 기온 -6℃ 이상.) (해양 전용 구역이 아닌 빈 구역 한 곳에 해양 타일 1장 배치.",
+  "en_text": "Requires -6 C or warmer. Place 1 ocean tile ON AN AREA NOT RESERVED FOR OCEAN.",
+  "needs_manual": false,
+  "note": "",
+  "search": "인공 호수 Artificial Lake ingong hosu ㅇㄱㅎㅅ 116 artificiallake"
+ },
+ {
+  "num": "115",
+  "ko": "인공 광합성 기술",
+  "en": "Artificial Photosynthesis",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "식물 생산력 1 증가 또는 에너지 생산력 2 증가.",
+  "en_text": "Increase your plant production 1 step or your energy production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "인공 광합성 기술 Artificial Photosynthesis ingong gwanghabseong gisul ㅇㄱㄱㅎㅅㄱㅅ 115 artificialphotosynthesis"
+ },
+ {
+  "num": "009",
+  "ko": "소행성",
+  "en": "Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 14,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "titanium",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -3,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 1단계 상승. 티타늄 자원 2개 획득. 아무 1명의 식물 자원 3개까지 제거.",
+  "en_text": "Raise temperature 1 step and gain 2 titanium. Remove up to 3 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "소행성 Asteroid sohaengseong ㅅㅎㅅ 009 asteroid"
+ },
+ {
+  "num": "040",
+  "ko": "소행성 채굴",
+  "en": "Asteroid Mining",
+  "kind": "project",
+  "color": "green",
+  "cost": 30,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "티타늄 생산력 2 증가.",
+  "en_text": "Increase your titanium production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "소행성 채굴 Asteroid Mining sohaengseong chaegul ㅅㅎㅅㅊㄱ 040 asteroidmining"
+ },
+ {
+  "num": "058",
+  "ko": "토륨 소행성 핵발전소",
+  "en": "Beam From A Thorium Asteroid",
+  "kind": "project",
+  "color": "green",
+  "cost": 32,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "space",
+   "power"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "jovian",
+   "max": false,
+   "tag": "jovian"
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 보유한 목성 태그 1개 이상.) (열 생산력 3 증가. 에너지 생산력 3 증가.",
+  "en_text": "Requires a Jovian tag. Increase your heat production and energy production 3 steps each.",
+  "needs_manual": false,
+  "note": "",
+  "search": "토륨 소행성 핵발전소 Beam From A Thorium Asteroid toryum sohaengseong haegbaljeonso ㅌㄹㅅㅎㅅㅎㅂㅈㅅ 058 beamfromathoriumasteroid"
+ },
+ {
+  "num": "011",
+  "ko": "대형 소행성",
+  "en": "Big Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 27,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 2
+   },
+   {
+    "atom": "gain",
+    "res": "titanium",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -4,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 2단계 상승. 티타늄 자원 4개 획득. 아무 1명의 식물 자원 4개까지 제거.",
+  "en_text": "Raise temperature 2 steps and gain 4 titanium. Remove up to 4 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "대형 소행성 Big Asteroid daehyeong sohaengseong ㄷㅎㅅㅎㅅ 011 bigasteroid"
+ },
+ {
+  "num": "183",
+  "ko": "바이오매스 연소시설",
+  "en": "Biomass Combustors",
+  "kind": "project",
+  "color": "green",
+  "cost": 4,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "조건: 산소 농도 6% 이상.) (아무 1명의 식물 생산력 1 감소. 에너지 생산력 2 증가.",
+  "en_text": "Requires 6% oxygen. Decrease any plant production 1 step and increase your energy production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "바이오매스 연소시설 Biomass Combustors baiomaeseu yeonsosiseol ㅂㅇㅇㅁㅅㅇㅅㅅㅅ 183 biomasscombustors"
+ },
+ {
+  "num": "072",
+  "ko": "새",
+  "en": "Birds",
+  "kind": "project",
+  "color": "blue",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 13,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "text",
+    "en": "Action: Add an animal to this card.",
+    "ko": "행동: 이 카드에 동물 자원 1개 추가."
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -2,
+    "any": true
+   },
+   {
+    "atom": "text",
+    "en": "(Requires 13% oxygen. Decrease any plant production 2 steps.)",
+    "ko": "(조건: 산소 농도 13% 이상. 아무 1명의 식물 생산력 2 감소.)"
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 1,
+   "of": "animal"
+  },
+  "ko_text": "행동: 이 카드에 동물 자원 1개 추가. (조건: 산소 농도 13% 이상. 아무 1명의 식물 생산력 2 감소.)",
+  "en_text": "Action: Add an animal to this card. (Requires 13% oxygen. Decrease any plant production 2 steps.)",
+  "needs_manual": false,
+  "note": "",
+  "search": "새 Birds sae ㅅ 072 birds"
+ },
+ {
+  "num": "022",
+  "ko": "흑색 분말",
+  "en": "Black Polar Dust",
+  "kind": "project",
+  "color": "green",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "해양 타일 1장 배치. 메가크레딧 생산력 2 감소. 열 생산력 3 증가.",
+  "en_text": "Place an ocean tile. Decrease your M€ production 2 steps and increase your heat production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "흑색 분말 Black Polar Dust heugsaeg bunmal ㅎㅅㅂㅁ 022 blackpolardust"
+ },
+ {
+  "num": "114",
+  "ko": "호흡 필터",
+  "en": "Breathing Filters",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 7,
+   "max": false
+  },
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 산소 농도 7% 이상.",
+  "en_text": "Requires 7% oxygen.",
+  "needs_manual": false,
+  "note": "",
+  "search": "호흡 필터 Breathing Filters hoheub pilteo ㅎㅎㅍㅌ 114 breathingfilters"
+ },
+ {
+  "num": "093",
+  "ko": "덤불",
+  "en": "Bushes",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -10,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -10℃ 이상.) (식물 생산력 2 증가. 식물 자원 2개 획득.",
+  "en_text": "Requires -10 C or warmer. Increase your plant production 2 steps. Gain 2 plants.",
+  "needs_manual": false,
+  "note": "",
+  "search": "덤불 Bushes deombul ㄷㅂ 093 bushes"
+ },
+ {
+  "num": "008",
+  "ko": "수도",
+  "en": "Capital",
+  "kind": "project",
+  "color": "green",
+  "cost": 26,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 5,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "capital"
+   }
+  ],
+  "vp": {
+   "type": "per_tile",
+   "value": 1,
+   "per": 1,
+   "of": "ocean"
+  },
+  "ko_text": "조건: 해양 타일 4장 이상.) (에너지 생산력 2 감소. 메가크레딧 생산력 5 증가. 도시 타일 1장 배치.",
+  "en_text": "Requires 4 ocean tiles. Place this tile. Decrease your energy production 2 steps and increase your M€ production 5 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "수도 Capital sudo ㅅㄷ 008 capital"
+ },
+ {
+  "num": "043",
+  "ko": "탄산염 분해 작업",
+  "en": "Carbonate Processing",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 열 생산력 3 증가.",
+  "en_text": "Decrease your energy production 1 step and increase your heat production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "탄산염 분해 작업 Carbonate Processing tansanyeom bunhae jageob ㅌㅅㅇㅂㅎㅈㅇ 043 carbonateprocessing"
+ },
+ {
+  "num": "004",
+  "ko": "인공 구름 형성",
+  "en": "Cloud Seeding",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "oceans",
+   "value": 3,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 해양 타일 3장 이상.) (자신의 메가크레딧 생산력 1 감소. 아무 1명의 열 생산력 1 감소. 자신의 식물 생산력 2 증가.",
+  "en_text": "Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "인공 구름 형성 Cloud Seeding ingong gureum hyeongseong ㅇㄱㄱㄹㅎㅅ 004 cloudseeding"
+ },
+ {
+  "num": "001",
+  "ko": "개척단 훈련소",
+  "en": "Colonizer Training Camp",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 5,
+   "max": true
+  },
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 산소 농도 5% 이하.",
+  "en_text": "Oxygen must be 5% or less.",
+  "needs_manual": false,
+  "note": "",
+  "search": "개척단 훈련소 Colonizer Training Camp gaecheogdan hunryeonso ㄱㅊㄷㅎㄹㅅ 001 colonizertrainingcamp"
+ },
+ {
+  "num": "010",
+  "ko": "혜성",
+  "en": "Comet",
+  "kind": "project",
+  "color": "red",
+  "cost": 21,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 1
+   },
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -3,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 1단계 상승. 해양 타일 1장 배치. 아무 1명의 식물 자원 3개까지 제거.",
+  "en_text": "Raise temperature 1 step and place an ocean tile. Remove up to 3 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "혜성 Comet hyeseong ㅎㅅ 010 comet"
+ },
+ {
+  "num": "161",
+  "ko": "유로파 수송선단",
+  "en": "Convoy From Europa",
+  "kind": "project",
+  "color": "red",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   },
+   {
+    "atom": "draw",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "해양 타일 1장 배치. 카드 1장 획득.",
+  "en_text": "Place 1 ocean tile and draw 1 card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "유로파 수송선단 Convoy From Europa yuropa susongseondan ㅇㄹㅍㅅㅅㅅㄷ 161 convoyfromeuropa"
+ },
+ {
+  "num": "029",
+  "ko": "반구형 도시",
+  "en": "Cupola City",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 9,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 산소 농도 9% 이하.) (에너지 생산력 1 감소. 메가크레딧 생산력 3 증가. 도시 타일 1장 배치.",
+  "en_text": "Oxygen must be 9% or less. Place a city tile. Decrease your energy production 1 step and increase your M€ production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "반구형 도시 Cupola City banguhyeong dosi ㅂㄱㅎㄷㅅ 029 cupolacity"
+ },
+ {
+  "num": "131",
+  "ko": "분해자 생물",
+  "en": "Decomposers",
+  "kind": "project",
+  "color": "blue",
+  "cost": 5,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 3,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 동물/식물/미생물 태그 수만큼, 이 카드에 미생물 자원 추가.",
+    "result": [
+     {
+      "atom": "card_res",
+      "res": "microbe",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 3,
+   "of": "microbe"
+  },
+  "ko_text": "조건: 산소 농도 3% 이상.",
+  "en_text": "Requires 3% oxygen.",
+  "needs_manual": false,
+  "note": "",
+  "search": "분해자 생물 Decomposers bunhaeja saengmul ㅂㅎㅈㅅㅁ 131 decomposers"
+ },
+ {
+  "num": "003",
+  "ko": "심부유정 발열",
+  "en": "Deep Well Heating",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 증가. 기온 1단계 상승.",
+  "en_text": "Increase your energy production 1 step. Increase temperature 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "심부유정 발열 Deep Well Heating simbuyujeong balyeol ㅅㅂㅇㅈㅂㅇ 003 deepwellheating"
+ },
+ {
+  "num": "039",
+  "ko": "데이모스 추락",
+  "en": "Deimos Down",
+  "kind": "project",
+  "color": "red",
+  "cost": 31,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 3
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -8,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 3단계 상승. 강철 자원 4개 획득. 아무 1명의 식물 자원 8개까지 제거.",
+  "en_text": "Raise temperature 3 steps and gain 4 steel. Remove up to 8 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "데이모스 추락 Deimos Down deimoseu churag ㄷㅇㅁㅅㅊㄹ 039 deimosdown"
+ },
+ {
+  "num": "155",
+  "ko": "인공 미생물",
+  "en": "Designed Microorganisms",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "microbe"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -14,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -14℃ 이하.) (식물 생산력 2 증가.",
+  "en_text": "It must be -14 C or colder. Increase your plant production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "인공 미생물 Designed Microorganisms ingong misaengmul ㅇㄱㅁㅅㅁ 155 designedmicroorganisms"
+ },
+ {
+  "num": "016",
+  "ko": "돔 크레이터",
+  "en": "Domed Crater",
+  "kind": "project",
+  "color": "green",
+  "cost": 24,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 7,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "에너지 생산력 1 감소. 메가크레딧 생산력 3 증가. 식물 자원 3개 획득. 도시 타일 1장 배치.",
+  "en_text": "Oxygen must be 7% or less. Gain 3 plants. Place a city tile. Decrease your energy production 1 step and increase your M€ production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "돔 크레이터 Domed Crater dom keureiteo ㄷㅋㄹㅇㅌ 016 domedcrater"
+ },
+ {
+  "num": "119",
+  "ko": "더스트 실",
+  "en": "Dust Seals",
+  "kind": "project",
+  "color": "green",
+  "cost": 2,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "oceans",
+   "value": 3,
+   "max": true
+  },
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 해양 타일 3장 이하.",
+  "en_text": "Requires 3 or less ocean tiles.",
+  "needs_manual": false,
+  "note": "",
+  "search": "더스트 실 Dust Seals deoseuteu sil ㄷㅅㅌㅅ 119 dustseals"
+ },
+ {
+  "num": "128",
+  "ko": "자연 생태 형성지",
+  "en": "Ecological Zone",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "animal",
+   "plant"
+  ],
+  "req": {
+   "type": "greeneries",
+   "value": 1,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 동물/식물 태그 수만큼 이 카드에 동물 자원 추가.",
+    "result": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "text",
+    "en": "Requires that YOU have a greenery tile. Place this tile adjacent to ANY greenery.",
+    "ko": "조건: 보유한 녹지 타일 1장 이상.) (아무 녹지 타일과 인접한 빈 구역 한 곳에 타일 배치."
+   },
+   {
+    "atom": "tile",
+    "tile": "ecological_zone"
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 2,
+   "of": "animal"
+  },
+  "ko_text": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 동물/식물 태그 수만큼 이 카드에 동물 자원 추가. 조건: 보유한 녹지 타일 1장 이상.) (아무 녹지 타일과 인접한 빈 구역 한 곳에 타일 배치.",
+  "en_text": "When you play an animal or plant tag INCLUDING THESE, add an animal to this card. Requires that YOU have a greenery tile. Place this tile adjacent to ANY greenery.",
+  "needs_manual": false,
+  "note": "",
+  "search": "자연 생태 형성지 Ecological Zone jayeon saengtae hyeongseongji ㅈㅇㅅㅌㅎㅅㅈ 128 ecologicalzone"
+ },
+ {
+  "num": "189",
+  "ko": "에너지 절약",
+  "en": "Energy Saving",
+  "kind": "project",
+  "color": "green",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tile": "city"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "현재 배치된 아무 도시 타일 1장당 자신의 에너지 생산력 1 증가.",
+  "en_text": "Increase your energy production 1 step for each city tile in play.",
+  "needs_manual": false,
+  "note": "",
+  "search": "에너지 절약 Energy Saving eneoji jeolyag ㅇㄴㅈㅈㅇ 189 energysaving"
+ },
+ {
+  "num": "026",
+  "ko": "에오스 협곡 국립공원",
+  "en": "Eos Chasma National Park",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "plant",
+   "building"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -12,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 기온 -12℃ 이상.) (자신의 아무 카드 1장에 동물 자원 1개 추가. 식물 자원 3개 획득. 메가크레딧 생산력 2 증가.",
+  "en_text": "Requires -12 C or warmer. Add 1 animal TO ANY ANIMAL CARD. Gain 3 plants. Increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "에오스 협곡 국립공원 Eos Chasma National Park eoseu hyeobgog gugribgongweon ㅇㅇㅅㅎㄱㄱㄹㄱㅇ 026 eoschasmanationalpark"
+ },
+ {
+  "num": "015",
+  "ko": "적도 자기장 생성기",
+  "en": "Equatorial Magnetizer",
+  "kind": "project",
+  "color": "blue",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "prod",
+      "res": "energy",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "tr",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 생산력 1 감소시켜서 테라포밍 등급 1TR 상승.",
+  "en_text": "Decrease your energy production 1 step to increase your terraform rating 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "적도 자기장 생성기 Equatorial Magnetizer jeogdo jagijang saengseonggi ㅈㄷㅈㄱㅈㅅㅅㄱ 015 equatorialmagnetizer"
+ },
+ {
+  "num": "134",
+  "ko": "극호냉성 진균류",
+  "en": "Extreme-Cold Fungus",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -10,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 2,
+    "target": "this"
+   },
+   {
+    "atom": "text",
+    "en": "Action: Gain 1 plant, or add 2 microbes to ANOTHER card.",
+    "ko": "행동: 식물 자원 1개 획득 혹은 자신의 다른 카드 1장에 미생물 자원 2개 추가."
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -10℃ 이하.",
+  "en_text": "It must be -10 C or colder.",
+  "needs_manual": false,
+  "note": "",
+  "search": "극호냉성 진균류 Extreme-Cold Fungus geughonaengseong jingyunryu ㄱㅎㄴㅅㅈㄱㄹ 134 extreme-coldfungus"
+ },
+ {
+  "num": "118",
+  "ko": "농업시설",
+  "en": "Farming",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 기온 +4℃ 이상.) (메가크레딧 생산력 2 증가. 식물 생산력 2 증가. 식물 자원 2개 획득.",
+  "en_text": "Requires +4° C or warmer. Increase your M€ production 2 steps and your plant production 2 steps. Gain 2 plants.",
+  "needs_manual": false,
+  "note": "",
+  "search": "농업시설 Farming nongeobsiseol ㄴㅇㅅㅅ 118 farming"
+ },
+ {
+  "num": "052",
+  "ko": "물고기",
+  "en": "Fish",
+  "kind": "project",
+  "color": "blue",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": 2,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": true
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 1,
+   "of": "animal"
+  },
+  "ko_text": "조건: 기온 +2 C° 이상.) (아무 1명의 식물 생산력 1 감소.",
+  "en_text": "Requires +2 C° or warmer. Decrease any plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "물고기 Fish mulgogi ㅁㄱㄱ 052 fish"
+ },
+ {
+  "num": "188",
+  "ko": "홍수",
+  "en": "Flooding",
+  "kind": "project",
+  "color": "red",
+  "cost": 7,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": -4,
+    "any": true
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "해양 타일 1장 배치. 이 해양 타일과 인접한 다른 타일이 있다면, 그 소유주 중 1명에게서 4 M€까지 제거.",
+  "en_text": "Place an ocean tile. IF THERE ARE TILES ADJACENT TO THIS OCEAN TILE, YOU MAY REMOVE 4 M€ FROM THE OWNER OF ONE OF THOSE TILES.",
+  "needs_manual": false,
+  "note": "",
+  "search": "홍수 Flooding hongsu ㅎㅅ 188 flooding"
+ },
+ {
+  "num": "041",
+  "ko": "식량 공장",
+  "en": "Food Factory",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 4,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "식물 생산력 1 감소. 메가크레딧 생산력 4 증가.",
+  "en_text": "Decrease your plant production 1 step and increase your M€ production 4 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "식량 공장 Food Factory sigryang gongjang ㅅㄹㄱㅈ 041 foodfactory"
+ },
+ {
+  "num": "132",
+  "ko": "핵융합 발전",
+  "en": "Fusion Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 14,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "power",
+   "building"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "power",
+   "max": false,
+   "tag": "power",
+   "count": 2
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 에너지 태그 2개 이상.) (에너지 생산력 3 증가.",
+  "en_text": "Requires 2 power tags. Increase your energy production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "핵융합 발전 Fusion Power haegyunghab baljeon ㅎㅇㅎㅂㅈ 132 fusionpower"
+ },
+ {
+  "num": "100",
+  "ko": "화력 발전",
+  "en": "Fueled Generators",
+  "kind": "project",
+  "color": "green",
+  "cost": 1,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 1 감소. 에너지 생산력 1 증가.",
+  "en_text": "Decrease your M€ production 1 step and increase your energy production 1 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "화력 발전 Fueled Generators hwaryeog baljeon ㅎㄹㅂㅈ 100 fueledgenerators"
+ },
+ {
+  "num": "081",
+  "ko": "가니메데 정착지",
+  "en": "Ganymede Colony",
+  "kind": "project",
+  "color": "green",
+  "cost": 20,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "space",
+   "city"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": {
+   "type": "per_tag",
+   "value": 1,
+   "per": 1,
+   "of": "jovian"
+  },
+  "ko_text": "가니메데 정착지 전용 구역에 도시 타일 1장 배치.",
+  "en_text": "Place a city tile ON THE RESERVED AREA.",
+  "needs_manual": false,
+  "note": "",
+  "search": "가니메데 정착지 Ganymede Colony ganimede jeongchagji ㄱㄴㅁㄷㅈㅊㅈ 081 ganymedecolony"
+ },
+ {
+  "num": "117",
+  "ko": "지열 발전",
+  "en": "Geothermal Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 2 증가.",
+  "en_text": "Increase your energy production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지열 발전 Geothermal Power jiyeol baljeon ㅈㅇㅂㅈ 117 geothermalpower"
+ },
+ {
+  "num": "126",
+  "ko": "온실가스 공장",
+  "en": "GHG Factories",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 4,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 열 생산력 4 증가.",
+  "en_text": "Decrease your energy production 1 step and increase your heat production 4 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "온실가스 공장 GHG Factories onsilgaseu gongjang ㅇㅅㄱㅅㄱㅈ 126 ghgfactories"
+ },
+ {
+  "num": "034",
+  "ko": "온실가스 생산 세균",
+  "en": "GHG Producing Bacteria",
+  "kind": "project",
+  "color": "blue",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "microbe"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 2,
+    "target": "this"
+   },
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 1
+   },
+   {
+    "atom": "text",
+    "en": "Action: Add 1 microbe to this card, or remove 2 microbes to raise temperature 1 step.",
+    "ko": "행동: 이 카드에 미생물 자원 1개 추가, 또는 이 카드에 미생물 자원 2개 소비해서 기온 1단계 상승."
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 산소 농도 4% 이상.",
+  "en_text": "Requires 4% oxygen.",
+  "needs_manual": false,
+  "note": "",
+  "search": "온실가스 생산 세균 GHG Producing Bacteria onsilgaseu saengsan segyun ㅇㅅㄱㅅㅅㅅㅅㄱ 034 ghgproducingbacteria"
+ },
+ {
+  "num": "080",
+  "ko": "거대 얼음형 소행성",
+  "en": "Giant Ice Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 36,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 2
+   },
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 2
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -6,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 2단계 상승. 해양 타일 2장 배치. 아무 1명의 식물 자원 6개까지 제거.",
+  "en_text": "Raise temperature 2 steps and place 2 ocean tiles. Remove up to 6 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "거대 얼음형 소행성 Giant Ice Asteroid geodae eoleumhyeong sohaengseong ㄱㄷㅇㅇㅎㅅㅎㅅ 080 gianticeasteroid"
+ },
+ {
+  "num": "083",
+  "ko": "초대형 우주 거울",
+  "en": "Giant Space Mirror",
+  "kind": "project",
+  "color": "green",
+  "cost": 17,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 3 증가.",
+  "en_text": "Increase your energy production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "초대형 우주 거울 Giant Space Mirror chodaehyeong uju geoul ㅊㄷㅎㅇㅈㄱㅇ 083 giantspacemirror"
+ },
+ {
+  "num": "087",
+  "ko": "풀",
+  "en": "Grass",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -16,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -16℃ 이상.) (식물 생산력 1 증가. 식물 자원 3개 획득.",
+  "en_text": "Requires -16° C or warmer. Increase your plant production 1 step. Gain 3 plants.",
+  "needs_manual": false,
+  "note": "",
+  "search": "풀 Grass pul ㅍ 087 grass"
+ },
+ {
+  "num": "136",
+  "ko": "대형 댐",
+  "en": "Great Dam",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 해양 타일 4장 이상.) (에너지 생산력 2 증가.",
+  "en_text": "Requires 4 ocean tiles. Increase your energy production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "대형 댐 Great Dam daehyeong daem ㄷㅎㄷ 136 greatdam"
+ },
+ {
+  "num": "096",
+  "ko": "온실",
+  "en": "Greenhouses",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "plant",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tile": "city"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "현재 배치된 아무 도시 타일 1장당 자신이 식물 자원 1개 획득.",
+  "en_text": "Gain 1 plant for each city tile in play.",
+  "needs_manual": false,
+  "note": "",
+  "search": "온실 Greenhouses onsil ㅇㅅ 096 greenhouses"
+ },
+ {
+  "num": "88",
+  "ko": "칼루나",
+  "en": "Heather",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -14,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -14℃ 이상.) (식물 생산력 1 증가. 식물 자원 1개 획득.",
+  "en_text": "Requires -14 C° or warmer. Increase your plant production 1 step. Gain 1 plant.",
+  "needs_manual": false,
+  "note": "",
+  "search": "칼루나 Heather kalruna ㅋㄹㄴ 88 heather"
+ },
+ {
+  "num": "178",
+  "ko": "축열 장치",
+  "en": "Heat Trappers",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": -2,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "아무 1명의 열 생산력 2 감소. 자신의 에너지 생산력 1 증가.",
+  "en_text": "Decrease any heat production 2 steps and increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "축열 장치 Heat Trappers chugyeol jangchi ㅊㅇㅈㅊ 178 heattrappers"
+ },
+ {
+  "num": "147",
+  "ko": "초식동물",
+  "en": "Herbivores",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 8,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 자신의 녹지 타일을 1장 놓을 때마다 이 카드에 동물 자원 1개 추가.",
+    "result": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": true
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 2,
+   "of": "animal"
+  },
+  "ko_text": "조건: 산소 농도 8% 이상.) (아무 1명의 식물 생산력 1 감소. 이 카드에 동물 자원 1개 추가.",
+  "en_text": "Requires 8% oxygen. +1 animal to this card. -1 any plant production",
+  "needs_manual": false,
+  "note": "",
+  "search": "초식동물 Herbivores chosigdongmul ㅊㅅㄷㅁ 147 herbivores"
+ },
+ {
+  "num": "078",
+  "ko": "얼음형 소행성",
+  "en": "Ice Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 23,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 2
+   }
+  ],
+  "vp": null,
+  "ko_text": "해양 타일 2장 배치.",
+  "en_text": "Place 2 ocean tiles.",
+  "needs_manual": false,
+  "note": "",
+  "search": "얼음형 소행성 Ice Asteroid eoleumhyeong sohaengseong ㅇㅇㅎㅅㅎㅅ 078 iceasteroid"
+ },
+ {
+  "num": "181",
+  "ko": "극관 해빙",
+  "en": "Ice Cap Melting",
+  "kind": "project",
+  "color": "red",
+  "cost": 5,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "temperature",
+   "value": 2,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 +2℃ 이상.) (해양 타일 1장 배치.",
+  "en_text": "Requires +2 C or warmer. Place 1 ocean tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "극관 해빙 Ice Cap Melting geuggwan haebing ㄱㄱㅎㅂ 181 icecapmelting"
+ },
+ {
+  "num": "200",
+  "ko": "이민자 도시",
+  "en": "Immigrant City",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서 아무 도시타일이 1장 놓일 때, 메가크레딧 생산력 1 증가.",
+    "result": [
+     {
+      "atom": "prod",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "도시 타일 1장 배치. 에너지 생산력 1 감소. 메가크레딧 생산력 2 감소.",
+  "en_text": "Decrease your energy production 1 step and decrease your M€ production 2 steps. Place a city tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "이민자 도시 Immigrant City iminja dosi ㅇㅁㅈㄷㅅ 200 immigrantcity"
+ },
+ {
+  "num": "198",
+  "ko": "이민자 수송 왕복선",
+  "en": "Immigration Shuttles",
+  "kind": "project",
+  "color": "green",
+  "cost": 31,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 5,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "per_tile",
+   "value": 1,
+   "per": 3,
+   "of": "city"
+  },
+  "ko_text": "메가크레딧 생산력 5 증가.",
+  "en_text": "Increase your M€ production 5 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "이민자 수송 왕복선 Immigration Shuttles iminja susong wangbogseon ㅇㅁㅈㅅㅅㅇㅂㅅ 198 immigrationshuttles"
+ },
+ {
+  "num": "162",
+  "ko": "온실가스 수입",
+  "en": "Imported GHG",
+  "kind": "project",
+  "color": "red",
+  "cost": 7,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 1 증가. 열 자원 3개 획득.",
+  "en_text": "Increase your heat production 1 step and gain 3 heat.",
+  "needs_manual": false,
+  "note": "",
+  "search": "온실가스 수입 Imported GHG onsilgaseu suib ㅇㅅㄱㅅㅅㅇ 162 importedghg"
+ },
+ {
+  "num": "019",
+  "ko": "수소 수입",
+  "en": "Imported Hydrogen",
+  "kind": "project",
+  "color": "red",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 3,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 2,
+    "target": "this"
+   },
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "식물 자원 3개 획득 또는 미생물 자원 3개나 동물 자원 2개를 자신의 다른 카드 1장에 추가. 해양 타일 1장 배치.",
+  "en_text": "Gain 3 plants, or add 3 microbes or 2 animals to ANOTHER card. Place an ocean tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "수소 수입 Imported Hydrogen suso suib ㅅㅅㅅㅇ 019 importedhydrogen"
+ },
+ {
+  "num": "163",
+  "ko": "질소 수입",
+  "en": "Imported Nitrogen",
+  "kind": "project",
+  "color": "red",
+  "cost": 23,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tr",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 3,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 2,
+    "target": "this"
+   }
+  ],
+  "vp": null,
+  "ko_text": "테라포밍 등급 1TR 상승. 식물 자원 4개 획득. 자신의 아무 카드 각각 1장에 미생물 자원 3개 추가. 동물 자원 2개 추가.",
+  "en_text": "Raise your TR 1 step and gain 4 plants. Add 3 microbes to ANOTHER card and 2 animals to ANOTHER card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "질소 수입 Imported Nitrogen jilso suib ㅈㅅㅅㅇ 163 importednitrogen"
+ },
+ {
+  "num": "167",
+  "ko": "강화형 온실가스 수입",
+  "en": "Import of Advanced GHG",
+  "kind": "project",
+  "color": "red",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 2 증가.",
+  "en_text": "Increase your heat production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "강화형 온실가스 수입 Import of Advanced GHG ganghwahyeong onsilgaseu suib ㄱㅎㅎㅇㅅㄱㅅㅅㅇ 167 importofadvancedghg"
+ },
+ {
+  "num": "158",
+  "ko": "공업용 미생물",
+  "en": "Industrial Microbes",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "microbe",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 증가. 강철 생산력 1 증가.",
+  "en_text": "Increase your energy production and your steel production 1 step each.",
+  "needs_manual": false,
+  "note": "",
+  "search": "공업용 미생물 Industrial Microbes gongeobyong misaengmul ㄱㅇㅇㅁㅅㅁ 158 industrialmicrobes"
+ },
+ {
+  "num": "148",
+  "ko": "곤충",
+  "en": "Insects",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "plant"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 산소 농도 6% 이상.) (보유한 식물 태그 1개당 식물 생산력 1 증가.",
+  "en_text": "Requires 6% oxygen. Increase your plant production 1 step for each plant tag you have.",
+  "needs_manual": false,
+  "note": "",
+  "search": "곤충 Insects gonchung ㄱㅊ 148 insects"
+ },
+ {
+  "num": "152",
+  "ko": "단열 처리",
+  "en": "Insulation",
+  "kind": "project",
+  "color": "green",
+  "cost": 2,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "-X",
+    "ko": null
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "text",
+    "en": "+",
+    "ko": null
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력을 원하는 수만큼 감소. 같은 수만큼 메가크레딧 생산력 증가.",
+  "en_text": "Decrease your heat production any number of steps and increase your M€ production the same number of steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "단열 처리 Insulation danyeol cheori ㄷㅇㅊㄹ 152 insulation"
+ },
+ {
+  "num": "101",
+  "ko": "제철소",
+  "en": "Ironworks",
+  "kind": "project",
+  "color": "blue",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 4,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "steel",
+      "n": 1,
+      "any": false
+     },
+     {
+      "atom": "global",
+      "param": "oxygen",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 자원 4개 소비해서 강철 자원 1개 획득 및 산소 농도 1% 상승.",
+  "en_text": "Spend 4 energy to gain 1 steel and raise oxygen 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "제철소 Ironworks jecheolso ㅈㅊㅅ 101 ironworks"
+ },
+ {
+  "num": "055",
+  "ko": "해초 양식장",
+  "en": "Kelp Farming",
+  "kind": "project",
+  "color": "green",
+  "cost": 17,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 해양 타일 6장 이상.) (메가크레딧 생산력 2 증가. 식물 생산력 3 증가. 식물 자원 2개 획득.",
+  "en_text": "Requires 6 ocean tiles. Increase your M€ production 2 steps and your plant production 3 steps. Gain 2 plants.",
+  "needs_manual": false,
+  "note": "",
+  "search": "해초 양식장 Kelp Farming haecho yangsigjang ㅎㅊㅇㅅㅈ 055 kelpfarming"
+ },
+ {
+  "num": "053",
+  "ko": "마리네리스 호수",
+  "en": "Lake Marineris",
+  "kind": "project",
+  "color": "green",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "temperature",
+   "value": 0,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 2
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 기온 +0 C° 이상.) (해양 타일 2장 배치.",
+  "en_text": "Requires 0° C or warmer. Place 2 ocean tiles.",
+  "needs_manual": false,
+  "note": "",
+  "search": "마리네리스 호수 Lake Marineris marineriseu hosu ㅁㄹㄴㄹㅅㅎㅅ 053 lakemarineris"
+ },
+ {
+  "num": "143",
+  "ko": "대규모 수송선단",
+  "en": "Large Convoy",
+  "kind": "project",
+  "color": "red",
+  "cost": 36,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   },
+   {
+    "atom": "draw",
+    "n": 2
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 5,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 4,
+    "target": "this"
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "해양 타일 1장 배치. 카드 2장 획득. 식물 자원 5개 획득 또는 자신의 아무 카드 1장에 동물 자원 4개 추가.",
+  "en_text": "Place an ocean tile and draw 2 cards. Gain 5 plants or add 4 animals to ANOTHER card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "대규모 수송선단 Large Convoy daegyumo susongseondan ㄷㄱㅁㅅㅅㅅㄷ 143 largeconvoy"
+ },
+ {
+  "num": "140",
+  "ko": "용암류",
+  "en": "Lava Flows",
+  "kind": "project",
+  "color": "red",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 2
+   },
+   {
+    "atom": "tile",
+    "tile": "lava_flows"
+   }
+  ],
+  "vp": null,
+  "ko_text": "기온 2단계 상승. 소화산 또는 화산 구역 중 빈 구역 한 곳에 타일 배치.",
+  "en_text": "Raise temperature 2 steps and place this tile ON EITHER THARSIS THOLUS, ASCRAEUS MONS, PAVONIS MONS OR ARSIA MONS.",
+  "needs_manual": false,
+  "note": "",
+  "search": "용암류 Lava Flows yongamryu ㅇㅇㄹ 140 lavaflows"
+ },
+ {
+  "num": "159",
+  "ko": "지의류",
+  "en": "Lichen",
+  "kind": "project",
+  "color": "green",
+  "cost": 7,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -24,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -24℃ 이상.) (식물 생산력 1 증가.",
+  "en_text": "Requires -24 C or warmer. Increase your plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지의류 Lichen jiyiryu ㅈㅇㄹ 159 lichen"
+ },
+ {
+  "num": "184",
+  "ko": "가축",
+  "en": "Livestock",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 9,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 1,
+   "of": "animal"
+  },
+  "ko_text": "조건: 산소 농도 9% 이상.) (식물 생산력 1 감소. 메가크레딧 생산력 2 M€ 증가.",
+  "en_text": "Requires 9% oxygen. Decrease your plant production 1 step and increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "가축 Livestock gachug ㄱㅊ 184 livestock"
+ },
+ {
+  "num": "190",
+  "ko": "국소적 축열",
+  "en": "Local Heat Trapping",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "heat",
+    "n": -5,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 2,
+    "target": "this"
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 자원 5개 제거. 식물 자원 4개 획득 또는 자신의 다른 카드 1장에 동물 자원 2개 추가.",
+  "en_text": "Spend 5 heat to gain either 4 plants, or to add 2 animals to ANOTHER card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "국소적 축열 Local Heat Trapping gugsojeog chugyeol ㄱㅅㅈㅊㅇ 190 localheattrapping"
+ },
+ {
+  "num": "030",
+  "ko": "루나 빔",
+  "en": "Lunar Beam",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 2 감소. 열 생산력 2 증가. 에너지 생산력 2 증가.",
+  "en_text": "Decrease your M€ production 2 steps and increase your heat production and energy production 2 steps each.",
+  "needs_manual": false,
+  "note": "",
+  "search": "루나 빔 Lunar Beam runa bim ㄹㄴㅂ 030 lunarbeam"
+ },
+ {
+  "num": "171",
+  "ko": "자기장 돔",
+  "en": "Magnetic Field Dome",
+  "kind": "project",
+  "color": "green",
+  "cost": 5,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "tr",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 2 감소. 식물 생산력 1 증가. 테라포밍 등급 1TR 상승.",
+  "en_text": "Decrease your energy production 2 steps and increase your plant production 1 step. Raise your TR 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "자기장 돔 Magnetic Field Dome jagijang dom ㅈㄱㅈㄷ 171 magneticfielddome"
+ },
+ {
+  "num": "165",
+  "ko": "자기장 생성기",
+  "en": "Magnetic Field Generators",
+  "kind": "project",
+  "color": "green",
+  "cost": 20,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -4,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "tr",
+    "n": 3
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 4 감소. 식물 생산력 2 증가. 테라포밍 등급 3TR 상승.",
+  "en_text": "Decrease your energy production 4 steps and increase your plant production 2 steps. Raise your TR 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "자기장 생성기 Magnetic Field Generators jagijang saengseonggi ㅈㄱㅈㅅㅅㄱ 165 magneticfieldgenerators"
+ },
+ {
+  "num": "059",
+  "ko": "맹그로브",
+  "en": "Mangrove",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "greenery",
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 기온 +4℃ 이상.) (배치 제한 무시하고 빈 해양 전용 구역 한 곳에 녹지 타일 1장 배치. 그에 따른 산소 농도 1% 상승.",
+  "en_text": "Requires +4 C or warmer. Place a greenery tile ON AN AREA RESERVED FOR OCEAN and raise oxygen 1 step. Disregard normal placement restrictions for this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "맹그로브 Mangrove maenggeurobeu ㅁㄱㄹㅂ 059 mangrove"
+ },
+ {
+  "num": "007",
+  "ko": "화성 열차",
+  "en": "Martian Rails",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false,
+      "per": {
+       "tile": "city"
+      }
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 자원 1개 소비해서 화성에 배치된 아무 도시 타일 1장당 1 M€ 획득.",
+  "en_text": "Spend 1 energy to gain 1 M€ for each city tile ON MARS.",
+  "needs_manual": false,
+  "note": "",
+  "search": "화성 열차 Martian Rails hwaseong yeolcha ㅎㅅㅇㅊ 007 martianrails"
+ },
+ {
+  "num": "018",
+  "ko": "타이탄에서 메테인 수입",
+  "en": "Methane From Titan",
+  "kind": "project",
+  "color": "green",
+  "cost": 28,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 2,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "열 생산력 2 증가. 식물 생산력 2 증가.",
+  "en_text": "Requires 2% oxygen. Increase your heat production 2 steps and your plant production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "타이탄에서 메테인 수입 Methane From Titan taitaneseo metein suib ㅌㅇㅌㅇㅅㅁㅌㅇㅅㅇ 018 methanefromtitan"
+ },
+ {
+  "num": "164",
+  "ko": "소형 풍차",
+  "en": "Micro-Mills",
+  "kind": "project",
+  "color": "green",
+  "cost": 3,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 1 증가.",
+  "en_text": "Increase your heat production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "소형 풍차 Micro-Mills sohyeong pungcha ㅅㅎㅍㅊ 164 micro-mills"
+ },
+ {
+  "num": "063",
+  "ko": "대규모 채굴",
+  "en": "Mining Expedition",
+  "kind": "project",
+  "color": "red",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "oxygen",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -2,
+    "any": true
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "산소 농도 1% 상승. 강철 자원 2개 획득. 아무 1명의 식물 자원 2개까지 제거.",
+  "en_text": "Raise oxygen 1 step. Remove 2 plants from any player. Gain 2 steel.",
+  "needs_manual": false,
+  "note": "",
+  "search": "대규모 채굴 Mining Expedition daegyumo chaegul ㄷㄱㅁㅊㄱ 063 miningexpedition"
+ },
+ {
+  "num": "067",
+  "ko": "광업권",
+  "en": "Mining Rights",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "mining_rights"
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "강철/티타늄 점유 보너스가 있는 빈 구역에 타일 배치. 해당 점유 보너스 자원 중 한 종류의 생산력 1 증가.",
+  "en_text": "Place this tile on an area with a steel or titanium placement bonus. Increase that production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광업권 Mining Rights gwangeobgweon ㄱㅇㄱ 067 miningrights"
+ },
+ {
+  "num": "142",
+  "ko": "모홀 구역",
+  "en": "Mohole Area",
+  "kind": "project",
+  "color": "green",
+  "cost": 20,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "mohole_area"
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 4 증가. 빈 해양 전용 구역 한 곳에 타일 배치.",
+  "en_text": "Increase your heat production 4 steps. Place this tile ON AN AREA RESERVED FOR OCEAN.",
+  "needs_manual": false,
+  "note": "",
+  "search": "모홀 구역 Mohole Area mohol guyeog ㅁㅎㄱㅇ 142 moholearea"
+ },
+ {
+  "num": "122",
+  "ko": "이끼류",
+  "en": "Moss",
+  "kind": "project",
+  "color": "green",
+  "cost": 4,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 3,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 해양 타일 3장 이상.) (식물 자원 1개 제거. 식물 생산력 1 증가.",
+  "en_text": "Requires 3 ocean tiles and that you lose 1 plant. Increase your plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "이끼류 Moss ikkiryu ㅇㄲㄹ 122 moss"
+ },
+ {
+  "num": "044",
+  "ko": "자연 보존",
+  "en": "Natural Preserve",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 4,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "natural_preserve"
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 산소 농도 4% 이하.) (메가크레딧 생산력 1 증가. 다른 타일과 인접하지 않은 빈 구역 한 곳에 타일 배치.",
+  "en_text": "Oxygen must be 4% or less. Place this tile NEXT TO NO OTHER TILE. Increase your M€ production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "자연 보존 Natural Preserve jayeon bojon ㅈㅇㅂㅈ 044 naturalpreserve"
+ },
+ {
+  "num": "157",
+  "ko": "질산환원균",
+  "en": "Nitrite Reducing Bacteria",
+  "kind": "project",
+  "color": "blue",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 3,
+    "target": "this"
+   },
+   {
+    "atom": "tr",
+    "n": 1
+   },
+   {
+    "atom": "text",
+    "en": "Action: Add 1 microbe to this card, or remove 3 microbes to increase your TR 1 step.",
+    "ko": "행동: 이 카드에 미생물 자원 1개 추가, 또는 이 카드에 미생물 자원 3개 소비해서 테라포밍 등급 1TR 상승."
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 3,
+    "target": "this"
+   }
+  ],
+  "vp": null,
+  "ko_text": "이 카드에 미생물 자원 3개 추가.",
+  "en_text": "Add 3 microbes to this card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "질산환원균 Nitrite Reducing Bacteria jilsanhwanweongyun ㅈㅅㅎㅇㄱ 157 nitritereducingbacteria"
+ },
+ {
+  "num": "037",
+  "ko": "다질소 소행성",
+  "en": "Nitrogen-Rich Asteroid",
+  "kind": "project",
+  "color": "red",
+  "cost": 31,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "text",
+    "en": "production.tag"
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "tr",
+    "n": 2
+   },
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "보유한 식물 태그가 3개 이상이면 식물 생산력 4 증가. 그렇지 않으면 식물 생산력 1 증가. 테라포밍 등급 2TR 상승. 기온 1단계 상승.",
+  "en_text": "Raise your terraforming rating 2 steps and temperature 1 step. Increase your plant production 1 step, or 4 steps if you have 3 plant tags.",
+  "needs_manual": true,
+  "note": "unmapped-production-method:tag",
+  "search": "다질소 소행성 Nitrogen-Rich Asteroid dajilso sohaengseong ㄷㅈㅅㅅㅎㅅ 037 nitrogen-richasteroid"
+ },
+ {
+  "num": "146",
+  "ko": "호질소성 이끼류",
+  "en": "Nitrophilic Moss",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 3,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 해양 타일 3장 이상.) (식물 자원 2개 제거. 식물 생산력 2 증가.",
+  "en_text": "Requires 3 ocean tiles and that you lose 2 plants. Increase your plant production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "호질소성 이끼류 Nitrophilic Moss hojilsoseong ikkiryu ㅎㅈㅅㅅㅇㄲㄹ 146 nitrophilicmoss"
+ },
+ {
+  "num": "017",
+  "ko": "녹티스 시티",
+  "en": "Noctis City",
+  "kind": "project",
+  "color": "green",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 메가크레딧 생산력 3 증가. 배치 제한 무시하고 녹티스 시티 전용 구역에 도시 타일 1장 배치.",
+  "en_text": "Decrease your energy production 1 step and increase your M€ production 3 steps. Place a city tile ON THE RESERVED AREA, disregarding normal placement restrictions.",
+  "needs_manual": false,
+  "note": "",
+  "search": "녹티스 시티 Noctis City nogtiseu siti ㄴㅌㅅㅅㅌ 017 noctiscity"
+ },
+ {
+  "num": "176",
+  "ko": "녹티스 농경지",
+  "en": "Noctis Farming",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "plant",
+   "building"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -20,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 기온 -20℃ 이상.) (메가크레딧 생산력 1 증가. 식물 자원 2개 획득.",
+  "en_text": "Requires -20 C or warmer. Increase your M€ production 1 step and gain 2 plants.",
+  "needs_manual": false,
+  "note": "",
+  "search": "녹티스 농경지 Noctis Farming nogtiseu nonggyeongji ㄴㅌㅅㄴㄱㅈ 176 noctisfarming"
+ },
+ {
+  "num": "045",
+  "ko": "원자력 발전",
+  "en": "Nuclear Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 2 감소. 에너지 생산력 3 증가.",
+  "en_text": "Decrease your M€ production 2 steps and increase your energy production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "원자력 발전 Nuclear Power weonjaryeog baljeon ㅇㅈㄹㅂㅈ 045 nuclearpower"
+ },
+ {
+  "num": "097",
+  "ko": "핵무기 기폭지대",
+  "en": "Nuclear Zone",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "nuclear_zone"
+   },
+   {
+    "atom": "global",
+    "param": "temperature",
+    "n": 2
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -2
+  },
+  "ko_text": "기온 2단계 상승. 빈 구역 한 곳에 타일 배치.",
+  "en_text": "Place this tile and raise temperature 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "핵무기 기폭지대 Nuclear Zone haegmugi gipogjidae ㅎㅁㄱㄱㅍㅈㄷ 097 nuclearzone"
+ },
+ {
+  "num": "108",
+  "ko": "개방형 도시",
+  "en": "Open City",
+  "kind": "project",
+  "color": "green",
+  "cost": 23,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 12,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 산소 농도 12% 이상.) (에너지 생산력 1 감소. 메가크레딧 생산력 4 증가. 식물 자원 2개 획득. 도시 타일 1장 배치.",
+  "en_text": "Requires 12% oxygen. Gain 2 plants. Place a city tile. Decrease your energy production 1 step and increase your M€ production 4 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "개방형 도시 Open City gaebanghyeong dosi ㄱㅂㅎㄷㅅ 108 opencity"
+ },
+ {
+  "num": "031",
+  "ko": "첨단 대기권제동기술",
+  "en": "Optimal Aerobraking",
+  "kind": "project",
+  "color": "blue",
+  "cost": 7,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 우주 사건형 카드 사용 시, 3 M€과 열 자원 3개 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 3,
+      "any": false
+     },
+     {
+      "atom": "gain",
+      "res": "heat",
+      "n": 3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 우주 사건형 카드 사용 시, 3 M€과 열 자원 3개 획득.",
+  "en_text": "When you play a space event, you gain 3 M€ and 3 heat.",
+  "needs_manual": false,
+  "note": "",
+  "search": "첨단 대기권제동기술 Optimal Aerobraking cheomdan daegigweonjedonggisul ㅊㄷㄷㄱㄱㅈㄷㄱㅅ 031 optimalaerobraking"
+ },
+ {
+  "num": "104",
+  "ko": "광석 제련",
+  "en": "Ore Processor",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 4,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "titanium",
+      "n": 1,
+      "any": false
+     },
+     {
+      "atom": "global",
+      "param": "oxygen",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 자원 4개 소비해서 티타늄 자원 1개 획득 및 산소 농도 1% 상승.",
+  "en_text": "Spend 4 energy to gain 1 titanium and increase oxygen 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광석 제련 Ore Processor gwangseog jeryeon ㄱㅅㅈㄹ 104 oreprocessor"
+ },
+ {
+  "num": "191",
+  "ko": "영구동토층 해동",
+  "en": "Permafrost Extraction",
+  "kind": "project",
+  "color": "red",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "temperature",
+   "value": -8,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -8℃ 이상.) (해양 타일 1장 배치.",
+  "en_text": "Requires -8 C or warmer. Place 1 ocean tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "영구동토층 해동 Permafrost Extraction yeonggudongtocheung haedong ㅇㄱㄷㅌㅊㅎㄷ 191 permafrostextraction"
+ },
+ {
+  "num": "089",
+  "ko": "과산화물 발전",
+  "en": "Peroxide Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 7,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 1 감소. 에너지 생산력 2 증가.",
+  "en_text": "Decrease your M€ production 1 step and increase your energy production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "과산화물 발전 Peroxide Power gwasanhwamul baljeon ㄱㅅㅎㅁㅂㅈ 089 peroxidepower"
+ },
+ {
+  "num": "172",
+  "ko": "애완동물",
+  "en": "Pets",
+  "kind": "project",
+  "color": "blue",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "earth",
+   "animal"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 아무 도시 타일이 1장 놓일 때마다 이 카드에 동물 자원 1개 추가.",
+    "result": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "text",
+    "en": "Animals may not be removed from this card",
+    "ko": "이 카드의 동물 자원은 제거 불가."
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 2,
+   "of": "animal"
+  },
+  "ko_text": "이 카드에 동물 자원 1개 획득.",
+  "en_text": "Add 1 animal to this card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "애완동물 Pets aewandongmul ㅇㅇㄷㅁ 172 pets"
+ },
+ {
+  "num": "021",
+  "ko": "포보스 우주휴게소",
+  "en": "Phobos Space Haven",
+  "kind": "project",
+  "color": "green",
+  "cost": 25,
+  "corporateEra": false,
+  "tags": [
+   "space",
+   "city"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 3
+  },
+  "ko_text": "티타늄 생산력 1 증가. 포보스 우주휴게소 전용 구역에 도시 타일 1장 배치.",
+  "en_text": "Increase your titanium production 1 step and place a city tile ON THE RESERVED AREA.",
+  "needs_manual": false,
+  "note": "",
+  "search": "포보스 우주휴게소 Phobos Space Haven poboseu ujuhyugeso ㅍㅂㅅㅇㅈㅎㄱㅅ 021 phobosspacehaven"
+ },
+ {
+  "num": "193",
+  "ko": "산림조성지",
+  "en": "Plantation",
+  "kind": "project",
+  "color": "green",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 2
+  },
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "greenery",
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 과학 태그 2장 이상.) (녹지 타일 1장 배치. 그에 따른 산소 농도 1% 상승.",
+  "en_text": "Requires 2 science tags. Place a greenery tile and raise oxygen 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "산림조성지 Plantation sanrimjoseongji ㅅㄹㅈㅅㅈ 193 plantation"
+ },
+ {
+  "num": "102",
+  "ko": "전력망",
+  "en": "Power Grid",
+  "kind": "project",
+  "color": "green",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "power"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "이 카드도 포함해서, 보유한 에너지 태그 1개당 에너지 생산력 1 증가.",
+  "en_text": "Increase your energy production step for each power tag you have, including this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전력망 Power Grid jeonryeogmang ㅈㄹㅁ 102 powergrid"
+ },
+ {
+  "num": "141",
+  "ko": "발전소",
+  "en": "Power Plant",
+  "kind": "project",
+  "color": "green",
+  "cost": 4,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 증가.",
+  "en_text": "Increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "발전소 Power Plant baljeonso ㅂㅈㅅ 141 powerplant"
+ },
+ {
+  "num": "024",
+  "ko": "포식동물",
+  "en": "Predators",
+  "kind": "project",
+  "color": "blue",
+  "cost": 14,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 11,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "any"
+     }
+    ],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 1,
+   "of": "animal"
+  },
+  "ko_text": "조건: 산소 농도 11% 이상.",
+  "en_text": "Requires 11% oxygen.",
+  "needs_manual": false,
+  "note": "",
+  "search": "포식동물 Predators posigdongmul ㅍㅅㄷㅁ 024 predators"
+ },
+ {
+  "num": "174",
+  "ko": "계곡 보호",
+  "en": "Protected Valley",
+  "kind": "project",
+  "color": "green",
+  "cost": 23,
+  "corporateEra": false,
+  "tags": [
+   "plant",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "greenery",
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 2 증가. 배치 제한 무시하고 빈 해양 전용 구역 한 곳에 녹지 타일 1장 배치. 그에 따른 산소 농도 1% 상승.",
+  "en_text": "Increase your M€ production 2 steps. Place a greenery tile ON AN AREA RESERVED FOR OCEAN, disregarding normal placement restrictions, and increase oxygen 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "계곡 보호 Protected Valley gyegog boho ㄱㄱㅂㅎ 174 protectedvalley"
+ },
+ {
+  "num": "205",
+  "ko": "방사선흡수화합물 공장",
+  "en": "Rad-Chem Factory",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "tr",
+    "n": 2
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 테라포밍 등급 2TR 상승.",
+  "en_text": "Decrease your energy production 1 step. Raise your TR 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "방사선흡수화합물 공장 Rad-Chem Factory bangsaseonheubsuhwahabmul gongjang ㅂㅅㅅㅎㅅㅎㅎㅁㄱㅈ 205 rad-chemfactory"
+ },
+ {
+  "num": "033",
+  "ko": "표토 섭식 미생물",
+  "en": "Regolith Eaters",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "microbe"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 2,
+    "target": "this"
+   },
+   {
+    "atom": "global",
+    "param": "oxygen",
+    "n": 1
+   },
+   {
+    "atom": "text",
+    "en": "Action: Add 1 microbe to this card, or remove 2 microbes from this card to raise oxygen level 1 step.",
+    "ko": "행동: 이 카드에 미생물 자원 1개 추가 또는 이 카드에 미생물 자원 2개 소비해서 산소 농도 1% 상승."
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 이 카드에 미생물 자원 1개 추가 또는 이 카드에 미생물 자원 2개 소비해서 산소 농도 1% 상승.",
+  "en_text": "Action: Add 1 microbe to this card, or remove 2 microbes from this card to raise oxygen level 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "표토 섭식 미생물 Regolith Eaters pyoto seobsig misaengmul ㅍㅌㅅㅅㅁㅅㅁ 033 regolitheaters"
+ },
+ {
+  "num": "036",
+  "ko": "불활성기체 분출",
+  "en": "Release of Inert Gases",
+  "kind": "project",
+  "color": "red",
+  "cost": 14,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tr",
+    "n": 2
+   }
+  ],
+  "vp": null,
+  "ko_text": "테라포밍 등급 2TR 상승.",
+  "en_text": "Raise your terraforming rating 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "불활성기체 분출 Release of Inert Gases bulhwalseonggiche bunchul ㅂㅎㅅㄱㅊㅂㅊ 036 releaseofinertgases"
+ },
+ {
+  "num": "020",
+  "ko": "연구 전진기지",
+  "en": "Research Outpost",
+  "kind": "project",
+  "color": "blue",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 1,
+    "tag": null,
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 모든 카드의 추진 비용 1 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -1,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "다른 타일과 인접하지 않은 빈 구역 한 곳에 도시 타일 1장 배치.",
+  "en_text": "Place a city tile NEXT TO NO OTHER TILE.",
+  "needs_manual": false,
+  "note": "",
+  "search": "연구 전진기지 Research Outpost yeongu jeonjingiji ㅇㄱㅈㅈㄱㅈ 020 researchoutpost"
+ },
+ {
+  "num": "038",
+  "ko": "로버 공장",
+  "en": "Rover Construction",
+  "kind": "project",
+  "color": "blue",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 아무 도시 타일이 1장 놓일 때마다 자신이 2 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "지속 효과: 아무 도시 타일이 1장 놓일 때마다 자신이 2 M€ 획득.",
+  "en_text": "When any city tile is placed, gain 2 M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "로버 공장 Rover Construction robeo gongjang ㄹㅂㄱㅈ 038 roverconstruction"
+ },
+ {
+  "num": "005",
+  "ko": "생명체 탐사",
+  "en": "Search For Life",
+  "kind": "project",
+  "color": "blue",
+  "cost": 3,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 6,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "text",
+      "en": "tag:microbe"
+     },
+     {
+      "atom": "card_res",
+      "res": "science",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "special",
+   "value": null
+  },
+  "ko_text": "조건: 산소 농도 6% 이하.",
+  "en_text": "Oxygen must be 6% or less.",
+  "needs_manual": true,
+  "note": "bare-tag-icon",
+  "search": "생명체 탐사 Search For Life saengmyeongche tamsa ㅅㅁㅊㅌㅅ 005 searchforlife"
+ },
+ {
+  "num": "166",
+  "ko": "왕복선",
+  "en": "Shuttles",
+  "kind": "project",
+  "color": "blue",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 5,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": "space",
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 우주 카드 사용 시, 우주 태그 1개마다 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 산소 농도 5% 이상.) (에너지 생산력 1 감소. 메가크레딧 생산력 2 증가.",
+  "en_text": "Requires 5% oxygen. Decrease your energy production 1 step and increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "왕복선 Shuttles wangbogseon ㅇㅂㅅ 166 shuttles"
+ },
+ {
+  "num": "054",
+  "ko": "소형 동물",
+  "en": "Small Animals",
+  "kind": "project",
+  "color": "blue",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "animal"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": -1,
+    "any": true
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 2,
+   "of": "animal"
+  },
+  "ko_text": "조건: 산소 농도 6% 이상.) (아무 1명의 식물 생산력 1 감소.",
+  "en_text": "Requires 6% oxygen. Decrease any plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "소형 동물 Small Animals sohyeong dongmul ㅅㅎㄷㅁ 054 smallanimals"
+ },
+ {
+  "num": "179",
+  "ko": "토양정화소",
+  "en": "Soil Factory",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "에너지 생산력 1 감소. 식물 생산력 1 증가.",
+  "en_text": "Decrease your energy production 1 step and increase your plant production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "토양정화소 Soil Factory toyangjeonghwaso ㅌㅇㅈㅎㅅ 179 soilfactory"
+ },
+ {
+  "num": "113",
+  "ko": "태양광 발전",
+  "en": "Solar Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "에너지 생산력 1 증가.",
+  "en_text": "Increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "태양광 발전 Solar Power taeyanggwang baljeon ㅌㅇㄱㅂㅈ 113 solarpower"
+ },
+ {
+  "num": "077",
+  "ko": "태양풍 발전",
+  "en": "Solar Wind Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [
+   "science",
+   "space",
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "titanium",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 증가 티타늄 자원 2개 획득.",
+  "en_text": "Increase your energy production 1 step and gain 2 titanium.",
+  "needs_manual": false,
+  "note": "",
+  "search": "태양풍 발전 Solar Wind Power taeyangpung baljeon ㅌㅇㅍㅂㅈ 077 solarwindpower"
+ },
+ {
+  "num": "203",
+  "ko": "솔레타",
+  "en": "Soletta",
+  "kind": "project",
+  "color": "green",
+  "cost": 35,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 7,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 7 증가.",
+  "en_text": "Increase your heat production 7 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "솔레타 Soletta solreta ㅅㄹㅌ 203 soletta"
+ },
+ {
+  "num": "076",
+  "ko": "우주 거울",
+  "en": "Space Mirrors",
+  "kind": "project",
+  "color": "blue",
+  "cost": 3,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 7,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "prod",
+      "res": "energy",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 7 M€ 소비해서 에너지 생산력 1 증가.",
+  "en_text": "Spend 7 M€ to increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "우주 거울 Space Mirrors uju geoul ㅇㅈㄱㅇ 076 spacemirrors"
+ },
+ {
+  "num": "206",
+  "ko": "특수 설계",
+  "en": "Special Design",
+  "kind": "project",
+  "color": "red",
+  "cost": 4,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Global requirements",
+    "ko": "행성 지표"
+   },
+   {
+    "atom": "text",
+    "en": "+/- 2",
+    "ko": null
+   }
+  ],
+  "vp": null,
+  "ko_text": "이번 세대에, 자신이 사용하는 다음번 카드의 추진 조건 중 행성 지표에는 +/- 2단계 중 원하는 것을 적용.",
+  "en_text": "The next card you play this generation is +2 or -2 steps in global requirements, your choice.",
+  "needs_manual": false,
+  "note": "",
+  "search": "특수 설계 Special Design teugsu seolgye ㅌㅅㅅㄱ 206 specialdesign"
+ },
+ {
+  "num": "103",
+  "ko": "제강소",
+  "en": "Steelworks",
+  "kind": "project",
+  "color": "blue",
+  "cost": 15,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 4,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "steel",
+      "n": 2,
+      "any": false
+     },
+     {
+      "atom": "global",
+      "param": "oxygen",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 자원 4개 소비해서 강철 자원 2개 획득 및 산소 농도 1% 상승.",
+  "en_text": "Spend 4 energy to gain 2 steel and increase oxygen 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "제강소 Steelworks jegangso ㅈㄱㅅ 103 steelworks"
+ },
+ {
+  "num": "138",
+  "ko": "노천채굴",
+  "en": "Strip Mine",
+  "kind": "project",
+  "color": "green",
+  "cost": 25,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "global",
+    "param": "oxygen",
+    "n": 2
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 2 감소. 강철 생산력 2 증가. 티타늄 생산력 1 증가. 산소 농도 2% 상승.",
+  "en_text": "Decrease your energy production 2 steps. Increase your steel production 2 steps and your titanium production 1 step. Raise oxygen 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "노천채굴 Strip Mine nocheonchaegul ㄴㅊㅊㄱ 138 stripmine"
+ },
+ {
+  "num": "127",
+  "ko": "대수층",
+  "en": "Subterranean Reservoir",
+  "kind": "project",
+  "color": "red",
+  "cost": 11,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   }
+  ],
+  "vp": null,
+  "ko_text": "해양 타일 1장 배치.",
+  "en_text": "Place 1 ocean tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "대수층 Subterranean Reservoir daesucheung ㄷㅅㅊ 127 subterraneanreservoir"
+ },
+ {
+  "num": "133",
+  "ko": "공생성 진균류",
+  "en": "Symbiotic Fungus",
+  "kind": "project",
+  "color": "blue",
+  "cost": 4,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -14,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "microbe",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 -14℃ 이상.",
+  "en_text": "Requires -14 C° or warmer.",
+  "needs_manual": false,
+  "note": "",
+  "search": "공생성 진균류 Symbiotic Fungus gongsaengseong jingyunryu ㄱㅅㅅㅈㄱㄹ 133 symbioticfungus"
+ },
+ {
+  "num": "145",
+  "ko": "지체응력 발전",
+  "en": "Tectonic Stress Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 2
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 보유한 과학 태그 2개 이상.) (에너지 생산력 3 증가.",
+  "en_text": "Requires 2 science tags. Increase your energy production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지체응력 발전 Tectonic Stress Power jicheeungryeog baljeon ㅈㅊㅇㄹㅂㅈ 145 tectonicstresspower"
+ },
+ {
+  "num": "075",
+  "ko": "혜성 견인",
+  "en": "Towing A Comet",
+  "kind": "project",
+  "color": "red",
+  "cost": 23,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "global",
+    "param": "oxygen",
+    "n": 1
+   },
+   {
+    "atom": "tile",
+    "tile": "ocean",
+    "n": 1
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "산소 농도 1% 상승. 해양 타일 1장 배치. 식물 자원 2개 획득.",
+  "en_text": "Gain 2 plants. Raise oxygen level 1 step and place an ocean tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "혜성 견인 Towing A Comet hyeseong gyeonin ㅎㅅㄱㅇ 075 towingacomet"
+ },
+ {
+  "num": "060",
+  "ko": "나무",
+  "en": "Trees",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 기온 -4℃ 이상. \n 식물 생산력 3 증가. 식물 자원 1개 획득.",
+  "en_text": "Requires -4 C or warmer. Increase your plant production 3 steps. Gain 1 plant.",
+  "needs_manual": false,
+  "note": "",
+  "search": "나무 Trees namu ㄴㅁ 060 trees"
+ },
+ {
+  "num": "169",
+  "ko": "툰드라 농경지",
+  "en": "Tundra Farming",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": {
+   "type": "temperature",
+   "value": -6,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 산소 농도 -6℃ 이상.) (식물 생산력 1 증가. 메가크레딧 생산력 2 증가. 식물 자원 1개 획득.",
+  "en_text": "Requires -6° C or warmer. Increase your plant production 1 step and your M€ production 2 steps. Gain 1 plant.",
+  "needs_manual": false,
+  "note": "",
+  "search": "툰드라 농경지 Tundra Farming tundeura nonggyeongji ㅌㄷㄹㄴㄱㅈ 169 tundrafarming"
+ },
+ {
+  "num": "032",
+  "ko": "지하 도시",
+  "en": "Underground City",
+  "kind": "project",
+  "color": "green",
+  "cost": 18,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 2 감소. 강철 생산력 2 증가. 도시 타일 1장 배치.",
+  "en_text": "Place a city tile. Decrease your energy production 2 steps and increase your steel production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지하 도시 Underground City jiha dosi ㅈㅎㄷㅅ 032 undergroundcity"
+ },
+ {
+  "num": "202",
+  "ko": "지하 핵폭발",
+  "en": "Underground Detonations",
+  "kind": "project",
+  "color": "blue",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 10,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "prod",
+      "res": "heat",
+      "n": 2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 10 M€ 소비해서 열 생산력 2 증가.",
+  "en_text": "Spend 10M€ to increase your heat production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지하 핵폭발 Underground Detonations jiha haegpogbal ㅈㅎㅎㅍㅂ 202 undergrounddetonations"
+ },
+ {
+  "num": "120",
+  "ko": "광역 대도시권",
+  "en": "Urbanized Area",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": false,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 메가크레딧 생산력 2 증가. 아무 도시 타일 2장 이상과 인접한 빈 구역 한 곳에 도시 타일 1장 배치.",
+  "en_text": "Decrease your energy production 1 step and increase your M€ production 2 steps. Place a city tile ADJACENT TO AT LEAST 2 OTHER CITY TILES.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광역 대도시권 Urbanized Area gwangyeog daedosigweon ㄱㅇㄷㄷㅅㄱ 120 urbanizedarea"
+ },
+ {
+  "num": "012",
+  "ko": "유로파에서 물 수입",
+  "en": "Water Import From Europa",
+  "kind": "project",
+  "color": "blue",
+  "cost": 25,
+  "corporateEra": false,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 12,
+      "any": false
+     },
+     {
+      "atom": "text",
+      "en": "superscript: titanium([1])"
+     }
+    ],
+    "gain": [
+     {
+      "atom": "tile",
+      "tile": "ocean",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_tag",
+   "value": 1,
+   "per": 1,
+   "of": "jovian"
+  },
+  "ko_text": "12 M€ 소비해서 해양 타일 1장 배치. 티타늄 자원도 소비 가능.",
+  "en_text": "Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.",
+  "needs_manual": true,
+  "note": "superscript-annotation",
+  "search": "유로파에서 물 수입 Water Import From Europa yuropaeseo mul suib ㅇㄹㅍㅇㅅㅁㅅㅇ 012 waterimportfromeuropa"
+ },
+ {
+  "num": "177",
+  "ko": "전기분해설비",
+  "en": "Water Splitting Plant",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 2,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 3,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "global",
+      "param": "oxygen",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 해양 타일 2장 이상.",
+  "en_text": "Requires 2 ocean tiles.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전기분해설비 Water Splitting Plant jeongibunhaeseolbi ㅈㄱㅂㅎㅅㅂ 177 watersplittingplant"
+ },
+ {
+  "num": "139",
+  "ko": "파력 발전",
+  "en": "Wave Power",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "power"
+  ],
+  "req": {
+   "type": "oceans",
+   "value": 3,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 해양 타일 3장 이상.) (에너지 생산력 1 증가.",
+  "en_text": "Requires 3 ocean tiles. Increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "파력 발전 Wave Power paryeog baljeon ㅍㄹㅂㅈ 139 wavepower"
+ },
+ {
+  "num": "168",
+  "ko": "풍차",
+  "en": "Windmills",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": false,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 7,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 산소 농도 7% 이상.) (에너지 생산력 1 증가.",
+  "en_text": "Requires 7% oxygen. Increase your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "풍차 Windmills pungcha ㅍㅊ 168 windmills"
+ },
+ {
+  "num": "130",
+  "ko": "연형동물",
+  "en": "Worms",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": false,
+  "tags": [
+   "microbe"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 4,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "microbe"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 산소 농도 4% 이상.) (이 카드도 포함해서, 보유한 미생물 태그 2개당 식물 생산력 1 증가.",
+  "en_text": "Requires 4% oxygen. Increase your plant production 1 step for every 2 microbe tags you have, including this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "연형동물 Worms yeonhyeongdongmul ㅇㅎㄷㅁ 130 worms"
+ },
+ {
+  "num": "129",
+  "ko": "체펠린 비행선",
+  "en": "Zeppelins",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": false,
+  "tags": [],
+  "req": {
+   "type": "oxygen",
+   "value": 5,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tile": "city"
+    }
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 산소 농도 5% 이상.) (현재 화성에 배치된 아무 도시 타일 1장당 자신의 메가크레딧 생산력 1 증가.",
+  "en_text": "Requires 5% oxygen. Increase your M€ production 1 step for each city tile ON MARS.",
+  "needs_manual": false,
+  "note": "",
+  "search": "체펠린 비행선 Zeppelins chepelrin bihaengseon ㅊㅍㄹㅂㅎㅅ 129 zeppelins"
+ },
+ {
+  "num": "R00",
+  "ko": "초보자용 기업",
+  "en": "Beginner Corporation",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 42,
+    "any": false
+   },
+   {
+    "atom": "draw",
+    "n": 10
+   }
+  ],
+  "vp": null,
+  "ko_text": "42 M€을 가지고 게임 시작. 게임을 준비할 때 카드를 구입하지 않으며, 그 대신 프로젝트 카드 10장을 공짜로 획득.",
+  "en_text": "You start with 42 M€. Instead of choosing from 10 cards during setup, you get 10 cards for free.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 42,
+  "search": "초보자용 기업 Beginner Corporation chobojayong gieob ㅊㅂㅈㅇㄱㅇ R00 beginnercorporation"
+ },
+ {
+  "num": "R08",
+  "ko": "크레디코르",
+  "en": "CrediCor",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 57,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 카드 또는 일반 프로젝트의 추진 비용을 지불할 때마다, 해당 추진 비용의 기본값이 20 M€ 이상일 경우 4 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 4,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "57 M€을 가지고 게임 시작.",
+  "en_text": "You start with 57 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 57,
+  "search": "크레디코르 CrediCor keuredikoreu ㅋㄹㄷㅋㄹ R08 credicor"
+ },
+ {
+  "num": "R17",
+  "ko": "에코라인",
+  "en": "Ecoline",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "plant"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "plants",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 36,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 식물 자원을 8개가 아닌 7개만 소비해도 녹지 타일을 1장 놓을 수 있음.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "plants",
+      "n": 7,
+      "any": false
+     },
+     {
+      "atom": "tile",
+      "tile": "greenery",
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "식물 생산력 2, 식물 자원 3개 및 36 M€을 가지고 게임 시작.",
+  "en_text": "You start with 2 plant production, 3 plants, and 36 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 36,
+  "search": "에코라인 Ecoline ekorain ㅇㅋㄹㅇ R17 ecoline"
+ },
+ {
+  "num": "R18",
+  "ko": "헬리온",
+  "en": "Helion",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 42,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 열 자원을 메가크레딧처럼 사용할 수 있음. 하지만 그 반대는 불가.",
+    "result": [
+     {
+      "atom": "text",
+      "en": "x",
+      "ko": ""
+     },
+     {
+      "atom": "gain",
+      "res": "heat",
+      "n": 1,
+      "any": false
+     },
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "열 생산력 3개 및 42 M€을 가지고 시작.",
+  "en_text": "You start with 3 heat production and 42 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 42,
+  "search": "헬리온 Helion helrion ㅎㄹㅇ R18 helion"
+ },
+ {
+  "num": "R19",
+  "ko": "인터플래너터리 시네마틱스",
+  "en": "Interplanetary Cinematics",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 30,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 20,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 사건형 카드를 사용할 때마다 2 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "강철 자원 20개 및 30 M€을 가지고 게임 시작.",
+  "en_text": "You start with 20 steel and 30 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 30,
+  "search": "인터플래너터리 시네마틱스 Interplanetary Cinematics inteopeulraeneoteori sinematigseu ㅇㅌㅍㄹㄴㅌㄹㅅㄴㅁㅌㅅ R19 interplanetarycinematics"
+ },
+ {
+  "num": "R43",
+  "ko": "인벤트릭스",
+  "en": "Inventrix",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 45,
+    "any": false
+   },
+   {
+    "atom": "draw",
+    "n": 3
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 카드 사용 시, 그 카드의 추진 조건 중 행성 지표 및 금성개척률에는 +2단계 또는 -2단계 중 원하는 것을 적용.",
+    "result": [
+     {
+      "atom": "text",
+      "en": "+/- 2",
+      "ko": null
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "게임 첫 행동으로서 카드 3장 획득. 45 M€을 가지고 게임 시작.",
+  "en_text": "As your first action in the game, draw 3 cards. Start with 45 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 45,
+  "search": "인벤트릭스 Inventrix inbenteurigseu ㅇㅂㅌㄹㅅ R43 inventrix"
+ },
+ {
+  "num": "R24",
+  "ko": "광업협동조합",
+  "en": "Mining Guild",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "building",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 30,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 5,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 타일 1장을 놓을 때마다 점유 보너스로서 강철 또는 티타늄 자원을 하나라도 획득했다면 강철 생산력 1 증가.",
+    "result": [
+     {
+      "atom": "prod",
+      "res": "steel",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "30 M€, 강철 자원 4개 및 강철 생산력 1을 가지고 게임 시작.",
+  "en_text": "You start with 30 M€, 5 steel and 1 steel production.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 30,
+  "search": "광업협동조합 Mining Guild gwangeobhyeobdongjohab ㄱㅇㅎㄷㅈㅎ R24 miningguild"
+ },
+ {
+  "num": "R09",
+  "ko": "포볼로그",
+  "en": "PhoboLog",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 23,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "titanium",
+    "n": 10,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 보유한 각 티타늄 자원의 가치 1 M€ 상승.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "티타늄 자원 10개 및 23 M€을 가지고 게임 시작.",
+  "en_text": "You start with 10 titanium and 23 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 23,
+  "search": "포볼로그 PhoboLog pobolrogeu ㅍㅂㄹㄱ R09 phobolog"
+ },
+ {
+  "num": "R31",
+  "ko": "타르시스 공화국",
+  "en": "Tharsis Republic",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 40,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 화성에 아무 도시 타일 1장 놓일 때마다 메가크레딧 생산력 1증가. 자신이 도시 타일을 놓을 때마다 3 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "40 M€을 가지고 게임 시작. 게임 첫 행동으로서 도시 타일 1장 배치.",
+  "en_text": "You start with 40 M€. As your first action in the game, place a city tile.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 40,
+  "search": "타르시스 공화국 Tharsis Republic tareusiseu gonghwagug ㅌㄹㅅㅅㄱㅎㄱ R31 tharsisrepublic"
+ },
+ {
+  "num": "R13",
+  "ko": "토르게이트",
+  "en": "ThorGate",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 3,
+    "tag": "power",
+    "per": "card"
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 48,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 일반 프로젝트 발전소 건설의 추진 비용 3 M€ 할인. 에너지 카드 사용 시, 에너지 태그 1개마다 추진 비용 3 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 및 48 M€을 가지고 게임 시작.",
+  "en_text": "You start with 1 energy production and 48 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 48,
+  "search": "토르게이트 ThorGate toreugeiteu ㅌㄹㄱㅇㅌ R13 thorgate"
+ },
+ {
+  "num": "R32",
+  "ko": "UNMI",
+  "en": "United Nations Mars Initiative",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": false,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 40,
+    "any": false
+   },
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 3,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "tr",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "40 M€을 가지고 게임 시작.",
+  "en_text": "You start with 40 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 40,
+  "search": "UNMI United Nations Mars Initiative UNMI R32 unitednationsmarsinitiative"
+ },
+ {
+  "num": "106",
+  "ko": "합병 회사",
+  "en": "Acquired Company",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 3 증가.",
+  "en_text": "Increase your M€ production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "합병 회사 Acquired Company habbyeong hoesa ㅎㅂㅎㅅ 106 acquiredcompany"
+ },
+ {
+  "num": "071",
+  "ko": "첨단 합금",
+  "en": "Advanced Alloys",
+  "kind": "project",
+  "color": "blue",
+  "cost": 9,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 보유한 각 티타늄 자원의 가치 1 M€ 상승.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 보유한 각 강철 자원의 가치 1 M€ 상승.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 보유한 각 티타늄 자원의 가치 1 M€ 상승. 지속 효과: 보유한 각 강철 자원의 가치 1 M€ 상승.",
+  "en_text": "Each titanium you have is worth 1 M€ extra. Each steel you have is worth 1 M€ extra.",
+  "needs_manual": false,
+  "note": "",
+  "search": "첨단 합금 Advanced Alloys cheomdan habgeum ㅊㄷㅎㄱ 071 advancedalloys"
+ },
+ {
+  "num": "208",
+  "ko": "중앙 인공지능 센터",
+  "en": "AI Central",
+  "kind": "project",
+  "color": "blue",
+  "cost": 21,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 3
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "draw",
+      "n": 2
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "text",
+    "en": "Requires 3 science tags to play. Decrease your energy production 1 step.",
+    "ko": "조건: 보유한 과학 태그 3개 이상.) (에너지 생산력 1 감소."
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "행동: 카드 2장 획득. 조건: 보유한 과학 태그 3개 이상.) (에너지 생산력 1 감소.",
+  "en_text": "Draw 2 cards. Requires 3 science tags to play. Decrease your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "중앙 인공지능 센터 AI Central jungang ingongjineung senteo ㅈㅇㅇㄱㅈㄴㅅㅌ 208 aicentral"
+ },
+ {
+  "num": "150",
+  "ko": "반중력기술",
+  "en": "Anti-Gravity Technology",
+  "kind": "project",
+  "color": "blue",
+  "cost": 14,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 7
+  },
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": null,
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 모든 카드의 추진 비용 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 3
+  },
+  "ko_text": "조건: 보유한 과학 태그 7개 이상.",
+  "en_text": "Requires 7 science tags.",
+  "needs_manual": false,
+  "note": "",
+  "search": "반중력기술 Anti-Gravity Technology banjungryeoggisul ㅂㅈㄹㄱㅅ 150 anti-gravitytechnology"
+ },
+ {
+  "num": "002",
+  "ko": "소행성 채굴 컨소시엄",
+  "en": "Asteroid Mining Consortium",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": true,
+  "tags": [
+   "jovian"
+  ],
+  "req": {
+   "type": "production",
+   "value": "titanium",
+   "max": false,
+   "count": 1
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": -1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 보유한 티타늄 생산력 1 이상.) (아무 1명의 티타늄 생산력 1 감소. 자신의 티타늄 생산력 1 증가.",
+  "en_text": "Requires that you have titanium production. Decrease any titanium production 1 step and increase your own 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "소행성 채굴 컨소시엄 Asteroid Mining Consortium sohaengseong chaegul keonsosieom ㅅㅎㅅㅊㄱㅋㅅㅅㅇ 002 asteroidminingconsortium"
+ },
+ {
+  "num": "112",
+  "ko": "위원회 매수",
+  "en": "Bribed Committee",
+  "kind": "project",
+  "color": "red",
+  "cost": 7,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tr",
+    "n": 2
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -2
+  },
+  "ko_text": "테라포밍 등급 2TR 상승.",
+  "en_text": "Raise your TR 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "위원회 매수 Bribed Committee wiweonhoe maesu ㅇㅇㅎㅁㅅ 112 bribedcommittee"
+ },
+ {
+  "num": "065",
+  "ko": "공업단지 건설",
+  "en": "Building Industries",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 강철 생산력 2 증가.",
+  "en_text": "Decrease your energy production 1 step and increase your steel production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "공업단지 건설 Building Industries gongeobdanji geonseol ㄱㅇㄷㅈㄱㅅ 065 buildingindustries"
+ },
+ {
+  "num": "111",
+  "ko": "사업 계약",
+  "en": "Business Contacts",
+  "kind": "project",
+  "color": "red",
+  "cost": 7,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Look at the top 4 cards from the deck. Take 2 of them into hand and discard the other 2.",
+    "ko": "프로젝트 덱 최상단 카드 4장 확인 후, 2장 획득하고 2장 버림."
+   }
+  ],
+  "vp": null,
+  "ko_text": "프로젝트 덱 최상단 카드 4장 확인 후, 2장 획득하고 2장 버림.",
+  "en_text": "Look at the top 4 cards from the deck. Take 2 of them into hand and discard the other 2.",
+  "needs_manual": false,
+  "note": "",
+  "search": "사업 계약 Business Contacts saeob gyeyag ㅅㅇㄱㅇ 111 businesscontacts"
+ },
+ {
+  "num": "110",
+  "ko": "비즈니스 네트워크",
+  "en": "Business Network",
+  "kind": "project",
+  "color": "blue",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": []
+   },
+   {
+    "atom": "text",
+    "en": "Action: Look at the top card and either buy it or discard it",
+    "ko": "행동: 프로젝트 덱 최상단 카드 1장 확인하고, 구입하거나 버림."
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 1 감소.",
+  "en_text": "Decrease your M€ production 1 step.",
+  "needs_manual": true,
+  "note": "action-missing-description",
+  "search": "비즈니스 네트워크 Business Network bijeuniseu neteuweokeu ㅂㅈㄴㅅㄴㅌㅇㅋ 110 businessnetwork"
+ },
+ {
+  "num": "082",
+  "ko": "칼리스토 교도소 노역장",
+  "en": "Callisto Penal Mines",
+  "kind": "project",
+  "color": "green",
+  "cost": 24,
+  "corporateEra": true,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "메가크레딧 생산력 3 증가.",
+  "en_text": "Increase your M€ production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "칼리스토 교도소 노역장 Callisto Penal Mines kalriseuto gyodoso noyeogjang ㅋㄹㅅㅌㄱㄷㅅㄴㅇㅈ 082 callistopenalmines"
+ },
+ {
+  "num": "154",
+  "ko": "항온 관리 계약",
+  "en": "Caretaker Contract",
+  "kind": "project",
+  "color": "blue",
+  "cost": 3,
+  "corporateEra": true,
+  "tags": [],
+  "req": {
+   "type": "temperature",
+   "value": 0,
+   "max": false
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "heat",
+      "n": 8,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "tr",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 기온 0℃ 이상.",
+  "en_text": "Requires 0° C or warmer.",
+  "needs_manual": false,
+  "note": "",
+  "search": "항온 관리 계약 Caretaker Contract hangon gwanri gyeyag ㅎㅇㄱㄹㄱㅇ 154 caretakercontract"
+ },
+ {
+  "num": "137",
+  "ko": "카르텔",
+  "en": "Cartel",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "earth"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "이 카드도 포함해서, 보유한 지구 태그 1개당 메가크레딧 생산력 1 증가.",
+  "en_text": "Increase your M€ production 1 step for each Earth tag you have, including this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "카르텔 Cartel kareutel ㅋㄹㅌ 137 cartel"
+ },
+ {
+  "num": "149",
+  "ko": "회장님께서 좋아하시는 프로젝트",
+  "en": "CEO's Favorite Project",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Add 1 resource to a card with at least 1 resource on it",
+    "ko": "특수 자원이 1개 이상 있는 카드 1장에 동일한 특수 자원 1개 추가."
+   }
+  ],
+  "vp": null,
+  "ko_text": "특수 자원이 1개 이상 있는 카드 1장에 동일한 특수 자원 1개 추가.",
+  "en_text": "Add 1 resource to a card with at least 1 resource on it",
+  "needs_manual": false,
+  "note": "",
+  "search": "회장님께서 좋아하시는 프로젝트 CEO's Favorite Project hoejangnimkkeseo johahasineun peurojegteu ㅎㅈㄴㄲㅅㅈㅇㅎㅅㄴㅍㄹㅈㅌ 149 ceo'sfavoriteproject"
+ },
+ {
+  "num": "085",
+  "ko": "상업지구",
+  "en": "Commercial District",
+  "kind": "project",
+  "color": "green",
+  "cost": 16,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 4,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "commercial_district"
+   }
+  ],
+  "vp": {
+   "type": "per_tile",
+   "value": 1,
+   "per": 1,
+   "of": "city"
+  },
+  "ko_text": "에너지 생산력 1 감소. 메가크레딧 생산력 4 증가. 빈 구역에 타일 1장 배치.",
+  "en_text": "Place this tile. Decrease your energy production 1 step and increase your M€ production 4 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "상업지구 Commercial District sangeobjigu ㅅㅇㅈㄱ 085 commercialdistrict"
+ },
+ {
+  "num": "182",
+  "ko": "사유화 도시",
+  "en": "Corporate Stronghold",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": true,
+  "tags": [
+   "city",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   },
+   {
+    "atom": "tile",
+    "tile": "city"
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -2
+  },
+  "ko_text": "에너지 생산력 1 감소. 메가크레딧 생산력 3 증가. 도시 타일 1장 배치.",
+  "en_text": "Decrease your energy production 1 step and increase your M€ production 3 steps. Place a city tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "사유화 도시 Corporate Stronghold sayuhwa dosi ㅅㅇㅎㄷㅅ 182 corporatestronghold"
+ },
+ {
+  "num": "014",
+  "ko": "개발본부",
+  "en": "Development Center",
+  "kind": "project",
+  "color": "blue",
+  "cost": 11,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "draw",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 에너지 자원 1개 소비해서 카드 1장 획득.",
+  "en_text": "Spend 1 energy to draw a card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "개발본부 Development Center gaebalbonbu ㄱㅂㅂㅂ 014 developmentcenter"
+ },
+ {
+  "num": "070",
+  "ko": "지구 우주발사기지",
+  "en": "Earth Catapult",
+  "kind": "project",
+  "color": "blue",
+  "cost": 23,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": null,
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 모든 카드의 추진 비용 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "지속 효과: 모든 카드의 추진 비용 2 M€ 할인.",
+  "en_text": "When you play a card, you pay 2 M€ less for it.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지구 우주발사기지 Earth Catapult jigu ujubalsagiji ㅈㄱㅇㅈㅂㅅㄱㅈ 070 earthcatapult"
+ },
+ {
+  "num": "105",
+  "ko": "지구 지사",
+  "en": "Earth Office",
+  "kind": "project",
+  "color": "blue",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 3,
+    "tag": "earth",
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 지구 카드 사용 시, 지구 태그 1개마다 추진 비용 3 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 지구 카드 사용 시, 지구 태그 1개마다 추진 비용 3 M€ 할인.",
+  "en_text": "When you play an Earth tag, you pay 3 M€ less for it.",
+  "needs_manual": false,
+  "note": "",
+  "search": "지구 지사 Earth Office jigu jisa ㅈㄱㅈㅅ 105 earthoffice"
+ },
+ {
+  "num": "069",
+  "ko": "전자기식 투사장치",
+  "en": "Electro Catapult",
+  "kind": "project",
+  "color": "blue",
+  "cost": 17,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": {
+   "type": "oxygen",
+   "value": 8,
+   "max": true
+  },
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "plants",
+      "n": 1,
+      "any": false
+     },
+     {
+      "atom": "gain",
+      "res": "steel",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 7,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "text",
+    "en": "Oxygen must be 8% or less. Decrease your energy production 1 step.",
+    "ko": "조건: 산소 농도 8% 이하.) (에너지 생산력 1 감소."
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "행동: 식물 또는 강철 자원 1개 소비해서 7 M€ 획득. 조건: 산소 농도 8% 이하.) (에너지 생산력 1 감소.",
+  "en_text": "Spend 1 plant or 1 steel to gain 7 M€. Oxygen must be 8% or less. Decrease your energy production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전자기식 투사장치 Electro Catapult jeonjagisig tusajangchi ㅈㅈㄱㅅㅌㅅㅈㅊ 069 electrocatapult"
+ },
+ {
+  "num": "201",
+  "ko": "전기 도둑질",
+  "en": "Energy Tapping",
+  "kind": "project",
+  "color": "green",
+  "cost": 3,
+  "corporateEra": true,
+  "tags": [
+   "power"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "아무 1명의 에너지 생산력 1 감소. 자신의 에너지 생산력 1 증가.",
+  "en_text": "Decrease any energy production 1 step and increase your own 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전기 도둑질 Energy Tapping jeongi dodugjil ㅈㄱㄷㄷㅈ 201 energytapping"
+ },
+ {
+  "num": "180",
+  "ko": "정유소",
+  "en": "Fuel Factory",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "에너지 생산력 1 감소. 티타늄 생산력 1 증가. 메가크레딧 생산력 1 증가.",
+  "en_text": "Decrease your energy production 1 step and increase your titanium and your M€ production 1 step each.",
+  "needs_manual": false,
+  "note": "",
+  "search": "정유소 Fuel Factory jeongyuso ㅈㅇㅅ 180 fuelfactory"
+ },
+ {
+  "num": "091",
+  "ko": "유전자 복구 기술",
+  "en": "Gene Repair",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 3
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "조건: 보유한 과학 태그 3개 이상.) (메가크레딧 생산력 2 증가.",
+  "en_text": "Requires 3 science tags. Increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "유전자 복구 기술 Gene Repair yujeonja boggu gisul ㅇㅈㅈㅂㄱㄱㅅ 091 generepair"
+ },
+ {
+  "num": "061",
+  "ko": "단애 채굴 컨소시엄",
+  "en": "Great Escarpment Consortium",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [],
+  "req": {
+   "type": "production",
+   "value": "steel",
+   "max": false,
+   "count": 1
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": -1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 강철 생산력 1 이상.) (아무 1명의 강철 생산력 1 감소. 자신의 강철 생산력 1 증가.",
+  "en_text": "Requires that you have steel production. Decrease any steel production 1 step and increase your own 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "단애 채굴 컨소시엄 Great Escarpment Consortium danae chaegul keonsosieom ㄷㅇㅊㄱㅋㅅㅅㅇ 061 greatescarpmentconsortium"
+ },
+ {
+  "num": "125",
+  "ko": "해커",
+  "en": "Hackers",
+  "kind": "project",
+  "color": "green",
+  "cost": 3,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "자신의 에너지 생산력 1 감소. 아무 1명의 메가크레딧 생산력 2 감소. 자신의 메가크레딧 생산력 2 증가.",
+  "en_text": "Decrease your energy production 1 step and any M€ production 2 steps. Increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "해커 Hackers haekeo ㅎㅋ 125 hackers"
+ },
+ {
+  "num": "124",
+  "ko": "무장강도단 고용",
+  "en": "Hired Raiders",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "steal",
+    "ko": "훔치기: "
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 2,
+    "any": true
+   },
+   {
+    "atom": "text",
+    "en": "steal",
+    "ko": "훔치기: "
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 3,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "아무 1명의 강철 자원 2개까지 또는 3 M€까지 제거하고, 제거한 해당 자원을 자신이 획득.",
+  "en_text": "Steal up to 2 steel, or 3 M€ from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "무장강도단 고용 Hired Raiders mujanggangdodan goyong ㅁㅈㄱㄷㄷㄱㅇ 124 hiredraiders"
+ },
+ {
+  "num": "195",
+  "ko": "무급계약노동자",
+  "en": "Indentured Workers",
+  "kind": "project",
+  "color": "red",
+  "cost": 0,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "next card",
+    "ko": "다음 카드"
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": -8,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": -1
+  },
+  "ko_text": "이번 세대에, 자신이 사용하는 다음번 카드의 추진 비용 8 M€ 할인.",
+  "en_text": "The next card you play this generation costs 8 M€ less.",
+  "needs_manual": false,
+  "note": "",
+  "search": "무급계약노동자 Indentured Workers mugeubgyeyagnodongja ㅁㄱㄱㅇㄴㄷㅈ 195 indenturedworkers"
+ },
+ {
+  "num": "123",
+  "ko": "공업 중심지",
+  "en": "Industrial Center",
+  "kind": "project",
+  "color": "blue",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 7,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "prod",
+      "res": "steel",
+      "n": 1,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "tile",
+    "tile": "industrial_center"
+   }
+  ],
+  "vp": null,
+  "ko_text": "아무 도시 타일과 인접한 빈 구역 한 곳에 타일 배치.",
+  "en_text": "Place this tile adjacent to a city tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "공업 중심지 Industrial Center gongeob jungsimji ㄱㅇㅈㅅㅈ 123 industrialcenter"
+ },
+ {
+  "num": "027",
+  "ko": "항성간 개척선",
+  "en": "Interstellar Colony Ship",
+  "kind": "project",
+  "color": "red",
+  "cost": 24,
+  "corporateEra": true,
+  "tags": [
+   "earth",
+   "space"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 5
+  },
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 4
+  },
+  "ko_text": "조건: 보유한 과학 태그 5개 이상.",
+  "en_text": "Requires that you have 5 science tags.",
+  "needs_manual": false,
+  "note": "",
+  "search": "항성간 개척선 Interstellar Colony Ship hangseonggan gaecheogseon ㅎㅅㄱㄱㅊㅅ 027 interstellarcolonyship"
+ },
+ {
+  "num": "192",
+  "ko": "발명 대회",
+  "en": "Invention Contest",
+  "kind": "project",
+  "color": "red",
+  "cost": 2,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Look at the top 3 cards from the deck. Take 1 of them into hand and discard the other two",
+    "ko": "프로젝트 덱 최상단 카드 3장 확인 후 1장 획득하고 2장 버림."
+   }
+  ],
+  "vp": null,
+  "ko_text": "프로젝트 덱 최상단 카드 3장 확인 후 1장 획득하고 2장 버림.",
+  "en_text": "Look at the top 3 cards from the deck. Take 1 of them into hand and discard the other two",
+  "needs_manual": false,
+  "note": "",
+  "search": "발명 대회 Invention Contest balmyeong daehoe ㅂㅁㄷㅎ 192 inventioncontest"
+ },
+ {
+  "num": "006",
+  "ko": "발명가 협회",
+  "en": "Inventors' Guild",
+  "kind": "project",
+  "color": "blue",
+  "cost": 9,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": []
+   },
+   {
+    "atom": "text",
+    "en": "Action: Look at the top card and either buy it or discard it",
+    "ko": "행동: 프로젝트 덱 최상단 카드 1장 확인하고, 구입하거나 버림."
+   }
+  ],
+  "vp": null,
+  "ko_text": "행동: 프로젝트 덱 최상단 카드 1장 확인하고, 구입하거나 버림.",
+  "en_text": "Action: Look at the top card and either buy it or discard it",
+  "needs_manual": true,
+  "note": "action-missing-description",
+  "search": "발명가 협회 Inventors' Guild balmyeongga hyeobhoe ㅂㅁㄱㅎㅎ 006 inventors'guild"
+ },
+ {
+  "num": "151",
+  "ko": "투자차관",
+  "en": "Investment Loan",
+  "kind": "project",
+  "color": "red",
+  "cost": 3,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": -1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 10,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 1 감소. 10 M€ 획득.",
+  "en_text": "Decrease your M€ production 1 step. Gain 10 M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "투자차관 Investment Loan tujachagwan ㅌㅈㅊㄱ 151 investmentloan"
+ },
+ {
+  "num": "092",
+  "ko": "이오 채굴산업",
+  "en": "Io Mining Industries",
+  "kind": "project",
+  "color": "green",
+  "cost": 41,
+  "corporateEra": true,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "per_tag",
+   "value": 1,
+   "per": 1,
+   "of": "jovian"
+  },
+  "ko_text": "티타늄 생산력 2 증가. 메가크레딧 생산력 2 증가.",
+  "en_text": "Increase your titanium production 2 steps and your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "이오 채굴산업 Io Mining Industries io chaegulsaneob ㅇㅇㅊㄱㅅㅇ 092 iominingindustries"
+ },
+ {
+  "num": "196",
+  "ko": "라그랑주 천문관측소",
+  "en": "Lagrange Observatory",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "draw",
+    "n": 1
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "카드 1장 획득.",
+  "en_text": "Draw 1 card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "라그랑주 천문관측소 Lagrange Observatory rageurangju cheonmungwancheugso ㄹㄱㄹㅈㅊㅁㄱㅊㅅ 196 lagrangeobservatory"
+ },
+ {
+  "num": "066",
+  "ko": "영토 소유권 주장",
+  "en": "Land Claim",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Place your marker on a non-reserved area. Only you may place a tile there.",
+    "ko": "자신의 색깔 마커 1개를 빈 구역 (전용 구역 제외) 한 곳에 배치. 이제부터 그 구역에는 자신만이 타일을 배치할 수 있음."
+   }
+  ],
+  "vp": null,
+  "ko_text": "자신의 색깔 마커 1개를 빈 구역 (전용 구역 제외) 한 곳에 배치. 이제부터 그 구역에는 자신만이 타일을 배치할 수 있음.",
+  "en_text": "Place your marker on a non-reserved area. Only you may place a tile there.",
+  "needs_manual": false,
+  "note": "",
+  "search": "영토 소유권 주장 Land Claim yeongto soyugweon jujang ㅇㅌㅅㅇㄱㅈㅈ 066 landclaim"
+ },
+ {
+  "num": "046",
+  "ko": "번개걷이",
+  "en": "Lightning Harvest",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": true,
+  "tags": [
+   "power"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 3
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 보유한 과학 태그 3개 이상.) (에너지 생산력 1 증가. 메가크레딧 생산력 1 증가.",
+  "en_text": "Requires 3 science tags. Increase your energy production and your M€ production one step each.",
+  "needs_manual": false,
+  "note": "",
+  "search": "번개걷이 Lightning Harvest beongaegeodi ㅂㄱㄱㅇ 046 lightningharvest"
+ },
+ {
+  "num": "073",
+  "ko": "화성 대학교",
+  "en": "Mars University",
+  "kind": "project",
+  "color": "blue",
+  "cost": 8,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 과학 태그 1개마다 손에 든 카드 1장 버리고, 새로운 카드 1장 획득.",
+    "result": [
+     {
+      "atom": "draw",
+      "n": -1
+     },
+     {
+      "atom": "draw",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 과학 태그 1개마다 손에 든 카드 1장 버리고, 새로운 카드 1장 획득.",
+  "en_text": "When you play a science tag, including this, you may discard a card from hand to draw a card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "화성 대학교 Mars University hwaseong daehaggyo ㅎㅅㄷㅎㄱ 073 marsuniversity"
+ },
+ {
+  "num": "094",
+  "ko": "질량변환기",
+  "en": "Mass Converter",
+  "kind": "project",
+  "color": "blue",
+  "cost": 8,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "power"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 5
+  },
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": "space",
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 우주 카드 사용 시, 우주 태그 1개마다 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 6,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 과학 태그 5개 이상.) (에너지 생산력 6 증가.",
+  "en_text": "Requires 5 science tags. Increase your energy production 6 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "질량변환기 Mass Converter jilryangbyeonhwangi ㅈㄹㅂㅎㄱ 094 massconverter"
+ },
+ {
+  "num": "107",
+  "ko": "미디어 아카이브",
+  "en": "Media Archives",
+  "kind": "project",
+  "color": "green",
+  "cost": 8,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "event"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "모든 플레이어가 지금까지 사용한 모든 사건형 카드 1장당 자신이 1 M€ 획득.",
+  "en_text": "Gain 1 M€ for each event EVER PLAYED by all players.",
+  "needs_manual": false,
+  "note": "",
+  "search": "미디어 아카이브 Media Archives midieo akaibeu ㅁㄷㅇㅇㅋㅇㅂ 107 mediaarchives"
+ },
+ {
+  "num": "109",
+  "ko": "미디어 그룹",
+  "en": "Media Group",
+  "kind": "project",
+  "color": "blue",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 사건형 카드 사용 시, 3 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 사건형 카드 사용 시, 3 M€ 획득.",
+  "en_text": "After you play an event card, you gain 3 M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "미디어 그룹 Media Group midieo geurub ㅁㄷㅇㄱㄹ 109 mediagroup"
+ },
+ {
+  "num": "207",
+  "ko": "의학 연구실",
+  "en": "Medical Lab",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "building"
+    }
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "이 카드도 포함해서, 보유한 건물 태그 2개당 메가크레딧 생산력 1 증가.",
+  "en_text": "Increase your M€ production 1 step for every 2 building tags you have, including this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "의학 연구실 Medical Lab yihag yeongusil ㅇㅎㅇㄱㅅ 207 medicallab"
+ },
+ {
+  "num": "056",
+  "ko": "광산",
+  "en": "Mine",
+  "kind": "project",
+  "color": "green",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "강철 생산력 1 증가.",
+  "en_text": "Increase your steel production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광산 Mine gwangsan ㄱㅅ 056 mine"
+ },
+ {
+  "num": "062",
+  "ko": "광물 매장층",
+  "en": "Mineral Deposit",
+  "kind": "project",
+  "color": "red",
+  "cost": 5,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": 5,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "강철 자원 5개 획득.",
+  "en_text": "Gain 5 steel.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광물 매장층 Mineral Deposit gwangmul maejangcheung ㄱㅁㅁㅈㅊ 062 mineraldeposit"
+ },
+ {
+  "num": "064",
+  "ko": "광산 지대",
+  "en": "Mining Area",
+  "kind": "project",
+  "color": "green",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tile",
+    "tile": "mining_area"
+   },
+   {
+    "atom": "prod",
+    "res": "steel",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "자신의 타일과 인접한, 강철/티타늄 점유 보너스가 있는 빈 구역에 타일 배치. 해당 점유 보너스 자원 중 한 종류의 생산력 1 증가.",
+  "en_text": "Place this tile on an area with a steel or titanium placement bonus, adjacent to another of your tiles. Increase your production of that resource 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "광산 지대 Mining Area gwangsan jidae ㄱㅅㅈㄷ 064 miningarea"
+ },
+ {
+  "num": "051",
+  "ko": "미란다 리조트",
+  "en": "Miranda Resort",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": true,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "earth"
+    }
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "보유한 지구 태그 1개당 메가크레딧 생산력 1 증가.",
+  "en_text": "Increase your M€ production 1 step for each Earth tag you have.",
+  "needs_manual": false,
+  "note": "",
+  "search": "미란다 리조트 Miranda Resort miranda rijoteu ㅁㄹㄷㄹㅈㅌ 051 mirandaresort"
+ },
+ {
+  "num": "185",
+  "ko": "올림푸스 컨퍼런스",
+  "en": "Olympus Conference",
+  "kind": "project",
+  "color": "blue",
+  "cost": 10,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "earth",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "tag:science"
+   },
+   {
+    "atom": "card_res",
+    "res": "science",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "science",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "draw",
+    "n": 1
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 과학 태그 1개마다, 이 카드에 과학 자원 1개 추가하거나, 또는 이 카드에서 과학 자원 1개 제거해서 카드 1장 획득.",
+  "en_text": "When you play a science tag, including this, either add a science resource to this card, or remove a science resource from this card to draw a card.",
+  "needs_manual": true,
+  "note": "bare-tag-icon",
+  "search": "올림푸스 컨퍼런스 Olympus Conference olrimpuseu keonpeoreonseu ㅇㄹㅍㅅㅋㅍㄹㅅ 185 olympusconference"
+ },
+ {
+  "num": "095",
+  "ko": "물리 복합연구단지",
+  "en": "Physics Complex",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 6,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "science",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 2,
+   "per": 1,
+   "of": "science"
+  },
+  "ko_text": "행동: 에너지 자원 6개 소비해서 이 카드에 과학 자원 1개 추가.",
+  "en_text": "Spend 6 energy to add a science resource to this card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "물리 복합연구단지 Physics Complex mulri boghabyeongudanji ㅁㄹㅂㅎㅇㄱㄷㅈ 095 physicscomplex"
+ },
+ {
+  "num": "194",
+  "ko": "전력 공급 인프라",
+  "en": "Power Infrastructure",
+  "kind": "project",
+  "color": "blue",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "power",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "text",
+      "en": "x",
+      "ko": ""
+     },
+     {
+      "atom": "gain",
+      "res": "energy",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "x 행동: 원하는 수만큼 에너지 자원을 소비해서 같은 수만큼 메가크레딧 획득.",
+  "en_text": "x Spend any amount of energy and gain that amount of M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전력 공급 인프라 Power Infrastructure jeonryeog gonggeub inpeura ㅈㄹㄱㄱㅇㅍㄹ 194 powerinfrastructure"
+ },
+ {
+  "num": "160",
+  "ko": "전력 공급 컨소시엄",
+  "en": "Power Supply Consortium",
+  "kind": "project",
+  "color": "green",
+  "cost": 5,
+  "corporateEra": true,
+  "tags": [
+   "power"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "power",
+   "max": false,
+   "tag": "power",
+   "count": 2
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": -1,
+    "any": true
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 에너지 태그 2개 이상.) (아무 1명의 에너지 생산력 1 감소. 자신의 에너지 생산력 1 증가.",
+  "en_text": "Requires 2 power tags. Decrease any energy production 1 step and increase your own 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "전력 공급 컨소시엄 Power Supply Consortium jeonryeog gonggeub keonsosieom ㅈㄹㄱㄱㅋㅅㅅㅇ 160 powersupplyconsortium"
+ },
+ {
+  "num": "173",
+  "ko": "서식지 보호",
+  "en": "Protected Habitats",
+  "kind": "project",
+  "color": "blue",
+  "cost": 5,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Opponents may not remove your",
+    "ko": "자신의 위 자원은 다른 플레이어가 제거 불가."
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": 1,
+    "target": "this"
+   },
+   {
+    "atom": "card_res",
+    "res": "microbe",
+    "n": 1,
+    "target": "this"
+   }
+  ],
+  "vp": null,
+  "ko_text": "자신의 위 자원은 다른 플레이어가 제거 불가.",
+  "en_text": "Opponents may not remove your",
+  "needs_manual": false,
+  "note": "",
+  "search": "서식지 보호 Protected Habitats seosigji boho ㅅㅅㅈㅂㅎ 173 protectedhabitats"
+ },
+ {
+  "num": "079",
+  "ko": "양자추출기",
+  "en": "Quantum Extractor",
+  "kind": "project",
+  "color": "blue",
+  "cost": 13,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "power"
+  ],
+  "req": {
+   "type": "tag",
+   "value": "science",
+   "max": false,
+   "tag": "science",
+   "count": 4
+  },
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": "space",
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 우주 카드 사용 시, 우주 태그 1개마다 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "energy",
+    "n": 4,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "조건: 보유한 과학 태그 4개 이상.) (에너지 생산력 4 증가.",
+  "en_text": "Requires 4 science tags. Increase your energy production 4 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "양자추출기 Quantum Extractor yangjachuchulgi ㅇㅈㅊㅊㄱ 079 quantumextractor"
+ },
+ {
+  "num": "186",
+  "ko": "방사선 안전복",
+  "en": "Rad-Suits",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [],
+  "req": {
+   "type": "cities",
+   "value": 2,
+   "max": false,
+   "all": true
+  },
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "조건: 아무 도시 타일 2장 이상.) (메가크레딧 생산력 1 증가.",
+  "en_text": "Requires two cities in play. Increase your M€ production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "방사선 안전복 Rad-Suits bangsaseon anjeonbog ㅂㅅㅅㅇㅈㅂ 186 rad-suits"
+ },
+ {
+  "num": "090",
+  "ko": "연구",
+  "en": "Research",
+  "kind": "project",
+  "color": "green",
+  "cost": 11,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "draw",
+    "n": 2
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "카드 2장 획득.",
+  "en_text": "Counts as playing 2 science cards. Draw 2 cards.",
+  "needs_manual": false,
+  "note": "",
+  "search": "연구 Research yeongu ㅇㄱ 090 research"
+ },
+ {
+  "num": "199",
+  "ko": "제한 구역",
+  "en": "Restricted Area",
+  "kind": "project",
+  "color": "blue",
+  "cost": 11,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 2,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "draw",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "atom": "tile",
+    "tile": "restricted_area"
+   }
+  ],
+  "vp": null,
+  "ko_text": "타일 배치.",
+  "en_text": "Place this tile.",
+  "needs_manual": false,
+  "note": "",
+  "search": "제한 구역 Restricted Area jehan guyeog ㅈㅎㄱㅇ 199 restrictedarea"
+ },
+ {
+  "num": "086",
+  "ko": "산업용 로봇",
+  "en": "Robotic Workforce",
+  "kind": "project",
+  "color": "green",
+  "cost": 9,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "Copy A",
+    "ko": "복제"
+   },
+   {
+    "atom": "text",
+    "en": "production.tag"
+   }
+  ],
+  "vp": null,
+  "ko_text": "보유한 건물 카드 중 1장을 골라서 생산력 증감 사항을 다시 한 번 적용. 생산력과 무관한 것은 다시 적용하지 않음.",
+  "en_text": "Duplicate only the production box of one of your building cards.",
+  "needs_manual": true,
+  "note": "unmapped-production-method:tag",
+  "search": "산업용 로봇 Robotic Workforce saneobyong robos ㅅㅇㅇㄹㅂ 086 roboticworkforce"
+ },
+ {
+  "num": "121",
+  "ko": "파괴공작",
+  "en": "Sabotage",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [],
+  "req": null,
+  "effects": [
+   {
+    "atom": "gain",
+    "res": "titanium",
+    "n": -3,
+    "any": true
+   },
+   {
+    "atom": "gain",
+    "res": "steel",
+    "n": -4,
+    "any": true
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": -7,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "아무 1명의 티타늄 자원 3개까지 또는 강철 자원 4개까지 또는 7 M€까지 제거.",
+  "en_text": "Remove up to 3 titanium from any player, or 4 steel, or 7 M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "파괴공작 Sabotage pagoegongjag ㅍㄱㄱㅈ 121 sabotage"
+ },
+ {
+  "num": "175",
+  "ko": "인공위성",
+  "en": "Satellites",
+  "kind": "project",
+  "color": "green",
+  "cost": 10,
+  "corporateEra": true,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "space"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "이 카드도 포함해서, 보유한 우주 태그 1개당 메가크레딧 생산력 1 증가.",
+  "en_text": "Increase your M€ production 1 step for each space tag you have, including this one.",
+  "needs_manual": false,
+  "note": "",
+  "search": "인공위성 Satellites ingongwiseong ㅇㄱㅇㅅ 175 satellites"
+ },
+ {
+  "num": "028",
+  "ko": "평화수호함대",
+  "en": "Security Fleet",
+  "kind": "project",
+  "color": "blue",
+  "cost": 12,
+  "corporateEra": true,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "titanium",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "fighter",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 1,
+   "of": "fighter"
+  },
+  "ko_text": "행동: 티타늄 자원 1개 소비해서 이 카드에 전투기 자원 1개 추가.",
+  "en_text": "Spend 1 titanium to add 1 fighter resource to this card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "평화수호함대 Security Fleet pyeonghwasuhohamdae ㅍㅎㅅㅎㅎㄷ 028 securityfleet"
+ },
+ {
+  "num": "013",
+  "ko": "우주 엘리베이터",
+  "en": "Space Elevator",
+  "kind": "project",
+  "color": "blue",
+  "cost": 27,
+  "corporateEra": true,
+  "tags": [
+   "space",
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [
+     {
+      "atom": "gain",
+      "res": "steel",
+      "n": 1,
+      "any": false
+     }
+    ],
+    "gain": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 5,
+      "any": false
+     }
+    ]
+   },
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "티타늄 생산력 1 증가.",
+  "en_text": "Increase your titanium production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "우주 엘리베이터 Space Elevator uju elribeiteo ㅇㅈㅇㄹㅂㅇㅌ 013 spaceelevator"
+ },
+ {
+  "num": "025",
+  "ko": "우주정거장",
+  "en": "Space Station",
+  "kind": "project",
+  "color": "blue",
+  "cost": 10,
+  "corporateEra": true,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 2,
+    "tag": "space",
+    "per": "card"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 우주 카드 사용 시, 우주 태그 1개마다 2 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -2,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "지속 효과: 우주 카드 사용 시, 우주 태그 1개마다 2 M€ 할인.",
+  "en_text": "When you play a space card, you pay 2 M€ less for it.",
+  "needs_manual": false,
+  "note": "",
+  "search": "우주정거장 Space Station ujujeonggeojang ㅇㅈㅈㄱㅈ 025 spacestation"
+ },
+ {
+  "num": "068",
+  "ko": "후원",
+  "en": "Sponsors",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 2,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "메가크레딧 생산력 2 증가.",
+  "en_text": "Increase your M€ production 2 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "후원 Sponsors huweon ㅎㅇ 068 sponsors"
+ },
+ {
+  "num": "156",
+  "ko": "표준 기술",
+  "en": "Standard Technology",
+  "kind": "project",
+  "color": "blue",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "science"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 특허권 매각을 제외한, 다른 일반 프로젝트의 추진 비용 지불 시 3 M€ 획득.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": 3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 특허권 매각을 제외한, 다른 일반 프로젝트의 추진 비용 지불 시 3 M€ 획득.",
+  "en_text": "After you pay for a standard project, except selling patents, you gain 3 M€.",
+  "needs_manual": false,
+  "note": "",
+  "search": "표준 기술 Standard Technology pyojun gisul ㅍㅈㄱㅅ 156 standardtechnology"
+ },
+ {
+  "num": "049",
+  "ko": "완보동물",
+  "en": "Tardigrades",
+  "kind": "project",
+  "color": "blue",
+  "cost": 4,
+  "corporateEra": true,
+  "tags": [
+   "microbe"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "action",
+    "cost": [],
+    "gain": [
+     {
+      "atom": "card_res",
+      "res": "microbe",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": {
+   "type": "per_resource",
+   "value": 1,
+   "per": 4,
+   "of": "microbe"
+  },
+  "ko_text": "행동: 이 카드에 미생물 자원 1개 추가.",
+  "en_text": "Add 1 microbe to this card.",
+  "needs_manual": false,
+  "note": "",
+  "search": "완보동물 Tardigrades wanbodongmul ㅇㅂㄷㅁ 049 tardigrades"
+ },
+ {
+  "num": "204",
+  "ko": "신기술 시연",
+  "en": "Technology Demonstration",
+  "kind": "project",
+  "color": "red",
+  "cost": 5,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "draw",
+    "n": 2
+   }
+  ],
+  "vp": null,
+  "ko_text": "카드 2장 획득.",
+  "en_text": "Draw two cards.",
+  "needs_manual": false,
+  "note": "",
+  "search": "신기술 시연 Technology Demonstration singisul siyeon ㅅㄱㅅㅅㅇ 204 technologydemonstration"
+ },
+ {
+  "num": "197",
+  "ko": "테라포밍 가니메데",
+  "en": "Terraforming Ganymede",
+  "kind": "project",
+  "color": "green",
+  "cost": 33,
+  "corporateEra": true,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "tr",
+    "n": 1,
+    "per": {
+     "tag": "jovian"
+    }
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "이 카드도 포함해서, 보유한 목성 태그 1개당 테라포밍 등급 1TR 상승.",
+  "en_text": "Raise your TR 1 step for each Jovian tag you have, including this.",
+  "needs_manual": false,
+  "note": "",
+  "search": "테라포밍 가니메데 Terraforming Ganymede terapoming ganimede ㅌㄹㅍㅁㄱㄴㅁㄷ 197 terraformingganymede"
+ },
+ {
+  "num": "144",
+  "ko": "티타늄 광산",
+  "en": "Titanium Mine",
+  "kind": "project",
+  "color": "green",
+  "cost": 7,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": null,
+  "ko_text": "티타늄 생산력 1 증가.",
+  "en_text": "Increase your titanium production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "티타늄 광산 Titanium Mine titanyum gwangsan ㅌㅌㄴㄱㅅ 144 titaniummine"
+ },
+ {
+  "num": "099",
+  "ko": "통행료 징수기지",
+  "en": "Toll Station",
+  "kind": "project",
+  "color": "green",
+  "cost": 12,
+  "corporateEra": true,
+  "tags": [
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 1,
+    "any": false,
+    "per": {
+     "tag": "space"
+    }
+   }
+  ],
+  "vp": null,
+  "ko_text": "다른 플레이어들이 보유한 우주 태그 1개당 자신의 메가크레딧 생산력 1 증가.",
+  "en_text": "Increase your M€ production 1 step for each space tag your OPPONENTS have.",
+  "needs_manual": false,
+  "note": "",
+  "search": "통행료 징수기지 Toll Station tonghaengryo jingsugiji ㅌㅎㄹㅈㅅㄱㅈ 099 tollstation"
+ },
+ {
+  "num": "084",
+  "ko": "해왕성 궤도 바깥 탐사선",
+  "en": "Trans-Neptune Probe",
+  "kind": "project",
+  "color": "green",
+  "cost": 6,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "space"
+  ],
+  "req": null,
+  "effects": [],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": null,
+  "en_text": null,
+  "needs_manual": true,
+  "note": "no-description-text-found",
+  "search": "해왕성 궤도 바깥 탐사선 Trans-Neptune Probe haewangseong gwedo bakkat tamsaseon ㅎㅇㅅㄱㄷㅂㄲㅌㅅㅅ 084 trans-neptuneprobe"
+ },
+ {
+  "num": "098",
+  "ko": "열대 리조트",
+  "en": "Tropical Resort",
+  "kind": "project",
+  "color": "green",
+  "cost": 13,
+  "corporateEra": true,
+  "tags": [
+   "building"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "heat",
+    "n": -2,
+    "any": false
+   },
+   {
+    "atom": "prod",
+    "res": "mc",
+    "n": 3,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 2
+  },
+  "ko_text": "열 생산력 2 감소. 메가크레딧 생산력 3 증가.",
+  "en_text": "Reduce your heat production 2 steps and increase your M€ production 3 steps.",
+  "needs_manual": false,
+  "note": "",
+  "search": "열대 리조트 Tropical Resort yeoldae rijoteu ㅇㄷㄹㅈㅌ 098 tropicalresort"
+ },
+ {
+  "num": "057",
+  "ko": "베스타 조선소",
+  "en": "Vesta Shipyard",
+  "kind": "project",
+  "color": "green",
+  "cost": 15,
+  "corporateEra": true,
+  "tags": [
+   "jovian",
+   "space"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   }
+  ],
+  "vp": {
+   "type": "fixed",
+   "value": 1
+  },
+  "ko_text": "티타늄 생산력 1 증가.",
+  "en_text": "Increase your titanium production 1 step.",
+  "needs_manual": false,
+  "note": "",
+  "search": "베스타 조선소 Vesta Shipyard beseuta joseonso ㅂㅅㅌㅈㅅㅅ 057 vestashipyard"
+ },
+ {
+  "num": "074",
+  "ko": "바이러스 벡터",
+  "en": "Viral Enhancers",
+  "kind": "project",
+  "color": "blue",
+  "cost": 9,
+  "corporateEra": true,
+  "tags": [
+   "science",
+   "microbe"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "text",
+    "en": "tag:plant"
+   },
+   {
+    "atom": "text",
+    "en": "tag:microbe"
+   },
+   {
+    "atom": "text",
+    "en": "tag:animal"
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 식물/미생물/동물 태그 1개마다, 식물 자원 1개 획득, 또는 사용한 그 카드에 자원 1개 추가.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "plants",
+      "n": 1,
+      "any": false,
+      "per": {
+       "card_res": "microbe"
+      }
+     },
+     {
+      "atom": "card_res",
+      "res": "animal",
+      "n": 1,
+      "target": "this"
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "지속 효과: 이 카드도 포함해서 카드 사용 시, 그 카드의 식물/미생물/동물 태그 1개마다, 식물 자원 1개 획득, 또는 사용한 그 카드에 자원 1개 추가.",
+  "en_text": "When you play a plant, microbe, or an animal tag, including this, gain 1 plant or add 1 resource to THAT CARD.",
+  "needs_manual": true,
+  "note": "bare-tag-icon; bare-tag-icon; bare-tag-icon",
+  "search": "바이러스 벡터 Viral Enhancers baireoseu begteo ㅂㅇㄹㅅㅂㅌ 074 viralenhancers"
+ },
+ {
+  "num": "050",
+  "ko": "바이러스",
+  "en": "Virus",
+  "kind": "project",
+  "color": "red",
+  "cost": 1,
+  "corporateEra": true,
+  "tags": [
+   "microbe"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "card_res",
+    "res": "animal",
+    "n": -2,
+    "target": "any"
+   },
+   {
+    "atom": "gain",
+    "res": "plants",
+    "n": -5,
+    "any": true
+   }
+  ],
+  "vp": null,
+  "ko_text": "아무 1명의 동물 자원 2개까지 또는 식물 자원 5개까지 제거.",
+  "en_text": "Remove up to 2 animals or 5 plants from any player.",
+  "needs_manual": false,
+  "note": "",
+  "search": "바이러스 Virus baireoseu ㅂㅇㄹㅅ 050 virus"
+ },
+ {
+  "num": "R03",
+  "ko": "새턴 시스템",
+  "en": "Saturn Systems",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": true,
+  "tags": [
+   "jovian"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "prod",
+    "res": "titanium",
+    "n": 1,
+    "any": false
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 42,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 이 카드도 포함해서, 아무 목성 태그가 게임에 등장할 때마다 해당 목성 태그 1개당 자신의 메가크레딧 생산력 1 증가",
+    "result": [
+     {
+      "atom": "prod",
+      "res": "mc",
+      "n": 1,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "티타늄 생산력 1 및 42 M€을 가지고 게임 시작.",
+  "en_text": "You start with 1 titanium production and 42 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 42,
+  "search": "새턴 시스템 Saturn Systems saeteon siseutem ㅅㅌㅅㅅㅌ R03 saturnsystems"
+ },
+ {
+  "num": "R30",
+  "ko": "테렉터",
+  "en": "Teractor",
+  "kind": "corporation",
+  "color": "corp",
+  "cost": null,
+  "corporateEra": true,
+  "tags": [
+   "earth"
+  ],
+  "req": null,
+  "effects": [
+   {
+    "atom": "discount",
+    "n": 3,
+    "tag": "earth",
+    "per": "card"
+   },
+   {
+    "atom": "gain",
+    "res": "mc",
+    "n": 60,
+    "any": false
+   },
+   {
+    "atom": "effect",
+    "trigger": "지속 효과: 지구 카드 사용 시, 지구 태그 1개마다 추진 비용 3 M€ 할인.",
+    "result": [
+     {
+      "atom": "gain",
+      "res": "mc",
+      "n": -3,
+      "any": false
+     }
+    ]
+   }
+  ],
+  "vp": null,
+  "ko_text": "60 M€을 가지고 게임 시작.",
+  "en_text": "You start with 60 M€.",
+  "needs_manual": false,
+  "note": "",
+  "startingMegaCredits": 60,
+  "search": "테렉터 Teractor teregteo ㅌㄹㅌ R30 teractor"
+ }
+]
