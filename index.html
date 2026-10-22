@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261023032846">
+<meta name="build" content="20261023040613">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1639,6 +1639,14 @@ body .home.hl .cta3 button{padding:min(12px,2.6cqh) 6px!important}
 .ov-pa{align-self:center;font-style:normal;color:#ff8a5a;font-weight:900}
 .stage.land .op-tx .il-t{font-size:1.3rem}.stage.land .op-l p{font-size:.84rem}.stage.land .op-an{font-size:.8rem}
 @container (max-aspect-ratio: 1/1){.op{grid-template-columns:minmax(0,1fr)}.ov{width:min(100%,320px)}}
+.fin{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,5cqw,48px);align-items:center;width:min(900px,100%);margin:0 auto;text-align:left}
+.fin-m img{width:clamp(110px,40cqh,240px);border-radius:50%;box-shadow:0 0 80px rgba(120,200,140,.35);animation:spin 80s linear infinite,bfPop .9s cubic-bezier(.2,1.4,.4,1) both}
+.fin-tx{display:grid;gap:8px}.fin-tx .il-t{font-size:clamp(1.4rem,5cqw,2.6rem);line-height:1.2;margin:0}
+.fin-p{margin:0;color:#e7d6c4;font-size:clamp(.86rem,2.2cqw,1.05rem);word-break:keep-all}
+.fin-tips{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:clamp(.8rem,2cqw,.95rem);color:#e7d6c4}.fin-tips b{display:inline-block;min-width:4.6em;color:#fff}
+.fin-b{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.fin-b button{font:inherit;font-weight:800;font-size:.9rem;padding:10px 16px;border-radius:12px;border:1px solid #ffffff40;background:#ffffff12;color:#fff;cursor:pointer}
+.fin-b button.go{background:var(--rust);border-color:var(--rust);color:#1a0d08}
 </style>
 <script>
 /* 새 버전 확인: 저장된 옛 페이지가 보이면 최신본으로 다시 불러옴 (GitHub Pages는 10분 캐시) */
@@ -1926,7 +1934,9 @@ const STEPS=[
  {id:'g2a',ch:8,t:'③ 행동: 녹지 만들기',l:['일반 프로젝트 <b>녹지 형성</b> <span class="k">23</span> M€를 내고, 해양 옆이라 <span class="k">+2</span> M€','산소 <span class="k">0 → 1%</span> → TR <span class="k">22</span>, 녹지 위엔 내 큐브'],why:'여기선 상대 차례를 생략했어요. 실제로는 선(상대)부터 번갈아 해요',cam:'board',lb:[['gr4','녹지<small>내 땅</small>'],['wOxy','산소 1%'],['trMe','TR 22']]},
  {id:'end',ch:9,t:'이렇게 반복하다 보면 끝나요',l:['<b class="ox">산소 14%</b>, <b class="ht">기온 +8°C</b>, <b class="oc">해양 9장</b>이 모두 차면','그 세대 생산까지 하고 끝 → 점수 계산'],cam:'whole',rg:['rOxy','rTmp','rOcean'],lb:[['rOxy','14%까지'],['rTmp','+8°C까지'],['rOcean','9개 모두']]},
  {id:'eLast',ch:9,t:'마지막 녹지 기회',l:['마지막 생산 뒤 식물 8개 → 녹지를 원하는 만큼','산소는 안 올라도 녹지 점수는 받아요'],cam:'pbTab',demo:'eLast'},
- {id:'eScore',ch:9,t:'점수 세기',l:['TR + 기업상 + 업적 + 녹지 + 도시 옆 녹지 + 카드','가장 높은 사람이 승리, 동점이면 M€가 많은 사람'],cam:'boardW',demo:'eScore'}
+ {id:'eScore',ch:9,t:'점수 세기',l:['TR + 기업상 + 업적 + 녹지 + 도시 옆 녹지 + 카드','가장 높은 사람이 승리, 동점이면 M€가 많은 사람'],cam:'boardW',demo:'eScore'},
+ {id:'fin',ch:9,t:'애니메이션이 끝났어요',l:['수고했어요! 이제 실제 게임판에서 해 봐요','게임 중엔 ☰ 장면 목록의 도우미를 써요'],cam:'overFar',
+  il:`<div class="fin"><div class="fin-m"><img src="img/rb/mars_terra.webp" alt=""></div><div class="fin-tx"><p class="il-eb">THE END</p><h3 class="il-t">화성 테라포밍 완료!<br>애니메이션이 끝났어요</h3><p class="fin-p">이제 실제 게임판에서 해 봐요. 게임 중에 헷갈리면 이 화면들로 돌아오세요.</p><ul class="fin-tips"><li><b>☰ 장면</b> 세대 진행판, 지금 뭘 할 수 있지?, 점수 계산기</li><li><b>🔍 카드</b> 모르는 카드를 번호나 이름으로 찾아 3D로</li></ul><div class="fin-b"><button type="button" data-fin="restart">↺ 처음부터 다시</button><button type="button" data-fin="card">🔍 카드 검색</button><button type="button" data-fin="home" class="go">✕ 메인으로</button></div></div></div>`}
 
 ];
 const N=STEPS.length,SI={};STEPS.forEach((s,i)=>SI[s.id]=i);
@@ -2109,7 +2119,7 @@ const SETUP=()=>`<div class="su"><p class="il-eb">시작하기 전에</p><h3 cla
  <h3 class="il-t sm">셋팅 방식</h3><div class="su-row" data-k="mode"><button type="button" data-v="beg" class="${MODE==='beg'?'on':''}"><b>초보자용 기업</b><small>42 M€, 카드 10장 무료 (처음이면 추천)</small></button><button type="button" data-v="std" class="${MODE==='std'?'on':''}"><b>일반 게임</b><small>기업 2장 중 1장, 카드 1장당 3 M€</small></button></div>
  <p class="kc-ex">이 사이트의 3D는 2명(나와 상대) 기준이에요. 인원이 달라도 규칙은 같아요</p><p class="bf-go">고른 뒤 화면을 누르면 시작해요 ▶</p></div>`;
 let briefOpen=false;
-function ui(i){const s0=STEPS[i],s=MODE==='std'&&s0.ts?{...s0,t:s0.ts,l:s0.ls}:s0;{const il=$('#interlude');stage.classList.toggle('kcm',!!s.kc);const bf=(MODE==='std'&&BRIEF[s.id+'_std'])||BRIEF[s.id];briefOpen=!!bf;stage.classList.toggle('brief',!!bf);if(bf){il.innerHTML=tok(briefHTML(bf,s));window.__gloss&&__gloss(il.querySelector('.md'));il.classList.add('on');stage.classList.add('il')}else if(s.kc){kcShow(il,s.kc);il.classList.add('on');stage.classList.add('il')}else if(s.il){il.innerHTML=s.il;il.classList.add('on');stage.classList.add('il')}else{il.classList.remove('on');stage.classList.remove('il')}}
+function ui(i){const s0=STEPS[i],s=MODE==='std'&&s0.ts?{...s0,t:s0.ts,l:s0.ls}:s0;{const il=$('#interlude');stage.classList.toggle('kcm',!!s.kc);const bf=(MODE==='std'&&BRIEF[s.id+'_std'])||BRIEF[s.id];briefOpen=!!bf;stage.classList.toggle('brief',!!bf);if(bf){il.innerHTML=tok(briefHTML(bf,s));window.__gloss&&__gloss(il.querySelector('.md'));il.classList.add('on');stage.classList.add('il')}else if(s.kc){kcShow(il,s.kc);il.classList.add('on');stage.classList.add('il')}else if(s.il){il.innerHTML=s.il;if(s.id==='fin'){il.classList.remove('on');stage.classList.remove('il');const me=i;setTimeout(()=>{if(cur===me&&!cardMode){il.classList.add('on');stage.classList.add('il')}},reduce?0:2000)}else{il.classList.add('on');stage.classList.add('il')}}else{il.classList.remove('on');stage.classList.remove('il')}}
   $('#spanel').innerHTML=tok(`<div class="chap-eb"><span class="eyebrow">${CH[s.ch]}</span><span class="cnt">${i+1} / ${N}</span></div><h3>${s.t}</h3><ul class="rules">${s.l.map(x=>`<li>${x}</li>`).join('')}</ul>${s.why?`<span class="why">${s.why}</span>`:''}`);
   window.__gloss&&__gloss($('#spanel .rules'));
   segs.forEach(e=>{const k=+e.dataset.i;e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});
@@ -2124,19 +2134,19 @@ let renderer=null;try{if(window.THREE)renderer=new THREE.WebGLRenderer({canvas:c
 
 /* ---- 입력 ---- */
 function inView(){if(stage.classList.contains('full'))return true;const r=stage.getBoundingClientRect();return r.width>0&&r.top<innerHeight*.6&&r.bottom>innerHeight*.4}
-function nextStep(){if(briefOpen){briefOpen=false;$('#interlude').classList.remove('on');stage.classList.remove('il','brief');const sd=STEPS[cur];if((sd.id==='table'||sd.st)&&!cardMode){go(cur+1);return}const sk=(sd.demo||sd.id)+'_std';if(renderer)dStart(cardMode?'__card':(MODE==='std'&&DEMOS[sk])?sk:sd.demo,cardMode?sceneI:cur);return}if(cardMode){closeCard();return}go(cur===N-1?0:cur+1)}
+function nextStep(){if(briefOpen){briefOpen=false;$('#interlude').classList.remove('on');stage.classList.remove('il','brief');const sd=STEPS[cur];if((sd.id==='table'||sd.st)&&!cardMode){go(cur+1);return}const sk=(sd.demo||sd.id)+'_std';if(renderer)dStart(cardMode?'__card':(MODE==='std'&&DEMOS[sk])?sk:sd.demo,cardMode?sceneI:cur);return}if(cardMode){closeCard();return}if(cur===N-1)return;go(cur+1)}
 function go(i,force){i=Math.max(0,Math.min(N-1,i));fit();if(cardMode){cardMode=null;stage.classList.remove('cardm')}if(i===cur&&started&&!force)return;if(i>0)try{localStorage.setItem('tm-last',i)}catch(_){}started=true;cur=i;ui(i);if(renderer)toStep(i)}
 function fit(){if(stage.classList.contains('full'))return;const r=stage.getBoundingClientRect();if(r.width&&(r.top<0||r.bottom>innerHeight))stage.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'})}
 
 let started=false;
-$('#sNext').onclick=()=>nextStep();$('#sPrev').onclick=()=>go(cur-1);
+$('#sNext').onclick=()=>{if(cur===N-1&&!briefOpen&&!cardMode){go(0);return}nextStep()};$('#sPrev').onclick=()=>go(cur-1);
 /* 화면 탭: 왼쪽 3할 = 이전, 나머지 = 다음 · 옆으로 밀기도 됨 (90° 돌린 화면도 기준을 맞춤) */
 const ROTQ=matchMedia('(orientation: portrait) and (max-width: 760px)');
 const rotated=()=>stage.classList.contains('full')&&ROTQ.matches;
 function localX(e){const r=stage.getBoundingClientRect();return rotated()?(e.clientY-r.top)/r.height:(e.clientX-r.left)/r.width}
 let swiped=0;
 function tapNav(e){if(Date.now()-swiped<450)return;if(briefOpen){nextStep();return}localX(e)<.3?go(cur-1):nextStep()}
-cv.addEventListener('click',tapNav);document.querySelector('.stage .sidecol').addEventListener('click',e=>{if(e.target.closest('button,a,.term'))return;nextStep()});$('#interlude').addEventListener('click',e=>{const b=e.target.closest('.su-row button');if(b){e.stopPropagation();const k=b.parentElement.dataset.k;if(k==='np')NP=+b.dataset.v;else MODE=b.dataset.v;try{localStorage.setItem('tm-np',NP);localStorage.setItem('tm-mode',MODE)}catch(_){}b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));return}tapNav(e)});
+cv.addEventListener('click',tapNav);document.querySelector('.stage .sidecol').addEventListener('click',e=>{if(e.target.closest('button,a,.term'))return;nextStep()});$('#interlude').addEventListener('click',e=>{const fb=e.target.closest('[data-fin]');if(fb){e.stopPropagation();const a=fb.dataset.fin;if(a==='restart')go(0);else if(a==='card')window.__csr&&__csr(true);else $('#btnClose').click();return}const b=e.target.closest('.su-row button');if(b){e.stopPropagation();const k=b.parentElement.dataset.k;if(k==='np')NP=+b.dataset.v;else MODE=b.dataset.v;try{localStorage.setItem('tm-np',NP);localStorage.setItem('tm-mode',MODE)}catch(_){}b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));return}tapNav(e)});
 {let t0=null;stage.addEventListener('touchstart',e=>{if(e.touches.length!==1){t0=null;return}const t=e.touches[0];t0={x:t.clientX,y:t.clientY}},{passive:true});
  stage.addEventListener('touchend',e=>{if(!t0)return;const t=e.changedTouches[0];let dx=t.clientX-t0.x,dy=t.clientY-t0.y;t0=null;if(rotated()){const tmp=dx;dx=dy;dy=-tmp}
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3&&!e.target.closest('.slist,.sctrl,button')){swiped=Date.now();dx<0?nextStep():go(cur-1)}},{passive:true})}
@@ -2349,6 +2359,7 @@ function mk(id,mesh,keys,opt={}){scene.add(mesh);
  for(let i=0;i<N;i++){const k=keys[STEPS[i].id];if(k!==undefined&&!(k==='hide'&&!last)){last=k==='hide'?{...last,s:0}:{s:1,rx:0,ry:0,...k};if(!firstKey)firstKey=last}arr[i]=last}
  for(let i=0;i<N;i++)if(!arr[i])arr[i]={...(opt.spawn?{p:opt.spawn}:firstKey),s:0,rx:firstKey.rx||0,ry:firstKey.ry||0};
  const mats=[];mesh.traverse(o=>{if(o.isMesh){const ms=Array.isArray(o.material)?o.material:[o.material];ms.forEach(m=>{if(m.emissive&&!mats.includes(m))mats.push(m)})}});
+ {const fi=STEPS.findIndex(s=>s.id==='fin');if(fi>=0&&arr[fi])arr[fi]={...arr[fi],s:0}}
  OBJ[id]={mesh,st:arr,mats,hs:opt.hs||1.4,arc:opt.arc??1.6,noHl:opt.noHl,cur:null};
  const s0=arr[0];mesh.position.set(...s0.p);mesh.scale.setScalar(Math.max(1e-4,s0.s));mesh.rotation.set(s0.rx,s0.ry,0);return OBJ[id]}
 const P=(x,y,z)=>({p:[x,y,z]});
