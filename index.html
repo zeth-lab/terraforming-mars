@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="build" content="20261029233000">
+<meta name="build" content="20261029234500">
 <meta name="theme-color" content="#130c0b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1927,6 +1927,8 @@ body .home.hl .cta3 button{padding:min(12px,2.6cqh) 6px!important}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+/* 옛 Safari(iOS 15 이하)에는 roundRect가 없어서 게임판 그림이 중간에 끊김 → 직접 채워 줌 */
+if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRect)CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){r=Array.isArray(r)?r[0]:(typeof r==='object'&&r?r.x||0:r||0);r=Math.max(0,Math.min(r,Math.abs(w)/2,Math.abs(h)/2));this.moveTo(x+r,y);this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);this.closePath();return this};
 (function(){
 const $=s=>document.querySelector(s);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2312,7 +2314,7 @@ cv.addEventListener('click',tapNav);document.querySelector('.stage .sidecol').ad
  window.__slist=open}
 /* ===== v12: 뒤로 가기, 요소 바로가기, 진행 목차, 안내 토스트 ===== */
 /* 읽는 시간(분): 장면별 애니메이션 길이 + 글 읽기 시간으로 잰 값 (__tmScene.durs()로 다시 잴 수 있음) */
-const RT={setup:5,start:17,all:25},START_CH=4;window.__RT=RT;
+const RT={setup:5,start:15,all:25},START_CH=4;window.__RT=RT;
 const CHS=['오프닝','셋팅','요소','카드','행동','타일 지표','업적과 상','1세대','2세대','게임 끝'];
 {const c=$('#chaps');c.querySelectorAll('button').forEach((b,ci)=>{b.querySelector('.nm').textContent=CHS[ci];b.title=CH[ci];if(ci>START_CH)b.classList.add('later');
   if(ci===START_CH){const f=document.createElement('span');f.className='ch-flag';f.innerHTML='<i></i>시작선';f.title=`여기까지 읽으면 게임을 시작해도 돼요 (약 ${RT.start}분)`;b.after(f)}})}
@@ -2338,8 +2340,8 @@ const ELS=[
   cols:[[ICO('cardG'),'초록',['바로 끝나는 사업','태그 줄만 보이게 겹쳐요']],[ICO('cardB'),'파랑',['계속 일하는 시설','글이 보이게 펼쳐요']],[ICO('cardR'),'빨강',['한 번 쓰는 사건','쓰고 나면 뒤집어요']]],
   note:'손의 카드는 나만 봐요. 연구 때 1장 3 M€로 손에 들고, 낼 때는 카드 비용을 또 내요',
   sc:[['k_all','카드 읽는 법'],['colG','놓는 법'],['aCard','카드 내기']],card:1},
- {k:'board',n:'게임판',ic:'<img src="img/rb/mars_red.webp" alt="">',t:'중앙 게임판 = 화성 관제판',
-  cols:[[IMG('tr'),'둘레 숫자 띠',['각자의 TR','내 색 큐브로 표시']],[IMG('oxy')+IMG('temp'),'산소 띠, 온도계',['모두의 지표','흰 큐브로 표시']],[IMG('greenery'),'가운데 육각 칸',['화성 땅','타일을 놓는 곳']]],
+ {k:'board',n:'게임판',ic:IMG('board'),t:'중앙 게임판 = 화성 관제판',
+  cols:[[IMG('trband'),'둘레 숫자 띠',['각자의 TR','내 색 큐브로 표시']],[IMG('oxy')+IMG('temp'),'산소 띠, 온도계',['모두의 지표','흰 큐브로 표시']],[IMG('hexes'),'가운데 육각 칸',['화성 땅','타일을 놓는 곳']]],
   note:'왼쪽은 일반 프로젝트(카드 없이 돈으로 하는 사업), 아래는 업적과 기업상이에요',
   sc:[['iBoard','게임판 보기'],['aSP','일반 프로젝트'],['m0','업적과 기업상']]},
  {k:'tile',n:'타일',ic:IMG('greenery'),t:'타일은 3종류',
@@ -3245,7 +3247,7 @@ function collapse(){if(!stageEl.classList.contains('full'))return;try{screen.ori
   setTimeout(()=>document.body.classList.remove('reveal'),900);dispatchEvent(new Event('resize'));if(backTo){const b=backTo;backTo=null;if(b!=='table')setTimeout(()=>openSec(b),reduce?0:720)}}
 function expand(){if(COARSE)goFull(true);flip(()=>{stageEl.classList.add('full');document.body.classList.add('playing')});stageEl.focus({preventScroll:true});dispatchEvent(new Event('resize'))}
 /* ===== v12: START 직후 안내 = 읽을 시간 확보 + 주위에 공고 + 어디까지 읽으면 시작인지 ===== */
-const gate=(()=>{const RT=window.__RT||{setup:5,start:17,all:25};const pc=n=>(n/RT.all*100).toFixed(1)+'%';
+const gate=(()=>{const RT=window.__RT||{setup:5,start:15,all:25};const pc=n=>(n/RT.all*100).toFixed(1)+'%';
  const MEGA='<svg viewBox="0 0 56 52" aria-hidden="true"><path d="M6 20h9l22-12v36L15 32H6z" fill="#f6c945"/><path d="M13 32l4 14h7l-3-13" fill="#f6c945" opacity=".75"/><path d="M43 18c3 2 4 5 4 8s-1 6-4 8M47 12c5 4 7 9 7 14s-2 10-7 14" stroke="#f6c945" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
  const g=document.createElement('div');g.className='gate';g.hidden=true;g.setAttribute('role','alertdialog');g.setAttribute('aria-label','시작 전 안내');
  g.innerHTML=`<div class="gt-in"><p class="gt-eb">⚠ 시작 전에 꼭</p>
