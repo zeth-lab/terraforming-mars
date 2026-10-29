@@ -1,5 +1,5 @@
 /* 오프라인 대응: 한 번 열면 게임 테이블에서 와이파이가 약해도 동작 */
-const C='tm-cache-v1';
+const C='tm-cache-v2';
 const PRE=['./','index.html','manifest.webmanifest','icon-192.png','data/cards.json','img/rb/mars_red.webp','img/rb/mars_terra.webp',"img/rb/award.svg","img/rb/card.svg","img/rb/ce.svg","img/rb/city.svg","img/rb/corp.svg","img/rb/energy.svg","img/rb/greenery.svg","img/rb/heat.svg","img/rb/mc.svg","img/rb/milestone.svg","img/rb/ocean.svg","img/rb/oxy.svg","img/rb/plant.svg","img/rb/prodbox.svg","img/rb/pts.svg","img/rb/redb.svg","img/rb/sp_tile.svg","img/rb/special.svg","img/rb/steel.svg","img/rb/t_an.svg","img/rb/t_bd.svg","img/rb/t_ci.svg","img/rb/t_ea.svg","img/rb/t_en.svg","img/rb/t_ev.svg","img/rb/t_jo.svg","img/rb/t_mi.svg","img/rb/t_pl.svg","img/rb/t_sc.svg","img/rb/t_sp.svg","img/rb/temp.svg","img/rb/ti.svg","img/rb/tr.svg","img/rb/vp.svg",'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>Promise.all(PRE.map(u=>c.add(new Request(u,{mode:u.startsWith('http')?'no-cors':'same-origin'})).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
